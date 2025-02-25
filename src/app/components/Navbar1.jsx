@@ -40,12 +40,12 @@ export function Navbar1() {
   const useActive = useRelume();
   return (
     <section
-      id="relume"
+      id="navbar1"
       className="flex w-full items-center border-b border-border-primary bg-background-primary lg:min-h-18 lg:px-[5%]"
     >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          <a href="#">
+          <a href="#navbar1">
             <img
               src="payai-landscape-transparent.svg"
               alt="Logo image"
@@ -107,28 +107,34 @@ export function Navbar1() {
           className="overflow-hidden px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
         >
           <a
-            href="#"
+            href="#header1"
             className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
           >
             Home
           </a>
           <a
-            href="#"
+            href="#layout91"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
+          >
+            Preview
+          </a>
+          <a
+            href="#layout121"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
+          >
+            How it Works
+          </a>
+          <a
+            href="#blog44"
             className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
           >
             Use Cases
           </a>
           <a
-            href="#"
+            href="#header47"
             className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
           >
-            Features
-          </a>
-          <a
-            href="#"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
-          >
-            How it Works
+            Tokenomics
           </a>
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             <Button

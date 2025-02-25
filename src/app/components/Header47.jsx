@@ -5,7 +5,7 @@ import React from "react";
 
 export function Header47() {
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="header47" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="flex flex-col gap-5 md:flex-row md:gap-12 lg:gap-20">
           <div className="w-full max-w-lg">

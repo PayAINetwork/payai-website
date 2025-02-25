@@ -15,7 +15,7 @@ import { FaCirclePlay } from "react-icons/fa6";
 
 export function Layout28() {
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="layout28" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <Tabs
           defaultValue="tab-1"

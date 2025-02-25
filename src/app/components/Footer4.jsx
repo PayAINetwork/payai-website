@@ -4,7 +4,7 @@ import React from "react";
 
 export function Footer4() {
   return (
-    <footer id="relume" className="px-[5%] py-12 md:py-18 lg:py-20">
+    <footer id="footer4" className="px-[5%] py-12 md:py-18 lg:py-20">
       <div className="container">
         
         <div className="h-px w-full bg-black" />
