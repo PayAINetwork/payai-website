@@ -6,7 +6,7 @@ const TerminalCommand = () => {
       <div className="relative mx-auto max-w-2xl rounded-lg shadow-lg font-mono text-lg overflow-hidden">
         
         {/* Solid black background for text */}
-        <div className="bg-black text-white relative pt-32">
+        <div className="bg-midnight text-white relative pt-32">
             <Typewriter
             options={{
                 strings: ['pnpm install @elizaos/eliza<br>pnpm add @eliza-plugins/payai'],

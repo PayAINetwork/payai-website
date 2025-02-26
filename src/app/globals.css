@@ -9,6 +9,7 @@ body {
 
 h1, h2, h3 {
   @apply font-heading;
+  @apply text-midnight;
 }
 
 button {
@@ -25,7 +26,7 @@ code, pre {
   }
 
   button:active {
-    @apply scale-95 shadow-sm;
+    @apply scale-100 shadow-sm;
   }
 
   .shadow-md {

@@ -14,12 +14,12 @@ export const Layout121 = (props) => {
   };
 
   return (
-    <section id="layout121" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="how-it-works" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="grid grid-cols-1 items-start gap-y-8 md:grid-cols-2 md:gap-x-12 lg:gap-x-20">
           <div>
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
-            <h2 className="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
+            <h2 className="text-midnight rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">
               {heading}
             </h2>
             <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
@@ -40,7 +40,7 @@ export const Layout121 = (props) => {
                   </div>
                 </div>
                 <div className="py-10">
-                  <h6 className="mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl">
+                  <h6 className="text-midnight mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl">
                     {feature.heading}
                   </h6>
                   <p>{feature.description}</p>

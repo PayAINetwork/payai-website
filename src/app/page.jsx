@@ -7,7 +7,6 @@ import { Blog44 } from "./components/Blog44";
 import { Cta25 } from "./components/Cta25";
 import { Header47 } from "./components/Header47";
 import { Contact23 } from "./components/Contact23";
-import { Footer4 } from "./components/Footer4";
 
 export default function Page() {
   return (
@@ -20,7 +19,6 @@ export default function Page() {
       <Cta25 />
       <Header47 />
       <Contact23 />
-      <Footer4 />
     </div>
   );
 }

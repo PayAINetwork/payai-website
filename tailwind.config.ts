@@ -12,8 +12,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        midnight: "#0A192F",
+        neonCyan: "#00E5FF",
+        neonCyanLightest: "#E5FCFF",
+        electricPurple: "#8A2BE2",
+        electricPurpleLightest: "#F3E9FC",
+        softIndigo: "#5A5DF7",
+        softIndigoDark: "#484AC5",
+        softIndigoLightest: "#EEEEFE",
+        tealGlow: "#1CC5DC",
+        tealGlowLightest: "#E8F9FB",
+        darkGray: "#1A1A1A",
+        successGreen: "#3DDC97",
+        warningOrange: "#FFA500",
+        errorRed: "#FF4F4F",
+        neutralLightest: "#F2F2F2",
       },
       fontFamily: {
         heading: ["Inter", "sans-serif"], // H1, H2, H3, CTA

@@ -5,7 +5,7 @@ import React from "react";
 
 export function Header47() {
   return (
-    <section id="header47" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="tokenomics" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="flex flex-col gap-5 md:flex-row md:gap-12 lg:gap-20">
           <div className="w-full max-w-lg">
@@ -30,7 +30,7 @@ export function Header47() {
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <Button
                 title="Docs"
-                className="bg-black"
+                className="bg-midnight"
                 onClick={() =>
                   window.open(
                     process.env.NEXT_PUBLIC_DOCS_URL + '/project-info/fees-and-token-utility',

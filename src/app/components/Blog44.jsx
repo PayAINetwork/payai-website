@@ -4,7 +4,7 @@ import React from "react";
 
 export function Blog44() {
   return (
-    <section id="blog44" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="use-cases" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="rb-12 mb-12 grid grid-cols-1 items-start justify-start gap-y-8 md:mb-18 md:grid-cols-[1fr_max-content] md:items-end md:justify-between md:gap-x-12 md:gap-y-4 lg:mb-20 lg:gap-x-20">
           <div className="w-full max-w-lg">
@@ -20,7 +20,7 @@ export function Blog44() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-16 lg:grid-cols-3">
-          <div className="flex size-full flex-col items-center justify-start border border-border-primary">
+          <div className="bg-white flex size-full flex-col items-center justify-start">
             <div className="relative w-full overflow-hidden pt-[66%]">
               <img
                 src="/usecase-1.webp"
@@ -50,7 +50,7 @@ export function Blog44() {
               </p>
             </div>
           </div>
-          <div className="flex size-full flex-col items-center justify-start border border-border-primary">
+          <div className="bg-white flex size-full flex-col items-center justify-start">
             <div className="relative w-full overflow-hidden pt-[66%]">
               <img
                 src="/usecase-2.svg"
@@ -76,7 +76,7 @@ export function Blog44() {
               </p>
             </div>
           </div>
-          <div className="flex size-full flex-col items-center justify-start border border-border-primary">
+          <div className="bg-white flex size-full flex-col items-center justify-start">
             <div className="relative w-full overflow-hidden pt-[66%]">
               <img
                 src="/usecase-3.webp"

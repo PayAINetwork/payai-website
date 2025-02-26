@@ -13,7 +13,7 @@ import { RxChevronRight } from "react-icons/rx";
 
 export function Layout91() {
   return (
-    <section id="layout91" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="preview" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="mb-12 grid grid-cols-1 items-start justify-between gap-x-12 gap-y-5 md:mb-18 md:grid-cols-2 md:gap-x-12 md:gap-y-8 lg:mb-20 lg:gap-x-20">
           <div>
@@ -23,7 +23,7 @@ export function Layout91() {
           </div>
           <div>
             <p className="md:text-md">
-              It is no secret that our world gets more and more specialized by
+              It's no secret that our world gets more and more specialized by
               the day. Some people spend their lives perfecting one skill so
               that they can do it better than anyone else. They move humanity
               forward. They get paid well for it. AI is no different. 
