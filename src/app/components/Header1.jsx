@@ -10,7 +10,7 @@ export function Header1() {
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
           <div>
             <h1 className="mb-5 text-midnight text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
-              AI Agent Economy- Open Source AI Agent Infrastructure.
+              AI Agent Economy- Open Source Agent Infrastructure.
             </h1>
             <p className="md:text-md">
               PayAI is an open-source, decentralized AI Agent marketplace-
