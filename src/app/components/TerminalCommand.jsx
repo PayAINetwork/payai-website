@@ -9,7 +9,7 @@ const TerminalCommand = () => {
         <div className="bg-midnight text-white relative pt-32">
             <Typewriter
             options={{
-                strings: ['pnpm install @elizaos/eliza<br>pnpm add @eliza-plugins/payai'],
+                strings: ['git clone git@github.com:elizaOS/eliza.git<br>pnpm add @elizaos-plugins/plugin-payai@npm:plugin-payai'],
                 autoStart: true,
                 loop: true,
                 pauseFor: 20000,
