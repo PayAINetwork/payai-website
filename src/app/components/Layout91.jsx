@@ -4,6 +4,7 @@ import {
   Button,
   Dialog,
   DialogContent,
+  DialogTitle,
   DialogTrigger,
   VideoIframe,
 } from "@relume_io/relume-ui";
@@ -52,17 +53,26 @@ export function Layout91() {
           </div>
         </div>
         <Dialog>
-          <DialogTrigger className="relative flex w-full items-center justify-center">
+          <DialogTrigger className="group relative flex w-full items-center justify-center cursor-pointer">
+            {/* Thumbnail Image */}
             <img
-              src="https://d22po4pjz3o32e.cloudfront.net/placeholder-video-thumbnail-landscape.svg"
-              alt="Relume placeholder image"
-              className="size-full object-cover"
+              src="/payai-demo-thumbnail.png"
+              alt="PayAI Demo Thumbnail"
+              className="w-full max-w-3xl rounded-lg shadow-lg"
             />
-            <span className="absolute inset-0 z-10 bg-black/50" />
-            <FaCirclePlay className="absolute z-20 size-16 text-white" />
+            {/* Dark Overlay */}
+            <span className="absolute inset-0 bg-black/50 transition-opacity group-hover:bg-black/30" />
+            {/* Play Icon */}
+            <FaCirclePlay className="absolute z-20 size-16 text-white transition-transform group-hover:scale-110" />
           </DialogTrigger>
-          <DialogContent>
-            <VideoIframe video="https://www.youtube.com/embed/8DKLYsikxTs?si=Ch9W0KrDWWUiCMMW" />
+
+          {/* Video Player */}
+          <DialogContent className="max-w-3xl">
+            <DialogTitle>PayAI Demo</DialogTitle>
+            <video className="w-full rounded-lg shadow-lg" controls preload="auto" autoPlay playsInline muted>
+              <source src="/payai-demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </DialogContent>
         </Dialog>
       </div>
