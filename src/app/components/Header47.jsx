@@ -17,14 +17,14 @@ export function Header47() {
             <p className="md:text-md">
               1,000,000,000 $PAYAI tokens. <br/><br/>
               This is the maximum token supply and cannot be changed. <br/>
-              Token will be fair launched on&nbsp;
-              <a href="https://pump.fun" target="_blank" className="underline">
-                https://pump.fun
+              Token has been fair launched on&nbsp;
+              <a href="https://pump.fun/coin/E7NgL19JbN8BhUDgWjkH8MtnbhJoaGaWJqosxZZepump" target="_blank" className="underline">
+                pump.fun
               </a>.<br/><br/>
               100% of tokens are liquid on launch. <br/>
               Team will buy 20% of token supply for the Treasury on launch. <br/><br/>
               Treasury will be used for operations, marketing, and future token incentives for
-              community, e.g. rewards, partnerships, exchange listings. <br/><br/>
+              community, e.g. rewards, partnerships, etc. <br/><br/>
               Read docs for more info on tokenomics and token utility.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
