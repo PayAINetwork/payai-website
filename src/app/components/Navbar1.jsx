@@ -158,21 +158,21 @@ export function Navbar1() {
           </a>
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             <Button
-              title="Github"
+              title="Docs"
               variant="secondary"
               size="sm"
               className="w-full"
-              onClick={() => window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")}
-            >
-              Github
-            </Button>
-            <Button
-              title="Docs"
-              size="sm"
-              className="w-full bg-midnight"
               onClick={() => window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")}
             >
               Docs
+            </Button>
+            <Button
+              title="Buy"
+              size="sm"
+              className="w-full bg-midnight"
+              onClick={() => window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")}
+            >
+              Buy
             </Button>
           </div>
         </motion.div>

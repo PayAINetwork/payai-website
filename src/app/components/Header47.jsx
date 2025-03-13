@@ -30,22 +30,22 @@ export function Header47() {
             <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
               <Button
                 title="Docs"
-                className="bg-midnight"
-                onClick={() =>
-                  window.open(
-                    process.env.NEXT_PUBLIC_DOCS_URL + '/project-info/fees-and-token-utility',
-                    '_blank'
-                  )
-                }
+                variant="secondary"
+                onClick={() => window.open(process.env.NEXT_PUBLIC_DOCS_URL + '/project-info/fees-and-token-utility', '_blank')}
               >
                 Docs
               </Button>
               <Button
-                title="Dexscreener"
-                variant="secondary"
-                onClick={() => window.open(process.env.NEXT_PUBLIC_DEXSCREENER_URL, '_blank')}
+                title="Buy Token"
+                className="bg-midnight"
+                onClick={() =>
+                  window.open(
+                    process.env.NEXT_PUBLIC_BUY_TOKEN_URL,
+                    '_blank'
+                  )
+                }
               >
-                Dexscreener
+                Buy
               </Button>
             </div>
           </div>
