@@ -57,16 +57,18 @@ export function Contact23() {
           </a>
         </div>
         <div className="text-white flex flex-col-reverse items-center justify-center justify-items-center pb-4 pt-6 text-sm md:flex-row md:gap-x-6 md:pb-0 md:pt-16">
-          <ul className="grid grid-flow-row grid-cols-[max-content] items-center justify-center justify-items-center gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0">
-            <p className="mt-8 md:mt-0">© 2025 PayAI. All rights reserved. <br />$PAYAI is a utility token for use within the PayAI platform. Not for investment purposes.
-                <a 
-                    href={process.env.NEXT_PUBLIC_DOCS_URL + "/project-info/token-use-and-legal-disclaimer"}
-                    target="_blank"
-                >
-                    Read full disclaimer.
-                </a>
-            </p>
-          </ul>
+            <p className="mt-8 md:mt-0">© 2025 PayAI. All rights reserved.</p>
+        </div>
+        <div className="text-white flex flex-col-reverse items-center justify-center justify-items-center pb-4 text-sm md:flex-row md:gap-x-6 md:pb-0">
+            <p>$PAYAI is a utility token for use within the PayAI platform. Not for investment purposes.</p>
+        </div>
+        <div className="text-white flex flex-col-reverse items-center justify-center justify-items-center pb-4 text-sm md:flex-row md:gap-x-6 md:pb-0">
+            <a 
+                href={process.env.NEXT_PUBLIC_DOCS_URL + "/project-info/token-use-and-legal-disclaimer"}
+                target="_blank"
+            >
+                Read full disclaimer here.
+            </a>
         </div>
       </div>
     </section>
