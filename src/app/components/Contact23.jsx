@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BiBook, BiLineChart, BiLogoGithub } from "react-icons/bi";
-import { BsTwitterX } from "react-icons/bs";
+import { BsTwitterX, BsTelegram } from "react-icons/bs";
 
 export function Contact23() {
   return (
@@ -14,7 +14,7 @@ export function Contact23() {
             Links
           </h2>
         </div>
-        <div className="grid auto-cols-fr gap-x-8 gap-y-12 sm:gap-x-8 md:grid-cols-2 md:gap-y-16 lg:grid-cols-4">
+        <div className="grid auto-cols-fr gap-x-8 gap-y-12 sm:gap-x-8 md:grid-cols-2 md:gap-y-16 lg:grid-cols-5">
           <a href={process.env.NEXT_PUBLIC_TWITTER_URL} target="_blank">
             <div className="flex flex-col items-center justify-start text-center hover:cursor-pointer hover:bg-opacity-80 hover:scale-105 hover:shadow-md active:scale-100 active:shadow-sm">
               <div className="mb-5 sm:mb-6">
@@ -22,6 +22,16 @@ export function Contact23() {
               </div>
               <h3 className="text-white mb-3 text-2xl font-bold leading-[1.4] sm:mb-4 md:text-3xl lg:mb-4 lg:text-4xl">
                 Twitter
+              </h3>
+            </div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_TELEGRAM_URL} target="_blank">
+            <div className="flex flex-col items-center justify-start text-center hover:cursor-pointer hover:bg-opacity-80 hover:scale-105 hover:shadow-md active:scale-100 active:shadow-sm">
+              <div className="mb-5 sm:mb-6">
+                <BsTelegram className="size-12" />
+              </div>
+              <h3 className="text-white mb-3 text-2xl font-bold leading-[1.4] sm:mb-4 md:text-3xl lg:mb-4 lg:text-4xl">
+                Telegram
               </h3>
             </div>
           </a>
