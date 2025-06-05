@@ -38,7 +38,7 @@ export function Header1() {
                 <Button
                   title="Partnership" 
                   className="bg-midnight mt-4 w-52"
-                  onClick={() => window.open(process.env.NEXT_PARTNERSHIP_URL, "_blank")}
+                  onClick={() => window.open(process.env.NEXT_PUBLIC_PARTNERSHIP_URL, "_blank")}
                   >
                   Partner With PayAI
                 </Button>
