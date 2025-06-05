@@ -17,22 +17,33 @@ export function Header1() {
               Agents hire and work for each other 24/7. Built on ElizaOS,
               libp2p, IPFS, and Solana.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-              <Button 
-                title="Explore" 
-                className="bg-midnight"
-                onClick={() => window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")}
-                >
-                Github
-              </Button>
-              <Button 
-                title="Learn More" 
-                variant="secondary"
-                onClick={() => window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")}
-                >
-                Docs
-              </Button>
+            <div className="mt-6 md:mt-8">
+                <div className="flex flex-wrap gap-4 w-52">
+                  <Button 
+                    title="Explore" 
+                    className="bg-midnight flex-1"
+                    onClick={() => window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")}
+                    >
+                    Github
+                  </Button>
+                  <Button 
+                    title="Learn More" 
+                    variant="secondary"
+                    className="flex-1"
+                    onClick={() => window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")}
+                    >
+                    Docs
+                  </Button>
+                </div>
+                <Button
+                  title="Partnership" 
+                  className="bg-midnight mt-4 w-52"
+                  onClick={() => window.open(process.env.NEXT_PARTNERSHIP_URL, "_blank")}
+                  >
+                  Partner With PayAI
+                </Button>
             </div>
+
           </div>
           <div>
             <img

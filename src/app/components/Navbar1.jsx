@@ -156,6 +156,12 @@ export function Navbar1() {
           >
             Tokenomics
           </a>
+          <a
+            href={process.env.NEXT_PARTNERSHIP_URL}
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+          >
+            Partner With PayAI
+          </a>
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             <Button
               title="Docs"
