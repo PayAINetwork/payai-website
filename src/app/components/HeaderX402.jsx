@@ -25,7 +25,7 @@ export function HeaderX402() {
                 className="bg-midnight"
                 onClick={() =>
                   window.open(
-                    process.env.NEXT_X402_URL,
+                    process.env.NEXT_PUBLIC_X402_URL,
                     '_blank'
                   )
                 }
