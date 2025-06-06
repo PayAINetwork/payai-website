@@ -157,7 +157,7 @@ export function Navbar1() {
             Tokenomics
           </a>
           <a
-            href={process.env.NEXT_PARTNERSHIP_URL}
+            href={process.env.NEXT_PUBLIC_PARTNERSHIP_URL}
             className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
           >
             Partner With PayAI
