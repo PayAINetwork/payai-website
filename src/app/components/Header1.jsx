@@ -91,13 +91,22 @@ export function Header1() {
               </motion.div>
             </motion.div>
           </div>
-          <div>
-            <img
+          <motion.div
+            initial={{ opacity: 0, x: 30, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
+            <motion.img
               src="/header-image.png"
-              className="w-full object-cover"
+              className="w-full object-cover rounded-lg shadow-lg"
               alt="Header image"
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
-          </div>
+            {/* Optional: Add a subtle overlay for extra depth */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5 rounded-lg pointer-events-none" />
+          </motion.div>
         </div>
       </div>
     </section>
