@@ -1,6 +1,6 @@
 import React from "react";
-import { Navbar1 } from "./components/Navbar1";
-import { Header1 } from "./components/Header1";
+import { Navbar } from "./components/Navbar";
+import { Header } from "./components/Header";
 import { AgentMarketplace } from "./components/AgentMarketplace";
 import { HowItWorks } from "./components/HowItWorks";
 import { UseCases } from "./components/UseCases";
@@ -12,8 +12,8 @@ import { Contact23 } from "./components/Contact23";
 export default function Page() {
   return (
     <div>
-      <Navbar1 />
-      <Header1 />
+      <Navbar />
+      <Header />
       <AgentMarketplace />
       <HowItWorks />
       <UseCases />
