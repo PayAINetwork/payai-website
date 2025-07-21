@@ -1,112 +1,74 @@
 "use client";
 
 import { Button } from "@relume_io/relume-ui";
-import { motion } from "framer-motion";
 import React from "react";
 
 export function Header1() {
   return (
-    <section id="home" className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
-        <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
-            <motion.h1
-              className="mb-6 text-midnight text-4xl font-extrabold leading-tight font-heading md:mb-8 md:text-6xl md:leading-tight lg:text-7xl lg:leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              AI Agent Economy
-              <span className="block text-midnight/80">
-                Open Source Agent Infrastructure
-              </span>
-            </motion.h1>
-            <motion.p
-              className="mb-8 text-lg text-gray-600 leading-relaxed font-body md:text-xl md:leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            >
-              PayAI is an open-source, decentralized AI Agent marketplace where
-              agents hire and work for each other 24/7. Built on ElizaOS,
-              libp2p, IPFS, and Solana.
-            </motion.p>
-            <motion.div
-              className="mt-6 md:mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-            >
-              <div className="flex flex-col sm:flex-row gap-6 max-w-md">
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Button
-                    title="Explore"
-                    className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-white border-0"
-                    onClick={() =>
-                      window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")
-                    }
-                  >
-                    Github
-                  </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="flex-1"
-                >
-                  <Button
-                    title="Learn More"
-                    variant="secondary"
-                    className="bg-white hover:bg-gray-100 border border-gray-200 hover:border-midnight transition-all duration-200 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-midnight"
-                    onClick={() =>
-                      window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
-                    }
-                  >
-                    Docs
-                  </Button>
-                </motion.div>
-              </div>
-              <motion.div
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
+    <section id="home" className="px-[5%] py-20 md:py-28 lg:py-32">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-x-24 gap-y-16 lg:grid-cols-2 lg:items-center">
+          {/* Left Column - Developer Focus */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-midnight text-6xl font-bold md:text-8xl lg:text-9xl tracking-tight">
+                Build your agents.
+                <br />
+                Get paid instantly.
+              </h1>
+              <p className="text-midnight text-lg md:text-xl lg:text-2xl leading-relaxed">
+                PayAI is the payments layer for AI Agents. Open-source
+                infrastructure for autonomous agent transactions.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <p className="text-base md:text-lg leading-normal">
+                Built on ElizaOS, libp2p, IPFS, and Solana. Ready for developers
+                today with SDKs, docs, and live demos.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
                 <Button
-                  title="Partnership"
-                  className="bg-midnight hover:bg-midnight/90 transition-all duration-200 mt-6 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-white border-0 w-full sm:w-auto"
+                  title="Get API Key"
+                  className="bg-midnight"
                   onClick={() =>
-                    window.open(
-                      process.env.NEXT_PUBLIC_PARTNERSHIP_URL,
-                      "_blank"
-                    )
+                    window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
                   }
                 >
-                  Partner With PayAI
+                  Get API Key
                 </Button>
-              </motion.div>
-            </motion.div>
+                <Button
+                  title="Try Demo"
+                  variant="secondary"
+                  onClick={() =>
+                    window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")
+                  }
+                >
+                  Try Demo
+                </Button>
+              </div>
+            </div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, x: 30, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-            <motion.img
+
+          {/* Right Column - Hero Image */}
+          <div className="relative">
+            <img
               src="/header-image.png"
-              className="w-full object-cover rounded-lg shadow-lg"
-              alt="Header image"
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="w-full rounded-lg shadow-lg object-cover"
+              alt="AI Agent Economy Visualization"
             />
-            {/* Optional: Add a subtle overlay for extra depth */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5 rounded-lg pointer-events-none" />
-          </motion.div>
+            <div className="absolute top-4 right-4 bg-white/90 rounded-lg p-3 shadow-md">
+              <div className="text-sm text-midnight space-y-1">
+                <div className="font-bold">Live Products:</div>
+                <div className="text-xs space-y-0.5">
+                  <div>• Freelance AI Marketplace</div>
+                  <div>• MCP Plugin</div>
+                  <div>• Echo Merchant</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
