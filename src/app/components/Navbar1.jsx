@@ -75,7 +75,7 @@ export function Navbar1() {
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
-        <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
+        <div className="flex items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           <a href="#nav">
             <img src="payai-lettermark.svg" alt="Logo image" width="100px" />
           </a>
@@ -131,7 +131,7 @@ export function Navbar1() {
           exit="close"
           animate={useActive.animateMobileMenu}
           transition={{ duration: 0.4 }}
-          className="overflow-hidden px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+          className="px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
         >
           <motion.a
             href="#home"
@@ -186,7 +186,7 @@ export function Navbar1() {
               title="Docs"
               variant="secondary"
               size="sm"
-              className="w-full"
+              className="w-full bg-white hover:bg-gray-100 border border-gray-200 hover:border-midnight transition-all duration-200 rounded-lg text-midnight"
               onClick={() =>
                 window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
               }
@@ -196,7 +196,7 @@ export function Navbar1() {
             <Button
               title="Buy"
               size="sm"
-              className="w-full bg-midnight"
+              className="w-full bg-midnight hover:bg-midnight/90 transition-all duration-200 rounded-lg font-medium text-white border-0"
               onClick={() =>
                 window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
               }
