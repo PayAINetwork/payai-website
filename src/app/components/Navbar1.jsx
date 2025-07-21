@@ -38,41 +38,31 @@ const useRelume = () => {
 
 export function Navbar1() {
   const useActive = useRelume();
-  const [scrollDirection, setScrollDirection] = useState("up");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    const updateScrollDirection = () => {
-      const scrollY = window.scrollY;
-      const direction = scrollY > lastScrollY ? "down" : "up";
-      if (
-        direction !== scrollDirection &&
-        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
-      ) {
-        setScrollDirection(direction);
-      }
-      lastScrollY = scrollY > 0 ? scrollY : 0;
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 20);
     };
-    window.addEventListener("scroll", updateScrollDirection);
+    
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", updateScrollDirection);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollDirection]);
+  }, []);
 
   return (
     <motion.section
       id="nav"
-      className={`sticky top-0 z-50 flex w-full items-center border-b border-gray-200/60 bg-white/80 backdrop-blur-xl lg:min-h-18 lg:px-[5%] transition-all duration-300 shadow-sm ${
-        scrollDirection === "down"
-          ? "-translate-y-full opacity-0"
-          : "translate-y-0 opacity-100"
+      className={`sticky top-0 z-50 flex w-full items-center lg:min-h-18 lg:px-[5%] transition-all duration-500 ${
+        isScrolled
+          ? "bg-white/10 backdrop-blur-2xl border-b border-white/20 shadow-lg shadow-black/5"
+          : "bg-white/95 backdrop-blur-sm border-b border-gray-200/60 shadow-sm"
       }`}
-      initial={{ y: -100, opacity: 0 }}
-      animate={{
-        y: scrollDirection === "down" ? -100 : 0,
-        opacity: scrollDirection === "down" ? 0 : 1,
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      initial={{ y: 0, opacity: 1 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 400, damping: 40 }}
     >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
