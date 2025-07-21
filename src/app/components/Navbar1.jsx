@@ -45,7 +45,10 @@ export function Navbar1() {
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
       const direction = scrollY > lastScrollY ? "down" : "up";
-      if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+      if (
+        direction !== scrollDirection &&
+        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+      ) {
         setScrollDirection(direction);
       }
       lastScrollY = scrollY > 0 ? scrollY : 0;
@@ -57,20 +60,24 @@ export function Navbar1() {
   }, [scrollDirection]);
 
   return (
-    <section
+    <motion.section
       id="nav"
-      className={`sticky top-0 z-50 flex w-full items-center border-b border-border-primary lg:min-h-18 lg:px-[5%] transition-transform duration-300 ${
-        scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
-      } ${scrollDirection === "down" ? "bg-opacity-50" : "bg-opacity-100"} bg-white`}
+      className={`sticky top-0 z-50 flex w-full items-center border-b border-gray-200/60 bg-white/80 backdrop-blur-xl lg:min-h-18 lg:px-[5%] transition-all duration-300 shadow-sm ${
+        scrollDirection === "down"
+          ? "-translate-y-full opacity-0"
+          : "translate-y-0 opacity-100"
+      }`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{
+        y: scrollDirection === "down" ? -100 : 0,
+        opacity: scrollDirection === "down" ? 0 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           <a href="#nav">
-            <img
-              src="payai-lettermark.svg"
-              alt="Logo image"
-              width="100px"
-            />
+            <img src="payai-lettermark.svg" alt="Logo image" width="100px" />
           </a>
           <button
             className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
@@ -126,49 +133,63 @@ export function Navbar1() {
           transition={{ duration: 0.4 }}
           className="overflow-hidden px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
         >
-          <a
+          <motion.a
             href="#home"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             Home
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#preview"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             Preview
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#how-it-works"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             How it Works
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#use-cases"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             Use Cases
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#tokenomics"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             Tokenomics
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={process.env.NEXT_PUBLIC_PARTNERSHIP_URL}
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:shadow-md"
+            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             Partner With PayAI
-          </a>
+          </motion.a>
           <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
             <Button
               title="Docs"
               variant="secondary"
               size="sm"
               className="w-full"
-              onClick={() => window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")}
+              onClick={() =>
+                window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
+              }
             >
               Docs
             </Button>
@@ -176,13 +197,15 @@ export function Navbar1() {
               title="Buy"
               size="sm"
               className="w-full bg-midnight"
-              onClick={() => window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")}
+              onClick={() =>
+                window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
+              }
             >
               Buy
             </Button>
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
