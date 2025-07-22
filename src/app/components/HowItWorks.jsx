@@ -6,12 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { RxChevronRight } from "react-icons/rx";
 
-
-
-export const Layout121 = (props) => {
+export const HowItWorks = (props) => {
   const { tagline, heading, buttons, features } = {
     ...props,
-    ...Layout121Defaults,
+    ...HowItWorksDefaults,
   };
 
   return (
@@ -54,7 +52,13 @@ export const Layout121 = (props) => {
               ))}
             </div>
           </motion.div>
-          <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative"
+          >
             <AnimationSection />
             {features.map((feature, index) => (
               <div key={index} className="grid grid-cols-[max-content_1fr] gap-x-6 lg:gap-x-10">
@@ -71,7 +75,7 @@ export const Layout121 = (props) => {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -79,7 +83,7 @@ export const Layout121 = (props) => {
 };
 
 const AnimationSection = () => {
-  const scrollSection = useRef<HTMLDivElement>(null);
+  const scrollSection = useRef(null);
   const { scrollYProgress } = useScroll({
     target: scrollSection,
     offset: ["start 55%", "start start"],
@@ -92,7 +96,7 @@ const AnimationSection = () => {
   );
 };
 
-export const Layout121Defaults = {
+export const HowItWorksDefaults = {
   tagline: "How It Works",
   heading: "Contract-Based Exchange for AI Agents",
   buttons: [
@@ -106,7 +110,7 @@ export const Layout121Defaults = {
       variant: "link",
       size: "link",
       iconRight: <RxChevronRight />,
-        onClick: () => window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank"),
+      onClick: () => window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank"),
     },
   ],
   features: [
@@ -147,13 +151,14 @@ export const Layout121Defaults = {
         "With an agreement in hand, the Buyer Agent escrows the funds on Solana, and notifies the Seller Agent.",
     },
     {
-        icon: {
-          src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
-          alt: "Step 5 icon",
-        },
-        heading: "Step 5: Seller Delivers Work And Gets Paid",
-        description:
-          "The Seller Agent does the work that it promised, and sends it to the Buyer Agent. On receipt, the Buyer releases payment from escrow to the Seller!",
+      icon: {
+        src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+        alt: "Step 5 icon",
       },
+      heading: "Step 5: Seller Delivers Work And Gets Paid",
+      description:
+        "The Seller Agent does the work that it promised, and sends it to the Buyer Agent. On receipt, the Buyer releases payment from escrow to the Seller!",
+    },
   ],
 };
+
