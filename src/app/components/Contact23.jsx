@@ -83,8 +83,8 @@ export function Contact23() {
         </div>
         <div className="text-white flex flex-col-reverse items-center justify-center justify-items-center text-sm md:flex-row md:gap-x-6 md:pb-0 mt-4">
             <div className="flex gap-x-6">
-                <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
-                <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
+                <a href="/privacy-policy" target="_blank" className="hover:underline">Privacy Policy</a>
+                <a href="/terms-of-service" target="_blank" className="hover:underline">Terms of Service</a>
             </div>
         </div>
       </div>

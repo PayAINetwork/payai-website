@@ -1,11 +1,11 @@
 import React from "react";
-import { Navbar1 } from "../components/Navbar1";
+import { Navbar } from "../components/Navbar";
 import { Contact23 } from "../components/Contact23";
 
 export default function PrivacyPolicy() {
   return (
     <div>
-      <Navbar1 />
+      <Navbar />
       <section className="px-[5%] py-16 md:py-24 lg:py-28">
         <div className="container">
           <h1 className="text-5xl font-bold mb-8 md:text-7xl lg:text-8xl">Privacy Policy</h1>

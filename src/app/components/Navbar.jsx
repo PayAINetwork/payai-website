@@ -165,6 +165,7 @@ export function Navbar() {
           </motion.a>
           <motion.a
             href={process.env.NEXT_PUBLIC_PARTNERSHIP_URL}
+            target="_blank"
             className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
