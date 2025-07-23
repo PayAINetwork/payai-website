@@ -141,24 +141,19 @@ export function AgentMarketplace() {
           </div>
 
           <Dialog>
-            <DialogTrigger className="group relative flex w-full items-center justify-center cursor-pointer overflow-hidden rounded-2xl">
+            <DialogTrigger className="relative flex w-full items-center justify-center cursor-pointer overflow-hidden rounded-2xl">
               <div className="relative w-full max-w-4xl">
                 <img
                   src="/payai-demo-thumbnail.png"
                   alt="PayAI Demo Thumbnail"
-                  className="w-full transition-transform duration-300 group-hover:scale-105 rounded-2xl"
+                  className="w-full rounded-2xl"
                 />
-                <span className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-black/60 transition-all duration-300 group-hover:from-black/20 group-hover:via-black/30 group-hover:to-black/40 rounded-2xl" />
+                <span className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-black/60 rounded-2xl" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="relative"
-                  >
-                    <div className="absolute inset-0 rounded-full bg-white/20 backdrop-blur-sm animate-pulse" />
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-full bg-white/20 backdrop-blur-sm" />
                     <FaCirclePlay className="relative z-10 size-20 text-white drop-shadow-lg" />
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </DialogTrigger>
