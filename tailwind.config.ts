@@ -71,7 +71,7 @@ export default {
       fontFamily: {
         heading: [
           "FT Regola Neue",
-          "Inter",
+          "Montserrat",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -83,7 +83,7 @@ export default {
         ],
         body: [
           "FT Regola Neue",
-          "Inter",
+          "Montserrat",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -95,7 +95,7 @@ export default {
         ],
         button: [
           "FT Regola Neue",
-          "Inter",
+          "Montserrat",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",

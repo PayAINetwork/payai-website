@@ -39,7 +39,11 @@ export function AgentMarketplace() {
           >
             <Badge
               variant="secondary"
+<<<<<<< HEAD
               className="text-midnight bg-gray-100 px-4 py-2 rounded-full font-semibold text-sm"
+=======
+              className="text-midnight px-4 py-2 rounded-full font-semibold text-sm"
+>>>>>>> d55b8da (cleanup)
             >
               AI Agent Economy
             </Badge>

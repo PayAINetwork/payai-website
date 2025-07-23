@@ -11,7 +11,7 @@ export function Header() {
         <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <motion.h1
-              className="mb-6 text-midnight text-4xl font-bold leading-tight font-heading md:text-5xl md:leading-tight lg:text-6xl lg:leading-tight"
+              className="mb-6 text-midnight text-4xl font-bold leading-tight font-heading md:text-5xl md:leading-tight lg:text-8xl lg:leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
