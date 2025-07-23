@@ -115,7 +115,7 @@ export function Features() {
                   >
                     <Button
                       variant="ghost"
-                      className="text-midnight hover:text-midnight/80 font-medium p-0 h-auto transition-colors duration-200 group-hover:underline"
+                      className="text-white hover:text-white bg-midnight hover:bg-midnight/90 font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl border-0 group-hover:scale-105"
                       onClick={() => window.open(feature.ctaLink, "_blank")}
                     >
                       {feature.cta}

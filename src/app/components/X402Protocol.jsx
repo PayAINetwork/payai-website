@@ -80,7 +80,7 @@ export function X402Protocol() {
             >
               <Button
                 title="Try X402"
-                className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-8 py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl text-white border-0 text-lg"
+                className="bg-midnight hover:bg-midnight/90 transition-all duration-300 px-6 py-3 font-semibold rounded-xl shadow-lg hover:shadow-xl text-white border-0"
                 onClick={() =>
                   window.open(process.env.NEXT_PUBLIC_X402_URL, "_blank")
                 }

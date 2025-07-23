@@ -92,7 +92,7 @@ export function CallToAction() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <Button
-                className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-8 py-4 font-semibold rounded-2xl shadow-lg hover:shadow-xl text-white border-0 text-lg"
+                className="bg-midnight hover:bg-midnight/90 transition-all duration-300 px-6 py-3 font-semibold rounded-xl shadow-lg hover:shadow-xl text-white border-0"
                 onClick={() =>
                   window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")
                 }
@@ -108,7 +108,7 @@ export function CallToAction() {
             >
               <Button
                 variant="outline"
-                className="bg-white/80 hover:bg-white border-2 border-white/60 hover:border-midnight/20 transition-all duration-200 px-8 py-4 font-semibold rounded-2xl shadow-lg hover:shadow-xl text-midnight backdrop-blur-sm text-lg"
+                className="bg-white/90 hover:bg-white border-2 border-gray-300 hover:border-midnight transition-all duration-300 px-6 py-3 font-medium rounded-xl shadow-lg hover:shadow-xl text-midnight backdrop-blur-sm"
                 onClick={() =>
                   window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
                 }

@@ -124,7 +124,7 @@ export function Tokenomics() {
                 <Button
                   title="Docs"
                   variant="secondary"
-                  className="bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-midnight transition-all duration-200 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-midnight"
+                  className="bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-midnight transition-all duration-300 px-6 py-3 font-medium rounded-xl shadow-lg hover:shadow-xl text-midnight"
                   onClick={() =>
                     window.open(
                       process.env.NEXT_PUBLIC_DOCS_URL +
@@ -143,7 +143,7 @@ export function Tokenomics() {
               >
                 <Button
                   title="Buy Token"
-                  className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-white border-0"
+                  className="bg-midnight hover:bg-midnight/90 transition-all duration-300 px-6 py-3 font-semibold rounded-xl shadow-lg hover:shadow-xl text-white border-0"
                   onClick={() =>
                     window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
                   }

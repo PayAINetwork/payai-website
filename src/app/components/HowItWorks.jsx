@@ -52,8 +52,8 @@ export const HowItWorks = (props) => {
                   variant={button.variant === "secondary" ? "outline" : "ghost"}
                   className={
                     button.variant === "secondary"
-                      ? "border-2 border-gray-200 hover:border-midnight transition-all duration-200 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-midnight"
-                      : "text-midnight hover:text-midnight/80 font-medium px-4 py-3 transition-colors duration-200"
+                      ? "border-2 border-gray-300 hover:border-midnight transition-all duration-300 px-6 py-3 font-medium rounded-xl shadow-lg hover:shadow-xl text-midnight"
+                      : "text-midnight hover:text-midnight/80 font-medium px-4 py-2 transition-all duration-300 rounded-lg hover:bg-gray-50"
                   }
                   onClick={button.onClick}
                 >
@@ -132,7 +132,7 @@ export const HowItWorks = (props) => {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <Button
-                className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-8 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-white border-0"
+                className="bg-midnight hover:bg-midnight/90 transition-all duration-300 px-6 py-3 font-semibold rounded-xl shadow-lg hover:shadow-xl text-white border-0"
                 onClick={() =>
                   window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")
                 }
