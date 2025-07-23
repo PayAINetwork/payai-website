@@ -6,173 +6,132 @@ import { BsTwitterX, BsTelegram } from "react-icons/bs";
 import { motion } from "framer-motion";
 
 export function Links() {
-  const linkVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-  };
+  const links = [
+    {
+      title: "Twitter",
+      icon: BsTwitterX,
+      url: process.env.NEXT_PUBLIC_TWITTER_URL,
+      color: "text-blue-600 hover:text-blue-700",
+    },
+    {
+      title: "Telegram",
+      icon: BsTelegram,
+      url: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+      color: "text-sky-600 hover:text-sky-700",
+    },
+    {
+      title: "DexScreener",
+      icon: BiLineChart,
+      url: process.env.NEXT_PUBLIC_DEXSCREENER_URL,
+      color: "text-green-600 hover:text-green-700",
+    },
+    {
+      title: "Docs",
+      icon: BiBook,
+      url: process.env.NEXT_PUBLIC_DOCS_URL,
+      color: "text-purple-600 hover:text-purple-700",
+    },
+    {
+      title: "Github",
+      icon: BiLogoGithub,
+      url: process.env.NEXT_PUBLIC_GITHUB_URL,
+      color: "text-gray-700 hover:text-gray-800",
+    },
+  ];
 
   return (
-    <section id="links" className="bg-midnight px-[5%] pt-16 md:pt-24 lg:pt-28 pb-6 md:pb-12 lg:pb-16">
-      <div className="container text-white max-w-7xl mx-auto">
-        <motion.div 
-          className="mb-12 flex max-w-lg flex-col md:mb-18 lg:mb-20"
-          initial={{ opacity: 0, y: 30 }}
+    <section id="links" className="bg-gray-50 px-[5%] py-12 md:py-16">
+      <div className="container max-w-7xl mx-auto">
+        {/* Links Grid - Compact */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
+          className="mb-12"
         >
-          <p className="mb-3 font-semibold md:mb-4">Connect</p>
-          <h2 className="text-white text-5xl font-bold font-heading md:mb-6 md:text-7xl lg:text-8xl">
-            Links
-          </h2>
+          <div className="text-center mb-8">
+            <h3 className="text-midnight text-2xl font-bold mb-2">
+              Connect With Us
+            </h3>
+            <p className="text-gray-600 text-sm">
+              Join our community and stay updated
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+            {links.map((link, index) => {
+              const IconComponent = link.icon;
+              return (
+                <motion.a
+                  key={link.title}
+                  href={link.url}
+                  target="_blank"
+                  className="group"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.4,
+                    ease: "easeOut",
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-gray-300 min-w-[100px]">
+                    <IconComponent
+                      className={`size-6 mb-2 ${link.color} transition-colors`}
+                    />
+                    <span className="text-xs font-medium text-gray-700 group-hover:text-midnight transition-colors">
+                      {link.title}
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
         </motion.div>
-        
-        <div className="grid auto-cols-fr gap-x-8 gap-y-12 sm:gap-x-8 md:grid-cols-2 md:gap-y-16 lg:grid-cols-5">
-          <motion.a 
-            href={process.env.NEXT_PUBLIC_TWITTER_URL} 
-            target="_blank"
-            variants={linkVariants}
-            initial="initial"
-            whileInView="animate"
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex flex-col items-center justify-start text-center p-6 rounded-xl transition-all duration-300 hover:bg-white/10 backdrop-blur-sm"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="mb-5 sm:mb-6">
-                <BsTwitterX className="size-12" />
-              </div>
-              <h3 className="text-white text-2xl font-bold leading-[1.4] md:text-3xl lg:text-4xl">
-                Twitter
-              </h3>
-            </motion.div>
-          </motion.a>
 
-          <motion.a 
-            href={process.env.NEXT_PUBLIC_TELEGRAM_URL} 
-            target="_blank"
-            variants={linkVariants}
-            initial="initial"
-            whileInView="animate"
-            transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex flex-col items-center justify-start text-center p-6 rounded-xl transition-all duration-300 hover:bg-white/10 backdrop-blur-sm"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="mb-5 sm:mb-6">
-                <BsTelegram className="size-12" />
-              </div>
-              <h3 className="text-white text-2xl font-bold leading-[1.4] md:text-3xl lg:text-4xl">
-                Telegram
-              </h3>
-            </motion.div>
-          </motion.a>
-
-          <motion.a 
-            href={process.env.NEXT_PUBLIC_DEXSCREENER_URL} 
-            target="_blank"
-            variants={linkVariants}
-            initial="initial"
-            whileInView="animate"
-            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex flex-col items-center justify-start text-center p-6 rounded-xl transition-all duration-300 hover:bg-white/10 backdrop-blur-sm"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="mb-5 sm:mb-6">
-                <BiLineChart className="size-12" />
-              </div>
-              <h3 className="text-white text-2xl font-bold leading-[1.4] md:text-3xl lg:text-4xl">
-                DexScreener
-              </h3>
-            </motion.div>
-          </motion.a>
-
-          <motion.a 
-            href={process.env.NEXT_PUBLIC_DOCS_URL} 
-            target="_blank"
-            variants={linkVariants}
-            initial="initial"
-            whileInView="animate"
-            transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex flex-col items-center justify-start text-center p-6 rounded-xl transition-all duration-300 hover:bg-white/10 backdrop-blur-sm"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="mb-5 sm:mb-6">
-                <BiBook className="size-12" />
-              </div>
-              <h3 className="text-white text-2xl font-bold leading-[1.4] md:text-3xl lg:text-4xl">
-                Docs
-              </h3>
-            </motion.div>
-          </motion.a>
-
-          <motion.a 
-            href={process.env.NEXT_PUBLIC_GITHUB_URL} 
-            target="_blank"
-            variants={linkVariants}
-            initial="initial"
-            whileInView="animate"
-            transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex flex-col items-center justify-start text-center p-6 rounded-xl transition-all duration-300 hover:bg-white/10 backdrop-blur-sm"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="mb-5 sm:mb-6">
-                <BiLogoGithub className="size-12" />
-              </div>
-              <h3 className="text-white text-2xl font-bold leading-[1.4] md:text-3xl lg:text-4xl">
-                Github
-              </h3>
-            </motion.div>
-          </motion.a>
-        </div>
-
-        {/* Footer content with animations */}
-        <motion.div 
-          className="text-white flex flex-col items-center justify-center text-center space-y-4 pt-16"
+        {/* Footer */}
+        <motion.div
+          className="text-center space-y-4 pt-8 border-t border-gray-200"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
+          transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <p className="text-sm">© 2025 PayAI. All rights reserved.</p>
-          <p className="text-sm max-w-2xl">
-            $PAYAI is a utility token for use within the PayAI platform. Not for investment purposes.
-          </p>
-          <a 
-            href={process.env.NEXT_PUBLIC_DOCS_URL + "/project-info/token-use-and-legal-disclaimer"}
-            target="_blank"
-            className="text-sm hover:underline transition-colors duration-200"
-          >
-            Read full disclaimer here.
-          </a>
-          <div className="flex gap-x-6 text-sm">
-            <a href="/privacy-policy" className="hover:underline transition-colors duration-200">
+          <div className="space-y-3">
+            <p className="text-sm text-gray-600">
+              © 2025 PayAI. All rights reserved.
+            </p>
+            <p className="text-xs text-gray-500 max-w-2xl mx-auto">
+              $PAYAI is a utility token for use within the PayAI platform. Not
+              for investment purposes.
+            </p>
+            <a
+              href={
+                process.env.NEXT_PUBLIC_DOCS_URL +
+                "/project-info/token-use-and-legal-disclaimer"
+              }
+              target="_blank"
+              className="text-xs text-midnight hover:text-midnight/80 underline transition-colors duration-200 inline-block"
+            >
+              Read full disclaimer →
+            </a>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 justify-center items-center pt-2">
+            <a
+              href="/privacy-policy"
+              className="text-xs text-gray-500 hover:text-midnight transition-colors duration-200 px-3 py-1 rounded hover:bg-gray-100"
+            >
               Privacy Policy
             </a>
-            <a href="/terms-of-service" className="hover:underline transition-colors duration-200">
+            <a
+              href="/terms-of-service"
+              className="text-xs text-gray-500 hover:text-midnight transition-colors duration-200 px-3 py-1 rounded hover:bg-gray-100"
+            >
               Terms of Service
             </a>
           </div>
