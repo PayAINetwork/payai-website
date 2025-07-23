@@ -56,11 +56,7 @@ export function Tokenomics() {
             <div>
               <Badge
                 variant="secondary"
-<<<<<<< HEAD
                 className="mb-6 text-midnight bg-gray-100 px-4 py-2 rounded-full font-semibold text-sm"
-=======
-                className="mb-6 text-midnight px-4 py-2 rounded-full font-semibold text-sm"
->>>>>>> d55b8da (cleanup)
               >
                 Token Economics
               </Badge>
