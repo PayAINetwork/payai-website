@@ -1,12 +1,13 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
-  Button,
   Dialog,
   DialogContent,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@relume_io/relume-ui";
+} from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import React from "react";
 import { FaCirclePlay } from "react-icons/fa6";
@@ -49,8 +50,7 @@ export function AgentMarketplace() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Button
-                  title="Learn More"
-                  variant="secondary"
+                  variant="outline"
                   className="bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-midnight transition-all duration-200 px-6 py-3 font-medium rounded-xl shadow-sm hover:shadow-md text-midnight"
                   onClick={() => window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")}
                 >
@@ -63,14 +63,12 @@ export function AgentMarketplace() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Button
-                  title="Monetize Your Agent"
-                  variant="link"
-                  size="link"
-                  iconRight={<RxChevronRight />}
-                  className="text-midnight hover:text-midnight/80 font-medium transition-colors duration-200"
+                  variant="ghost"
+                  className="text-midnight hover:text-midnight/80 font-medium p-0 h-auto transition-colors duration-200"
                   onClick={() => window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")}
                 >
                   Monetize Your Agent
+                  <RxChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.div>
             </div>
@@ -108,7 +106,9 @@ export function AgentMarketplace() {
 
             {/* Enhanced Video Player */}
             <DialogContent className="max-w-4xl border-0 bg-black/95 backdrop-blur-xl">
-              <DialogTitle className="text-white">PayAI Demo</DialogTitle>
+              <DialogHeader>
+                <DialogTitle className="text-white">PayAI Demo</DialogTitle>
+              </DialogHeader>
               <video 
                 className="w-full rounded-lg shadow-2xl" 
                 controls 
