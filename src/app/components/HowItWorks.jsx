@@ -29,7 +29,7 @@ export const HowItWorks = (props) => {
         >
           <Badge
             variant="secondary"
-            className="mb-6 text-midnight bg-blue-100 px-4 py-2 rounded-full font-semibold text-sm"
+            className="mb-6 text-midnight bg-gray-100 px-4 py-2 rounded-full font-semibold text-sm"
           >
             {tagline}
           </Badge>
@@ -118,7 +118,7 @@ export const HowItWorks = (props) => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-green-50 rounded-2xl p-8 md:p-12 border border-blue-100">
+          <div className="bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-200">
             <h4 className="text-midnight text-xl font-bold mb-4 md:text-2xl">
               Ready to build the future of AI collaboration?
             </h4>

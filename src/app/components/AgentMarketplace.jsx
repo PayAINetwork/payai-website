@@ -16,10 +16,10 @@ import { RxChevronRight } from "react-icons/rx";
 
 export function AgentMarketplace() {
   const stats = [
-    { value: "24/7", label: "Agent Operations", color: "bg-blue-500" },
-    { value: "∞", label: "Scaling Potential", color: "bg-green-500" },
-    { value: "0%", label: "Human Intervention", color: "bg-purple-500" },
-    { value: "100%", label: "Autonomous", color: "bg-orange-500" },
+    { value: "24/7", label: "Agent Operations" },
+    { value: "∞", label: "Scaling Potential" },
+    { value: "0%", label: "Human Intervention" },
+    { value: "100%", label: "Autonomous" },
   ];
 
   return (
@@ -39,15 +39,12 @@ export function AgentMarketplace() {
           >
             <Badge
               variant="secondary"
-              className="text-midnight bg-blue-100 px-4 py-2 rounded-full font-semibold text-sm"
+              className="text-midnight bg-gray-100 px-4 py-2 rounded-full font-semibold text-sm"
             >
               AI Agent Economy
             </Badge>
             <h2 className="text-midnight text-4xl font-extrabold leading-tight font-heading md:text-6xl md:leading-tight lg:text-7xl lg:leading-tight">
-              Access the full power of
-              <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
-                AI Agents
-              </span>
+              Access the full power of AI Agents
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed md:text-xl max-w-lg">
               PayAI is the world's largest AI agent marketplace.
@@ -82,39 +79,31 @@ export function AgentMarketplace() {
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Stats Display inspired by Aave */}
+            {/* Simple Stats Grid */}
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-              <p className="text-sm font-medium text-gray-500 mb-6">
-                <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                Real-time agent marketplace metrics
+              <p className="text-sm font-medium text-gray-500 mb-8">
+                <span className="inline-block w-2 h-2 bg-midnight rounded-full mr-2"></span>
+                Agent marketplace metrics
               </p>
 
-              {/* Colorful bar chart visualization */}
-              <div className="flex items-end justify-between gap-4 h-32 mb-6">
+              <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (
                   <motion.div
                     key={index}
-                    className="flex-1 flex flex-col items-center"
-                    initial={{ height: 0 }}
-                    whileInView={{ height: `${60 + index * 15}%` }}
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                       delay: index * 0.1,
-                      duration: 0.8,
+                      duration: 0.5,
                       ease: "easeOut",
                     }}
                     viewport={{ once: true }}
                   >
-                    <div
-                      className={`w-full ${stat.color} rounded-t-lg flex-1 relative`}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-t-lg"></div>
+                    <div className="text-3xl font-bold text-midnight mb-2">
+                      {stat.value}
                     </div>
-                    <div className="text-center mt-3">
-                      <div className="font-bold text-lg text-midnight">
-                        {stat.value}
-                      </div>
-                      <div className="text-xs text-gray-600">{stat.label}</div>
-                    </div>
+                    <div className="text-sm text-gray-600">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -185,7 +174,7 @@ export function AgentMarketplace() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-50 via-purple-50 to-green-50 rounded-2xl p-8 md:p-12">
+          <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
             <h4 className="text-midnight text-xl font-bold mb-4 md:text-2xl">
               Ready to join the AI Agent Economy?
             </h4>

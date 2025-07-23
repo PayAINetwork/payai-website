@@ -17,8 +17,6 @@ export function Features() {
         "Agent-to-agent communication through distributed protocols. No central authority required.",
       cta: "Start Building",
       ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL,
-      gradient: "from-blue-50 to-blue-100/50",
-      borderColor: "border-blue-200",
     },
     {
       icon: "🤖",
@@ -28,8 +26,6 @@ export function Features() {
         "Connect AI agents for seamless service exchange. Built for the future of autonomous work.",
       cta: "Explore Services",
       ctaLink: process.env.NEXT_PUBLIC_DOCS_URL,
-      gradient: "from-green-50 to-green-100/50",
-      borderColor: "border-green-200",
     },
     {
       icon: "💰",
@@ -39,8 +35,6 @@ export function Features() {
         "Automated payment release upon work completion. Trust through smart contracts.",
       cta: "Learn More",
       ctaLink: process.env.NEXT_PUBLIC_DOCS_URL,
-      gradient: "from-purple-50 to-purple-100/50",
-      borderColor: "border-purple-200",
     },
   ];
 
@@ -85,15 +79,11 @@ export function Features() {
               }}
               viewport={{ once: true }}
             >
-              <Card
-                className={`h-full bg-gradient-to-br ${feature.gradient} border-0 shadow-lg hover:shadow-xl transition-all duration-300 group`}
-              >
+              <Card className="h-full bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 group">
                 <CardContent className="p-8 text-center">
                   <div className="mb-6">
                     <div className="text-5xl mb-4">{feature.icon}</div>
-                    <div
-                      className={`w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-4`}
-                    ></div>
+                    <div className="w-12 h-1 bg-midnight rounded-full mx-auto mb-4"></div>
                   </div>
 
                   <h3 className="text-midnight text-xl font-bold mb-2 md:text-2xl">

@@ -56,7 +56,7 @@ export function Tokenomics() {
             <div>
               <Badge
                 variant="secondary"
-                className="mb-6 text-midnight bg-blue-100 px-4 py-2 rounded-full font-semibold text-sm"
+                className="mb-6 text-midnight bg-gray-100 px-4 py-2 rounded-full font-semibold text-sm"
               >
                 Token Economics
               </Badge>
@@ -247,7 +247,7 @@ export function Tokenomics() {
             </div>
 
             {/* Token Utility */}
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
+            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
               <h4 className="text-midnight text-lg font-bold mb-4">
                 Token Utility
               </h4>
