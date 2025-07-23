@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar } from "./components/Navbar";
 import { Header } from "./components/Header";
+import { Features } from "./components/Features";
 import { AgentMarketplace } from "./components/AgentMarketplace";
 import { HowItWorks } from "./components/HowItWorks";
 import { UseCases } from "./components/UseCases";
@@ -14,12 +15,13 @@ export default function Page() {
     <div>
       <Navbar />
       <Header />
+      <Features />
       <AgentMarketplace />
       <HowItWorks />
       <UseCases />
-      <CallToAction />
       <Tokenomics />
       <X402Protocol />
+      <CallToAction />
       <Links />
     </div>
   );
