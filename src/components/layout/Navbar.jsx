@@ -114,55 +114,45 @@ export function Navbar() {
         </div>
         <motion.div
           variants={{
-            open: { height: "var(--height-open, 100dvh)" },
-            close: { height: "var(--height-closed, 0)" },
+            open: { height: "auto" },
+            close: { height: 0 },
           }}
           initial="close"
           exit="close"
           animate={useActive.animateMobileMenu}
           transition={{ duration: 0.4 }}
-          className="px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+          className="overflow-hidden px-[5%] lg:overflow-visible lg:flex lg:items-center lg:px-0 lg:h-auto"
         >
-          <motion.a
+          <a
             href="#home"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
           >
             Home
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#preview"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
           >
             Preview
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#how-it-works"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
           >
             How it Works
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#use-cases"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
           >
             Use Cases
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#tokenomics"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
           >
             Tokenomics
-          </motion.a>
+          </a>
           <motion.a
             href={process.env.NEXT_PUBLIC_PARTNERSHIP_URL}
             target="_blank"
@@ -172,12 +162,12 @@ export function Navbar() {
           >
             Partner With PayAI
           </motion.a>
-          <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
+          <div className="mt-6 flex flex-col items-center gap-3 lg:ml-6 lg:mt-0 lg:flex-row">
             <Button
               title="Docs"
               variant="secondary"
               size="sm"
-              className="w-full bg-white hover:bg-gray-100 border border-gray-200 hover:border-midnight transition-all duration-200 rounded-lg text-midnight"
+              className="w-full lg:w-auto bg-transparent hover:bg-gray-50 border border-gray-300 hover:border-gray-400 transition-all duration-200 rounded-lg text-gray-700 text-sm font-medium px-4 py-2"
               onClick={() =>
                 window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
               }
@@ -185,9 +175,9 @@ export function Navbar() {
               Docs
             </Button>
             <Button
-              title="Buy"
+              title="Open App"
               size="sm"
-              className="w-full bg-midnight hover:bg-midnight/90 transition-all duration-200 rounded-lg font-medium text-white border-0"
+              className="w-full lg:w-auto bg-midnight hover:bg-midnight/90 transition-all duration-200 rounded-lg font-medium text-white border-0 text-sm px-6 py-2"
               onClick={() =>
                 window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
               }
