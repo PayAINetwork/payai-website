@@ -4,26 +4,22 @@ import { Button } from "@relume_io/relume-ui";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import React from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 export function Tokenomics() {
-  const tokenomicsData = [
+  // Chart data for Recharts
+  const chartData = [
     {
-      percentage: 100,
-      label: "Fair Launch",
-      description: "All tokens liquid on launch",
-      color: "bg-blue-500",
+      name: "Community",
+      value: 80,
+      tokens: "800M",
+      color: "#8b5cf6",
     },
     {
-      percentage: 20,
-      label: "Treasury",
-      description: "Team purchase for operations",
-      color: "bg-green-500",
-    },
-    {
-      percentage: 80,
-      label: "Community",
-      description: "Public trading & rewards",
-      color: "bg-purple-500",
+      name: "Treasury",
+      value: 20,
+      tokens: "200M",
+      color: "#10b981",
     },
   ];
 
@@ -168,56 +164,27 @@ export function Tokenomics() {
                 Token Distribution
               </h3>
 
-              {/* Circular Progress Visualization */}
+              {/* Professional Chart with Recharts */}
               <div className="flex justify-center mb-8">
                 <div className="relative w-48 h-48">
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    {/* Background circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="#f3f4f6"
-                      strokeWidth="8"
-                    />
-                    {/* Community portion (80%) */}
-                    <motion.circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="#8b5cf6"
-                      strokeWidth="8"
-                      strokeLinecap="round"
-                      strokeDasharray={`${80 * 2.83} 283`}
-                      strokeDashoffset="70.75"
-                      initial={{ strokeDasharray: "0 283" }}
-                      whileInView={{ strokeDasharray: `${80 * 2.83} 283` }}
-                      transition={{
-                        duration: 1.5,
-                        delay: 0.5,
-                        ease: "easeOut",
-                      }}
-                      viewport={{ once: true }}
-                    />
-                    {/* Treasury portion (20%) */}
-                    <motion.circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      fill="none"
-                      stroke="#10b981"
-                      strokeWidth="8"
-                      strokeLinecap="round"
-                      strokeDasharray={`${20 * 2.83} 283`}
-                      strokeDashoffset={`${283 - 80 * 2.83 + 70.75}`}
-                      initial={{ strokeDasharray: "0 283" }}
-                      whileInView={{ strokeDasharray: `${20 * 2.83} 283` }}
-                      transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
-                      viewport={{ once: true }}
-                    />
-                  </svg>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={chartData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={70}
+                        outerRadius={90}
+                        startAngle={90}
+                        endAngle={450}
+                        dataKey="value"
+                      >
+                        {chartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-midnight">1B</div>
@@ -229,20 +196,25 @@ export function Tokenomics() {
 
               {/* Legend */}
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
-                    <span className="font-medium text-midnight">Community</span>
+                {chartData.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between"
+                  >
+                    <div className="flex items-center">
+                      <div
+                        className="w-3 h-3 rounded-full mr-3"
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                      <span className="font-medium text-midnight">
+                        {item.name}
+                      </span>
+                    </div>
+                    <span className="text-gray-600">
+                      {item.value}% ({item.tokens})
+                    </span>
                   </div>
-                  <span className="text-gray-600">80% (800M)</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-                    <span className="font-medium text-midnight">Treasury</span>
-                  </div>
-                  <span className="text-gray-600">20% (200M)</span>
-                </div>
+                ))}
               </div>
             </div>
 
