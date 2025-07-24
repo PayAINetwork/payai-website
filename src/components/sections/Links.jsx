@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BiBook, BiLineChart, BiLogoGithub } from "react-icons/bi";
-import { BsTwitterX, BsTelegram } from "react-icons/bs";
+import { BsTwitterX, BsTelegram, BsLinkedin } from "react-icons/bs";
 import { motion } from "framer-motion";
 
 export function Links() {
@@ -35,6 +35,12 @@ export function Links() {
       title: "Github",
       icon: BiLogoGithub,
       url: process.env.NEXT_PUBLIC_GITHUB_URL,
+      color: "text-gray-700 hover:text-gray-800",
+    },
+    {
+      title: "LinkedIn",
+      icon: BsLinkedin,
+      url: process.env.NEXT_PUBLIC_LINKEDIN_URL,
       color: "text-gray-700 hover:text-gray-800",
     },
   ];
