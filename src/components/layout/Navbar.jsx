@@ -52,6 +52,29 @@ export function Navbar() {
     };
   }, []);
 
+  // Custom smooth scroll function with navbar offset
+  const smoothScrollTo = (targetId) => {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const navbarHeight = 80; // Approximate navbar height
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    smoothScrollTo(targetId);
+    // Close mobile menu if open
+    if (useActive.animateMobileMenu === "open") {
+      useActive.toggleMobileMenu();
+    }
+  };
+
   return (
     <motion.section
       id="nav"
@@ -66,9 +89,15 @@ export function Navbar() {
     >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          <a href="#nav">
+          <motion.a
+            href="#nav"
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
+          >
             <img src="payai-lettermark.svg" alt="Logo image" width="100px" />
-          </a>
+          </motion.a>
           <button
             className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
             onClick={useActive.toggleMobileMenu}
@@ -123,67 +152,100 @@ export function Navbar() {
           transition={{ duration: 0.4 }}
           className="overflow-hidden px-[5%] lg:overflow-visible lg:flex lg:items-center lg:px-0 lg:h-auto"
         >
-          <a
+          <motion.a
             href="#home"
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
+            onClick={(e) => handleNavClick(e, "home")}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
           >
             Home
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#preview"
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
+            onClick={(e) => handleNavClick(e, "preview")}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
           >
             Preview
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#how-it-works"
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
+            onClick={(e) => handleNavClick(e, "how-it-works")}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
           >
             How it Works
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#use-cases"
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
+            onClick={(e) => handleNavClick(e, "use-cases")}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
           >
             Use Cases
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#tokenomics"
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium"
+            onClick={(e) => handleNavClick(e, "tokenomics")}
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
           >
             Tokenomics
-          </a>
+          </motion.a>
           <motion.a
             href={process.env.NEXT_PUBLIC_PARTNERSHIP_URL}
             target="_blank"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 text-gray-700 hover:text-midnight transition-colors duration-200 relative"
+            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ pointerEvents: "auto", cursor: "pointer" }}
           >
             Partner With PayAI
           </motion.a>
           <div className="mt-6 flex flex-col items-center gap-3 lg:ml-6 lg:mt-0 lg:flex-row">
-            <Button
-              title="Docs"
-              variant="secondary"
-              size="sm"
-              className="w-full lg:w-auto bg-transparent hover:bg-gray-50 border border-gray-300 hover:border-gray-400 transition-all duration-200 rounded-lg text-gray-700 text-sm font-medium px-4 py-2"
-              onClick={() =>
-                window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
-              }
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              style={{ pointerEvents: "auto", cursor: "pointer" }}
             >
-              Docs
-            </Button>
-            <Button
-              title="Open App"
-              size="sm"
-              className="w-full lg:w-auto bg-midnight hover:bg-midnight/90 transition-all duration-200 rounded-lg font-medium text-white border-0 text-sm px-6 py-2"
-              onClick={() =>
-                window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
-              }
+              <Button
+                title="Docs"
+                variant="secondary"
+                size="sm"
+                className="w-full lg:w-auto bg-transparent hover:bg-gray-50 border border-gray-300 hover:border-gray-400 transition-all duration-200 rounded-lg text-gray-700 text-sm font-medium px-4 py-2 cursor-pointer"
+                onClick={() =>
+                  window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
+                }
+              >
+                Docs
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              style={{ pointerEvents: "auto", cursor: "pointer" }}
             >
-              Buy
-            </Button>
+              <Button
+                title="Open App"
+                size="sm"
+                className="w-full lg:w-auto bg-midnight hover:bg-midnight/90 transition-all duration-200 rounded-lg font-medium text-white border-0 text-sm px-6 py-2 cursor-pointer"
+                onClick={() =>
+                  window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
+                }
+              >
+                Buy
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
       </div>
