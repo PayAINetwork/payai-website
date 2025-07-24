@@ -130,7 +130,7 @@ export function AgentMarketplace() {
           </div>
 
           <Dialog>
-            <DialogTrigger className="relative flex w-full items-center justify-center cursor-pointer overflow-hidden rounded-2xl">
+            <DialogTrigger className="relative flex w-full items-center justify-center cursor-pointer overflow-hidden rounded-2xl hover:scale-100">
               <div className="relative w-full max-w-4xl">
                 <img
                   src="/payai-demo-thumbnail.png"
