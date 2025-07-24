@@ -114,14 +114,14 @@ export function Navbar() {
         </div>
         <motion.div
           variants={{
-            open: { height: "var(--height-open, 100dvh)" },
-            close: { height: "var(--height-closed, 0)" },
+            open: { height: "auto" },
+            close: { height: 0 },
           }}
           initial="close"
           exit="close"
           animate={useActive.animateMobileMenu}
           transition={{ duration: 0.4 }}
-          className="px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+          className="overflow-hidden px-[5%] lg:overflow-visible lg:flex lg:items-center lg:px-0 lg:h-auto"
         >
           <a
             href="#home"
@@ -182,7 +182,7 @@ export function Navbar() {
                 window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
               }
             >
-              Open App
+              Buy
             </Button>
           </div>
         </motion.div>
