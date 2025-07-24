@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import TerminalCommand from "@/app/components/TerminalCommand";
+import TerminalCommand from "@/components/shared/TerminalCommand";
 
 export function CallToAction() {
   // Floating elements for visual appeal
