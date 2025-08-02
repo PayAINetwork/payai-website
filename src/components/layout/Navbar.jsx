@@ -1,44 +1,11 @@
 "use client";
 
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
-
-const useRelume = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 991px)");
-  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
-  const openOnMobileDropdownMenu = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
-  const openOnDesktopDropdownMenu = () => {
-    !isMobile && setIsDropdownOpen(true);
-  };
-  const closeOnDesktopDropdownMenu = () => {
-    !isMobile && setIsDropdownOpen(false);
-  };
-  const animateMobileMenu = isMobileMenuOpen ? "open" : "close";
-  const animateMobileMenuButtonSpan = isMobileMenuOpen
-    ? ["open", "rotatePhase"]
-    : "closed";
-  const animateDropdownMenu = isDropdownOpen ? "open" : "close";
-  const animateDropdownMenuIcon = isDropdownOpen ? "rotated" : "initial";
-  return {
-    toggleMobileMenu,
-    openOnDesktopDropdownMenu,
-    closeOnDesktopDropdownMenu,
-    openOnMobileDropdownMenu,
-    animateMobileMenu,
-    animateMobileMenuButtonSpan,
-    animateDropdownMenu,
-    animateDropdownMenuIcon,
-  };
-};
+import Link from "next/link";
 
 export function Navbar() {
-  const useActive = useRelume();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +23,7 @@ export function Navbar() {
   const smoothScrollTo = (targetId) => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const navbarHeight = 80; // Approximate navbar height
+      const navbarHeight = 72; // Navbar height
       const targetPosition = targetElement.offsetTop - navbarHeight;
 
       window.scrollTo({
@@ -70,185 +37,192 @@ export function Navbar() {
     e.preventDefault();
     smoothScrollTo(targetId);
     // Close mobile menu if open
-    if (useActive.animateMobileMenu === "open") {
-      useActive.toggleMobileMenu();
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
     }
   };
 
   return (
-    <motion.section
-      id="nav"
-      className={`sticky top-0 z-50 flex w-full items-center lg:min-h-18 lg:px-[5%] transition-all duration-500 ${
-        isScrolled
-          ? "bg-white/10 backdrop-blur-2xl border-b border-white/20 shadow-lg shadow-black/5"
-          : "bg-white/95 backdrop-blur-sm border-b border-gray-200/60 shadow-sm"
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 bg-white ${
+        isScrolled ? "shadow-sm" : ""
       }`}
-      initial={{ y: 0, opacity: 1 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 400, damping: 40 }}
     >
-      <div className="size-full lg:flex lg:items-center lg:justify-between">
-        <div className="flex items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          <motion.a
-            href="#nav"
-            className="cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
-          >
-            <img src="payai-lettermark.svg" alt="Logo image" width="100px" />
-          </motion.a>
-          <button
-            className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
-            onClick={useActive.toggleMobileMenu}
-          >
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={useActive.animateMobileMenuButtonSpan}
-              variants={{
-                open: { translateY: 8, transition: { delay: 0.1 } },
-                rotatePhase: { rotate: -45, transition: { delay: 0.2 } },
-                closed: {
-                  translateY: 0,
-                  rotate: 0,
-                  transition: { duration: 0.2 },
-                },
-              }}
-            />
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={useActive.animateMobileMenu}
-              variants={{
-                open: { width: 0, transition: { duration: 0.1 } },
-                closed: {
-                  width: "1.5rem",
-                  transition: { delay: 0.3, duration: 0.2 },
-                },
-              }}
-            />
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={useActive.animateMobileMenuButtonSpan}
-              variants={{
-                open: { translateY: -8, transition: { delay: 0.1 } },
-                rotatePhase: { rotate: 45, transition: { delay: 0.2 } },
-                closed: {
-                  translateY: 0,
-                  rotate: 0,
-                  transition: { duration: 0.2 },
-                },
-              }}
-            />
-          </button>
-        </div>
-        <motion.div
-          variants={{
-            open: { height: "auto" },
-            close: { height: 0 },
-          }}
-          initial="close"
-          exit="close"
-          animate={useActive.animateMobileMenu}
-          transition={{ duration: 0.4 }}
-          className="overflow-hidden px-[5%] lg:overflow-visible lg:flex lg:items-center lg:px-0 lg:h-auto"
-        >
-          <motion.a
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <div className="flex items-center space-x-2">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 4L4 10L16 16L28 10L16 4Z"
+                fill="#E6EEFF"
+                stroke="#4D63F6"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M4 22L16 28L28 22"
+                stroke="#4D63F6"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M4 16L16 22L28 16"
+                stroke="#4D63F6"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="text-lg font-semibold text-gray-900">PayAI</span>
+          </div>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link
             href="#home"
             onClick={(e) => handleNavClick(e, "home")}
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
           >
             Home
-          </motion.a>
-          <motion.a
+          </Link>
+          <Link
             href="#preview"
             onClick={(e) => handleNavClick(e, "preview")}
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
           >
             Preview
-          </motion.a>
-          <motion.a
+          </Link>
+          <Link
             href="#how-it-works"
             onClick={(e) => handleNavClick(e, "how-it-works")}
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
           >
             How it Works
-          </motion.a>
-          <motion.a
+          </Link>
+          <Link
             href="#use-cases"
             onClick={(e) => handleNavClick(e, "use-cases")}
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
           >
             Use Cases
-          </motion.a>
-          <motion.a
+          </Link>
+          <Link
             href="#tokenomics"
             onClick={(e) => handleNavClick(e, "tokenomics")}
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
           >
             Tokenomics
-          </motion.a>
-          <motion.a
-            href={process.env.NEXT_PUBLIC_PARTNERSHIP_URL}
+          </Link>
+        </nav>
+
+        {/* CTA Buttons */}
+        <div className="hidden md:flex items-center space-x-3">
+          <Link
+            href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
             target="_blank"
-            className="block py-3 text-sm first:pt-7 lg:px-4 lg:py-2 lg:text-sm first:lg:pt-2 text-gray-600 hover:text-midnight transition-colors duration-200 font-medium cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ pointerEvents: "auto", cursor: "pointer" }}
+            className="inline-flex items-center justify-center bg-white text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-gray-50"
           >
-            Partner With PayAI
-          </motion.a>
-          <div className="mt-6 flex flex-col items-center gap-3 lg:ml-6 lg:mt-0 lg:flex-row">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              style={{ pointerEvents: "auto", cursor: "pointer" }}
+            Docs
+          </Link>
+          <Link
+            href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
+            target="_blank"
+            className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-sm font-medium rounded-md transition-colors"
+          >
+            Buy
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden flex items-center"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6 text-gray-900"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {isMobileMenuOpen ? (
+              <path d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-sm">
+          <div className="px-4 py-2 space-y-1">
+            <Link
+              href="#home"
+              onClick={(e) => handleNavClick(e, "home")}
+              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
             >
-              <Button
-                title="Docs"
-                variant="secondary"
-                size="sm"
-                className="w-full lg:w-auto bg-transparent hover:bg-gray-50 border border-gray-300 hover:border-gray-400 transition-all duration-200 rounded-lg text-gray-700 text-sm font-medium px-4 py-2 cursor-pointer"
-                onClick={() =>
-                  window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
-                }
+              Home
+            </Link>
+            <Link
+              href="#preview"
+              onClick={(e) => handleNavClick(e, "preview")}
+              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
+            >
+              Preview
+            </Link>
+            <Link
+              href="#how-it-works"
+              onClick={(e) => handleNavClick(e, "how-it-works")}
+              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
+            >
+              How it Works
+            </Link>
+            <Link
+              href="#use-cases"
+              onClick={(e) => handleNavClick(e, "use-cases")}
+              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
+            >
+              Use Cases
+            </Link>
+            <Link
+              href="#tokenomics"
+              onClick={(e) => handleNavClick(e, "tokenomics")}
+              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
+            >
+              Tokenomics
+            </Link>
+            <div className="pt-4 flex flex-col space-y-2">
+              <Link
+                href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                target="_blank"
+                className="inline-flex items-center justify-center bg-white text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-gray-50 w-full"
               >
                 Docs
-              </Button>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              style={{ pointerEvents: "auto", cursor: "pointer" }}
-            >
-              <Button
-                title="Open App"
-                size="sm"
-                className="w-full lg:w-auto bg-midnight hover:bg-midnight/90 transition-all duration-200 rounded-lg font-medium text-white border-0 text-sm px-6 py-2 cursor-pointer"
-                onClick={() =>
-                  window.open(process.env.NEXT_PUBLIC_BUY_TOKEN_URL, "_blank")
-                }
+              </Link>
+              <Link
+                href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
+                target="_blank"
+                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-sm font-medium rounded-md transition-colors w-full"
               >
                 Buy
-              </Button>
-            </motion.div>
+              </Link>
+            </div>
           </div>
-        </motion.div>
-      </div>
-    </motion.section>
+        </div>
+      )}
+    </header>
   );
 }

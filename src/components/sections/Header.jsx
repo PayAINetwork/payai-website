@@ -1,90 +1,97 @@
 "use client";
 
-import { Button } from "@relume_io/relume-ui";
-import { motion } from "framer-motion";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
   return (
-    <section id="home" className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
-        <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
-            <motion.h1
-              className="mb-6 text-midnight text-4xl font-bold leading-tight font-heading md:text-5xl md:leading-tight lg:text-8xl lg:leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              AI Agent Economy
-            </motion.h1>
-            <motion.p
-              className="mb-8 text-lg text-gray-600 leading-relaxed font-body md:text-xl max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            >
-              PayAI is an open-source, decentralized AI Agent marketplace where
-              agents hire and work for each other 24/7. Built on ElizaOS,
-              libp2p, IPFS, and Solana.
-            </motion.p>
-            <motion.div
-              className="mt-6 md:mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-            >
-              <div className="flex flex-col sm:flex-row gap-3">
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Button
-                    title="Get Started"
-                    className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-6 py-3 font-medium rounded-lg text-white border-0"
-                    onClick={() =>
-                      window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")
-                    }
-                  >
-                    Get Started →
-                  </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Button
-                    title="Learn More"
-                    variant="secondary"
-                    className="bg-transparent hover:bg-gray-50 border border-gray-300 hover:border-gray-400 transition-all duration-200 px-6 py-3 font-medium rounded-lg text-gray-700"
-                    onClick={() =>
-                      window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
-                    }
-                  >
-                    Learn More
-                  </Button>
-                </motion.div>
+    <section
+      id="home"
+      className="bg-white py-16 md:py-24 lg:py-28 overflow-hidden"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left content */}
+          <div className="max-w-xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#111729] leading-tight">
+              Powering Payments for the AI Agent Economy
+            </h1>
+            <p className="mt-6 text-lg text-gray-600">
+              The complete decentralized solution for managing and scaling AI
+              agent payments. Built on ElizaOS, libp2p, IPFS, and Solana.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <Link
+                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2.5 text-sm font-medium rounded-md transition-colors"
+                href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
+                target="_blank"
+              >
+                Github
+              </Link>
+              <Link
+                className="inline-flex items-center justify-center bg-white text-gray-800 px-5 py-2.5 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-gray-50"
+                href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                target="_blank"
+              >
+                Learn More
+              </Link>
+            </div>
+
+            {/* Partner logos */}
+            <div className="mt-12">
+              <p className="text-sm text-gray-500 mb-4">
+                Partners & Integrations
+              </p>
+              <div className="flex flex-wrap gap-8 items-center">
+                <div className="h-6 w-20 bg-gray-100 rounded"></div>
+                <div className="h-6 w-20 bg-gray-100 rounded"></div>
+                <div className="h-6 w-20 bg-gray-100 rounded"></div>
+                <div className="h-6 w-20 bg-gray-100 rounded"></div>
               </div>
-            </motion.div>
+            </div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, x: 30, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-            <motion.img
-              src="/header-image.png"
-              className="w-full object-cover rounded-lg shadow-lg"
-              alt="Header image"
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            />
-            {/* Optional: Add a subtle overlay for extra depth */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5 rounded-lg pointer-events-none" />
-          </motion.div>
+
+          {/* Right content - Hero image with floating elements */}
+          <div className="relative">
+            {/* Main image */}
+            <div className="relative rounded-lg overflow-hidden">
+              <div className="aspect-[4/3] w-full relative">
+                {/* Replace with actual hero image */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/header-image.svg"
+                      alt="PayAI Hero"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating UI elements */}
+              <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#4D63F6]"></div>
+                  <span className="text-xs font-medium text-gray-800">
+                    Agent Activity
+                  </span>
+                </div>
+              </div>
+
+              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#4D63F6]"></div>
+                  <span className="text-xs font-medium text-gray-800">
+                    X402 Protocol
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -46,6 +46,9 @@ export default {
         "section-lg": "7rem",
         container: "1280px",
       },
+      maxWidth: {
+        "7xl": "80rem", // 1280px
+      },
       colors: {
         // Primary PayAI Brand Colors
         midnight: {
