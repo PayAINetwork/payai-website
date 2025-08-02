@@ -21,6 +21,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 205, 255, 0.6),
+    rgba(211, 201, 250, 0.6),
+    rgba(224, 203, 251, 0.6)
+  );
+  min-height: 100vh;
 }
 
 /* Enhanced Typography Hierarchy */

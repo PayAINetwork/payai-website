@@ -8,7 +8,7 @@ export function Header() {
   return (
     <section
       id="home"
-      className="relative py-16 md:py-24 lg:py-28 overflow-hidden bg-gradient-to-br from-[#C5CDFF]/60 via-[#D3C9FA]/60 to-[#E0CBFB]/60"
+      className="relative py-16 md:py-24 lg:py-28 overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
