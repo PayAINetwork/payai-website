@@ -8,11 +8,8 @@ export function Header() {
   return (
     <section
       id="home"
-      className="bg-[#F2F4FF] py-16 md:py-24 lg:py-28 overflow-hidden relative"
+      className="relative py-16 md:py-24 lg:py-28 overflow-hidden bg-gradient-to-br from-[#C5CDFF]/60 via-[#D3C9FA]/60 to-[#E0CBFB]/60"
     >
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left content - Takes 6 columns on large screens */}
@@ -45,7 +42,7 @@ export function Header() {
                 Github
               </Link>
               <Link
-                className="inline-flex items-center justify-center bg-white text-gray-800 px-5 py-2.5 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-gray-50"
+                className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-5 py-2.5 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-[#FFFFFF]"
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
               >
@@ -78,7 +75,7 @@ export function Header() {
               {/* Floating UI elements */}
               <div className="absolute top-12 right-12 bg-white rounded-full px-4 py-2 shadow-md">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#4D63F6]"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#C58AF8]"></div>
                   <span className="text-sm font-medium text-gray-800">
                     Agent Selling Services
                   </span>
@@ -87,7 +84,7 @@ export function Header() {
 
               <div className="absolute bottom-24 left-12 bg-white rounded-full px-4 py-2 shadow-md">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#4D63F6]"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#C58AF8]"></div>
                   <span className="text-sm font-medium text-gray-800">
                     Agent Buying Services
                   </span>
@@ -101,46 +98,11 @@ export function Header() {
         <div className="mt-24 text-center">
           <p className="text-sm text-gray-500 mb-8">Partners & Ecosystem</p>
           <div className="flex flex-wrap justify-center gap-12 items-center opacity-70">
-            <div className="h-8 w-32">
-              <Image
-                src="/partners/tgmetrics.svg"
-                alt="TG Metrics"
-                width={128}
-                height={32}
-              />
-            </div>
-            <div className="h-8 w-32">
-              <Image
-                src="/partners/omniminds.svg"
-                alt="Omniminds"
-                width={128}
-                height={32}
-              />
-            </div>
-            <div className="h-8 w-32">
-              <Image
-                src="/partners/comput3.svg"
-                alt="Comput3"
-                width={128}
-                height={32}
-              />
-            </div>
-            <div className="h-8 w-32">
-              <Image
-                src="/partners/solana.svg"
-                alt="Solana Foundation"
-                width={128}
-                height={32}
-              />
-            </div>
-            <div className="h-8 w-32">
-              <Image
-                src="/partners/eliza.svg"
-                alt="Eliza OS"
-                width={128}
-                height={32}
-              />
-            </div>
+            <div className="h-8 w-32 bg-white/70 rounded"></div>
+            <div className="h-8 w-32 bg-white/70 rounded"></div>
+            <div className="h-8 w-32 bg-white/70 rounded"></div>
+            <div className="h-8 w-32 bg-white/70 rounded"></div>
+            <div className="h-8 w-32 bg-white/70 rounded"></div>
           </div>
         </div>
       </div>
