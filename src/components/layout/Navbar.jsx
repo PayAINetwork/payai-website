@@ -49,7 +49,7 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-full shadow-sm px-6 py-3 flex items-center justify-between">
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full shadow-sm px-6 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="flex items-center space-x-2">
@@ -130,7 +130,7 @@ export function Navbar() {
             <Link
               href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
               target="_blank"
-              className="inline-flex items-center justify-center bg-white text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-gray-50"
+              className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-white"
             >
               Docs
             </Link>
@@ -169,7 +169,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-sm">
+        <div className="md:hidden bg-white/10 backdrop-blur-sm border border-white/20 border-t-0 rounded-b-xl shadow-sm mx-4 sm:mx-6 lg:mx-8">
           <div className="px-4 py-2 space-y-1">
             <Link
               href="#home"
@@ -210,7 +210,7 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center bg-white text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-gray-50 w-full"
+                className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-white w-full"
               >
                 Docs
               </Link>
