@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { Menu, X, Book, ShoppingCart } from "lucide-react";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -130,15 +131,17 @@ export function Navbar() {
             <Link
               href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
               target="_blank"
-              className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-white"
+              className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-full transition-colors hover:bg-white"
             >
+              <Book className="w-4 h-4 mr-2" />
               Docs
             </Link>
             <Link
               href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
               target="_blank"
-              className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-sm font-medium rounded-md transition-colors"
+              className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-sm font-medium rounded-full transition-colors"
             >
+              <ShoppingCart className="w-4 h-4 mr-2" />
               Buy
             </Link>
           </div>
@@ -148,21 +151,11 @@ export function Navbar() {
             className="md:hidden flex items-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <svg
-              className="w-6 h-6 text-gray-900"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6 text-gray-900" />
+            ) : (
+              <Menu className="w-6 h-6 text-gray-900" />
+            )}
           </button>
         </div>
       </div>
@@ -210,15 +203,17 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-md transition-colors hover:bg-white w-full"
+                className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-sm font-medium border border-gray-200 rounded-full transition-colors hover:bg-white w-full"
               >
+                <Book className="w-4 h-4 mr-2" />
                 Docs
               </Link>
               <Link
                 href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-sm font-medium rounded-md transition-colors w-full"
+                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-sm font-medium rounded-full transition-colors w-full"
               >
+                <ShoppingCart className="w-4 h-4 mr-2" />
                 Buy
               </Link>
             </div>
