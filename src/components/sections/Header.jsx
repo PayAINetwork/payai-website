@@ -95,15 +95,18 @@ export function Header() {
         </div>
 
         {/* Partner logos */}
-        <div className="mt-24 flex justify-center">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-sm">
-            <Image
-              src="/partner-icons.svg"
-              alt="Partners & Ecosystem"
-              width={1200}
-              height={80}
-              className="object-contain"
-            />
+        <div className="mt-24 text-center">
+          <p className="text-sm text-gray-500 mb-8">Partners & Ecosystem</p>
+          <div className="flex justify-center">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-sm">
+              <Image
+                src="/partner-icons.svg"
+                alt="Partners & Ecosystem"
+                width={1200}
+                height={80}
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
       </div>
