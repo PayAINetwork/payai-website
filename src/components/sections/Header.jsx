@@ -10,6 +10,16 @@ export function Header() {
       id="home"
       className="relative py-16 md:py-24 lg:py-28 overflow-hidden"
     >
+      <div className="absolute right-0">
+        <Image
+          src="/header-image.svg"
+          alt="PayAI Hero"
+          width={600}
+          height={600}
+          className="object-contain"
+          priority
+        />
+      </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left content - Takes 6 columns on large screens */}
@@ -52,7 +62,7 @@ export function Header() {
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                  <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 715.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                 </svg>
                 Docs
               </Link>
@@ -63,15 +73,6 @@ export function Header() {
           <div className="lg:col-span-6 relative">
             {/* Main image */}
             <div className="relative w-full h-full">
-              <Image
-                src="/header-image.svg"
-                alt="PayAI Hero"
-                width={800}
-                height={600}
-                className="object-contain"
-                priority
-              />
-
               {/* Floating UI elements */}
               <div className="absolute top-12 right-12 bg-white rounded-full px-4 py-2 shadow-md">
                 <div className="flex items-center gap-2">
@@ -95,7 +96,7 @@ export function Header() {
         </div>
 
         {/* Partner logos */}
-        <div className="mt-24 text-center">
+        <div className="mt-44 text-center">
           <p className="text-sm text-gray-500 mb-8">Partners & Ecosystem</p>
           <div className="flex justify-center">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-sm">
