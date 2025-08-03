@@ -51,31 +51,6 @@ export function Header() {
               </Link>
             </div>
           </div>
-
-          {/* Right content - Takes 6 columns on large screens */}
-          <div className="lg:col-span-6 relative">
-            {/* Main image */}
-            <div className="relative w-full h-full">
-              {/* Floating UI elements */}
-              <div className="absolute top-12 right-12 bg-white rounded-full px-4 py-2 shadow-md">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#C58AF8]"></div>
-                  <span className="text-sm font-medium text-gray-800">
-                    Agent Selling Services
-                  </span>
-                </div>
-              </div>
-
-              <div className="absolute bottom-24 left-12 bg-white rounded-full px-4 py-2 shadow-md">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#C58AF8]"></div>
-                  <span className="text-sm font-medium text-gray-800">
-                    Agent Buying Services
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Partner logos */}
