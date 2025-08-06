@@ -68,6 +68,39 @@ export function Features() {
       ctaLink: "#",
       docsLink: "#",
     },
+    {
+      id: 4,
+      tag: "OT Agent Monetization",
+      tagIcon: Bot,
+      status: "COMING SOON",
+      statusIcon: Clock,
+      title:
+        "Monetize your Crypto Twitter Agent by offering personalized content to your followers.",
+      description:
+        "Put your X agent to work by selling custom content. Crypto Twitter users hire your AI Agent to produce content that is personalized to them.",
+      type: "avatar",
+      cta: "Github",
+      ctaIcon: Github,
+      ctaVariant: "secondary",
+      ctaLink: "#",
+      docsLink: "#",
+    },
+    {
+      id: 5,
+      tag: "Token Gateway",
+      tagIcon: Zap,
+      status: "COMING SOON",
+      statusIcon: Clock,
+      title: "Token-gate any dApp, AI Agent, or API endpoint.",
+      description:
+        "Easily require a specific token (or NFT) for users to access your product, and charge monthly subscriptions directly on-chain.",
+      type: "gateway",
+      cta: "Github",
+      ctaIcon: Github,
+      ctaVariant: "secondary",
+      ctaLink: "#",
+      docsLink: "#",
+    },
   ];
 
   const renderVisual = (feature) => {
@@ -76,8 +109,8 @@ export function Features() {
         <Image
           src="/new-assets/x402-image.png"
           alt="x402 Protocol"
-          width={320}
-          height={240}
+          width={400}
+          height={300}
           className="object-contain drop-shadow-lg"
         />
       );
@@ -85,10 +118,10 @@ export function Features() {
 
     if (feature.type === "video") {
       return (
-        <div className="relative w-[320px] h-[200px] bg-black rounded-xl shadow-xl overflow-hidden">
+        <div className="relative w-[400px] h-[250px] bg-black rounded-xl shadow-xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-            <button className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20">
-              <Play className="w-6 h-6 text-white ml-1" />
+            <button className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20">
+              <Play className="w-8 h-8 text-white ml-1" />
             </button>
           </div>
         </div>
@@ -97,26 +130,26 @@ export function Features() {
 
     if (feature.type === "terminal") {
       return (
-        <div className="relative w-[320px] h-[220px] bg-black rounded-xl shadow-xl overflow-hidden">
-          <div className="bg-gray-900 h-7 flex items-center px-3 border-b border-gray-700">
-            <div className="flex space-x-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+        <div className="relative w-[400px] h-[280px] bg-black rounded-xl shadow-xl overflow-hidden">
+          <div className="bg-gray-900 h-8 flex items-center px-4 border-b border-gray-700">
+            <div className="flex space-x-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-            <div className="text-white text-xs ml-3 opacity-70">Terminal</div>
+            <div className="text-white text-xs ml-4 opacity-70">Terminal</div>
           </div>
-          <div className="p-3 font-mono text-xs text-green-400 bg-black h-full overflow-hidden">
-            <div className="mb-1.5 text-white">
+          <div className="p-4 font-mono text-sm text-green-400 bg-black h-full overflow-hidden">
+            <div className="mb-2 text-white">
               $ curl -X POST localhost:3000/pay
             </div>
-            <div className="mb-0.5 text-gray-400">{"{"}</div>
-            <div className="mb-0.5 text-gray-400 ml-2">"amount": "0.001",</div>
-            <div className="mb-0.5 text-gray-400 ml-2">"token": "SOL",</div>
-            <div className="mb-0.5 text-gray-400 ml-2">
+            <div className="mb-1 text-gray-400">{"{"}</div>
+            <div className="mb-1 text-gray-400 ml-4">"amount": "0.001",</div>
+            <div className="mb-1 text-gray-400 ml-4">"token": "SOL",</div>
+            <div className="mb-1 text-gray-400 ml-4">
               "recipient": "agent_wallet"
             </div>
-            <div className="mb-2 text-gray-400">{"}"}</div>
+            <div className="mb-3 text-gray-400">{"}"}</div>
             <div className="text-green-400 mb-1">
               ✓ Payment processed successfully
             </div>
@@ -124,6 +157,30 @@ export function Features() {
             <div className="text-yellow-400">$ _</div>
           </div>
         </div>
+      );
+    }
+
+    if (feature.type === "avatar") {
+      return (
+        <Image
+          src="/new-assets/thumbnail-4.png"
+          alt="3D Avatar Agent"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg"
+        />
+      );
+    }
+
+    if (feature.type === "gateway") {
+      return (
+        <Image
+          src="/new-assets/thumbnail-5.png"
+          alt="Token Gateway"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg"
+        />
       );
     }
 
@@ -167,13 +224,13 @@ export function Features() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 h-[450px]">
                     <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-16 lg:pt-12">
                       {/* Status Badge with icon */}
-                      <div className="w-[70px] z-20">
+                      <div className="z-20 w-fit">
                         <div
                           className={`${
                             feature.status === "LIVE"
                               ? "bg-purple-100 text-purple-700 border-purple-200"
                               : "bg-gray-100 text-gray-600 border-gray-200"
-                          } border px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5`}
+                          } border px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 w-fit`}
                         >
                           <feature.statusIcon className="w-3 h-3" />
                           {feature.status}
