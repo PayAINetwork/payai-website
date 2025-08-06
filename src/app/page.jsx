@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Header } from "@/components/sections/Header";
 import { Features } from "@/components/sections/Features";
 import { Ecosystem } from "@/components/sections/Ecosystem";
+import { UseCasesNew } from "@/components/sections/UseCasesNew";
 import { AgentMarketplace } from "@/components/sections/AgentMarketplace";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { UseCases } from "@/components/sections/UseCases";
@@ -18,6 +19,7 @@ export default function Page() {
       <Header />
       <Features />
       <Ecosystem />
+      <UseCasesNew />
       <AgentMarketplace />
       <HowItWorks />
       <UseCases />
