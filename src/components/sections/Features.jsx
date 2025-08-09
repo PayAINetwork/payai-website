@@ -76,6 +76,39 @@ export function Features() {
       ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
       docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
     },
+    {
+      id: 4,
+      tag: "CT Agent Monetization",
+      tagIcon: Bot,
+      status: "COMING SOON",
+      statusIcon: Clock,
+      title:
+        "Monetize your Crypto Twitter Agent by offering personalized content to your followers.",
+      description:
+        "Put your X agent to work by selling custom content. Crypto Twitter users hire your AI Agent to produce content that is personalized to them.",
+      type: "avatar",
+      cta: "Github",
+      ctaIcon: Github,
+      ctaVariant: "secondary",
+      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    },
+    {
+      id: 5,
+      tag: "Token Gateway",
+      tagIcon: Zap,
+      status: "COMING SOON",
+      statusIcon: Clock,
+      title: "Token-gate any dApp, AI Agent, or API endpoint.",
+      description:
+        "Easily require a specific token (or NFT) for users to access your product, and charge monthly subscriptions directly on-chain.",
+      type: "gateway",
+      cta: "Github",
+      ctaIcon: Github,
+      ctaVariant: "secondary",
+      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    },
   ];
 
   const renderVisual = (feature) => {
@@ -153,6 +186,30 @@ export function Features() {
             <div className="text-yellow-400">$ _</div>
           </div>
         </div>
+      );
+    }
+
+    if (feature.type === "avatar") {
+      return (
+        <Image
+          src="/new-assets/thumbnail-4.png"
+          alt="CT Agent Monetization"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg"
+        />
+      );
+    }
+
+    if (feature.type === "gateway") {
+      return (
+        <Image
+          src="/new-assets/thumbnail-5.png"
+          alt="Token Gateway"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg"
+        />
       );
     }
 
