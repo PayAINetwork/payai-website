@@ -97,18 +97,11 @@ export function Navbar() {
               Home
             </Link>
             <Link
-              href="#preview"
-              onClick={(e) => handleNavClick(e, "preview")}
+              href="#features"
+              onClick={(e) => handleNavClick(e, "features")}
               className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Preview
-            </Link>
-            <Link
-              href="#how-it-works"
-              onClick={(e) => handleNavClick(e, "how-it-works")}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              How it Works
+              Features
             </Link>
             <Link
               href="#use-cases"
@@ -116,13 +109,6 @@ export function Navbar() {
               className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
               Use Cases
-            </Link>
-            <Link
-              href="#tokenomics"
-              onClick={(e) => handleNavClick(e, "tokenomics")}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Tokenomics
             </Link>
           </nav>
 
@@ -172,18 +158,11 @@ export function Navbar() {
               Home
             </Link>
             <Link
-              href="#preview"
-              onClick={(e) => handleNavClick(e, "preview")}
+              href="#features"
+              onClick={(e) => handleNavClick(e, "features")}
               className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
             >
-              Preview
-            </Link>
-            <Link
-              href="#how-it-works"
-              onClick={(e) => handleNavClick(e, "how-it-works")}
-              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
-            >
-              How it Works
+              Features
             </Link>
             <Link
               href="#use-cases"
@@ -191,13 +170,6 @@ export function Navbar() {
               className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
             >
               Use Cases
-            </Link>
-            <Link
-              href="#tokenomics"
-              onClick={(e) => handleNavClick(e, "tokenomics")}
-              className="block py-2 text-base font-medium text-gray-900 hover:text-gray-600"
-            >
-              Tokenomics
             </Link>
             <div className="pt-4 flex flex-col space-y-2">
               <Link
