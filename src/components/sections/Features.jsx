@@ -16,6 +16,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import Image from "next/image";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export function Features() {
   const features = [
@@ -33,7 +35,7 @@ export function Features() {
       cta: "Github",
       ctaIcon: Github,
       ctaVariant: "primary",
-      ctaLink: "#",
+      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
     },
     {
       id: 2,
@@ -49,8 +51,8 @@ export function Features() {
       cta: "Github",
       ctaIcon: Github,
       ctaVariant: "secondary",
-      ctaLink: "#",
-      docsLink: "#",
+      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
     },
     {
       id: 3,
@@ -65,41 +67,8 @@ export function Features() {
       cta: "Github",
       ctaIcon: Github,
       ctaVariant: "secondary",
-      ctaLink: "#",
-      docsLink: "#",
-    },
-    {
-      id: 4,
-      tag: "OT Agent Monetization",
-      tagIcon: Bot,
-      status: "COMING SOON",
-      statusIcon: Clock,
-      title:
-        "Monetize your Crypto Twitter Agent by offering personalized content to your followers.",
-      description:
-        "Put your X agent to work by selling custom content. Crypto Twitter users hire your AI Agent to produce content that is personalized to them.",
-      type: "avatar",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "secondary",
-      ctaLink: "#",
-      docsLink: "#",
-    },
-    {
-      id: 5,
-      tag: "Token Gateway",
-      tagIcon: Zap,
-      status: "COMING SOON",
-      statusIcon: Clock,
-      title: "Token-gate any dApp, AI Agent, or API endpoint.",
-      description:
-        "Easily require a specific token (or NFT) for users to access your product, and charge monthly subscriptions directly on-chain.",
-      type: "gateway",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "secondary",
-      ctaLink: "#",
-      docsLink: "#",
+      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
     },
   ];
 
@@ -120,9 +89,26 @@ export function Features() {
       return (
         <div className="relative w-[400px] h-[250px] bg-black rounded-xl shadow-xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-            <button className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20">
-              <Play className="w-8 h-8 text-white ml-1" />
-            </button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="w-20 h-20 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/25 transition-all duration-300 border border-white/30">
+                  <Play className="w-8 h-8 text-white ml-1" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl p-0 overflow-hidden">
+                <DialogTitle className="sr-only">PayAI Demo Video</DialogTitle>
+                <DialogDescription className="sr-only">
+                  Demonstration video of PayAI features and workflow
+                </DialogDescription>
+                <video
+                  src="/payai-demo.mp4"
+                  poster="/payai-demo-thumbnail.png"
+                  controls
+                  autoPlay
+                  className="w-full h-auto"
+                />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       );
@@ -157,30 +143,6 @@ export function Features() {
             <div className="text-yellow-400">$ _</div>
           </div>
         </div>
-      );
-    }
-
-    if (feature.type === "avatar") {
-      return (
-        <Image
-          src="/new-assets/thumbnail-4.png"
-          alt="3D Avatar Agent"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg"
-        />
-      );
-    }
-
-    if (feature.type === "gateway") {
-      return (
-        <Image
-          src="/new-assets/thumbnail-5.png"
-          alt="Token Gateway"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg"
-        />
       );
     }
 
@@ -248,29 +210,35 @@ export function Features() {
 
                       <div className="flex gap-3">
                         <Button
-                          variant={
-                            feature.ctaVariant === "primary"
-                              ? "default"
-                              : "outline"
-                          }
-                          className={`${
-                            feature.ctaVariant === "primary"
-                              ? "bg-[#4D63F6] hover:bg-[#3A50E3] text-white border-0"
-                              : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                          } px-5 py-2.5 rounded-lg font-medium transition-all duration-300 text-sm`}
+                          variant={"outline"}
+                          asChild
+                          className={`bg-[#5a5df7] border border-gray-300 text-white hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm shadow-sm`}
                           size="sm"
                         >
-                          <feature.ctaIcon className="w-4 h-4 mr-2" />
-                          {feature.cta}
+                          <a
+                            href={feature.ctaLink}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <feature.ctaIcon className="w-4 h-4 mr-2" />
+                            {feature.cta}
+                          </a>
                         </Button>
                         {feature.docsLink && (
                           <Button
-                            variant="ghost"
-                            className="border border-gray-300 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-medium transition-all duration-300 text-sm"
+                            variant="outline"
+                            asChild
+                            className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm shadow-sm"
                             size="sm"
                           >
-                            <BookOpen className="w-4 h-4 mr-2" />
-                            Docs
+                            <a
+                              href={feature.docsLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <BookOpen className="w-4 h-4 mr-2" />
+                              Docs
+                            </a>
                           </Button>
                         )}
                       </div>
