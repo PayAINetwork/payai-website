@@ -14,9 +14,15 @@ import {
   Zap,
   Clock,
   Sparkles,
+  X,
 } from "lucide-react";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export function Features() {
@@ -95,11 +101,15 @@ export function Features() {
                   <Play className="w-8 h-8 text-white ml-1" />
                 </button>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl p-0 overflow-hidden">
+              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-black border-gray-800">
                 <DialogTitle className="sr-only">PayAI Demo Video</DialogTitle>
                 <DialogDescription className="sr-only">
                   Demonstration video of PayAI features and workflow
                 </DialogDescription>
+                <DialogClose className="absolute right-4 top-4 z-10 rounded-full bg-white/90 hover:bg-white p-2 transition-colors">
+                  <X className="h-4 w-4 text-gray-900" />
+                  <span className="sr-only">Close</span>
+                </DialogClose>
                 <video
                   src="/payai-demo.mp4"
                   poster="/payai-demo-thumbnail.png"
