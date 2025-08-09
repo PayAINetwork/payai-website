@@ -85,7 +85,7 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={title}
-                    className="inline-flex items-center justify-center size-9 rounded-full border border-gray-200 bg-white text-gray-700 hover:text-midnight hover:border-gray-300 shadow-sm transition-colors"
+                    className="inline-flex items-center justify-center size-9 rounded-full border border-gray-200 bg-white text-midnight hover:text-[#3A50E3] hover:border-gray-300 shadow-sm transition-colors"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -167,7 +167,7 @@ export function Footer() {
       </div>
 
       {/* Bottom watermark */}
-      <div className="pointer-events-none select-none absolute inset-x-0 bottom-[-1rem] text-[12rem] md:text-[16rem] lg:text-[20rem] leading-none font-bold text-gray-100/80 tracking-tight truncate">
+      <div className="pointer-events-none select-none absolute inset-x-0 bottom-[-0.25rem] text-[6rem] md:text-[9rem] lg:text-[12rem] leading-none font-bold text-gray-200/70 tracking-tight truncate">
         <div className="px-[5%]">payai.network</div>
       </div>
     </footer>
