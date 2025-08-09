@@ -1,0 +1,175 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { Twitter, Github, Linkedin, Send, BookText } from "lucide-react";
+
+export function Footer() {
+  const socialLinks = [
+    {
+      title: "Twitter",
+      href: process.env.NEXT_PUBLIC_TWITTER_URL,
+      Icon: Twitter,
+    },
+    {
+      title: "Telegram",
+      href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+      Icon: Send,
+    },
+    {
+      title: "DexScreener",
+      href: process.env.NEXT_PUBLIC_DEXSCREENER_URL,
+      Icon: BookText,
+    },
+    { title: "Docs", href: process.env.NEXT_PUBLIC_DOCS_URL, Icon: BookText },
+    { title: "Github", href: process.env.NEXT_PUBLIC_GITHUB_URL, Icon: Github },
+    {
+      title: "LinkedIn",
+      href: process.env.NEXT_PUBLIC_LINKEDIN_URL,
+      Icon: Linkedin,
+    },
+  ].filter((l) => !!l.href);
+
+  return (
+    <footer className="relative bg-gradient-to-b from-gray-50 to-white">
+      <div className="px-[5%] pt-16 pb-24">
+        <div className="container max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14">
+            {/* Brand */}
+            <div>
+              <Link href="/" className="flex items-center gap-2">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 4L4 10L16 16L28 10L16 4Z"
+                    fill="#E6EEFF"
+                    stroke="#4D63F6"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M4 22L16 28L28 22"
+                    stroke="#4D63F6"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M4 16L16 22L28 16"
+                    stroke="#4D63F6"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="text-lg font-semibold text-midnight">
+                  PayAI
+                </span>
+              </Link>
+              <p className="mt-4 text-sm text-gray-600 max-w-xs">
+                Powering payments for the AI Agent Economy. Tools and
+                infrastructure for autonomous agent transactions.
+              </p>
+
+              {/* Social */}
+              <div className="mt-6 flex items-center gap-3">
+                {socialLinks.map(({ title, href, Icon }) => (
+                  <a
+                    key={title}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={title}
+                    className="inline-flex items-center justify-center size-9 rounded-full border border-gray-200 bg-white text-gray-700 hover:text-midnight hover:border-gray-300 shadow-sm transition-colors"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Products */}
+            <div>
+              <h4 className="text-sm font-semibold text-midnight tracking-wide mb-4">
+                Products
+              </h4>
+              <ul className="space-y-3 text-sm text-gray-600">
+                <li>Freelance AI</li>
+                <li>CT Monetization (Coming Soon)</li>
+                <li>X402 Echo Merchant</li>
+                <li>X402 Facilitator (Coming Soon)</li>
+                <li>Token Gateway (Coming Soon)</li>
+              </ul>
+            </div>
+
+            {/* Developers */}
+            <div>
+              <h4 className="text-sm font-semibold text-midnight tracking-wide mb-4">
+                Developers
+              </h4>
+              <ul className="space-y-3 text-sm text-gray-600">
+                <li>
+                  <a
+                    href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                    target="_blank"
+                    className="hover:text-midnight transition-colors"
+                  >
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
+                    target="_blank"
+                    className="hover:text-midnight transition-colors"
+                  >
+                    GitHub
+                  </a>
+                </li>
+                <li>SDKs</li>
+                <li>Try Echo Merchant</li>
+                <li>Get API Key</li>
+                <li>Blog</li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="text-sm font-semibold text-midnight tracking-wide mb-4">
+                Legal
+              </h4>
+              <ul className="space-y-3 text-sm text-gray-600">
+                <li>
+                  <Link
+                    href="/privacy-policy"
+                    className="hover:text-midnight transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/terms-of-service"
+                    className="hover:text-midnight transition-colors"
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom watermark */}
+      <div className="pointer-events-none select-none absolute inset-x-0 bottom-[-1rem] text-[12rem] md:text-[16rem] lg:text-[20rem] leading-none font-bold text-gray-100/80 tracking-tight truncate">
+        <div className="px-[5%]">payai.network</div>
+      </div>
+    </footer>
+  );
+}
