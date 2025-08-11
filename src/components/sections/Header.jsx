@@ -5,6 +5,63 @@ import Image from "next/image";
 import Link from "next/link";
 import { Github, Book } from "lucide-react";
 
+// Infinite scrolling partner logos component
+function InfinitePartnerScroll() {
+  const partners = [
+    { name: "TGMetrics", path: "/new-assets/partners/tgmetrics.svg" },
+    {
+      name: "Solana Foundation",
+      path: "/new-assets/partners/solana foundation.svg",
+    },
+    { name: "R Logo", path: "/new-assets/partners/r logo.svg" },
+    { name: "PIL", path: "/new-assets/partners/pil.svg" },
+    { name: "OmniMinds", path: "/new-assets/partners/omniminds.svg" },
+    { name: "Eliza OS", path: "/new-assets/partners/eliza os.svg" },
+    { name: "Compute", path: "/new-assets/partners/compute.svg" },
+    { name: "Comput3", path: "/partners/comput3.svg" },
+  ];
+
+  // Duplicate partners array for seamless infinite scroll
+  const duplicatedPartners = [...partners, ...partners];
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div className="flex animate-scroll">
+        {duplicatedPartners.map((partner, index) => (
+          <div
+            key={`${partner.name}-${index}`}
+            className="flex-shrink-0 mx-6 md:mx-8 lg:mx-10"
+          >
+            <Image
+              src={partner.path}
+              alt={partner.name}
+              width={120}
+              height={60}
+              className="object-contain h-12 md:h-14 lg:h-16 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+            />
+          </div>
+        ))}
+      </div>
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function Header() {
   return (
     <section
@@ -57,20 +114,14 @@ export function Header() {
           </div>
         </div>
 
-        {/* Partner logos - Mobile responsive spacing */}
+        {/* Partner logos - Infinite horizontal scroll */}
         <div className="mt-20 md:mt-32 lg:mt-44 text-center">
           <p className="text-caption text-gray-500 mb-6 md:mb-8">
             Partners & Ecosystem
           </p>
           <div className="flex justify-center">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 md:p-6 shadow-sm w-full max-w-6xl overflow-hidden">
-              <Image
-                src="/partner-icons.svg"
-                alt="Partners & Ecosystem"
-                width={1200}
-                height={80}
-                className="object-contain w-full h-auto max-h-16 md:max-h-20"
-              />
+              <InfinitePartnerScroll />
             </div>
           </div>
         </div>
