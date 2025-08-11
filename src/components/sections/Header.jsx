@@ -30,14 +30,14 @@ function InfinitePartnerScroll() {
         {duplicatedPartners.map((partner, index) => (
           <div
             key={`${partner.name}-${index}`}
-            className="flex-shrink-0 mx-6 md:mx-8 lg:mx-10"
+            className="flex-shrink-0 mx-4 md:mx-6 lg:mx-8"
           >
             <Image
               src={partner.path}
               alt={partner.name}
-              width={120}
-              height={60}
-              className="object-contain h-12 md:h-14 lg:h-16 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+              width={100}
+              height={50}
+              className="object-contain h-8 md:h-10 lg:h-12 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
             />
           </div>
         ))}
@@ -52,7 +52,7 @@ function InfinitePartnerScroll() {
           }
         }
         .animate-scroll {
-          animation: scroll 30s linear infinite;
+          animation: scroll 20s linear infinite;
         }
         .animate-scroll:hover {
           animation-play-state: paused;
@@ -116,14 +116,11 @@ export function Header() {
 
         {/* Partner logos - Infinite horizontal scroll */}
         <div className="mt-20 md:mt-32 lg:mt-44 text-center">
-          <p className="text-caption text-gray-500 mb-6 md:mb-8">
-            Partners & Ecosystem
-          </p>
           <div className="flex justify-center">
-            <div
-              className="bg-white/20 backdrop-blur-md border border-white/30 rounded-xl p-4 md:p-6 shadow-lg w-full max-w-6xl overflow-hidden"
-              style={{ backdropFilter: "blur(8px)" }}
-            >
+            <div className="bg-white/25 backdrop-blur-xl border border-white/40 rounded-2xl p-6 md:p-8 shadow-xl w-full max-w-6xl overflow-hidden">
+              <p className="text-body md:text-body-lg text-gray-600 mb-6 md:mb-8 font-medium">
+                Partners & Ecosystem
+              </p>
               <InfinitePartnerScroll />
             </div>
           </div>
