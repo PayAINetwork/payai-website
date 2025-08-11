@@ -114,27 +114,29 @@ export function Features() {
   const renderVisual = (feature) => {
     if (feature.type === "protocol") {
       return (
-        <Image
-          src="/new-assets/x402-image.png"
-          alt="x402 Protocol"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg"
-        />
+        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+          <Image
+            src="/new-assets/x402-image.png"
+            alt="x402 Protocol"
+            width={400}
+            height={300}
+            className="object-contain drop-shadow-lg w-full h-auto"
+          />
+        </div>
       );
     }
 
     if (feature.type === "video") {
       return (
-        <div className="relative w-[400px] h-[250px] bg-black rounded-xl shadow-xl overflow-hidden">
+        <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto aspect-video bg-black rounded-xl shadow-xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
             <Dialog>
               <DialogTrigger asChild>
-                <button className="w-20 h-20 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/25 transition-all duration-300 border border-white/30">
-                  <Play className="w-8 h-8 text-white ml-1" />
+                <button className="w-16 h-16 md:w-20 md:h-20 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/25 transition-all duration-300 border border-white/30">
+                  <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" />
                 </button>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-black border-gray-800">
+              <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
                 <DialogTitle className="sr-only">PayAI Demo Video</DialogTitle>
                 <DialogDescription className="sr-only">
                   Demonstration video of PayAI features and workflow
@@ -159,7 +161,7 @@ export function Features() {
 
     if (feature.type === "terminal") {
       return (
-        <div className="relative w-[400px] h-[280px] bg-black rounded-xl shadow-xl overflow-hidden">
+        <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-black rounded-xl shadow-xl overflow-hidden">
           <div className="bg-gray-900 h-8 flex items-center px-4 border-b border-gray-700">
             <div className="flex space-x-2">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -168,21 +170,27 @@ export function Features() {
             </div>
             <div className="text-white text-xs ml-4 opacity-70">Terminal</div>
           </div>
-          <div className="p-4 font-mono text-sm text-green-400 bg-black h-full overflow-hidden">
-            <div className="mb-2 text-white">
+          <div className="p-3 md:p-4 font-mono text-xs md:text-sm text-green-400 bg-black min-h-[200px] md:min-h-[240px]">
+            <div className="mb-2 text-white break-all">
               $ curl -X POST localhost:3000/pay
             </div>
             <div className="mb-1 text-gray-400">{"{"}</div>
-            <div className="mb-1 text-gray-400 ml-4">"amount": "0.001",</div>
-            <div className="mb-1 text-gray-400 ml-4">"token": "SOL",</div>
-            <div className="mb-1 text-gray-400 ml-4">
+            <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
+              "amount": "0.001",
+            </div>
+            <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
+              "token": "SOL",
+            </div>
+            <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
               "recipient": "agent_wallet"
             </div>
             <div className="mb-3 text-gray-400">{"}"}</div>
-            <div className="text-green-400 mb-1">
+            <div className="text-green-400 mb-1 break-all">
               ✓ Payment processed successfully
             </div>
-            <div className="text-blue-400 mb-1">→ Transaction ID: 3x7f9...</div>
+            <div className="text-blue-400 mb-1 break-all">
+              → Transaction ID: 3x7f9...
+            </div>
             <div className="text-yellow-400">$ _</div>
           </div>
         </div>
@@ -191,25 +199,29 @@ export function Features() {
 
     if (feature.type === "avatar") {
       return (
-        <Image
-          src="/new-assets/thumbnail-4.png"
-          alt="CT Agent Monetization"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg"
-        />
+        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+          <Image
+            src="/new-assets/thumbnail-4.png"
+            alt="CT Agent Monetization"
+            width={400}
+            height={300}
+            className="object-contain drop-shadow-lg w-full h-auto"
+          />
+        </div>
       );
     }
 
     if (feature.type === "gateway") {
       return (
-        <Image
-          src="/new-assets/thumbnail-5.png"
-          alt="Token Gateway"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg"
-        />
+        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+          <Image
+            src="/new-assets/thumbnail-5.png"
+            alt="Token Gateway"
+            width={400}
+            height={300}
+            className="object-contain drop-shadow-lg w-full h-auto"
+          />
+        </div>
       );
     }
 
@@ -236,12 +248,12 @@ export function Features() {
               viewport={{ once: true }}
               className="w-full relative"
             >
-              {/* Card Label Tab - Styled like a folder tab */}
-              <div className="absolute z-0 -top-4 overflow-hidden left-8 -translate-y-1/2 bg-gradient-to-r">
-                <div className="from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-4 py-2 rounded-t-lg shadow-sm relative">
-                  <div className="flex items-center text-purple-700 text-sm font-medium">
-                    <feature.tagIcon className="w-4 h-4 mr-2" />
-                    {feature.tag}
+              {/* Card Label Tab - Mobile responsive */}
+              <div className="absolute z-0 -top-3 md:-top-4 left-4 md:left-8 -translate-y-1/2 bg-gradient-to-r">
+                <div className="from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-3 md:px-4 py-1.5 md:py-2 rounded-t-lg shadow-sm relative">
+                  <div className="flex items-center text-purple-700 text-xs md:text-sm font-medium">
+                    <feature.tagIcon className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
+                    <span className="truncate">{feature.tag}</span>
                   </div>
                   {/* Tab bottom connector */}
                   <div className="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100"></div>
@@ -250,8 +262,9 @@ export function Features() {
 
               <Card className="z-10 overflow-hidden border border-purple-200/30 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100">
                 <CardContent className="p-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 h-[450px]">
-                    <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-16 lg:pt-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] md:min-h-[450px]">
+                    {/* Content section */}
+                    <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-12 md:pt-16 lg:pt-12">
                       {/* Status Badge with icon */}
                       <div className="z-20 w-fit">
                         <div
@@ -265,21 +278,22 @@ export function Features() {
                           {feature.status}
                         </div>
                       </div>
+
                       <div>
-                        <h3 className="text-[#111729] text-xl lg:text-2xl font-semibold leading-tight mb-6">
+                        <h3 className="text-[#111729] text-lg md:text-xl lg:text-2xl font-semibold leading-tight mb-4 md:mb-6">
                           {feature.title}
                         </h3>
 
-                        <p className="text-gray-700 text-sm lg:text-base leading-relaxed mb-8">
+                        <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
                           {feature.description}
                         </p>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <Button
                           variant={"outline"}
                           asChild
-                          className={`bg-[#5a5df7] border border-gray-300 text-white hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm shadow-sm`}
+                          className="bg-[#5a5df7] border border-gray-300 text-white hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm shadow-sm min-h-[44px]"
                           size="sm"
                         >
                           <a
@@ -295,7 +309,7 @@ export function Features() {
                           <Button
                             variant="outline"
                             asChild
-                            className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm shadow-sm"
+                            className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-sm shadow-sm min-h-[44px]"
                             size="sm"
                           >
                             <a
@@ -311,7 +325,8 @@ export function Features() {
                       </div>
                     </div>
 
-                    <div className="relative order-1 lg:order-2 h-[450px] flex items-center justify-center p-8">
+                    {/* Visual section */}
+                    <div className="relative order-1 lg:order-2 flex items-center justify-center p-6 md:p-8 min-h-[300px] md:min-h-[400px]">
                       {renderVisual(feature)}
                     </div>
                   </div>

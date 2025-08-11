@@ -9,32 +9,34 @@ export function Header() {
   return (
     <section
       id="home"
-      className="relative py-16 md:py-24 lg:py-28 overflow-hidden"
+      className="relative py-12 md:py-16 lg:py-24 xl:py-28 overflow-hidden"
     >
-      <div className="absolute right-0">
+      {/* Background image with mobile-optimized positioning */}
+      <div className="absolute right-0 top-8 md:top-0 opacity-80 md:opacity-100">
         <Image
           src="/header-image.svg"
           alt="PayAI Hero"
           width={600}
           height={600}
-          className="object-contain"
+          className="object-contain scale-75 md:scale-100"
           priority
         />
       </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left content - Takes 6 columns on large screens */}
           <div className="lg:col-span-6 max-w-xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#111729] leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-[#111729] leading-tight">
               Powering Payments for the AI Agent Economy
             </h1>
-            <p className="mt-6 text-lg text-gray-600">
+            <p className="mt-4 md:mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
               PayAI enables autonomous agents to transact with each other and
               humans — securely, seamlessly, and 24/7.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
               <Link
-                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2.5 text-sm font-medium rounded-full transition-colors"
+                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-6 py-3 text-sm md:text-base font-medium rounded-full transition-colors min-h-[44px]"
                 href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                 target="_blank"
               >
@@ -42,7 +44,7 @@ export function Header() {
                 Github
               </Link>
               <Link
-                className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-5 py-2.5 text-sm font-medium border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF]"
+                className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-sm md:text-base font-medium border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
               >
@@ -53,17 +55,19 @@ export function Header() {
           </div>
         </div>
 
-        {/* Partner logos */}
-        <div className="mt-44 text-center">
-          <p className="text-sm text-gray-500 mb-8">Partners & Ecosystem</p>
+        {/* Partner logos - Mobile responsive spacing */}
+        <div className="mt-20 md:mt-32 lg:mt-44 text-center">
+          <p className="text-sm text-gray-500 mb-6 md:mb-8">
+            Partners & Ecosystem
+          </p>
           <div className="flex justify-center">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-sm">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 md:p-6 shadow-sm w-full max-w-6xl overflow-hidden">
               <Image
                 src="/partner-icons.svg"
                 alt="Partners & Ecosystem"
                 width={1200}
                 height={80}
-                className="object-contain"
+                className="object-contain w-full h-auto max-h-16 md:max-h-20"
               />
             </div>
           </div>
