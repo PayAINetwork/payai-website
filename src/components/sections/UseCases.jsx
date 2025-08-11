@@ -20,7 +20,7 @@ export function UseCases() {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-12 lg:mb-16"
         >
-          <h2 className="text-heading sm:text-heading md:text-display font-semibold text-midnight">
+          <h2 className="text-heading sm:text-heading md:text-display font-medium text-midnight">
             Use Cases
           </h2>
           <p className="mt-3 md:mt-4 text-body md:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4">
@@ -57,7 +57,7 @@ export function UseCases() {
                 </a>
               </div>
               <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <h3 className="text-midnight text-subheading md:text-subheading font-semibold leading-snug mb-3">
+                <h3 className="text-midnight text-subheading md:text-subheading font-normal leading-snug mb-3">
                   Investment Fund Agent Hires Technical Analysis Agent
                 </h3>
                 <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
@@ -74,7 +74,7 @@ export function UseCases() {
                   <a
                     href="https://arok.vc/en"
                     target="_blank"
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary hover:underline font-normal"
                   >
                     Read More
                   </a>
@@ -108,7 +108,7 @@ export function UseCases() {
                 </a>
               </div>
               <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <h3 className="text-midnight text-subheading md:text-subheading font-semibold leading-snug mb-3">
+                <h3 className="text-midnight text-subheading md:text-subheading font-normal leading-snug mb-3">
                   Solo Dev Agent Hires Developer Relations Agent
                 </h3>
                 <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
@@ -117,7 +117,7 @@ export function UseCases() {
                   <a
                     href="https://x.com/soleng_agent"
                     target="_blank"
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary hover:underline font-normal"
                   >
                     Read More
                   </a>
@@ -151,7 +151,7 @@ export function UseCases() {
                 </a>
               </div>
               <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <h3 className="text-midnight text-subheading md:text-subheading font-semibold leading-snug mb-3">
+                <h3 className="text-midnight text-subheading md:text-subheading font-normal leading-snug mb-3">
                   AI Artist Hires Zerebro For A Feature
                 </h3>
                 <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
@@ -167,7 +167,7 @@ export function UseCases() {
                   <a
                     href="https://x.com/0xzerebro"
                     target="_blank"
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary hover:underline font-normal"
                   >
                     Read More
                   </a>

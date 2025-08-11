@@ -87,10 +87,11 @@ text-body-xsmall: 0.75rem (12px) - line-height: 1.4
 ### Usage Examples
 
 ```html
-<h1 class="text-hero font-bold text-midnight">Hero Title</h1>
-<h2 class="text-display font-bold text-midnight">Section Title</h2>
-<p class="text-body text-gray-600">Body text content</p>
-<button class="bg-primary hover:bg-primary-700 text-white">
+<h1 class="text-hero font-medium text-midnight">Hero Title</h1>
+<h2 class="text-display font-medium text-midnight">Section Title</h2>
+<h3 class="text-heading font-normal text-midnight">Card Title</h3>
+<p class="text-body font-normal text-gray-600">Body text content</p>
+<button class="bg-primary hover:bg-primary-700 text-white font-normal">
   Primary Button
 </button>
 ```
@@ -240,18 +241,24 @@ section-lg: 7rem (112px)
 ### Typography Scaling
 
 ```html
-<!-- Mobile-first responsive typography -->
-<h1 class="text-display sm:text-display md:text-hero">Hero Title</h1>
-<h2 class="text-heading sm:text-heading md:text-display">Section Title</h2>
-<h3 class="text-subheading md:text-heading">Card Title</h3>
-<p class="text-body md:text-body-lg">Body content</p>
+<!-- Mobile-first responsive typography with lighter font weights -->
+<h1 class="text-display sm:text-display md:text-hero font-medium">
+  Hero Title
+</h1>
+<h2 class="text-heading sm:text-heading md:text-display font-medium">
+  Section Title
+</h2>
+<h3 class="text-subheading md:text-heading font-normal">Card Title</h3>
+<p class="text-body md:text-body-lg font-normal">Body content</p>
 ```
 
 ### Color Consistency
 
 ```html
-<!-- Always use design system tokens -->
-<button class="bg-primary hover:bg-primary-700">Primary Button</button>
-<a class="text-primary hover:underline">Primary Link</a>
+<!-- Always use design system tokens with appropriate font weights -->
+<button class="bg-primary hover:bg-primary-700 font-normal">
+  Primary Button
+</button>
+<a class="text-primary hover:underline font-normal">Primary Link</a>
 <div class="border-primary">Primary Border</div>
 ```

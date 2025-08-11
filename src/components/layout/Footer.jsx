@@ -72,7 +72,7 @@ export function Footer() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="text-body-lg font-semibold text-midnight">
+                <span className="text-body-lg font-medium text-midnight">
                   PayAI
                 </span>
               </Link>
@@ -100,7 +100,7 @@ export function Footer() {
 
             {/* Developers (only linked items) */}
             <div>
-              <h4 className="text-body font-semibold text-midnight tracking-wide mb-4">
+              <h4 className="text-body font-medium text-midnight tracking-wide mb-4">
                 Developers
               </h4>
               <ul className="space-y-3 text-body text-gray-600">
@@ -120,7 +120,7 @@ export function Footer() {
 
             {/* Legal */}
             <div>
-              <h4 className="text-body font-semibold text-midnight tracking-wide mb-4">
+              <h4 className="text-body font-medium text-midnight tracking-wide mb-4">
                 Legal
               </h4>
               <ul className="space-y-3 text-body text-gray-600">

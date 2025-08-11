@@ -253,7 +253,7 @@ export function Features() {
               {/* Card Label Tab - Mobile responsive */}
               <div className="absolute z-0 -top-3 md:-top-4 left-4 md:left-8 -translate-y-1/2 bg-gradient-to-r">
                 <div className="from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-3 md:px-4 py-1.5 md:py-2 rounded-t-lg shadow-sm relative">
-                  <div className="flex items-center text-purple-700 text-caption md:text-body font-medium">
+                  <div className="flex items-center text-purple-700 text-caption md:text-body font-normal">
                     <feature.tagIcon className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                     <span className="truncate">{feature.tag}</span>
                   </div>
@@ -274,7 +274,7 @@ export function Features() {
                             feature.status === "LIVE"
                               ? "bg-purple-100 text-purple-700 border-purple-200"
                               : "bg-gray-100 text-gray-600 border-gray-200"
-                          } border px-3 py-1.5 rounded-lg text-caption font-medium flex items-center gap-1.5 w-fit`}
+                          } border px-3 py-1.5 rounded-lg text-caption font-normal flex items-center gap-1.5 w-fit`}
                         >
                           <feature.statusIcon className="w-3 h-3" />
                           {feature.status}
@@ -282,7 +282,7 @@ export function Features() {
                       </div>
 
                       <div>
-                        <h3 className="text-[#111729] text-subheading sm:text-subheading md:text-heading font-semibold leading-tight mb-4 md:mb-6">
+                        <h3 className="text-[#111729] text-subheading sm:text-subheading md:text-heading font-normal leading-tight mb-4 md:mb-6">
                           {feature.title}
                         </h3>
 
@@ -295,7 +295,7 @@ export function Features() {
                         <Button
                           variant={"outline"}
                           asChild
-                          className="bg-primary border border-gray-300 text-white hover:bg-primary-700 px-4 py-2 rounded-full font-medium transition-all duration-300 text-body shadow-sm min-h-[44px]"
+                          className="bg-primary border border-gray-300 text-white hover:bg-primary-700 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
                           size="sm"
                         >
                           <a
@@ -311,7 +311,7 @@ export function Features() {
                           <Button
                             variant="outline"
                             asChild
-                            className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-body shadow-sm min-h-[44px]"
+                            className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
                             size="sm"
                           >
                             <a

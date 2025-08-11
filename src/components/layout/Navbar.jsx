@@ -83,7 +83,7 @@ export function Navbar() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-body-lg font-semibold text-gray-900">
+              <span className="text-body-lg font-medium text-gray-900">
                 PayAI
               </span>
             </div>
@@ -94,21 +94,21 @@ export function Navbar() {
             <Link
               href="#home"
               onClick={(e) => handleNavClick(e, "home")}
-              className="text-body font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              className="text-body font-normal text-gray-700 hover:text-gray-900 transition-colors"
             >
               Home
             </Link>
             <Link
               href="#features"
               onClick={(e) => handleNavClick(e, "features")}
-              className="text-body font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              className="text-body font-normal text-gray-700 hover:text-gray-900 transition-colors"
             >
               Features
             </Link>
             <Link
               href="#use-cases"
               onClick={(e) => handleNavClick(e, "use-cases")}
-              className="text-body font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              className="text-body font-normal text-gray-700 hover:text-gray-900 transition-colors"
             >
               Use Cases
             </Link>
@@ -119,7 +119,7 @@ export function Navbar() {
             <Link
               href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
               target="_blank"
-              className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-medium border border-gray-200 rounded-full transition-colors hover:bg-white"
+              className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-white"
             >
               <Book className="w-4 h-4 mr-2" />
               Docs
@@ -127,7 +127,7 @@ export function Navbar() {
             <Link
               href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
               target="_blank"
-              className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-medium rounded-full transition-colors"
+              className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-normal rounded-full transition-colors"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Buy
@@ -155,21 +155,21 @@ export function Navbar() {
             <Link
               href="#home"
               onClick={(e) => handleNavClick(e, "home")}
-              className="block py-2 text-body font-medium text-gray-900 hover:text-gray-600"
+              className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
             >
               Home
             </Link>
             <Link
               href="#features"
               onClick={(e) => handleNavClick(e, "features")}
-              className="block py-2 text-body font-medium text-gray-900 hover:text-gray-600"
+              className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
             >
               Features
             </Link>
             <Link
               href="#use-cases"
               onClick={(e) => handleNavClick(e, "use-cases")}
-              className="block py-2 text-body font-medium text-gray-900 hover:text-gray-600"
+              className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
             >
               Use Cases
             </Link>
@@ -177,7 +177,7 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-medium border border-gray-200 rounded-full transition-colors hover:bg-white w-full"
+                className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-white w-full"
               >
                 <Book className="w-4 h-4 mr-2" />
                 Docs
@@ -185,7 +185,7 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-medium rounded-full transition-colors w-full"
+                className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-normal rounded-full transition-colors w-full"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Buy

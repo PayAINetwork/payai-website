@@ -16,54 +16,49 @@ html {
 }
 
 body {
-  @apply font-body text-gray-900;
+  @apply font-body text-gray-900 font-normal;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background: linear-gradient(
-    135deg,
-    #EDEFFE,
-    #F5F3FF,
-    #FAFAFA
-  );
+  background: linear-gradient(135deg, #edeffe, #f5f3ff, #fafafa);
   min-height: 100vh;
 }
 
-/* Enhanced Typography Hierarchy */
+/* Enhanced Typography Hierarchy - Lighter weights to match design system */
 h1 {
-  @apply font-heading text-hero font-bold text-midnight;
+  @apply font-heading text-hero font-semibold text-midnight;
   letter-spacing: -0.02em;
 }
 
 h2 {
-  @apply font-heading text-display font-bold text-midnight;
+  @apply font-heading text-display font-semibold text-midnight;
   letter-spacing: -0.01em;
 }
 
 h3 {
-  @apply font-heading text-heading font-semibold text-midnight;
+  @apply font-heading text-heading font-medium text-midnight;
 }
 
 h4 {
-  @apply font-heading text-subheading font-semibold text-midnight;
+  @apply font-heading text-subheading font-medium text-midnight;
 }
 
 h5 {
-  @apply font-heading text-xl font-medium text-midnight;
+  @apply font-heading text-xl font-normal text-midnight;
 }
 
 h6 {
-  @apply font-heading text-lg font-medium text-midnight;
+  @apply font-heading text-lg font-normal text-midnight;
 }
 
 p {
-  @apply text-body text-gray-600;
+  @apply text-body text-gray-600 font-normal;
 }
 
 /* Enhanced button styles */
 button {
-  @apply font-button font-medium;
+  @apply font-button font-normal;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -97,19 +92,19 @@ pre {
 @layer components {
   /* Enhanced button components */
   .btn-primary {
-    @apply bg-midnight hover:bg-midnight/90 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3;
+    @apply bg-midnight hover:bg-midnight/90 text-white px-6 py-3 rounded-lg font-normal transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3;
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-midnight border border-gray-300 hover:border-gray-400 px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-elevation-1 hover:shadow-elevation-2;
+    @apply bg-white hover:bg-gray-50 text-midnight border border-gray-300 hover:border-gray-400 px-6 py-3 rounded-lg font-normal transition-all duration-200 shadow-elevation-1 hover:shadow-elevation-2;
   }
 
   .btn-accent {
-    @apply bg-neonCyan hover:bg-neonCyan/90 text-midnight px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3;
+    @apply bg-neonCyan hover:bg-neonCyan/90 text-midnight px-6 py-3 rounded-lg font-normal transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3;
   }
 
   .btn-ghost {
-    @apply bg-transparent hover:bg-gray-100 text-gray-700 hover:text-midnight px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply bg-transparent hover:bg-gray-100 text-gray-700 hover:text-midnight px-6 py-3 rounded-lg font-normal transition-all duration-200;
   }
 
   /* Container utilities */
