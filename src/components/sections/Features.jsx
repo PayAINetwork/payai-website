@@ -251,19 +251,21 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
   const segEnd = (i + 1) / total;
   const segLen = segEnd - segStart;
 
-  // Delay incoming card a bit, then show
-  const appearStart = segStart + segLen * 0.25;
-  const appearEnd = segStart + segLen * 0.55;
+  // Appear later and more gradually: when previous card is ~94% through its segment
+  const prevSegStart = (i - 1) / total;
+  const prevThreshold = i === 0 ? segStart : prevSegStart + segLen * 0.94;
+  const appearStart = i === 0 ? segStart : prevThreshold;
+  const appearEnd = Math.min(appearStart + segLen * 0.14, segEnd);
   const appearOpacity =
     i === 0 ? 1 : useTransform(progress, [appearStart, appearEnd], [0, 1]);
 
-  // Fade outgoing later in its segment to allow reading
-  const fadeStart = segStart + segLen * 0.35;
-  const fadeEnd = segStart + segLen * 0.9;
+  // Increase fade on the outgoing card and start a bit earlier
+  const fadeStart = segStart + segLen * 0.82;
+  const fadeEnd = segEnd;
   const fadeOpacity =
     i === total - 1
       ? 1
-      : useTransform(progress, [fadeStart, fadeEnd], [1, 0.55]);
+      : useTransform(progress, [fadeStart, fadeEnd], [1, 0.3]);
 
   // Combine
   const opacity =
