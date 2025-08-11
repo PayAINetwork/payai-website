@@ -120,7 +120,10 @@ export function Header() {
             Partners & Ecosystem
           </p>
           <div className="flex justify-center">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 md:p-6 shadow-sm w-full max-w-6xl overflow-hidden">
+            <div
+              className="bg-white/20 backdrop-blur-md border border-white/30 rounded-xl p-4 md:p-6 shadow-lg w-full max-w-6xl overflow-hidden"
+              style={{ backdropFilter: "blur(8px)" }}
+            >
               <InfinitePartnerScroll />
             </div>
           </div>
