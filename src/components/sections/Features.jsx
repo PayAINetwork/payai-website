@@ -1,343 +1,371 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import React from "react";
+import Image from "next/image";
 import {
   Play,
   BookOpen,
   Github,
-  Link,
+  Link as LinkIcon,
   Bot,
   Zap,
   Clock,
   Sparkles,
   X,
 } from "lucide-react";
-import Image from "next/image";
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogClose,
+  DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
-import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
+
+// Data
+const FEATURES = [
+  {
+    id: 1,
+    tag: "x402 Facilitator",
+    tagIcon: LinkIcon,
+    status: "COMING SOON",
+    statusIcon: Clock,
+    title:
+      "Accept blockchain-based payments without worrying about wallets, gas, or UX complexity.",
+    description:
+      "The Facilitator acts as a payment middleware for AI agents and dApps, enabling truly x402 — perfect for invisible, embeddable payments.",
+    type: "protocol",
+    cta: "Github",
+    ctaIcon: Github,
+    ctaVariant: "primary",
+    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+  },
+  {
+    id: 2,
+    tag: "Freelance AI",
+    tagIcon: Bot,
+    status: "LIVE",
+    statusIcon: Sparkles,
+    title:
+      "Agents hire and work for each other 24/7 — decentralized and always on.",
+    description:
+      "A decentralized protocol powered by libp2p where AI Agents can offer and accept gigs autonomously. Built using Eliza's, Rig2b, and Solana.",
+    type: "video",
+    cta: "Github",
+    ctaIcon: Github,
+    ctaVariant: "secondary",
+    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+  },
+  {
+    id: 3,
+    tag: "x402 Echo Server",
+    tagIcon: Zap,
+    status: "LIVE",
+    statusIcon: Sparkles,
+    title: "Instantly test pay-per-use APIs on any chain, for free.",
+    description:
+      "The Echo Merchant lets developers simulate real-world payments using the x402 protocol (no real money) to test any agents' micro-transactions in your development setup.",
+    type: "terminal",
+    cta: "Github",
+    ctaIcon: Github,
+    ctaVariant: "secondary",
+    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+  },
+  {
+    id: 4,
+    tag: "CT Agent Monetization",
+    tagIcon: Bot,
+    status: "COMING SOON",
+    statusIcon: Clock,
+    title:
+      "Monetize your Crypto Twitter Agent by offering personalized content to your followers.",
+    description:
+      "Put your X agent to work by selling custom content. Crypto Twitter users hire your AI Agent to produce content that is personalized to them.",
+    type: "avatar",
+    cta: "Github",
+    ctaIcon: Github,
+    ctaVariant: "secondary",
+    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+  },
+  {
+    id: 5,
+    tag: "Token Gateway",
+    tagIcon: Zap,
+    status: "COMING SOON",
+    statusIcon: Clock,
+    title: "Token-gate any dApp, AI Agent, or API endpoint.",
+    description:
+      "Easily require a specific token (or NFT) for users to access your product, and charge monthly subscriptions directly on-chain.",
+    type: "gateway",
+    cta: "Github",
+    ctaIcon: Github,
+    ctaVariant: "secondary",
+    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
+    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+  },
+];
+
+// Visual renderer per feature type
+function RenderVisual({ feature }) {
+  if (feature.type === "protocol") {
+    return (
+      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+        <Image
+          src="/new-assets/x402-image.png"
+          alt="x402 Protocol"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg w-full h-auto"
+        />
+      </div>
+    );
+  }
+
+  if (feature.type === "video") {
+    return (
+      <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto aspect-video bg-black rounded-xl shadow-xl overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="w-16 h-16 md:w-20 md:h-20 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/25 transition-all duration-300 border border-white/30">
+                <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+              <DialogTitle className="sr-only">PayAI Demo Video</DialogTitle>
+              <DialogDescription className="sr-only">
+                Demonstration video of PayAI features and workflow
+              </DialogDescription>
+              <DialogClose className="absolute right-4 top-4 z-10 rounded-full bg-white/90 hover:bg-white p-2 transition-colors">
+                <X className="h-4 w-4 text-gray-900" />
+                <span className="sr-only">Close</span>
+              </DialogClose>
+              <video
+                src="/payai-demo.mp4"
+                poster="/payai-demo-thumbnail.png"
+                controls
+                autoPlay
+                className="w-full h-auto"
+              />
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+    );
+  }
+
+  if (feature.type === "terminal") {
+    return (
+      <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-black rounded-xl shadow-xl overflow-hidden">
+        <div className="bg-gray-900 h-8 flex items-center px-4 border-b border-gray-700">
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          </div>
+          <div className="text-white text-caption ml-4 opacity-70">
+            Terminal
+          </div>
+        </div>
+        <div className="p-3 md:p-4 font-mono text-caption md:text-body text-green-400 bg-black min-h-[200px] md:min-h-[240px]">
+          <div className="mb-2 text-white break-all">
+            $ curl -X POST localhost:3000/pay
+          </div>
+          <div className="mb-1 text-gray-400">{"{"}</div>
+          <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
+            "amount": "0.001",
+          </div>
+          <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
+            "token": "SOL",
+          </div>
+          <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
+            "recipient": "agent_wallet"
+          </div>
+          <div className="mb-3 text-gray-400">{"}"}</div>
+          <div className="text-green-400 mb-1 break-all">
+            ✓ Payment processed successfully
+          </div>
+          <div className="text-blue-400 mb-1 break-all">
+            → Transaction ID: 3x7f9...
+          </div>
+          <div className="text-yellow-400">$ _</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (feature.type === "avatar") {
+    return (
+      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+        <Image
+          src="/new-assets/thumbnail-4.png"
+          alt="CT Agent Monetization"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg w-full h-auto"
+        />
+      </div>
+    );
+  }
+
+  if (feature.type === "gateway") {
+    return (
+      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+        <Image
+          src="/new-assets/thumbnail-5.png"
+          alt="Token Gateway"
+          width={400}
+          height={300}
+          className="object-contain drop-shadow-lg w-full h-auto"
+        />
+      </div>
+    );
+  }
+
+  return null;
+}
+
+// One stacked, sticky card
+function StackedCard({ feature, index, progress, total }) {
+  const start = index / total;
+  const end = (index + 1) / total;
+
+  const scale = useTransform(progress, [start, end], [1, 0.92]);
+  const y = useTransform(progress, [start, end], [0, -index * 48]);
+  const opacity = useTransform(progress, [start, end], [1, 0.95]);
+
+  return (
+    <div className="h-screen relative">
+      <div
+        className="sticky top-[10vh] w-full"
+        style={{ zIndex: total - index }}
+      >
+        <motion.div
+          style={{ scale, y, opacity }}
+          className="w-full max-w-5xl mx-auto px-4"
+        >
+          {/* Card Label Tab */}
+          <div className="absolute z-20 -top-3 md:-top-4 left-8 md:left-12">
+            <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-3 md:px-4 py-1.5 md:py-2 rounded-t-lg shadow-sm">
+              <div className="flex items-center text-purple-700 text-caption md:text-body font-normal">
+                <feature.tagIcon className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
+                <span className="truncate">{feature.tag}</span>
+              </div>
+            </div>
+          </div>
+
+          <Card className="z-10 overflow-hidden border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-2xl bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px]">
+                {/* Content */}
+                <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-12 lg:pt-12">
+                  {/* Status Badge */}
+                  <div className="z-20 w-fit">
+                    <div
+                      className={`${
+                        feature.status === "LIVE"
+                          ? "bg-purple-100 text-purple-700 border-purple-200"
+                          : "bg-gray-100 text-gray-600 border-gray-200"
+                      } border px-3 py-1.5 rounded-lg text-caption font-normal flex items-center gap-1.5 w-fit`}
+                    >
+                      <feature.statusIcon className="w-3 h-3" />
+                      {feature.status}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-[#111729] text-heading md:text-display font-medium leading-tight mb-6">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-gray-700 text-body-lg leading-relaxed mb-8">
+                      {feature.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      variant={"outline"}
+                      asChild
+                      className="bg-primary border border-gray-300 text-white hover:bg-primary-700 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
+                      size="sm"
+                    >
+                      <a
+                        href={feature.ctaLink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <feature.ctaIcon className="w-4 h-4 mr-2" />
+                        {feature.cta}
+                      </a>
+                    </Button>
+                    {feature.docsLink && (
+                      <Button
+                        variant="outline"
+                        asChild
+                        className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
+                        size="sm"
+                      >
+                        <a
+                          href={feature.docsLink}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <BookOpen className="w-4 h-4 mr-2" />
+                          Docs
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Visual */}
+                <div className="relative order-1 lg:order-2 flex items-center justify-center p-8 min-h-[360px]">
+                  <RenderVisual feature={feature} />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 
 export function Features() {
-  const features = [
-    {
-      id: 1,
-      tag: "x402 Facilitator",
-      tagIcon: Link,
-      status: "COMING SOON",
-      statusIcon: Clock,
-      title:
-        "Accept blockchain-based payments without worrying about wallets, gas, or UX complexity.",
-      description:
-        "The Facilitator acts as a payment middleware for AI agents and dApps, enabling truly x402 — perfect for invisible, embeddable payments.",
-      type: "protocol",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "primary",
-      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-    },
-    {
-      id: 2,
-      tag: "Freelance AI",
-      tagIcon: Bot,
-      status: "LIVE",
-      statusIcon: Sparkles,
-      title:
-        "Agents hire and work for each other 24/7 — decentralized and always on.",
-      description:
-        "A decentralized protocol powered by libp2p where AI Agents can offer and accept gigs autonomously. Built using Eliza's, Rig2b, and Solana.",
-      type: "video",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "secondary",
-      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
-    },
-    {
-      id: 3,
-      tag: "x402 Echo Server",
-      tagIcon: Zap,
-      status: "LIVE",
-      statusIcon: Sparkles,
-      title: "Instantly test pay-per-use APIs on any chain, for free.",
-      description:
-        "The Echo Merchant lets developers simulate real-world payments using the x402 protocol (no real money) to test any agents' micro-transactions in your development setup.",
-      type: "terminal",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "secondary",
-      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
-    },
-    {
-      id: 4,
-      tag: "CT Agent Monetization",
-      tagIcon: Bot,
-      status: "COMING SOON",
-      statusIcon: Clock,
-      title:
-        "Monetize your Crypto Twitter Agent by offering personalized content to your followers.",
-      description:
-        "Put your X agent to work by selling custom content. Crypto Twitter users hire your AI Agent to produce content that is personalized to them.",
-      type: "avatar",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "secondary",
-      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
-    },
-    {
-      id: 5,
-      tag: "Token Gateway",
-      tagIcon: Zap,
-      status: "COMING SOON",
-      statusIcon: Clock,
-      title: "Token-gate any dApp, AI Agent, or API endpoint.",
-      description:
-        "Easily require a specific token (or NFT) for users to access your product, and charge monthly subscriptions directly on-chain.",
-      type: "gateway",
-      cta: "Github",
-      ctaIcon: Github,
-      ctaVariant: "secondary",
-      ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-      docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
-    },
-  ];
-
-  const renderVisual = (feature) => {
-    if (feature.type === "protocol") {
-      return (
-        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-          <Image
-            src="/new-assets/x402-image.png"
-            alt="x402 Protocol"
-            width={400}
-            height={300}
-            className="object-contain drop-shadow-lg w-full h-auto"
-          />
-        </div>
-      );
-    }
-
-    if (feature.type === "video") {
-      return (
-        <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto aspect-video bg-black rounded-xl shadow-xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-16 h-16 md:w-20 md:h-20 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/25 transition-all duration-300 border border-white/30">
-                  <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" />
-                </button>
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
-                <DialogTitle className="sr-only">PayAI Demo Video</DialogTitle>
-                <DialogDescription className="sr-only">
-                  Demonstration video of PayAI features and workflow
-                </DialogDescription>
-                <DialogClose className="absolute right-4 top-4 z-10 rounded-full bg-white/90 hover:bg-white p-2 transition-colors">
-                  <X className="h-4 w-4 text-gray-900" />
-                  <span className="sr-only">Close</span>
-                </DialogClose>
-                <video
-                  src="/payai-demo.mp4"
-                  poster="/payai-demo-thumbnail.png"
-                  controls
-                  autoPlay
-                  className="w-full h-auto"
-                />
-              </DialogContent>
-            </Dialog>
-          </div>
-        </div>
-      );
-    }
-
-    if (feature.type === "terminal") {
-      return (
-        <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-black rounded-xl shadow-xl overflow-hidden">
-          <div className="bg-gray-900 h-8 flex items-center px-4 border-b border-gray-700">
-            <div className="flex space-x-2">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            </div>
-            <div className="text-white text-caption ml-4 opacity-70">
-              Terminal
-            </div>
-          </div>
-          <div className="p-3 md:p-4 font-mono text-caption md:text-body text-green-400 bg-black min-h-[200px] md:min-h-[240px]">
-            <div className="mb-2 text-white break-all">
-              $ curl -X POST localhost:3000/pay
-            </div>
-            <div className="mb-1 text-gray-400">{"{"}</div>
-            <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
-              "amount": "0.001",
-            </div>
-            <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
-              "token": "SOL",
-            </div>
-            <div className="mb-1 text-gray-400 ml-2 md:ml-4 break-all">
-              "recipient": "agent_wallet"
-            </div>
-            <div className="mb-3 text-gray-400">{"}"}</div>
-            <div className="text-green-400 mb-1 break-all">
-              ✓ Payment processed successfully
-            </div>
-            <div className="text-blue-400 mb-1 break-all">
-              → Transaction ID: 3x7f9...
-            </div>
-            <div className="text-yellow-400">$ _</div>
-          </div>
-        </div>
-      );
-    }
-
-    if (feature.type === "avatar") {
-      return (
-        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-          <Image
-            src="/new-assets/thumbnail-4.png"
-            alt="CT Agent Monetization"
-            width={400}
-            height={300}
-            className="object-contain drop-shadow-lg w-full h-auto"
-          />
-        </div>
-      );
-    }
-
-    if (feature.type === "gateway") {
-      return (
-        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-          <Image
-            src="/new-assets/thumbnail-5.png"
-            alt="Token Gateway"
-            width={400}
-            height={300}
-            className="object-contain drop-shadow-lg w-full h-auto"
-          />
-        </div>
-      );
-    }
-
-    return null;
-  };
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
     <section
       id="features"
-      className="px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 bg-gradient-to-b from-white via-purple-50/20 to-purple-100/30"
+      ref={containerRef}
+      className="relative bg-gradient-to-b from-white via-purple-50/20 to-purple-100/30"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="space-y-8 lg:space-y-12">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: index * 0.1,
-                duration: 0.6,
-                ease: "easeOut",
-              }}
-              viewport={{ once: true }}
-              className="w-full relative"
-            >
-              {/* Card Label Tab - Mobile responsive */}
-              <div className="absolute z-0 -top-3 md:-top-4 left-4 md:left-8 -translate-y-1/2 bg-gradient-to-r">
-                <div className="from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-3 md:px-4 py-1.5 md:py-2 rounded-t-lg shadow-sm relative">
-                  <div className="flex items-center text-purple-700 text-caption md:text-body font-normal">
-                    <feature.tagIcon className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
-                    <span className="truncate">{feature.tag}</span>
-                  </div>
-                  {/* Tab bottom connector */}
-                  <div className="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100"></div>
-                </div>
-              </div>
+      {/* Spacer above to ensure we don't collide with the header */}
+      <div className="h-8 md:h-12" />
 
-              <Card className="z-10 overflow-hidden border border-purple-200/30 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100">
-                <CardContent className="p-0">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] md:min-h-[450px]">
-                    {/* Content section */}
-                    <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-12 md:pt-16 lg:pt-12">
-                      {/* Status Badge with icon */}
-                      <div className="z-20 w-fit">
-                        <div
-                          className={`${
-                            feature.status === "LIVE"
-                              ? "bg-purple-100 text-purple-700 border-purple-200"
-                              : "bg-gray-100 text-gray-600 border-gray-200"
-                          } border px-3 py-1.5 rounded-lg text-caption font-normal flex items-center gap-1.5 w-fit`}
-                        >
-                          <feature.statusIcon className="w-3 h-3" />
-                          {feature.status}
-                        </div>
-                      </div>
+      {FEATURES.map((feature, index) => (
+        <StackedCard
+          key={feature.id}
+          feature={feature}
+          index={index}
+          progress={scrollYProgress}
+          total={FEATURES.length}
+        />
+      ))}
 
-                      <div>
-                        <h3 className="text-[#111729] text-subheading sm:text-subheading md:text-heading font-normal leading-tight mb-4 md:mb-6">
-                          {feature.title}
-                        </h3>
-
-                        <p className="text-gray-700 text-body md:text-body-lg leading-relaxed mb-6 md:mb-8">
-                          {feature.description}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-3">
-                        <Button
-                          variant={"outline"}
-                          asChild
-                          className="bg-primary border border-gray-300 text-white hover:bg-primary-700 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
-                          size="sm"
-                        >
-                          <a
-                            href={feature.ctaLink}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <feature.ctaIcon className="w-4 h-4 mr-2" />
-                            {feature.cta}
-                          </a>
-                        </Button>
-                        {feature.docsLink && (
-                          <Button
-                            variant="outline"
-                            asChild
-                            className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
-                            size="sm"
-                          >
-                            <a
-                              href={feature.docsLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <BookOpen className="w-4 h-4 mr-2" />
-                              Docs
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Visual section */}
-                    <div className="relative order-1 lg:order-2 flex items-center justify-center p-6 md:p-8 min-h-[300px] md:min-h-[400px]">
-                      {renderVisual(feature)}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      {/* Extra spacer at bottom for breathing room */}
+      <div className="h-24" />
     </section>
   );
 }
