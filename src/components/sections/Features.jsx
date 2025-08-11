@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import {
   Play,
   BookOpen,
@@ -244,11 +245,23 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
 
   const scale = useTransform(progress, range, [1, targetScale]);
 
+  // Gradual fade: each card fades as the next one approaches
+  const total = FEATURES.length;
+  const fadeStart = i / total;
+  const fadeEnd = Math.min((i + 1) / total, 1);
+  const fadeOpacity = useTransform(progress, [fadeStart, fadeEnd], [1, 0.4]);
+
+  const zIndexClass =
+    ["z-10", "z-20", "z-30", "z-40", "z-50", "z-60"][i] || "z-10";
+
   return (
-    <div ref={containerRef} className="h-screen relative">
-      <div className="sticky top-[10vh] w-full">
+    <div
+      ref={containerRef}
+      className={cn("h-screen relative", i > 0 && "-mt-44 md:-mt-[20%]")}
+    >
+      <div className={cn("sticky top-[10vh] w-full", zIndexClass)}>
         <motion.div
-          style={{ scale, y: lift }}
+          style={{ scale, y: lift, opacity: i === total - 1 ? 1 : fadeOpacity }}
           className="w-full max-w-5xl mx-auto px-4"
         >
           {/* Card Label Tab */}
