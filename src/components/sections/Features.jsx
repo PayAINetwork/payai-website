@@ -295,7 +295,7 @@ export function Features() {
                         <Button
                           variant={"outline"}
                           asChild
-                          className="bg-[#5a5df7] border border-gray-300 text-white hover:bg-gray-50 px-4 py-2 rounded-full font-medium transition-all duration-300 text-body shadow-sm min-h-[44px]"
+                          className="bg-primary border border-gray-300 text-white hover:bg-primary-700 px-4 py-2 rounded-full font-medium transition-all duration-300 text-body shadow-sm min-h-[44px]"
                           size="sm"
                         >
                           <a

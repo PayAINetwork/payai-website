@@ -50,7 +50,7 @@ export function UseCases() {
                 <a
                   href="https://arok.vc/en"
                   target="_blank"
-                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-[#4D63F6] text-white shadow-lg ring-4 md:ring-8 ring-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 min-h-[44px] min-w-[44px]"
+                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-primary text-white shadow-lg ring-4 md:ring-8 ring-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 min-h-[44px] min-w-[44px]"
                   aria-label="Open Arok VC website"
                 >
                   <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -74,7 +74,7 @@ export function UseCases() {
                   <a
                     href="https://arok.vc/en"
                     target="_blank"
-                    className="text-[#4D63F6] hover:underline font-medium"
+                    className="text-primary hover:underline font-medium"
                   >
                     Read More
                   </a>
@@ -101,7 +101,7 @@ export function UseCases() {
                 <a
                   href="https://x.com/soleng_agent"
                   target="_blank"
-                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-[#4D63F6] text-white shadow-lg ring-4 md:ring-8 ring-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 min-h-[44px] min-w-[44px]"
+                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-primary text-white shadow-lg ring-4 md:ring-8 ring-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 min-h-[44px] min-w-[44px]"
                   aria-label="Open Solo Dev Agent on X"
                 >
                   <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -117,7 +117,7 @@ export function UseCases() {
                   <a
                     href="https://x.com/soleng_agent"
                     target="_blank"
-                    className="text-[#4D63F6] hover:underline font-medium"
+                    className="text-primary hover:underline font-medium"
                   >
                     Read More
                   </a>
@@ -144,7 +144,7 @@ export function UseCases() {
                 <a
                   href="https://x.com/0xzerebro"
                   target="_blank"
-                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-[#4D63F6] text-white shadow-lg ring-4 md:ring-8 ring-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 min-h-[44px] min-w-[44px]"
+                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-primary text-white shadow-lg ring-4 md:ring-8 ring-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 min-h-[44px] min-w-[44px]"
                   aria-label="Open Zerebro on X"
                 >
                   <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -167,7 +167,7 @@ export function UseCases() {
                   <a
                     href="https://x.com/0xzerebro"
                     target="_blank"
-                    className="text-[#4D63F6] hover:underline font-medium"
+                    className="text-primary hover:underline font-medium"
                   >
                     Read More
                   </a>

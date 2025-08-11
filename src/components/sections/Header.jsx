@@ -36,7 +36,7 @@ export function Header() {
             </p>
             <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
               <Link
-                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-6 py-3 text-body font-medium rounded-full transition-colors min-h-[44px]"
+                className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-medium rounded-full transition-colors min-h-[44px]"
                 href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                 target="_blank"
               >

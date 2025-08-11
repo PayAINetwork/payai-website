@@ -25,7 +25,7 @@ export default {
         "7xl": ["4.5rem", { lineHeight: "1" }],
         "8xl": ["6rem", { lineHeight: "1" }],
         "9xl": ["8rem", { lineHeight: "1" }],
-        // Custom PayAI sizes
+        // PayAI Design System Typography Scale
         hero: ["4.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
         display: ["3.5rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
         heading: ["2.5rem", { lineHeight: "1.3" }],
@@ -34,6 +34,11 @@ export default {
         body: ["1rem", { lineHeight: "1.6" }],
         caption: ["0.875rem", { lineHeight: "1.5" }],
         micro: ["0.75rem", { lineHeight: "1.4" }],
+        // Design System Body Aliases for consistency
+        "body-large": ["1.125rem", { lineHeight: "1.6" }],
+        "body-medium": ["1rem", { lineHeight: "1.6" }],
+        "body-small": ["0.875rem", { lineHeight: "1.5" }],
+        "body-xsmall": ["0.75rem", { lineHeight: "1.4" }],
       },
       spacing: {
         "18": "4.5rem",
@@ -50,7 +55,21 @@ export default {
         "7xl": "80rem", // 1280px
       },
       colors: {
-        // Primary PayAI Brand Colors
+        // Primary PayAI Brand Colors - Updated to match design system
+        primary: {
+          DEFAULT: "#4D63F6",
+          50: "#F0F2FE",
+          100: "#E1E6FD",
+          200: "#C4CDFB",
+          300: "#A6B4F8",
+          400: "#899BF6",
+          500: "#4D63F6",
+          600: "#2F47E8",
+          700: "#1E2FBB",
+          800: "#16238E",
+          900: "#0E1861",
+          950: "#070C34",
+        },
         midnight: {
           DEFAULT: "#0A192F",
           50: "#F0F4F8",
@@ -164,14 +183,6 @@ export default {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -196,9 +207,9 @@ export default {
         },
       },
       fontFamily: {
+        // Updated to match design system with Inter as General Sans alternative
         heading: [
-          "FT Regola Neue",
-          "Montserrat",
+          "Inter",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -209,8 +220,7 @@ export default {
           "sans-serif",
         ],
         body: [
-          "FT Regola Neue",
-          "Montserrat",
+          "Inter",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -221,8 +231,7 @@ export default {
           "sans-serif",
         ],
         button: [
-          "FT Regola Neue",
-          "Montserrat",
+          "Inter",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -244,9 +253,9 @@ export default {
       },
       boxShadow: {
         // PayAI custom shadows
-        "glow-sm": "0 0 10px rgba(0, 229, 255, 0.3)",
-        "glow-md": "0 0 20px rgba(0, 229, 255, 0.4)",
-        "glow-lg": "0 0 30px rgba(0, 229, 255, 0.5)",
+        "glow-sm": "0 0 10px rgba(77, 99, 246, 0.3)",
+        "glow-md": "0 0 20px rgba(77, 99, 246, 0.4)",
+        "glow-lg": "0 0 30px rgba(77, 99, 246, 0.5)",
         "glow-purple": "0 0 20px rgba(138, 43, 226, 0.4)",
         card: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
         "card-hover":
@@ -302,8 +311,8 @@ export default {
           "100%": { opacity: "1", transform: "scale(1)" },
         },
         glowPulse: {
-          "0%, 100%": { boxShadow: "0 0 10px rgba(0, 229, 255, 0.3)" },
-          "50%": { boxShadow: "0 0 30px rgba(0, 229, 255, 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 10px rgba(77, 99, 246, 0.3)" },
+          "50%": { boxShadow: "0 0 30px rgba(77, 99, 246, 0.6)" },
         },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },

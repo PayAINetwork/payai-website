@@ -5,6 +5,21 @@
 ### Primary Brand Colors
 
 ```css
+primary: {
+  DEFAULT: "#4D63F6",
+  50: "#F0F2FE",
+  100: "#E1E6FD",
+  200: "#C4CDFB",
+  300: "#A6B4F8",
+  400: "#899BF6",
+  500: "#4D63F6",
+  600: "#2F47E8",
+  700: "#1E2FBB",
+  800: "#16238E",
+  900: "#0E1861",
+  950: "#070C34",
+}
+
 midnight: {
   DEFAULT: "#0A192F",
   50: "#F0F4F8",
@@ -34,7 +49,7 @@ electricPurple: {
 ### Usage Examples
 
 ```html
-<div class="bg-midnight text-white">Primary Background</div>
+<div class="bg-primary text-white">Primary Background</div>
 <div class="bg-neonCyan text-midnight">Accent Background</div>
 <div class="text-electricPurple">Purple Text</div>
 ```
@@ -43,8 +58,8 @@ electricPurple: {
 
 ### Font Families
 
-- **Heading**: FT Regola Neue, Montserrat (fallback)
-- **Body**: FT Regola Neue, Montserrat (fallback)
+- **Heading**: Inter (fallback: system-ui, sans-serif)
+- **Body**: Inter (fallback: system-ui, sans-serif)
 - **Code**: JetBrains Mono
 
 ### Typography Scale
@@ -60,12 +75,24 @@ text-caption: 0.875rem (14px) - line-height: 1.5
 text-micro: 0.75rem (12px) - line-height: 1.4
 ```
 
+### Alternative Body Scale Names
+
+```css
+text-body-large: 1.125rem (18px) - line-height: 1.6
+text-body-medium: 1rem (16px) - line-height: 1.6
+text-body-small: 0.875rem (14px) - line-height: 1.5
+text-body-xsmall: 0.75rem (12px) - line-height: 1.4
+```
+
 ### Usage Examples
 
 ```html
 <h1 class="text-hero font-bold text-midnight">Hero Title</h1>
 <h2 class="text-display font-bold text-midnight">Section Title</h2>
 <p class="text-body text-gray-600">Body text content</p>
+<button class="bg-primary hover:bg-primary-700 text-white">
+  Primary Button
+</button>
 ```
 
 ## 🎯 Component Classes
@@ -77,6 +104,19 @@ text-micro: 0.75rem (12px) - line-height: 1.4
 <button class="btn-secondary">Secondary Button</button>
 <button class="btn-accent">Accent Button</button>
 <button class="btn-ghost">Ghost Button</button>
+```
+
+### Design System Tokens
+
+```html
+<!-- Primary Color Usage -->
+<button class="bg-primary hover:bg-primary-700 text-white">Button</button>
+<a class="text-primary hover:underline">Link</a>
+<div class="ring-primary/40">Focus Ring</div>
+
+<!-- Typography Usage -->
+<h1 class="text-display sm:text-display md:text-hero">Responsive Heading</h1>
+<p class="text-body md:text-body-lg">Responsive Body Text</p>
 ```
 
 ### Cards
@@ -118,7 +158,7 @@ text-micro: 0.75rem (12px) - line-height: 1.4
 ```html
 <div class="shadow-elevation-1">Subtle shadow</div>
 <div class="shadow-elevation-3">Medium shadow</div>
-<div class="shadow-glow-md">Neon glow effect</div>
+<div class="shadow-glow-md">Primary glow effect</div>
 ```
 
 ### Glass Morphism
@@ -148,16 +188,17 @@ section-lg: 7rem (112px)
 
 ### Do's
 
-✅ Use the defined color scale consistently
-✅ Stick to the typography hierarchy
+✅ Use `bg-primary` instead of hardcoded colors
+✅ Use `text-body md:text-body-lg` for responsive typography
+✅ Stick to the typography hierarchy (hero → display → heading → subheading → body)
 ✅ Apply component classes for consistency
 ✅ Use proper spacing tokens
 
 ### Don'ts
 
-❌ Create one-off colors outside the system
+❌ Use hardcoded colors like `bg-[#4D63F6]`
 ❌ Mix font families randomly
-❌ Use arbitrary spacing values
+❌ Use arbitrary text sizes outside the system
 ❌ Override component styles without reason
 
 ## 🚀 Implementation Examples
@@ -165,13 +206,17 @@ section-lg: 7rem (112px)
 ### Hero Section
 
 ```html
-<section class="section-padding bg-gradient-payai">
+<section class="section-padding bg-primary">
   <div class="container-payai">
-    <h1 class="text-hero font-bold text-white">PayAI: AI Agent Economy</h1>
-    <p class="text-body-lg text-white/80 mt-6">
+    <h1 class="text-display md:text-hero font-semibold text-white">
+      PayAI: AI Agent Economy
+    </h1>
+    <p class="text-body md:text-body-lg text-white/80 mt-6">
       The future of AI collaboration
     </p>
-    <button class="btn-accent mt-8">Get Started</button>
+    <button class="bg-white hover:bg-gray-50 text-primary mt-8">
+      Get Started
+    </button>
   </div>
 </section>
 ```
@@ -180,8 +225,33 @@ section-lg: 7rem (112px)
 
 ```html
 <div class="card-elevated p-8">
-  <h3 class="text-heading font-semibold text-midnight mb-4">Feature Title</h3>
-  <p class="text-body text-gray-600 mb-6">Feature description content</p>
-  <button class="btn-secondary">Learn More</button>
+  <h3 class="text-subheading md:text-heading font-semibold text-midnight mb-4">
+    Feature Title
+  </h3>
+  <p class="text-body md:text-body-lg text-gray-600 mb-6">
+    Feature description content
+  </p>
+  <button class="bg-primary hover:bg-primary-700 text-white">Learn More</button>
 </div>
+```
+
+## 📱 Mobile Responsiveness
+
+### Typography Scaling
+
+```html
+<!-- Mobile-first responsive typography -->
+<h1 class="text-display sm:text-display md:text-hero">Hero Title</h1>
+<h2 class="text-heading sm:text-heading md:text-display">Section Title</h2>
+<h3 class="text-subheading md:text-heading">Card Title</h3>
+<p class="text-body md:text-body-lg">Body content</p>
+```
+
+### Color Consistency
+
+```html
+<!-- Always use design system tokens -->
+<button class="bg-primary hover:bg-primary-700">Primary Button</button>
+<a class="text-primary hover:underline">Primary Link</a>
+<div class="border-primary">Primary Border</div>
 ```

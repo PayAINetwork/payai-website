@@ -127,7 +127,7 @@ export function Navbar() {
             <Link
               href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
               target="_blank"
-              className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-body font-medium rounded-full transition-colors"
+              className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-medium rounded-full transition-colors"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Buy
@@ -185,7 +185,7 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-5 py-2 text-body font-medium rounded-full transition-colors w-full"
+                className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-medium rounded-full transition-colors w-full"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Buy
