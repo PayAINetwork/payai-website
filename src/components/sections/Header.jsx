@@ -27,8 +27,10 @@ export function Header() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left content - Takes 6 columns on large screens */}
           <div className="lg:col-span-6 max-w-xl">
-            <h1 className="text-display sm:text-display md:text-hero font-medium text-[#111729] leading-tight">
-              Powering Payments for the AI Agent Economy
+            <h1 className="text-display sm:text-display md:text-6xl font-medium text-[#111729] leading-tight">
+              <span className="whitespace-nowrap">Powering Payments for</span>
+              <br />
+              <span className="whitespace-nowrap">the AI Agent Economy</span>
             </h1>
             <p className="mt-4 md:mt-6 text-body md:text-body-lg text-gray-600 leading-relaxed">
               PayAI enables autonomous agents to transact with each other and
