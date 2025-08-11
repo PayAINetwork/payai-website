@@ -245,11 +245,26 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
 
   const scale = useTransform(progress, range, [1, targetScale]);
 
-  // Gradual fade: each card fades as the next one approaches
+  // Gradual fade of the outgoing (previous) card
   const total = FEATURES.length;
-  const fadeStart = i / total;
-  const fadeEnd = Math.min((i + 1) / total, 1);
-  const fadeOpacity = useTransform(progress, [fadeStart, fadeEnd], [1, 0.4]);
+  const step = 1 / total;
+  const fadeStart = Math.min(i / total + step * 0.35, 1); // start fading later to allow reading
+  const fadeEnd = Math.min(i / total + step * 0.9, 1);
+  const fadeOpacity = useTransform(progress, [fadeStart, fadeEnd], [1, 0.55]);
+
+  // Delay incoming card visibility so it doesn't cover too soon
+  const appearStart = Math.min(i / total + step * 0.25, 1);
+  const appearEnd = Math.min(i / total + step * 0.55, 1);
+  const appearOpacity =
+    i === 0 ? 1 : useTransform(progress, [appearStart, appearEnd], [0, 1]);
+
+  // Combine: card is visible only after appear window, then fades when handing off to next
+  const opacity =
+    i === total - 1
+      ? 1
+      : i === 0
+      ? fadeOpacity
+      : useTransform([fadeOpacity, appearOpacity], ([f, a]) => f * a);
 
   const zIndexClass =
     ["z-10", "z-20", "z-30", "z-40", "z-50", "z-60"][i] || "z-10";
@@ -257,11 +272,11 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
   return (
     <div
       ref={containerRef}
-      className={cn("h-screen relative", i > 0 && "-mt-44 md:-mt-[20%]")}
+      className={cn("h-screen relative", i > 0 && "-mt-24 md:-mt-[12%]")}
     >
       <div className={cn("sticky top-[10vh] w-full", zIndexClass)}>
         <motion.div
-          style={{ scale, y: lift, opacity: i === total - 1 ? 1 : fadeOpacity }}
+          style={{ scale, y: lift, opacity }}
           className="w-full max-w-5xl mx-auto px-4"
         >
           {/* Card Label Tab */}
