@@ -245,23 +245,30 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
 
   const scale = useTransform(progress, range, [1, targetScale]);
 
-  // Gradual fade of the outgoing (previous) card
+  // Gradual fade of the outgoing (previous) card using per-segment timing
   const total = FEATURES.length;
-  const step = 1 / total;
-  const fadeStart = Math.min(i / total + step * 0.35, 1); // start fading later to allow reading
-  const fadeEnd = Math.min(i / total + step * 0.9, 1);
-  const fadeOpacity = useTransform(progress, [fadeStart, fadeEnd], [1, 0.55]);
+  const segStart = i / total;
+  const segEnd = (i + 1) / total;
+  const segLen = segEnd - segStart;
 
-  // Delay incoming card visibility so it doesn't cover too soon
-  const appearStart = Math.min(i / total + step * 0.25, 1);
-  const appearEnd = Math.min(i / total + step * 0.55, 1);
+  // Delay incoming card a bit, then show
+  const appearStart = segStart + segLen * 0.25;
+  const appearEnd = segStart + segLen * 0.55;
   const appearOpacity =
     i === 0 ? 1 : useTransform(progress, [appearStart, appearEnd], [0, 1]);
 
-  // Combine: card is visible only after appear window, then fades when handing off to next
-  const opacity =
+  // Fade outgoing later in its segment to allow reading
+  const fadeStart = segStart + segLen * 0.35;
+  const fadeEnd = segStart + segLen * 0.9;
+  const fadeOpacity =
     i === total - 1
       ? 1
+      : useTransform(progress, [fadeStart, fadeEnd], [1, 0.55]);
+
+  // Combine
+  const opacity =
+    i === total - 1
+      ? appearOpacity
       : i === 0
       ? fadeOpacity
       : useTransform([fadeOpacity, appearOpacity], ([f, a]) => f * a);
@@ -338,7 +345,7 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
                       <Button
                         variant="outline"
                         asChild
-                        className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
+                        className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm"
                         size="sm"
                       >
                         <a
