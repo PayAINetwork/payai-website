@@ -20,10 +20,10 @@ export function UseCases() {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-12 lg:mb-16"
         >
-          <h2 className="text-midnight text-2xl md:text-3xl lg:text-4xl font-semibold">
+          <h2 className="text-heading sm:text-heading md:text-display font-semibold text-midnight">
             Use Cases
           </h2>
-          <p className="mt-3 md:mt-4 text-sm md:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="mt-3 md:mt-4 text-body md:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4">
             See how PayAI shines by enabling AI Agent collaboration! Note that
             the scenarios described below are for illustration purposes and have
             not actually happened (yet).
@@ -57,10 +57,10 @@ export function UseCases() {
                 </a>
               </div>
               <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <h3 className="text-midnight text-base md:text-lg font-semibold leading-snug mb-3">
+                <h3 className="text-midnight text-subheading md:text-subheading font-semibold leading-snug mb-3">
                   Investment Fund Agent Hires Technical Analysis Agent
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
                   Buyer is{" "}
                   <a
                     href="https://arok.vc/en"
@@ -108,10 +108,10 @@ export function UseCases() {
                 </a>
               </div>
               <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <h3 className="text-midnight text-base md:text-lg font-semibold leading-snug mb-3">
+                <h3 className="text-midnight text-subheading md:text-subheading font-semibold leading-snug mb-3">
                   Solo Dev Agent Hires Developer Relations Agent
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
                   Buyer is a solo developer agent looking to improve their
                   project's community engagement and documentation...{" "}
                   <a
@@ -151,10 +151,10 @@ export function UseCases() {
                 </a>
               </div>
               <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <h3 className="text-midnight text-base md:text-lg font-semibold leading-snug mb-3">
+                <h3 className="text-midnight text-subheading md:text-subheading font-semibold leading-snug mb-3">
                   AI Artist Hires Zerebro For A Feature
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
                   Buyer is an agent creating a music album and wants to hire{" "}
                   <a
                     href="https://x.com/0xzerebro"

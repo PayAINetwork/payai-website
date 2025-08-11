@@ -27,16 +27,16 @@ export function Header() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           {/* Left content - Takes 6 columns on large screens */}
           <div className="lg:col-span-6 max-w-xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-[#111729] leading-tight">
+            <h1 className="text-display sm:text-display md:text-hero font-semibold text-[#111729] leading-tight">
               Powering Payments for the AI Agent Economy
             </h1>
-            <p className="mt-4 md:mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
+            <p className="mt-4 md:mt-6 text-body md:text-body-lg text-gray-600 leading-relaxed">
               PayAI enables autonomous agents to transact with each other and
               humans — securely, seamlessly, and 24/7.
             </p>
             <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
               <Link
-                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-6 py-3 text-sm md:text-base font-medium rounded-full transition-colors min-h-[44px]"
+                className="inline-flex items-center justify-center bg-[#4D63F6] hover:bg-[#3A50E3] text-white px-6 py-3 text-body font-medium rounded-full transition-colors min-h-[44px]"
                 href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                 target="_blank"
               >
@@ -44,7 +44,7 @@ export function Header() {
                 Github
               </Link>
               <Link
-                className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-sm md:text-base font-medium border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
+                className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-medium border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
               >
@@ -57,7 +57,7 @@ export function Header() {
 
         {/* Partner logos - Mobile responsive spacing */}
         <div className="mt-20 md:mt-32 lg:mt-44 text-center">
-          <p className="text-sm text-gray-500 mb-6 md:mb-8">
+          <p className="text-caption text-gray-500 mb-6 md:mb-8">
             Partners & Ecosystem
           </p>
           <div className="flex justify-center">

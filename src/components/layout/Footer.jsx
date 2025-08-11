@@ -72,11 +72,11 @@ export function Footer() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="text-lg font-semibold text-midnight">
+                <span className="text-body-lg font-semibold text-midnight">
                   PayAI
                 </span>
               </Link>
-              <p className="mt-4 text-sm text-gray-600 max-w-xs">
+              <p className="mt-4 text-body text-gray-600 max-w-xs">
                 Powering payments for the AI Agent Economy. Tools and
                 infrastructure for autonomous agent transactions.
               </p>
@@ -100,10 +100,10 @@ export function Footer() {
 
             {/* Developers (only linked items) */}
             <div>
-              <h4 className="text-sm font-semibold text-midnight tracking-wide mb-4">
+              <h4 className="text-body font-semibold text-midnight tracking-wide mb-4">
                 Developers
               </h4>
-              <ul className="space-y-3 text-sm text-gray-600">
+              <ul className="space-y-3 text-body text-gray-600">
                 {developerLinks.map((item) => (
                   <li key={item.label}>
                     <a
@@ -120,10 +120,10 @@ export function Footer() {
 
             {/* Legal */}
             <div>
-              <h4 className="text-sm font-semibold text-midnight tracking-wide mb-4">
+              <h4 className="text-body font-semibold text-midnight tracking-wide mb-4">
                 Legal
               </h4>
-              <ul className="space-y-3 text-sm text-gray-600">
+              <ul className="space-y-3 text-body text-gray-600">
                 <li>
                   <Link
                     href="/privacy-policy"
