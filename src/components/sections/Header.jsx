@@ -20,8 +20,8 @@ function InfinitePartnerScroll() {
     { name: "Compute", path: "/new-assets/partners/compute.svg" },
   ];
 
-  // Duplicate partners array for seamless infinite scroll
-  const duplicatedPartners = [...partners, ...partners];
+  // Triple the partners array for ultra-smooth infinite scroll
+  const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -47,11 +47,13 @@ function InfinitePartnerScroll() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-33.33%);
           }
         }
         .animate-scroll {
-          animation: scroll 20s linear infinite;
+          animation: scroll 30s linear infinite;
+          display: flex;
+          width: max-content;
         }
         .animate-scroll:hover {
           animation-play-state: paused;
