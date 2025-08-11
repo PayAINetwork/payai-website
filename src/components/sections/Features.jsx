@@ -316,28 +316,26 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
                   </div>
 
                   <div>
-                    <h3 className="text-[#111729] text-heading md:text-display font-medium leading-tight mb-6">
+                    <h3 className="text-[#111729] text-subheading md:text-heading font-medium leading-tight mb-6">
                       {feature.title}
                     </h3>
 
-                    <p className="text-gray-700 text-body-lg leading-relaxed mb-8">
+                    <p className="text-gray-700 text-body md:text-body-lg leading-relaxed mb-8">
                       {feature.description}
                     </p>
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button
-                      variant={"outline"}
                       asChild
-                      className="bg-primary border border-gray-300 text-white hover:bg-primary-700 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm min-h-[44px]"
-                      size="sm"
+                      className="bg-primary hover:bg-primary-700 text-white px-6 py-3 rounded-full font-normal transition-colors min-h-[44px]"
                     >
                       <a
                         href={feature.ctaLink}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <feature.ctaIcon className="w-4 h-4 mr-2" />
+                        <feature.ctaIcon className="w-5 h-5 mr-2" />
                         {feature.cta}
                       </a>
                     </Button>
@@ -345,15 +343,14 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
                       <Button
                         variant="outline"
                         asChild
-                        className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full font-normal transition-all duration-300 text-body shadow-sm"
-                        size="sm"
+                        className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-6 py-3 rounded-full font-normal transition-colors min-h-[44px]"
                       >
                         <a
                           href={feature.docsLink}
                           target="_blank"
                           rel="noreferrer"
                         >
-                          <BookOpen className="w-4 h-4 mr-2" />
+                          <BookOpen className="w-5 h-5 mr-2" />
                           Docs
                         </a>
                       </Button>
