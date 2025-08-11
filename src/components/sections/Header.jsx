@@ -11,14 +11,13 @@ function InfinitePartnerScroll() {
     { name: "TGMetrics", path: "/new-assets/partners/tgmetrics.svg" },
     {
       name: "Solana Foundation",
-      path: "/new-assets/partners/solana foundation.svg",
+      path: "/new-assets/partners/solana-foundation.svg",
     },
-    { name: "R Logo", path: "/new-assets/partners/r logo.svg" },
+    { name: "R Logo", path: "/new-assets/partners/r-logo.svg" },
     { name: "PIL", path: "/new-assets/partners/pil.svg" },
     { name: "OmniMinds", path: "/new-assets/partners/omniminds.svg" },
-    { name: "Eliza OS", path: "/new-assets/partners/eliza os.svg" },
+    { name: "Eliza OS", path: "/new-assets/partners/eliza-os.svg" },
     { name: "Compute", path: "/new-assets/partners/compute.svg" },
-    { name: "Comput3", path: "/partners/comput3.svg" },
   ];
 
   // Duplicate partners array for seamless infinite scroll
