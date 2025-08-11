@@ -231,23 +231,24 @@ function RenderVisual({ feature }) {
   return null;
 }
 
-// One stacked, sticky card
-function StackedCard({ feature, index, progress, total }) {
-  const start = index / total;
-  const end = (index + 1) / total;
+// Sticky card using per-card container and global progress scale
+function ParallaxCard({ feature, i, progress, range, targetScale }) {
+  const containerRef = useRef(null);
 
-  const scale = useTransform(progress, [start, end], [1, 0.92]);
-  const y = useTransform(progress, [start, end], [0, -index * 48]);
-  const opacity = useTransform(progress, [start, end], [1, 0.95]);
+  // Optional: local intersection for subtle lift as it enters
+  const local = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "start 20%"],
+  });
+  const lift = useTransform(local.scrollYProgress, [0, 1], [20, 0]);
+
+  const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div className="h-screen relative">
-      <div
-        className="sticky top-[10vh] w-full"
-        style={{ zIndex: total - index }}
-      >
+    <div ref={containerRef} className="h-screen relative">
+      <div className="sticky top-[10vh] w-full">
         <motion.div
-          style={{ scale, y, opacity }}
+          style={{ scale, y: lift }}
           className="w-full max-w-5xl mx-auto px-4"
         >
           {/* Card Label Tab */}
@@ -262,7 +263,7 @@ function StackedCard({ feature, index, progress, total }) {
 
           <Card className="z-10 overflow-hidden border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-2xl bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px]">
+              <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px] md:min-h-[460px]">
                 {/* Content */}
                 <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-12 lg:pt-12">
                   {/* Status Badge */}
@@ -345,27 +346,28 @@ export function Features() {
     offset: ["start start", "end end"],
   });
 
+  const count = FEATURES.length;
+
   return (
     <section
       id="features"
       ref={containerRef}
       className="relative bg-gradient-to-b from-white via-purple-50/20 to-purple-100/30"
     >
-      {/* Spacer above to ensure we don't collide with the header */}
-      <div className="h-8 md:h-12" />
-
-      {FEATURES.map((feature, index) => (
-        <StackedCard
-          key={feature.id}
-          feature={feature}
-          index={index}
-          progress={scrollYProgress}
-          total={FEATURES.length}
-        />
-      ))}
-
-      {/* Extra spacer at bottom for breathing room */}
-      <div className="h-24" />
+      {FEATURES.map((feature, i) => {
+        const targetScale = 1 - (count - i) * 0.05; // later cards smaller
+        const range = [i / count, 1];
+        return (
+          <ParallaxCard
+            key={feature.id}
+            feature={feature}
+            i={i}
+            progress={scrollYProgress}
+            range={range}
+            targetScale={targetScale}
+          />
+        );
+      })}
     </section>
   );
 }
