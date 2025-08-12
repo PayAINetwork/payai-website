@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -38,7 +38,13 @@ const FEATURES = [
       "Accept blockchain-based payments without worrying about wallets, gas, or UX complexity.",
     description:
       "The Facilitator acts as a payment middleware for AI agents and dApps, enabling truly x402 — perfect for invisible, embeddable payments.",
-    type: "protocol",
+    type: "facilitator",
+    images: [
+      "/new-assets/thumbnails/x402-facilitator-1.webp",
+      "/new-assets/thumbnails/x402-facilitator-2.webp",
+      "/new-assets/thumbnails/x402-facilitator-3.webp",
+      "/new-assets/thumbnails/x402-facilitator-4.webp",
+    ],
     cta: "Github",
     ctaIcon: Github,
     ctaVariant: "primary",
@@ -87,7 +93,13 @@ const FEATURES = [
       "Monetize your Crypto Twitter Agent by offering personalized content to your followers.",
     description:
       "Put your X agent to work by selling custom content. Crypto Twitter users hire your AI Agent to produce content that is personalized to them.",
-    type: "avatar",
+    type: "ct-monetization",
+    images: [
+      "/new-assets/thumbnails/ct-monetization-1.webp",
+      "/new-assets/thumbnails/ct-monetization-2.webp",
+      "/new-assets/thumbnails/ct-monetization-3.webp",
+      "/new-assets/thumbnails/ct-monetization-4.webp",
+    ],
     cta: "Github",
     ctaIcon: Github,
     ctaVariant: "secondary",
@@ -103,7 +115,13 @@ const FEATURES = [
     title: "Token-gate any dApp, AI Agent, or API endpoint.",
     description:
       "Easily require a specific token (or NFT) for users to access your product, and charge monthly subscriptions directly on-chain.",
-    type: "gateway",
+    type: "token-gateway",
+    images: [
+      "/new-assets/thumbnails/token-gateway-1.webp",
+      "/new-assets/thumbnails/token-gateway-2.webp",
+      "/new-assets/thumbnails/token-gateway-3.webp",
+      "/new-assets/thumbnails/token-gateway-4.webp",
+    ],
     cta: "Github",
     ctaIcon: Github,
     ctaVariant: "secondary",
@@ -112,19 +130,84 @@ const FEATURES = [
   },
 ];
 
+
+// Simple auto-playing image slider with dot indicators
+function ImageSlider({ images, alt }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const numImages = images.length;
+
+  useEffect(() => {
+    if (numImages <= 1 || isPaused) return;
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % numImages);
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [numImages, isPaused]);
+
+  return (
+    <div className="w-full">
+      <div className="relative w-full overflow-hidden rounded-lg shadow-md">
+        <div
+          className="relative h-[260px] md:h-[320px] lg:h-[360px] cursor-default"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onClick={() => setCurrentIndex((prev) => (prev + 1) % numImages)}
+          role="button"
+          tabIndex={0}
+          aria-label="Advance slider"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setCurrentIndex((prev) => (prev + 1) % numImages);
+            }
+          }}
+        >
+          {images.map((src, index) => (
+            <div
+              key={src}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-1000 ease-in-out",
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              )}
+            >
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain"
+                priority={index === 0}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-2 left-0 right-0 flex items-center justify-center gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              aria-label={`Go to slide ${index + 1}`}
+              onClick={() => setCurrentIndex(index)}
+              className={cn(
+                "h-2.5 w-2.5 rounded-full transition-colors",
+                index === currentIndex ? "bg-blue-600" : "bg-gray-300"
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 // Visual renderer per feature type
 function RenderVisual({ feature }) {
-  if (feature.type === "protocol") {
+  if (feature.type === "facilitator") {
     return (
-      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-        <Image
-          src="/new-assets/x402-image.png"
-          alt="x402 Protocol"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg w-full h-auto"
-        />
-      </div>
+      <ImageSlider images={feature.images || []} alt="x402 Facilitator" />
     );
   }
 
@@ -201,31 +284,15 @@ function RenderVisual({ feature }) {
     );
   }
 
-  if (feature.type === "avatar") {
+  if (feature.type === "ct-monetization") {
     return (
-      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-        <Image
-          src="/new-assets/thumbnail-4.png"
-          alt="CT Agent Monetization"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg w-full h-auto"
-        />
-      </div>
+      <ImageSlider images={feature.images || []} alt="CT Agent Monetization" />
     );
   }
 
-  if (feature.type === "gateway") {
+  if (feature.type === "token-gateway") {
     return (
-      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-        <Image
-          src="/new-assets/thumbnail-5.png"
-          alt="Token Gateway"
-          width={400}
-          height={300}
-          className="object-contain drop-shadow-lg w-full h-auto"
-        />
-      </div>
+      <ImageSlider images={feature.images || []} alt="Token Gateway" />
     );
   }
 
