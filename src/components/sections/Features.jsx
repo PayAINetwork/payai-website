@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -130,7 +130,6 @@ const FEATURES = [
   },
 ];
 
-
 // Simple auto-playing image slider with dot indicators
 function ImageSlider({ images, alt }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -202,13 +201,10 @@ function ImageSlider({ images, alt }) {
   );
 }
 
-
 // Visual renderer per feature type
 function RenderVisual({ feature }) {
   if (feature.type === "facilitator") {
-    return (
-      <ImageSlider images={feature.images || []} alt="x402 Facilitator" />
-    );
+    return <ImageSlider images={feature.images || []} alt="x402 Facilitator" />;
   }
 
   if (feature.type === "video") {
@@ -291,81 +287,45 @@ function RenderVisual({ feature }) {
   }
 
   if (feature.type === "token-gateway") {
-    return (
-      <ImageSlider images={feature.images || []} alt="Token Gateway" />
-    );
+    return <ImageSlider images={feature.images || []} alt="Token Gateway" />;
   }
 
   return null;
 }
 
-// Sticky card using per-card container and global progress scale
-function ParallaxCard({ feature, i, progress, range, targetScale }) {
-  const containerRef = useRef(null);
-
-  // Optional: local intersection for subtle lift as it enters
-  const local = useScroll({
-    target: containerRef,
-    offset: ["start 80%", "start 20%"],
-  });
-  const lift = useTransform(local.scrollYProgress, [0, 1], [20, 0]);
-
-  const scale = useTransform(progress, range, [1, targetScale]);
-
-  // Gradual fade of the outgoing (previous) card using per-segment timing
-  const total = FEATURES.length;
-  const segStart = i / total;
-  const segEnd = (i + 1) / total;
-  const segLen = segEnd - segStart;
-
-  // Appear later and more gradually: when previous card is ~94% through its segment
-  const prevSegStart = (i - 1) / total;
-  const prevThreshold = i === 0 ? segStart : prevSegStart + segLen * 0.94;
-  const appearStart = i === 0 ? segStart : prevThreshold;
-  const appearEnd = Math.min(appearStart + segLen * 0.14, segEnd);
-  const appearOpacity =
-    i === 0 ? 1 : useTransform(progress, [appearStart, appearEnd], [0, 1]);
-
-  // Increase fade on the outgoing card and start a bit earlier
-  const fadeStart = segStart + segLen * 0.82;
-  const fadeEnd = segEnd;
-  const fadeOpacity =
-    i === total - 1
-      ? 1
-      : useTransform(progress, [fadeStart, fadeEnd], [1, 0.3]);
-
-  // Combine
-  const opacity =
-    i === total - 1
-      ? appearOpacity
-      : i === 0
-      ? fadeOpacity
-      : useTransform([fadeOpacity, appearOpacity], ([f, a]) => f * a);
-
-  const zIndexClass =
-    ["z-10", "z-20", "z-30", "z-40", "z-50", "z-60"][i] || "z-10";
-
+// Professional card with clean scroll-triggered animations
+function FeatureCard({ feature, index }) {
   return (
-    <div
-      ref={containerRef}
-      className={cn("h-screen relative", i > 0 && "-mt-24 md:-mt-[12%]")}
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: [0.25, 0.25, 0, 1],
+      }}
+      className="w-full max-w-5xl mx-auto px-4 mb-16 md:mb-24"
     >
-      <div className={cn("sticky top-[10vh] w-full", zIndexClass)}>
-        <motion.div
-          style={{ scale, y: lift, opacity }}
-          className="w-full max-w-5xl mx-auto px-4"
-        >
-          {/* Card Label Tab */}
-          <div className="absolute z-20 -top-3 md:-top-4 left-8 md:left-12">
-            <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-3 md:px-4 py-1.5 md:py-2 rounded-t-lg shadow-sm">
-              <div className="flex items-center text-purple-700 text-caption md:text-body font-normal">
-                <feature.tagIcon className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
-                <span className="truncate">{feature.tag}</span>
-              </div>
+      {/* Card Label Tab */}
+      <div className="relative">
+        <div className="absolute z-20 -top-3 md:-top-4 left-8 md:left-12">
+          <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100 border border-purple-200/60 px-3 md:px-4 py-1.5 md:py-2 rounded-t-lg shadow-sm">
+            <div className="flex items-center text-purple-700 text-caption md:text-body font-normal">
+              <feature.tagIcon className="w-3 h-3 md:w-4 md:h-4 mr-1.5 md:mr-2" />
+              <span className="truncate">{feature.tag}</span>
             </div>
           </div>
+        </div>
 
-          <Card className="z-10 overflow-hidden border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-2xl bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100">
+        <motion.div
+          whileHover={{
+            y: -4,
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <Card className="z-10 overflow-hidden border border-purple-200/30 shadow-xl rounded-2xl bg-gradient-to-r from-purple-50 via-blue-50 to-purple-100">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px] md:min-h-[460px]">
                 {/* Content */}
@@ -436,39 +396,19 @@ function ParallaxCard({ feature, i, progress, range, targetScale }) {
           </Card>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export function Features() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const count = FEATURES.length;
-
   return (
     <section
       id="features"
-      ref={containerRef}
-      className="relative bg-gradient-to-b from-white via-purple-50/20 to-purple-100/30"
+      className="relative bg-gradient-to-b from-white via-purple-50/20 to-purple-100/30 py-16 md:py-24"
     >
-      {FEATURES.map((feature, i) => {
-        const targetScale = 1 - (count - i) * 0.05; // later cards smaller
-        const range = [i / count, 1];
-        return (
-          <ParallaxCard
-            key={feature.id}
-            feature={feature}
-            i={i}
-            progress={scrollYProgress}
-            range={range}
-            targetScale={targetScale}
-          />
-        );
-      })}
+      {FEATURES.map((feature, index) => (
+        <FeatureCard key={feature.id} feature={feature} index={index} />
+      ))}
     </section>
   );
 }
