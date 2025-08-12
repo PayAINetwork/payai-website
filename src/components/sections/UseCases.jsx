@@ -55,7 +55,7 @@ export function UseCases() {
             viewport={{ once: true }}
             className="text-heading sm:text-heading md:text-display font-medium text-midnight"
           >
-            Use Cases
+            Blog
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

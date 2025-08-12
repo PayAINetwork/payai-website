@@ -105,15 +105,7 @@ export function Header() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="whitespace-nowrap block"
               >
-                Powering Payments for
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="whitespace-nowrap block"
-              >
-                the AI Agent Economy
+                Payments for the AI Age.
               </motion.span>
             </motion.h1>
 
@@ -128,7 +120,7 @@ export function Header() {
               className="mt-4 md:mt-6 text-body md:text-body-lg text-gray-600 leading-relaxed"
             >
               PayAI enables autonomous agents to transact with each other and
-              humans — securely, seamlessly, and 24/7.
+              humans — seamlessly, securely, and always-on.
             </motion.p>
 
             <motion.div
