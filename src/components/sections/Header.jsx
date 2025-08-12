@@ -23,94 +23,41 @@ function InfinitePartnerScroll() {
 
   return (
     <div className="relative w-full overflow-hidden">
-      <div className="track">
-        <div className="group">
+      <div className="flex items-center w-max animate-scroll hover:[animation-play-state:paused]">
+        <div className="flex gap-8 pr-8">
           {partners.map((p) => (
-            <div key={`a-${p.name}`} className="slot">
+            <div
+              key={`a-${p.name}`}
+              className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+            >
               <Image
                 src={p.path}
                 alt={p.name}
                 fill
-                className="logo"
+                className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                 sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
                 priority={false}
               />
             </div>
           ))}
         </div>
-        <div className="group" aria-hidden="true">
+        <div className="flex gap-8 pr-8" aria-hidden="true">
           {partners.map((p) => (
-            <div key={`b-${p.name}`} className="slot">
+            <div
+              key={`b-${p.name}`}
+              className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+            >
               <Image
                 src={p.path}
                 alt={p.name}
                 fill
-                className="logo"
+                className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                 sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
               />
             </div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .track {
-          display: flex;
-          align-items: center; /* vertical centering */
-          width: max-content;
-          animation: scroll 30s linear infinite;
-          will-change: transform;
-        }
-        .track:hover {
-          animation-play-state: paused;
-        }
-
-        .group {
-          display: flex;
-          gap: 2rem;
-          padding-right: 2rem;
-        }
-
-        /* Each logo gets a consistent slot */
-        .slot {
-          position: relative;
-          flex: 0 0 auto;
-          height: 3rem; /* h-12: 48px */
-          width: 7.5rem; /* ~120px on mobile */
-        }
-        @media (min-width: 768px) {
-          .slot {
-            height: 3.5rem;
-            width: 8.75rem;
-          } /* md:h-14 / ~140px */
-        }
-        @media (min-width: 1024px) {
-          .slot {
-            height: 4rem;
-            width: 10rem;
-          } /* lg:h-16 / ~160px */
-        }
-
-        .logo {
-          object-fit: contain; /* contain inside slot */
-          filter: grayscale(100%);
-          opacity: 0.7;
-          transition: opacity 300ms, filter 300ms;
-        }
-        .slot:hover .logo {
-          filter: grayscale(0%);
-          opacity: 1;
-        }
-
-        @keyframes scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          } /* seamless loop */
-        }
-      `}</style>
     </div>
   );
 }
