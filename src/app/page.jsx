@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Header } from "@/components/sections/Header";
 import { Features } from "@/components/sections/Features";
-import { UseCases } from "@/components/sections/UseCases";
+import { Blog } from "@/components/sections/Blog";
 import { Footer } from "@/components/layout/Footer";
 
 export default function Page() {
@@ -11,7 +11,7 @@ export default function Page() {
       <Navbar />
       <Header />
       <Features />
-      <UseCases />
+      <Blog />
       <Footer />
     </div>
   );

@@ -136,11 +136,11 @@ export function Navbar() {
               transition={{ duration: 0.4, delay: 0.3 }}
             >
               <Link
-                href="#use-cases"
-                onClick={(e) => handleNavClick(e, "use-cases")}
+                href="#blog"
+                onClick={(e) => handleNavClick(e, "blog")}
                 className="text-body font-normal text-gray-700 hover:text-gray-900 transition-colors"
               >
-                Use Cases
+                Blog
               </Link>
             </motion.div>
           </nav>
@@ -260,11 +260,11 @@ export function Navbar() {
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <Link
-                  href="#use-cases"
-                  onClick={(e) => handleNavClick(e, "use-cases")}
+                  href="#blog"
+                  onClick={(e) => handleNavClick(e, "blog")}
                   className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
                 >
-                  Use Cases
+                  Blog
                 </Link>
               </motion.div>
               <div className="pt-4 flex flex-col space-y-2">

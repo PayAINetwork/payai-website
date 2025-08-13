@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-export function UseCases() {
+export function Blog() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,7 +36,7 @@ export function UseCases() {
 
   return (
     <section
-      id="use-cases"
+      id="blog"
       className="px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-28 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="container max-w-7xl mx-auto">
@@ -274,3 +274,5 @@ export function UseCases() {
     </section>
   );
 }
+
+
