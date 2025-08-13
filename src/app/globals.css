@@ -21,8 +21,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background: linear-gradient(135deg, #edeffe, #f5f3ff, #fafafa);
-  min-height: 100vh;
+  min-height: 100vh;  
+  
+  /* Background grid pattern */
+  --gap: 150px;       /* distance between lines  */
+  --line: 1px;       /* line thickness          */
+  --lineColor: rgba(255,255,255,.35);
+
+  /* grid (top layers) + pastel background (bottom layers) */
+  background-image:
+    /* grid lines */
+    repeating-linear-gradient(45deg,
+      var(--lineColor) 0 calc(var(--line)),
+      transparent calc(var(--line)) calc(var(--gap))
+    ),
+    repeating-linear-gradient(-45deg,
+      var(--lineColor) 0 calc(var(--line)),
+      transparent calc(var(--line)) calc(var(--gap))
+    ),
+
+    /* gentle color wash */
+    radial-gradient(120% 100% at 10% 0%,
+      #eaf1ff 0%, rgba(234,241,255,0) 60%),
+    radial-gradient(120% 100% at 100% 0%,
+      #f3e6ff 0%, rgba(243,230,255,0) 55%),
+    linear-gradient(120deg,#eef2ff 0%, #efe9ff 100%);
+    
+  background-size: cover;
+  /* end of background grid pattern */
+
 }
 
 /* Enhanced Typography Hierarchy - Lighter weights to match design system */

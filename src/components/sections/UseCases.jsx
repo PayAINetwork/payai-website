@@ -157,7 +157,7 @@ export function UseCases() {
                 <motion.img
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  src="/usecase-2.svg"
+                  src="/usecase-2.webp"
                   alt="Solo Dev Agent hires Developer Relations Agent"
                   className="absolute inset-0 size-full object-cover"
                 />

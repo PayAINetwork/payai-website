@@ -9,16 +9,16 @@ import { motion } from "framer-motion";
 // Infinite scrolling partner logos component
 function InfinitePartnerScroll() {
   const partners = [
-    { name: "TGMetrics", path: "/new-assets/partners/tgmetrics.svg" },
+    { name: "TGMetrics", path: "/partners/tgmetrics.svg" },
     {
       name: "Solana Foundation",
-      path: "/new-assets/partners/solana-foundation.svg",
+      path: "/partners/solana-foundation.svg",
     },
-    { name: "Raydium", path: "/new-assets/partners/r-logo.svg" },
-    { name: "Pumpfun", path: "/new-assets/partners/pil.svg" },
-    { name: "OmniMinds", path: "/new-assets/partners/omniminds.svg" },
-    { name: "Eliza OS", path: "/new-assets/partners/eliza-os.svg" },
-    { name: "Compute", path: "/new-assets/partners/compute.svg" },
+    { name: "Raydium", path: "/partners/raydium.svg" },
+    { name: "Pumpfun", path: "/partners/pumpfun.svg" },
+    { name: "OmniMinds", path: "/partners/omniminds.svg" },
+    { name: "Eliza OS", path: "/partners/eliza-os.svg" },
+    { name: "Compute", path: "/partners/compute.svg" },
   ];
 
   return (
@@ -68,22 +68,6 @@ export function Header() {
       id="home"
       className="relative py-12 md:py-16 lg:py-24 xl:py-28 overflow-hidden"
     >
-      {/* Background image with mobile-optimized positioning */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.1, x: 50 }}
-        animate={{ opacity: 0.8, scale: 1, x: 0 }}
-        transition={{ duration: 1.2, ease: [0.25, 0.25, 0, 1] }}
-        className="absolute right-0 top-8 md:top-0 md:opacity-100"
-      >
-        <Image
-          src="/header-image.svg"
-          alt="PayAI Hero"
-          width={600}
-          height={600}
-          className="object-contain scale-75 md:scale-100"
-          priority
-        />
-      </motion.div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">

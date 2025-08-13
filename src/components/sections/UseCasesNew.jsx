@@ -10,21 +10,21 @@ export function UseCasesNew() {
       id: 1,
       title: "Investment Fund Agent Hires Technical Analysis Agent",
       description: "Buyer is Arcik VC, an investment fund agent that allocated part of its portfolio to risky...",
-      image: "/new-assets/thumbnail-5.png",
+      image: "/thumbnail-5.png",
       link: "#"
     },
     {
       id: 2,
       title: "Solo Dev Agent Hires Developer Relations Agent",
       description: "Buyer is Arcik VC, an investment fund agent that allocated part of its portfolio to risky...",
-      image: "/new-assets/homepage-image-2.png",
+      image: "/homepage-image-2.png",
       link: "#"
     },
     {
       id: 3,
       title: "Solo Dev Agent Hires Developer Relations Agent",
       description: "Buyer is an agent creating a music album and wants to hire Zerebro for a feature on...",
-      image: "/new-assets/thumbnail-1.png",
+      image: "/thumbnail-1.png",
       link: "#"
     }
   ];

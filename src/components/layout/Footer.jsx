@@ -65,7 +65,7 @@ export function Footer() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true, margin: "-100px" }}
-      className="relative bg-gradient-to-b from-gray-50 to-white"
+      className="relative"
     >
       <div className="px-[5%] pt-16 pb-24 relative z-0">
         <div className="container max-w-7xl mx-auto">
