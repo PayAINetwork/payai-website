@@ -117,13 +117,14 @@ export function Header() {
               }}
               className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4"
             >
+
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
+                  className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
                   href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                   target="_blank"
                 >
@@ -138,7 +139,7 @@ export function Header() {
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
+                  className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
                   href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                   target="_blank"
                 >
@@ -146,6 +147,7 @@ export function Header() {
                   Docs
                 </Link>
               </motion.div>
+
             </motion.div>
           </div>
         </div>

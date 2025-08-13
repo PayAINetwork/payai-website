@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Book, ShoppingCart } from "lucide-react";
+import { Menu, X, Book, Github } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
@@ -155,12 +155,12 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                 target="_blank"
                 className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-white"
               >
-                <Book className="w-4 h-4 mr-2" />
-                Docs
+                <Github className="w-4 h-4 mr-2" />
+                Github
               </Link>
             </motion.div>
             <motion.div
@@ -171,12 +171,12 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
+                href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
                 className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-normal rounded-full transition-colors"
               >
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Buy
+                <Book className="w-4 h-4 mr-2" />
+                Docs
               </Link>
             </motion.div>
           </div>
@@ -274,12 +274,12 @@ export function Navbar() {
                   transition={{ duration: 0.3, delay: 0.25 }}
                 >
                   <Link
-                    href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                    href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                     target="_blank"
                     className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-white w-full"
                   >
-                    <Book className="w-4 h-4 mr-2" />
-                    Docs
+                    <Github className="w-4 h-4 mr-2" />
+                    Github
                   </Link>
                 </motion.div>
                 <motion.div
@@ -288,12 +288,12 @@ export function Navbar() {
                   transition={{ duration: 0.3, delay: 0.3 }}
                 >
                   <Link
-                    href={process.env.NEXT_PUBLIC_BUY_TOKEN_URL || "#"}
+                    href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                     target="_blank"
                     className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-normal rounded-full transition-colors w-full"
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Buy
+                    <Book className="w-4 h-4 mr-2" />
+                    Docs
                   </Link>
                 </motion.div>
               </div>

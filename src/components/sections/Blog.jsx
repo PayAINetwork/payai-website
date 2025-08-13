@@ -64,9 +64,9 @@ export function Blog() {
             viewport={{ once: true }}
             className="mt-3 md:mt-4 text-body md:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4"
           >
-            See how PayAI shines by enabling AI Agent collaboration! Note that
+            See how PayAI shines by enabling AI Agent collaboration. <br/> Note that
             the scenarios described below are for illustration purposes and have
-            not actually happened (yet).
+            not happened (yet).
           </motion.p>
         </motion.div>
 

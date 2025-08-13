@@ -10,7 +10,7 @@ import {
   Play,
   BookOpen,
   Github,
-  Globe,
+  Plug,
   Landmark,
   Bot,
   Zap,
@@ -19,6 +19,8 @@ import {
   X,
   Feather,
   Code,
+  Rocket,
+  Pointer,
 } from "lucide-react";
 import {
   Dialog,
@@ -48,10 +50,11 @@ const FEATURES = [
       "/thumbnails/x402-facilitator-3.webp",
       "/thumbnails/x402-facilitator-4.webp",
     ],
-    cta: "Get Started",
-    ctaIcon: BookOpen,
-    ctaVariant: "outline",
-    ctaLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    primaryCta: {
+      label: "Get Started",
+      icon: Rocket,
+      href: process.env.NEXT_PUBLIC_DOCS_URL_X402_FACILITATOR || "#",
+    },
   },
   {
     id: 2,
@@ -64,11 +67,16 @@ const FEATURES = [
     description:
       " A global, always-on marketplace where AI agents hire and work for each other. Powered by open, decentralized tech like libp2p, IPFS, ElizaOS, and Solana.",
     type: "video",
-    cta: "Github",
-    ctaIcon: Github,
-    ctaVariant: "secondary",
-    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    primaryCta: {
+      label: "Get Plugin",
+      icon: Plug,
+      href: process.env.NEXT_PUBLIC_GITHUB_URL_FREELANCE_AI || "#",
+    },
+    secondaryCta: {
+      label: "Docs",
+      icon: BookOpen,
+      href: process.env.NEXT_PUBLIC_DOCS_URL_FREELANCE_AI || "#",
+    },
   },
   {
     id: 3,
@@ -80,11 +88,16 @@ const FEATURES = [
     description:
       "Run real X402 transactions against a live merchant—for free. Get 100% of your payment refunded, with PayAI covering the network fees.",
     type: "terminal",
-    cta: "Try Now",
-    ctaIcon: Globe,
-    ctaVariant: "outline",
-    ctaLink: process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL || "#",
-    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    primaryCta: {
+      label: "Try Now",
+      icon: Pointer,
+      href: process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#",
+    },
+    secondaryCta: {
+      label: "Docs",
+      icon: BookOpen,
+      href: process.env.NEXT_PUBLIC_DOCS_URL_X402_ECHO || "#",
+    },
   },
   {
     id: 4,
@@ -103,11 +116,18 @@ const FEATURES = [
       "/thumbnails/ct-monetization-3.webp",
       "/thumbnails/ct-monetization-4.webp",
     ],
-    cta: "Download SDK",
-    ctaIcon: Code,
-    ctaVariant: "secondary",
-    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    primaryCta: {
+      label: "Download SDK",
+      icon: Code,
+      href: process.env.NEXT_PUBLIC_GITHUB_URL_CT_MONETIZATION || "#",
+      disabled: true,
+    },
+    secondaryCta: {
+      label: "Docs",
+      icon: BookOpen,
+      href: process.env.NEXT_PUBLIC_DOCS_URL_CT_MONETIZATION || "#",
+      disabled: true,
+    },
   },
   {
     id: 5,
@@ -125,11 +145,18 @@ const FEATURES = [
       "/thumbnails/token-gateway-3.webp",
       "/thumbnails/token-gateway-4.webp",
     ],
-    cta: "Github",
-    ctaIcon: Github,
-    ctaVariant: "secondary",
-    ctaLink: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
-    docsLink: process.env.NEXT_PUBLIC_DOCS_URL || "#",
+    primaryCta: {
+      label: "Github",
+      icon: Github,
+      href: process.env.NEXT_PUBLIC_GITHUB_URL_TOKEN_GATEWAY || "#",
+      disabled: true,
+    },
+    secondaryCta: {
+      label: "Docs",
+      icon: BookOpen,
+      href: process.env.NEXT_PUBLIC_DOCS_URL_TOKEN_GATEWAY || "#",
+      disabled: true,
+    },
   },
 ];
 
@@ -333,24 +360,24 @@ function FeatureCard({ feature, index }) {
               <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px] md:min-h-[460px]">
                 {/* Content */}
                 <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-12 lg:pt-12">
-                  {/* Status Badge */}
-                  <div className="z-20 w-fit">
-                    <div
-                      className={`${
-                        feature.status === "LIVE"
-                          ? "bg-purple-100 text-purple-700 border-purple-200"
-                          : "bg-gray-100 text-gray-600 border-gray-200"
-                      } border px-3 py-1.5 rounded-lg text-caption font-normal flex items-center gap-1.5 w-fit`}
-                    >
-                      <feature.statusIcon className="w-3 h-3" />
-                      {feature.status}
-                    </div>
-                  </div>
-
                   <div>
-                    <h3 className="text-[#111729] text-subheading md:text-heading font-medium leading-tight mb-6">
+                    <h3 className="mt-4 md:mt-6 text-[#111729] text-subheading md:text-heading font-medium leading-tight mb-4">
                       {feature.title}
                     </h3>
+
+                    {/* Status Badge below title */}
+                    <div className="mb-6 w-fit">
+                      <div
+                        className={`${
+                          feature.status === "LIVE"
+                            ? "bg-purple-100 text-purple-700 border-purple-200"
+                            : "bg-gray-100 text-gray-600 border-gray-200"
+                        } border px-3 py-1.5 rounded-lg text-caption font-normal flex items-center gap-1.5 w-fit`}
+                      >
+                        <feature.statusIcon className="w-3 h-3" />
+                        {feature.status}
+                      </div>
+                    </div>
 
                     <p className="text-gray-700 text-body md:text-body-lg leading-relaxed mb-8">
                       {feature.description}
@@ -358,34 +385,59 @@ function FeatureCard({ feature, index }) {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button
-                      asChild
-                      className="bg-primary hover:bg-primary-700 text-white px-6 py-3 rounded-full font-normal transition-colors min-h-[44px]"
-                    >
-                      <a
-                        href={feature.ctaLink}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <feature.ctaIcon className="w-5 h-5 mr-2" />
-                        {feature.cta}
-                      </a>
-                    </Button>
-                    {feature.docsLink && (
-                      <Button
-                        variant="outline"
-                        asChild
-                        className="bg-white text-gray-800 border border-gray-200 hover:bg-gray-50 px-6 py-3 rounded-full font-normal transition-colors min-h-[44px]"
-                      >
-                        <a
-                          href={feature.docsLink}
-                          target="_blank"
-                          rel="noreferrer"
+                    {feature.secondaryCta && (
+                      feature.secondaryCta.disabled ? (
+                        <Button
+                          className="inline-flex items-center justify-center bg-white/60 px-6 py-3 text-body font-normal border border-gray-200 rounded-full min-h-[44px] text-gray-400 cursor-not-allowed shadow-none"
+                          disabled
+                          title="Coming soon"
                         >
-                          <BookOpen className="w-5 h-5 mr-2" />
-                          Docs
-                        </a>
-                      </Button>
+                          <feature.secondaryCta.icon className="w-5 h-5 mr-2" />
+                          {feature.secondaryCta.label}
+                        </Button>
+                      ) : (
+                        <Button
+                          asChild
+                          className="inline-flex items-center justify-center bg-white/70 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-white min-h-[44px]"
+                        >
+                          <a
+                            href={feature.secondaryCta.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="gap-0"
+                          >
+                            <feature.secondaryCta.icon className="w-5 h-5 mr-2" />
+                            {feature.secondaryCta.label}
+                          </a>
+                        </Button>
+                      )
+                    )}
+                    {feature.primaryCta && (
+                      feature.primaryCta.disabled ? (
+                        <Button
+                          className="inline-flex items-center justify-center bg-primary/60 px-6 py-3 text-body font-normal rounded-full min-h-[44px] text-white/90 cursor-not-allowed shadow-none"
+                          disabled
+                          title="Coming soon"
+                        >
+                          <feature.primaryCta.icon className="w-5 h-5 mr-2" />
+                          {feature.primaryCta.label}
+                        </Button>
+                      ) : (
+                        <Button
+                          asChild
+                          className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
+                        >
+                          <a
+                            href={feature.primaryCta.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-white gap-0"
+                          >
+                            <feature.primaryCta.icon className="w-5 h-5 mr-2" />
+                            {feature.primaryCta.label}
+                          </a>
+                        </Button>
+                      )
                     )}
                   </div>
                 </div>
