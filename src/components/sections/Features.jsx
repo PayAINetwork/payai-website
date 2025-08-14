@@ -58,6 +58,27 @@ const FEATURES = [
   },
   {
     id: 2,
+    tag: "X402 Echo Merchant",
+    tagIcon: Zap,
+    status: "LIVE",
+    statusIcon: Sparkles,
+    title: "Test X402 Payments, Zero Cost",
+    description:
+      "Run real X402 transactions against a live merchant—for free. Get 100% of your payment refunded, with PayAI covering the network fees.",
+    type: "terminal",
+    primaryCta: {
+      label: "Try Now",
+      icon: Pointer,
+      href: process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#",
+    },
+    secondaryCta: {
+      label: "Docs",
+      icon: BookOpen,
+      href: process.env.NEXT_PUBLIC_DOCS_URL_X402_ECHO || "#",
+    },
+  },
+  {
+    id: 3,
     tag: "Freelance AI",
     tagIcon: Bot,
     status: "LIVE",
@@ -76,27 +97,6 @@ const FEATURES = [
       label: "Docs",
       icon: BookOpen,
       href: process.env.NEXT_PUBLIC_DOCS_URL_FREELANCE_AI || "#",
-    },
-  },
-  {
-    id: 3,
-    tag: "X402 Echo Merchant",
-    tagIcon: Zap,
-    status: "LIVE",
-    statusIcon: Sparkles,
-    title: "Test X402 Payments, Zero Cost",
-    description:
-      "Run real X402 transactions against a live merchant—for free. Get 100% of your payment refunded, with PayAI covering the network fees.",
-    type: "terminal",
-    primaryCta: {
-      label: "Try Now",
-      icon: Pointer,
-      href: process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#",
-    },
-    secondaryCta: {
-      label: "Docs",
-      icon: BookOpen,
-      href: process.env.NEXT_PUBLIC_DOCS_URL_X402_ECHO || "#",
     },
   },
   {
@@ -213,7 +213,7 @@ function ImageSlider({ images, alt }) {
         </div>
 
         {/* Dot indicators */}
-        <div className="absolute bottom-2 left-0 right-0 flex items-center justify-center gap-2">
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-2">
           {images.map((_, index) => (
             <button
               key={index}
@@ -359,7 +359,7 @@ function FeatureCard({ feature, index }) {
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px] md:min-h-[460px]">
                 {/* Content */}
-                <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-12 lg:pt-12">
+                <div className="p-8 lg:p-12 flex flex-col justify-between order-2 lg:order-1 pt-0 md:pt-4 lg:pt-12">
                   <div>
                     <h3 className="mt-4 md:mt-6 text-[#111729] text-subheading md:text-heading font-medium leading-tight mb-4">
                       {feature.title}
@@ -443,7 +443,7 @@ function FeatureCard({ feature, index }) {
                 </div>
 
                 {/* Visual */}
-                <div className="relative order-1 lg:order-2 flex items-center justify-center p-8 min-h-[360px]">
+                <div className="relative order-1 lg:order-2 flex items-center justify-center p-8 pt-12 lg:pt-8 min-h-[360px]">
                   <RenderVisual feature={feature} />
                 </div>
               </div>
