@@ -53,6 +53,7 @@ function InfinitePartnerScroll() {
                 fill
                 className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
                 sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                priority={false}
               />
             </div>
           ))}
@@ -68,7 +69,6 @@ export function Header() {
       id="home"
       className="relative py-12 md:py-16 lg:py-24 xl:py-28 overflow-hidden"
     >
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left content - Takes 6 columns on large screens */}
@@ -81,13 +81,13 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-display sm:text-display md:text-6xl font-medium text-[#111729] leading-tight"
+              className="text-2xl sm:text-3xl md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
             >
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="whitespace-nowrap block"
+                className="sm:whitespace-nowrap block"
               >
                 Payments for the AI Age.
               </motion.span>
@@ -101,7 +101,7 @@ export function Header() {
                 delay: 0.8,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-4 md:mt-6 text-body md:text-body-lg text-gray-600 leading-relaxed"
+              className="mt-4 md:mt-6 text-base sm:text-lg md:text-body-lg text-gray-600 leading-relaxed"
             >
               PayAI enables autonomous agents to transact with each other and
               humans — seamlessly, securely, and always-on.
@@ -117,7 +117,6 @@ export function Header() {
               }}
               className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4"
             >
-
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -147,7 +146,6 @@ export function Header() {
                   Docs
                 </Link>
               </motion.div>
-
             </motion.div>
           </div>
         </div>
