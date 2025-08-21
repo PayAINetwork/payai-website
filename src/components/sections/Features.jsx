@@ -126,7 +126,7 @@ const FEATURES = [
       label: "Docs",
       icon: BookOpen,
       href: process.env.NEXT_PUBLIC_DOCS_URL_CT_MONETIZATION || "#",
-      disabled: true,
+      disabled: false,
     },
   },
   {
@@ -155,7 +155,7 @@ const FEATURES = [
       label: "Docs",
       icon: BookOpen,
       href: process.env.NEXT_PUBLIC_DOCS_URL_TOKEN_GATEWAY || "#",
-      disabled: true,
+      disabled: false,
     },
   },
 ];
