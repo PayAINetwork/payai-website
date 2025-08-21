@@ -81,7 +81,7 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-3xl sm:text-3xl md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
+              className="text-display md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
             >
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -101,10 +101,9 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-loose md:leading-relaxed"
+              className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-relaxed md:leading-relaxed"
             >
-              PayAI enables autonomous agents to transact with each other and
-              humans — seamlessly, securely, and always-on.
+              PayAI enables autonomous agents to transact with each other — seamlessly, securely, and always-on.
             </motion.p>
 
             <motion.div
