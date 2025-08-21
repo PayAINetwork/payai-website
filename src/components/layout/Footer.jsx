@@ -13,17 +13,17 @@ export function Footer() {
       Icon: Twitter,
     },
     {
-      title: "Telegram",
-      href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
-      Icon: Send,
-    },
-    { title: "Docs", href: process.env.NEXT_PUBLIC_DOCS_URL, Icon: BookText },
-    { title: "Github", href: process.env.NEXT_PUBLIC_GITHUB_URL, Icon: Github },
-    {
       title: "LinkedIn",
       href: process.env.NEXT_PUBLIC_LINKEDIN_URL,
       Icon: Linkedin,
     },
+    {
+      title: "Telegram",
+      href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+      Icon: Send,
+    },
+    { title: "Github", href: process.env.NEXT_PUBLIC_GITHUB_URL, Icon: Github },
+    { title: "Docs", href: process.env.NEXT_PUBLIC_DOCS_URL, Icon: BookText },
     {
       title: "DexScreener",
       href: process.env.NEXT_PUBLIC_DEXSCREENER_URL,
