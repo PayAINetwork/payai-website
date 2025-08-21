@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Twitter, Github, Linkedin, Send, BookText } from "lucide-react";
+import { Twitter, Github, Linkedin, Send, BookText, ChartCandlestick } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Footer() {
@@ -17,17 +17,17 @@ export function Footer() {
       href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
       Icon: Send,
     },
-    {
-      title: "DexScreener",
-      href: process.env.NEXT_PUBLIC_DEXSCREENER_URL,
-      Icon: BookText,
-    },
     { title: "Docs", href: process.env.NEXT_PUBLIC_DOCS_URL, Icon: BookText },
     { title: "Github", href: process.env.NEXT_PUBLIC_GITHUB_URL, Icon: Github },
     {
       title: "LinkedIn",
       href: process.env.NEXT_PUBLIC_LINKEDIN_URL,
       Icon: Linkedin,
+    },
+    {
+      title: "DexScreener",
+      href: process.env.NEXT_PUBLIC_DEXSCREENER_URL,
+      Icon: ChartCandlestick,
     },
   ].filter((l) => !!l.href);
 
@@ -221,6 +221,8 @@ export function Footer() {
                     <Link
                       href="/privacy-policy"
                       className="hover:text-midnight transition-colors"
+                      target="_blank"
+                      rel="noreferrer noopener"
                     >
                       Privacy Policy
                     </Link>
@@ -239,6 +241,8 @@ export function Footer() {
                     <Link
                       href="/terms-of-service"
                       className="hover:text-midnight transition-colors"
+                      target="_blank"
+                      rel="noreferrer noopener"
                     >
                       Terms of Service
                     </Link>

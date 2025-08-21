@@ -86,7 +86,7 @@ export function Header() {
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
                 className="sm:whitespace-nowrap block"
               >
                 Payments for the AI Age.
@@ -97,8 +97,8 @@ export function Header() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.7,
-                delay: 0.8,
+                duration: 0.4,
+                delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
               className="mt-4 md:mt-6 text-base sm:text-lg md:text-body-lg text-gray-600 leading-relaxed"
@@ -111,8 +111,8 @@ export function Header() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.7,
-                delay: 1.0,
+                duration: 0.4,
+                delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
               className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4"
@@ -152,22 +152,22 @@ export function Header() {
 
         {/* Partner logos - Infinite horizontal scroll */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4, ease: [0.25, 0.25, 0, 1] }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.25, 0, 1] }}
           className="mt-20 md:mt-32 lg:mt-44"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.96, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.6 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             whileHover={{ y: -4 }}
             className="bg-white/25 backdrop-blur-xl border border-white/40 rounded-2xl p-6 md:p-8 shadow-xl w-full max-w-6xl mx-auto overflow-hidden"
           >
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.8 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
               className="text-body md:text-body-lg text-gray-600 mb-6 md:mb-8 font-medium text-center"
             >
               Partners & Ecosystem
@@ -175,7 +175,7 @@ export function Header() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 2.0 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
             >
               <InfinitePartnerScroll />
             </motion.div>
