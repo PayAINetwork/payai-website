@@ -31,6 +31,68 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
+// Hook: Swipe navigation helpers for sliders
+function useSwipeNavigation({ numItems, onNext, onPrev, onPause, onResume, threshold = 40 }) {
+  const touchStartXRef = useRef(null);
+  const touchDeltaXRef = useRef(0);
+  const isTouchingRef = useRef(false);
+  const swipeHandledRef = useRef(false);
+
+  const handleTouchStart = (e) => {
+    if (numItems <= 1) return;
+    isTouchingRef.current = true;
+    swipeHandledRef.current = false;
+    touchStartXRef.current = e.touches[0].clientX;
+    touchDeltaXRef.current = 0;
+    onPause?.();
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isTouchingRef.current || touchStartXRef.current === null) return;
+    const currentX = e.touches[0].clientX;
+    touchDeltaXRef.current = currentX - touchStartXRef.current;
+  };
+
+  const handleTouchEnd = () => {
+    if (!isTouchingRef.current) return;
+    const deltaX = touchDeltaXRef.current;
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX < 0) {
+        onNext?.();
+      } else {
+        onPrev?.();
+      }
+      swipeHandledRef.current = true;
+    }
+    isTouchingRef.current = false;
+    touchStartXRef.current = null;
+    touchDeltaXRef.current = 0;
+    onResume?.();
+  };
+
+  const handleClick = (e) => {
+    if (swipeHandledRef.current || isTouchingRef.current) {
+      swipeHandledRef.current = false;
+      return;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const isLeft = clickX < rect.width / 2;
+    if (isLeft) {
+      onPrev?.();
+    } else {
+      onNext?.();
+    }
+  };
+
+  return {
+    onTouchStart: handleTouchStart,
+    onTouchMove: handleTouchMove,
+    onTouchEnd: handleTouchEnd,
+    onClick: handleClick,
+  };
+}
+
 // Data
 const FEATURES = [
   {
@@ -166,6 +228,15 @@ function ImageSlider({ images, alt }) {
   const [isPaused, setIsPaused] = useState(false);
   const numImages = images.length;
 
+  const swipe = useSwipeNavigation({
+    numItems: numImages,
+    threshold: 40,
+    onNext: () => setCurrentIndex((prev) => (prev + 1) % numImages),
+    onPrev: () => setCurrentIndex((prev) => (prev - 1 + numImages) % numImages),
+    onPause: () => setIsPaused(true),
+    onResume: () => setIsPaused(false),
+  });
+
   useEffect(() => {
     if (numImages <= 1 || isPaused) return;
     const intervalId = setInterval(() => {
@@ -181,7 +252,10 @@ function ImageSlider({ images, alt }) {
           className="relative h-[260px] md:h-[320px] lg:h-[360px] cursor-default"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          onClick={() => setCurrentIndex((prev) => (prev + 1) % numImages)}
+          onTouchStart={swipe.onTouchStart}
+          onTouchMove={swipe.onTouchMove}
+          onTouchEnd={swipe.onTouchEnd}
+          onClick={swipe.onClick}
           role="button"
           tabIndex={0}
           aria-label="Advance slider"
