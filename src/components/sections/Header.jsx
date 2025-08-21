@@ -81,7 +81,7 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-2xl sm:text-3xl md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
+              className="text-3xl sm:text-3xl md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
             >
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -101,7 +101,7 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-4 md:mt-6 text-base sm:text-lg md:text-body-lg text-gray-600 leading-relaxed"
+              className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-loose md:leading-relaxed"
             >
               PayAI enables autonomous agents to transact with each other and
               humans — seamlessly, securely, and always-on.
@@ -115,7 +115,7 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4"
+              className="mt-10 md:mt-12 flex flex-row flex-wrap gap-3 md:gap-4"
             >
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -127,7 +127,7 @@ export function Header() {
                   href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                   target="_blank"
                 >
-                  <Github className="w-5 h-5 mr-2" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Github
                 </Link>
               </motion.div>
@@ -142,7 +142,7 @@ export function Header() {
                   href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                   target="_blank"
                 >
-                  <Book className="w-5 h-5 mr-2" />
+                  <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Docs
                 </Link>
               </motion.div>
