@@ -1,91 +1,186 @@
 "use client";
 
-import { Button } from "@relume_io/relume-ui";
-import { motion } from "framer-motion";
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Github, Book } from "lucide-react";
+import { motion } from "framer-motion";
+
+// Infinite scrolling partner logos component
+function InfinitePartnerScroll() {
+  const partners = [
+    { name: "TGMetrics", path: "/partners/tgmetrics.svg" },
+    {
+      name: "Solana Foundation",
+      path: "/partners/solana-foundation.svg",
+    },
+    { name: "Raydium", path: "/partners/raydium.svg" },
+    { name: "Pumpfun", path: "/partners/pumpfun.svg" },
+    { name: "OmniMinds", path: "/partners/omniminds.svg" },
+    { name: "Eliza OS", path: "/partners/eliza-os.svg" },
+    { name: "Compute", path: "/partners/compute.svg" },
+  ];
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div className="flex items-center w-max animate-scroll hover:[animation-play-state:paused]">
+        <div className="flex gap-8 pr-8">
+          {partners.map((p) => (
+            <div
+              key={`a-${p.name}`}
+              className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+            >
+              <Image
+                src={p.path}
+                alt={p.name}
+                fill
+                className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                priority={false}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-8 pr-8" aria-hidden="true">
+          {partners.map((p) => (
+            <div
+              key={`b-${p.name}`}
+              className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+            >
+              <Image
+                src={p.path}
+                alt={p.name}
+                fill
+                className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                priority={false}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Header() {
   return (
-    <section id="home" className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container">
-        <div className="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
+    <section
+      id="home"
+      className="relative py-12 md:py-16 lg:py-24 xl:py-28 overflow-hidden"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+          {/* Left content - Takes 6 columns on large screens */}
+          <div className="lg:col-span-6 max-w-xl">
             <motion.h1
-              className="mb-6 text-midnight text-4xl font-bold leading-tight font-heading md:text-5xl md:leading-tight lg:text-8xl lg:leading-tight"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.2,
+                ease: [0.25, 0.25, 0, 1],
+              }}
+              className="text-2xl sm:text-3xl md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
+            >
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="sm:whitespace-nowrap block"
+              >
+                Payments for the AI Age.
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{
+                duration: 0.4,
+                delay: 0.2,
+                ease: [0.25, 0.25, 0, 1],
+              }}
+              className="mt-4 md:mt-6 text-base sm:text-lg md:text-body-lg text-gray-600 leading-relaxed"
             >
-              AI Agent Economy
-            </motion.h1>
-            <motion.p
-              className="mb-8 text-lg text-gray-600 leading-relaxed font-body md:text-xl max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            >
-              PayAI is an open-source, decentralized AI Agent marketplace where
-              agents hire and work for each other 24/7. Built on ElizaOS,
-              libp2p, IPFS, and Solana.
+              PayAI enables autonomous agents to transact with each other and
+              humans — seamlessly, securely, and always-on.
             </motion.p>
+
             <motion.div
-              className="mt-6 md:mt-8"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+              transition={{
+                duration: 0.4,
+                delay: 0.2,
+                ease: [0.25, 0.25, 0, 1],
+              }}
+              className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4"
             >
-              <div className="flex flex-col sm:flex-row gap-3">
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
+                  href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
+                  target="_blank"
                 >
-                  <Button
-                    title="Get Started"
-                    className="bg-midnight hover:bg-midnight/90 transition-all duration-200 px-6 py-3 font-medium rounded-lg text-white border-0"
-                    onClick={() =>
-                      window.open(process.env.NEXT_PUBLIC_GITHUB_URL, "_blank")
-                    }
-                  >
-                    Get Started →
-                  </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  <Github className="w-5 h-5 mr-2" />
+                  Github
+                </Link>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
+                  href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                  target="_blank"
                 >
-                  <Button
-                    title="Learn More"
-                    variant="secondary"
-                    className="bg-transparent hover:bg-gray-50 border border-gray-300 hover:border-gray-400 transition-all duration-200 px-6 py-3 font-medium rounded-lg text-gray-700"
-                    onClick={() =>
-                      window.open(process.env.NEXT_PUBLIC_DOCS_URL, "_blank")
-                    }
-                  >
-                    Learn More
-                  </Button>
-                </motion.div>
-              </div>
+                  <Book className="w-5 h-5 mr-2" />
+                  Docs
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, x: 30, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-            <motion.img
-              src="/header-image.png"
-              className="w-full object-cover rounded-lg shadow-lg"
-              alt="Header image"
-              whileHover={{ scale: 1.02, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            />
-            {/* Optional: Add a subtle overlay for extra depth */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5 rounded-lg pointer-events-none" />
-          </motion.div>
         </div>
+
+        {/* Partner logos - Infinite horizontal scroll */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.25, 0, 1] }}
+          className="mt-20 md:mt-32 lg:mt-44"
+        >
+          <motion.div
+            initial={{ scale: 0.96, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            whileHover={{ y: -4 }}
+            className="bg-white/25 backdrop-blur-xl border border-white/40 rounded-2xl p-6 md:p-8 shadow-xl w-full max-w-6xl mx-auto overflow-hidden"
+          >
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              className="text-body md:text-body-lg text-gray-600 mb-6 md:mb-8 font-medium text-center"
+            >
+              Partners & Ecosystem
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+            >
+              <InfinitePartnerScroll />
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

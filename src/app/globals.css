@@ -2,46 +2,210 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom font loading for better performance */
+@font-face {
+  font-family: "FT Regola Neue";
+  font-display: swap;
+  /* Add your font files here when available */
+}
+
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 body {
-  @apply font-body;
+  @apply font-body text-gray-900 font-normal;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;  
+  
+  /* Background grid pattern */
+  --gap: 150px;       /* distance between lines  */
+  --line: 1px;       /* line thickness          */
+  --lineColor: rgba(255,255,255,.35);
+
+  /* grid (top layers) + pastel background (bottom layers) */
+  background-image:
+    /* grid lines */
+    repeating-linear-gradient(45deg,
+      var(--lineColor) 0 calc(var(--line)),
+      transparent calc(var(--line)) calc(var(--gap))
+    ),
+    repeating-linear-gradient(-45deg,
+      var(--lineColor) 0 calc(var(--line)),
+      transparent calc(var(--line)) calc(var(--gap))
+    ),
+
+    /* gentle color wash */
+    radial-gradient(120% 100% at 10% 0%,
+      #eaf1ff 0%, rgba(234,241,255,0) 60%),
+    radial-gradient(120% 100% at 100% 0%,
+      #f3e6ff 0%, rgba(243,230,255,0) 55%),
+    linear-gradient(120deg,#eef2ff 0%, #efe9ff 100%);
+    
+  background-size: cover;
+  /* end of background grid pattern */
+
 }
 
-h1,
-h2,
+/* Enhanced Typography Hierarchy - Lighter weights to match design system */
+h1 {
+  @apply font-heading text-hero font-semibold text-midnight;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  @apply font-heading text-display font-semibold text-midnight;
+  letter-spacing: -0.01em;
+}
+
 h3 {
-  @apply font-heading;
-  @apply text-midnight;
+  @apply font-heading text-heading font-medium text-midnight;
 }
 
+h4 {
+  @apply font-heading text-subheading font-medium text-midnight;
+}
+
+h5 {
+  @apply font-heading text-xl font-normal text-midnight;
+}
+
+h6 {
+  @apply font-heading text-lg font-normal text-midnight;
+}
+
+p {
+  @apply text-body text-gray-600 font-normal;
+}
+
+/* Enhanced button styles */
 button {
-  @apply font-button;
+  @apply font-button font-normal;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Code styling */
 code,
 pre {
   @apply font-code;
 }
 
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply ring-2 ring-neonCyan ring-offset-2 outline-none;
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-neonCyan/20 text-midnight;
+}
+
+/* Background grid pattern */
+.bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 @layer components {
-  button:hover {
-    @apply bg-opacity-80 scale-105;
+  /* Enhanced button components */
+  .btn-primary {
+    @apply bg-midnight hover:bg-midnight/90 text-white px-6 py-3 rounded-lg font-normal transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3;
   }
 
-  button:active {
-    @apply scale-100;
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-midnight border border-gray-300 hover:border-gray-400 px-6 py-3 rounded-lg font-normal transition-all duration-200 shadow-elevation-1 hover:shadow-elevation-2;
   }
 
-  .shadow-md {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  .btn-accent {
+    @apply bg-neonCyan hover:bg-neonCyan/90 text-midnight px-6 py-3 rounded-lg font-normal transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3;
   }
 
-  .shadow-sm {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  .btn-ghost {
+    @apply bg-transparent hover:bg-gray-100 text-gray-700 hover:text-midnight px-6 py-3 rounded-lg font-normal transition-all duration-200;
+  }
+
+  /* Container utilities */
+  .container-payai {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-section-sm md:py-section lg:py-section-lg;
+  }
+
+  /* Card components */
+  .card-base {
+    @apply bg-white rounded-xl border border-gray-200 shadow-card hover:shadow-card-hover transition-all duration-200;
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-xl shadow-elevation-2 hover:shadow-elevation-3 transition-all duration-300;
+  }
+
+  .card-glow {
+    @apply bg-white rounded-xl shadow-glow-sm hover:shadow-glow-md transition-all duration-300;
+  }
+
+  /* Gradient utilities */
+  .gradient-payai {
+    background: linear-gradient(135deg, #0a192f 0%, #1a3348 50%, #264d6c 100%);
+  }
+
+  .gradient-cyan {
+    background: linear-gradient(135deg, #00e5ff 0%, #1cc5dc 100%);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #8a2be2 0%, #5a5df7 100%);
+  }
+
+  /* Text gradients */
+  .text-gradient-payai {
+    @apply bg-gradient-to-r from-neonCyan to-electricPurple bg-clip-text text-transparent;
+  }
+
+  .text-gradient-cyan {
+    @apply bg-gradient-to-r from-neonCyan to-tealGlow bg-clip-text text-transparent;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-strong {
+    @apply bg-white/20 backdrop-blur-2xl border border-white/30;
+  }
+
+  /* Accessibility helpers */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* Partner scroll animation */
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
