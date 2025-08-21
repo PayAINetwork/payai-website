@@ -103,7 +103,7 @@ export function Header() {
               }}
               className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-relaxed md:leading-relaxed"
             >
-              PayAI enables autonomous agents to transact with each other — seamlessly, securely, and always-on.
+              PayAI enables autonomous agents to transact and coordinate — seamlessly, securely, and always-on.
             </motion.p>
 
             <motion.div

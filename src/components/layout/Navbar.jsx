@@ -48,7 +48,7 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.25, 0, 1] }}
+      transition={{ duration: 0.1, ease: [0.25, 0.25, 0, 1] }}
       className={`sticky top-0 z-50 w-full py-4 transition-all duration-300 ${
         isScrolled ? "shadow-sm" : ""
       }`}
