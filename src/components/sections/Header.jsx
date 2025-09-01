@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Book } from "lucide-react";
+import { Pointer, Book } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Infinite scrolling partner logos component
@@ -67,7 +67,7 @@ export function Header() {
   return (
     <section
       id="home"
-      className="relative py-12 md:py-16 lg:py-24 xl:py-28 overflow-hidden"
+      className="relative py-8 md:py-16 lg:py-18 overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
@@ -81,13 +81,14 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-display md:text-display lg:text-6xl font-medium text-[#111729] leading-tight"
+              className="text-display md:text-display lg:text-6xl font-medium text-[#111729]"
+              style={{ lineHeight: 1.2 }}
             >
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="sm:whitespace-nowrap block"
+                className="block"
               >
                 Payments for the AI Age.
               </motion.span>
@@ -101,9 +102,9 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-relaxed md:leading-relaxed"
+              className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-relaxed md:leading-relaxed font-medium"
             >
-              PayAI enables autonomous agents to transact and coordinate — seamlessly, securely, and always-on.
+              Try x402 payments against a live merchant today. Get 100% of your payment refunded.
             </motion.p>
 
             <motion.div
@@ -123,11 +124,11 @@ export function Header() {
               >
                 <Link
                   className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
-                  href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
+                  href={process.env.NEXT_PUBLIC_DOCS_URL_X402_FACILITATOR || "#"}
                   target="_blank"
                 >
-                  <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Github
+                  <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Docs
                 </Link>
               </motion.div>
 
@@ -138,11 +139,11 @@ export function Header() {
               >
                 <Link
                   className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
-                  href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                  href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
                   target="_blank"
                 >
-                  <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Docs
+                  <Pointer className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Try Now
                 </Link>
               </motion.div>
             </motion.div>

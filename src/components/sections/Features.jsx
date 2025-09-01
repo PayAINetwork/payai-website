@@ -99,8 +99,8 @@ const FEATURES = [
     id: 1,
     tag: "x402 Facilitator",
     tagIcon: Landmark,
-    status: "COMING SOON",
-    statusIcon: Clock,
+    status: "LIVE",
+    statusIcon: Sparkles,
     title:
       "Instant, Invisible Payments.",
     description:
