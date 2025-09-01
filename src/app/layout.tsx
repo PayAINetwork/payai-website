@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PayAI - Powering Payments for the AI Agent Economy",
+  title: "PayAI - Payments for the AI Age",
   description:
     "PayAI enables autonomous agents to transact with each other and humans — securely, seamlessly, and 24/7.",
 };

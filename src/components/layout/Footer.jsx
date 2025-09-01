@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Twitter, Github, Linkedin, Send, BookText, ChartCandlestick } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function Footer() {
   const socialLinks = [
@@ -83,38 +84,7 @@ export function Footer() {
                 transition={{ duration: 0.2 }}
               >
                 <Link href="/" className="flex items-center gap-2">
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16 4L4 10L16 16L28 10L16 4Z"
-                      fill="#E6EEFF"
-                      stroke="#4D63F6"
-                      strokeWidth="1.5"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M4 22L16 28L28 22"
-                      stroke="#4D63F6"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M4 16L16 22L28 16"
-                      stroke="#4D63F6"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <span className="text-body-lg font-medium text-midnight">
-                    PayAI
-                  </span>
+                  <Image src="/horizontal-lockup.svg" alt="PayAI Logo" width={120} height={32} />
                 </Link>
               </motion.div>
 
@@ -125,7 +95,7 @@ export function Footer() {
                 viewport={{ once: true }}
                 className="mt-4 text-body text-gray-600 max-w-xs"
               >
-                Powering payments for the AI Agent Economy. Tools and
+                Payments for the AI Age. Tools and
                 infrastructure for autonomous agent transactions.
               </motion.p>
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Book, Github } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,38 +68,14 @@ export function Navbar() {
               transition={{ duration: 0.2 }}
               className="flex items-center space-x-2"
             >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 4L4 10L16 16L28 10L16 4Z"
-                  fill="#E6EEFF"
-                  stroke="#4D63F6"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 22L16 28L28 22"
-                  stroke="#4D63F6"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 16L16 22L28 16"
-                  stroke="#4D63F6"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="text-body-lg font-medium text-gray-900">
-                PayAI
-              </span>
+              <Image
+                src="/horizontal-lockup.svg"
+                alt="PayAI Logo"
+                width={120}
+                height={32}
+                className="h-24 w-auto"
+                priority={true}
+              />
             </motion.div>
           </Link>
 
