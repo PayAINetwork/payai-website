@@ -9,16 +9,19 @@ import { motion } from "framer-motion";
 // Infinite scrolling partner logos component
 function InfinitePartnerScroll() {
   const partners = [
-    { name: "TGMetrics", path: "/partners/tgmetrics.svg" },
+    { name: "Raydium", path: "/partners/raydium.svg", url: "https://raydium.io" },
+    { name: "Pumpfun", path: "/partners/pumpfun.svg", url: "https://pump.fun" },
+    { name: "TGMetrics", path: "/partners/tgmetrics.svg", url: "https://www.tgmetrics.ai/" },
     {
       name: "Solana Foundation",
       path: "/partners/solana-foundation.svg",
+      url: "https://solana.org",
     },
-    { name: "Raydium", path: "/partners/raydium.svg" },
-    { name: "Pumpfun", path: "/partners/pumpfun.svg" },
-    { name: "OmniMinds", path: "/partners/omniminds.svg" },
-    { name: "Eliza OS", path: "/partners/eliza-os.svg" },
-    { name: "Compute", path: "/partners/compute.svg" },
+    { name: "Coinbase", path: "/partners/coinbase.svg", url: "https://www.coinbase.com" },
+    { name: "x402", path: "/partners/x402.svg", url: "https://x402.org" },
+    { name: "OmniMinds", path: "/partners/omniminds.svg", url: "https://omniminds.ai/" },
+    { name: "Eliza OS", path: "/partners/eliza-os.svg", url: "https://elizaos.ai/" },
+    { name: "Compute", path: "/partners/compute.svg", url: "https://comput3.ai/" },
   ];
 
   return (
@@ -26,36 +29,76 @@ function InfinitePartnerScroll() {
       <div className="flex items-center w-max animate-scroll hover:[animation-play-state:paused]">
         <div className="flex gap-8 pr-8">
           {partners.map((p) => (
-            <div
-              key={`a-${p.name}`}
-              className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
-            >
-              <Image
-                src={p.path}
-                alt={p.name}
-                fill
-                className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
-                priority={false}
-              />
-            </div>
+            p.url ? (
+              <a
+                key={`a-${p.name}`}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={p.name}
+                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group cursor-default"
+              >
+                <Image
+                  src={p.path}
+                  alt={p.name}
+                  fill
+                  className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                  priority={false}
+                />
+              </a>
+            ) : (
+              <div
+                key={`a-${p.name}`}
+                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+              >
+                <Image
+                  src={p.path}
+                  alt={p.name}
+                  fill
+                  className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                  priority={false}
+                />
+              </div>
+            )
           ))}
         </div>
         <div className="flex gap-8 pr-8" aria-hidden="true">
           {partners.map((p) => (
-            <div
-              key={`b-${p.name}`}
-              className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
-            >
-              <Image
-                src={p.path}
-                alt={p.name}
-                fill
-                className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
-                priority={false}
-              />
-            </div>
+            p.url ? (
+              <a
+                key={`b-${p.name}`}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={p.name}
+                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group cursor-default"
+              >
+                <Image
+                  src={p.path}
+                  alt={p.name}
+                  fill
+                  className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                  priority={false}
+                />
+              </a>
+            ) : (
+              <div
+                key={`b-${p.name}`}
+                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+              >
+                <Image
+                  src={p.path}
+                  alt={p.name}
+                  fill
+                  className="object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 120px"
+                  priority={false}
+                />
+              </div>
+            )
           ))}
         </div>
       </div>
@@ -170,7 +213,7 @@ export function Header() {
               transition={{ duration: 0.4, delay: 0.4 }}
               className="text-body md:text-body-lg text-gray-600 mb-6 md:mb-8 font-medium text-center"
             >
-              Partners & Ecosystem
+              Ecosystem & Partners
             </motion.p>
             <motion.div
               initial={{ opacity: 0 }}
