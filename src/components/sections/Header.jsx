@@ -113,9 +113,9 @@ export function Header() {
       className="relative py-8 md:py-16 lg:py-18 overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-          {/* Left content - Takes 6 columns on large screens */}
-          <div className="lg:col-span-6 max-w-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
+          {/* Header text - Takes 8 columns on large screens */}
+          <div className="lg:col-span-8">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -133,10 +133,13 @@ export function Header() {
                 transition={{ duration: 0.4, delay: 0.2 }}
                 className="block"
               >
-                Payments for the AI Age.
+                Solana-first, multi-network x402 facilitator.
               </motion.span>
             </motion.h1>
+          </div>
 
+          {/* Rest of content - Takes 6 columns on large screens */}
+          <div className="lg:col-span-6 max-w-xl">
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -160,18 +163,19 @@ export function Header() {
               }}
               className="mt-10 md:mt-12 flex flex-row flex-wrap gap-3 md:gap-4"
             >
+
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
-                  href={process.env.NEXT_PUBLIC_DOCS_URL_X402_FACILITATOR || "#"}
+                  className="inline-flex items-center justify-center  bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
+                  href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
                   target="_blank"
                 >
-                  <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Docs
+                  <Pointer className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Try x402
                 </Link>
               </motion.div>
 
@@ -182,13 +186,14 @@ export function Header() {
               >
                 <Link
                   className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
-                  href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
+                  href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_FACILITATOR || "#"}
                   target="_blank"
                 >
-                  <Pointer className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Try Now
+                  <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Facilitator
                 </Link>
               </motion.div>
+
             </motion.div>
           </div>
         </div>
