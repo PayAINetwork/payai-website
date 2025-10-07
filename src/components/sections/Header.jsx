@@ -12,16 +12,21 @@ function InfinitePartnerScroll() {
     { name: "Raydium", path: "/partners/raydium.svg", url: "https://raydium.io" },
     { name: "Pumpfun", path: "/partners/pumpfun.svg", url: "https://pump.fun" },
     { name: "TGMetrics", path: "/partners/tgmetrics.svg", url: "https://www.tgmetrics.ai/" },
-    {
-      name: "Solana Foundation",
-      path: "/partners/solana-foundation.svg",
-      url: "https://solana.org",
-    },
+    { name: "Solana Foundation", path: "/partners/solana-foundation.svg", url: "https://solana.org" },
     { name: "Coinbase", path: "/partners/coinbase.svg", url: "https://www.coinbase.com" },
     { name: "x402", path: "/partners/x402.svg", url: "https://x402.org" },
     { name: "OmniMinds", path: "/partners/omniminds.svg", url: "https://omniminds.ai/" },
     { name: "Eliza OS", path: "/partners/eliza-os.svg", url: "https://elizaos.ai/" },
     { name: "Compute", path: "/partners/compute.svg", url: "https://comput3.ai/" },
+    { name: "Tip", path: "/partners/tip.md.svg", url: "https://tip.md" },
+    { name: "MC Pay", path: "/partners/mcpay.svg", url: "https://mcpay.tech" },
+    { name: "Oobe Protocol", path: "/partners/OOBE.svg", url: "https://www.oobeprotocol.ai/" },
+    { name: "Solana", path: "/partners/solana.svg", url: "https://solana.com/" },
+    { name: "Polygon", path: "/partners/polygon.svg", url: "https://polygon.technology" },
+    { name: "Sei", path: "/partners/sei.svg", url: "https://sei.io" },
+    { name: "Base", path: "/partners/base.svg", url: "https://base.org" },
+    { name: "Avax", path: "/partners/avax.svg", url: "https://avax.network" },
+    { name: "Iotex", path: "/partners/iotex.svg", url: "https://iotex.io/" },
   ];
 
   return (
