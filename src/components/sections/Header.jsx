@@ -19,14 +19,14 @@ function InfinitePartnerScroll() {
     { name: "Eliza OS", path: "/partners/eliza-os.svg", url: "https://elizaos.ai/" },
     { name: "Compute", path: "/partners/compute.svg", url: "https://comput3.ai/" },
     { name: "Tip", path: "/partners/tip.md.svg", url: "https://tip.md" },
-    { name: "MC Pay", path: "/partners/mcpay.svg", url: "https://mcpay.tech" },
+    { name: "MC Pay", path: "/partners/MCPay.svg", url: "https://mcpay.tech" },
     { name: "Oobe Protocol", path: "/partners/OOBE.svg", url: "https://www.oobeprotocol.ai/" },
     { name: "Solana", path: "/partners/solana.svg", url: "https://solana.com/" },
     { name: "Polygon", path: "/partners/polygon.svg", url: "https://polygon.technology" },
     { name: "Sei", path: "/partners/sei.svg", url: "https://sei.io" },
     { name: "Base", path: "/partners/base.svg", url: "https://base.org" },
     { name: "Avax", path: "/partners/avax.svg", url: "https://avax.network" },
-    { name: "Iotex", path: "/partners/iotex.svg", url: "https://iotex.io/" },
+    { name: "Iotex", path: "/partners/IoTex.svg", url: "https://iotex.io/" },
   ];
 
   return (
