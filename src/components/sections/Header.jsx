@@ -9,8 +9,6 @@ import { motion } from "framer-motion";
 // Infinite scrolling partner logos component
 function InfinitePartnerScroll() {
   const partners = [
-    { name: "Raydium", path: "/partners/raydium.svg", url: "https://raydium.io" },
-    { name: "Pumpfun", path: "/partners/pumpfun.svg", url: "https://pump.fun" },
     { name: "TGMetrics", path: "/partners/tgmetrics.svg", url: "https://www.tgmetrics.ai/" },
     { name: "Solana Foundation", path: "/partners/solana-foundation.svg", url: "https://solana.org" },
     { name: "Coinbase", path: "/partners/coinbase.svg", url: "https://www.coinbase.com" },
@@ -41,7 +39,7 @@ function InfinitePartnerScroll() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={p.name}
-                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group cursor-default"
+                className="relative flex-none h-14 w-40 group cursor-default"
               >
                 <Image
                   src={p.path}
@@ -55,7 +53,7 @@ function InfinitePartnerScroll() {
             ) : (
               <div
                 key={`a-${p.name}`}
-                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+                className="relative flex-none h-14 w-40 group"
               >
                 <Image
                   src={p.path}
@@ -78,7 +76,7 @@ function InfinitePartnerScroll() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={p.name}
-                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group cursor-default"
+                className="relative flex-none h-14 w-40 group cursor-default"
               >
                 <Image
                   src={p.path}
@@ -92,7 +90,7 @@ function InfinitePartnerScroll() {
             ) : (
               <div
                 key={`b-${p.name}`}
-                className="relative flex-none h-12 w-[7.5rem] md:h-14 md:w-[8.75rem] lg:h-16 lg:w-40 group"
+                className="relative flex-none h-14 w-40 group"
               >
                 <Image
                   src={p.path}
