@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
               your personal information.
             </p>
             <p className="text-body text-gray-500">
-              Last updated: {new Date().toLocaleDateString()}
+              Last Updated: 10 December 2025
             </p>
           </div>
         </div>
@@ -31,156 +31,342 @@ export default function PrivacyPolicy() {
           <div className="max-w-4xl mx-auto space-y-12">
             {/* Introduction */}
             <div>
-              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
-                1. Introduction
-              </h2>
               <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
-                Welcome to PayAI. We respect your privacy and are committed to
-                protecting your personal data. This privacy policy will inform
-                you about how we look after your personal data when you visit
-                our website and tell you about your privacy rights and how the
-                law protects you.
+                PayAI Network, LLC ("PayAI," "we," "us," or "our") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, disclose, and safeguard information when you visit our website, use our software or services, or otherwise interact with us (collectively, the "Services").
+              </p>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed mt-4">
+                By using the Services, you consent to the practices described in this Privacy Policy.
               </p>
             </div>
 
-            {/* Data Collection */}
+            {/* Data We Collect */}
             <div>
               <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
-                2. Data We Collect
+                1. Data We Collect
               </h2>
               <p className="text-body md:text-body-lg text-gray-600 mb-6 leading-relaxed">
-                We may collect, use, store and transfer different kinds of
-                personal data about you which we have grouped together as
-                follows:
+                We may collect, use, store, and transfer the following categories of personal data:
               </p>
               <div className="space-y-4">
                 <div>
                   <h4 className="text-lg font-medium text-midnight mb-2">
-                    Identity Data
+                    1.1 Identity Data
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– First name</li>
+                    <li className="text-body text-gray-600">– Last name</li>
+                    <li className="text-body text-gray-600">– Username or similar identifier</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    1.2 Contact Data
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Email address</li>
+                    <li className="text-body text-gray-600">– Telephone number</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    1.3 Technical Data
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– IP address</li>
+                    <li className="text-body text-gray-600">– Login data</li>
+                    <li className="text-body text-gray-600">– Browser type and version</li>
+                    <li className="text-body text-gray-600">– Time zone setting and location</li>
+                    <li className="text-body text-gray-600">– Browser plug-in types and versions</li>
+                    <li className="text-body text-gray-600">– Operating system and platform</li>
+                    <li className="text-body text-gray-600">– Device and technology identifiers</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    1.4 Usage Data
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Information about how you use our website, products, APIs, and other Services</li>
+                    <li className="text-body text-gray-600">– Session information, page interactions, referring URLs, and similar behavioral metrics</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-body md:text-body-lg text-gray-600 mt-6 leading-relaxed">
+                We may also collect non-personal, aggregated, or de-identified information, which is not considered personal data.
+              </p>
+            </div>
+
+            {/* How We Collect Data */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                2. How We Collect Data
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 mb-4 leading-relaxed">
+                We collect personal data through:
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    2.1 Direct Interactions
+                  </h4>
+                  <p className="text-body text-gray-600 mb-2">
+                    You provide Identity Data and Contact Data when you:
+                  </p>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Create an account</li>
+                    <li className="text-body text-gray-600">– Subscribe to Services</li>
+                    <li className="text-body text-gray-600">– Request support</li>
+                    <li className="text-body text-gray-600">– Communicate with us</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    2.2 Automated Technologies
                   </h4>
                   <p className="text-body text-gray-600">
-                    Includes first name, last name, username or similar
-                    identifier.
+                    We automatically collect Technical Data and Usage Data through cookies, server logs, analytics tools, and similar technologies.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-lg font-medium text-midnight mb-2">
-                    Contact Data
+                    2.3 Third Parties
                   </h4>
                   <p className="text-body text-gray-600">
-                    Includes email address and telephone numbers.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium text-midnight mb-2">
-                    Technical Data
-                  </h4>
-                  <p className="text-body text-gray-600">
-                    Includes internet protocol (IP) address, your login data,
-                    browser type and version, time zone setting and location,
-                    browser plug-in types and versions, operating system and
-                    platform, and other technology on the devices you use to
-                    access this website.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium text-midnight mb-2">
-                    Usage Data
-                  </h4>
-                  <p className="text-body text-gray-600">
-                    Includes information about how you use our website, products
-                    and services.
+                    We may receive Technical Data or Usage Data from analytics providers, hosting providers, and payment processors.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Data Usage */}
+            {/* How We Use Your Personal Data */}
             <div>
               <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
-                3. How We Use Your Data
+                3. How We Use Your Personal Data
               </h2>
-              <p className="text-body md:text-body-lg text-gray-600 mb-6 leading-relaxed">
-                We will only use your personal data when the law allows us to.
-                Most commonly, we will use your personal data in the following
-                circumstances:
+              <p className="text-body md:text-body-lg text-gray-600 mb-4 leading-relaxed">
+                We use personal data for the following purposes:
               </p>
-              <ul className="space-y-3">
-                <li className="text-body text-gray-600">
-                  • Where we need to perform the contract we are about to enter
-                  into or have entered into with you.
-                </li>
-                <li className="text-body text-gray-600">
-                  • Where it is necessary for our legitimate interests and your
-                  interests do not override those interests.
-                </li>
-                <li className="text-body text-gray-600">
-                  • Where we need to comply with a legal obligation.
-                </li>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    3.1 Service Delivery
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Providing, operating, and maintaining the Services</li>
+                    <li className="text-body text-gray-600">– Managing user accounts and authentication</li>
+                    <li className="text-body text-gray-600">– Processing transactions</li>
+                    <li className="text-body text-gray-600">– Delivering software updates and improvements</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    3.2 Communication
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Sending notices related to your account or transactions</li>
+                    <li className="text-body text-gray-600">– Providing technical or administrative support</li>
+                    <li className="text-body text-gray-600">– Responding to inquiries</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    3.3 Service Improvement
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Monitoring and analyzing usage</li>
+                    <li className="text-body text-gray-600">– Developing new functionality</li>
+                    <li className="text-body text-gray-600">– Enhancing security, troubleshooting, and debugging</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    3.4 Legal and Compliance
+                  </h4>
+                  <ul className="space-y-2 ml-6">
+                    <li className="text-body text-gray-600">– Enforcing our Terms and Conditions</li>
+                    <li className="text-body text-gray-600">– Protecting the rights, property, or safety of PayAI and users</li>
+                    <li className="text-body text-gray-600">– Complying with legal obligations, court orders, or law enforcement requests</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-body md:text-body-lg text-gray-600 mt-6 leading-relaxed font-semibold">
+                We do not sell personal data.
+              </p>
+            </div>
+
+            {/* Legal Bases */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                4. Legal Bases (Where Applicable)
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                Where privacy laws require a legal basis (e.g., GDPR), we rely on:
+              </p>
+              <ul className="space-y-3 mt-4 ml-6">
+                <li className="text-body text-gray-600">– Performance of a contract (account management, providing the Services)</li>
+                <li className="text-body text-gray-600">– Legitimate interests (service improvement, security, analytics)</li>
+                <li className="text-body text-gray-600">– Consent (where expressly obtained)</li>
+                <li className="text-body text-gray-600">– Compliance with legal obligations</li>
               </ul>
+            </div>
+
+            {/* Cookies and Other Technologies */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                5. Cookies and Other Technologies
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 mb-4 leading-relaxed">
+                We use cookies and similar technologies to:
+              </p>
+              <ul className="space-y-3 mb-4 ml-6">
+                <li className="text-body text-gray-600">– Authenticate users</li>
+                <li className="text-body text-gray-600">– Remember preferences</li>
+                <li className="text-body text-gray-600">– Analyze usage patterns</li>
+                <li className="text-body text-gray-600">– Improve performance and functionality</li>
+              </ul>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                Users may adjust browser settings to refuse cookies, but some parts of the Services may not function properly.
+              </p>
+            </div>
+
+            {/* Disclosure of Personal Data */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                6. Disclosure of Personal Data
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 mb-4 leading-relaxed">
+                We may share personal data with:
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    6.1 Service Providers
+                  </h4>
+                  <p className="text-body text-gray-600">
+                    Third-party vendors supporting hosting, analytics, payment processing, customer support, email delivery, and similar services.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    6.2 Business Transfers
+                  </h4>
+                  <p className="text-body text-gray-600">
+                    Personal data may transfer as part of a merger, acquisition, financing, or sale of assets, subject to confidentiality obligations.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-medium text-midnight mb-2">
+                    6.3 Legal Requirements
+                  </h4>
+                  <p className="text-body text-gray-600">
+                    We may disclose data to comply with laws, regulations, legal processes, or governmental requests.
+                  </p>
+                </div>
+              </div>
+              <p className="text-body md:text-body-lg text-gray-600 mt-6 leading-relaxed">
+                We do not permit service providers to use personal data for their own independent purposes.
+              </p>
+            </div>
+
+            {/* International Transfers */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                7. International Transfers
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                We may transfer personal data to jurisdictions in which our service providers operate. When required, we use reasonable safeguards such as contractual protections, including standard contractual clauses.
+              </p>
             </div>
 
             {/* Data Security */}
             <div>
               <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
-                4. Data Security
+                8. Data Security
               </h2>
               <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
-                We have put in place appropriate security measures to prevent
-                your personal data from being accidentally lost, used or
-                accessed in an unauthorized way, altered or disclosed. In
-                addition, we limit access to your personal data to those
-                employees, agents, contractors and other third parties who have
-                a business need to know.
+                We implement commercially reasonable administrative, technical, and physical safeguards designed to protect personal data from unauthorized access, alteration, disclosure, or destruction.
+              </p>
+              <p className="text-body md:text-body-lg text-gray-600 mt-4 leading-relaxed">
+                No system is perfectly secure; we cannot guarantee security.
               </p>
             </div>
 
-            {/* Legal Rights */}
+            {/* Data Retention */}
             <div>
               <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
-                5. Your Legal Rights
+                9. Data Retention
               </h2>
-              <p className="text-body md:text-body-lg text-gray-600 mb-6 leading-relaxed">
-                Under certain circumstances, you have rights under data
-                protection laws in relation to your personal data, including the
-                right to:
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                We retain personal data only as long as necessary to fulfill the purposes for which it was collected, including legal, accounting, or reporting requirements.
               </p>
-              <ul className="space-y-3">
-                <li className="text-body text-gray-600">
-                  • Request access to your personal data
-                </li>
-                <li className="text-body text-gray-600">
-                  • Request correction of your personal data
-                </li>
-                <li className="text-body text-gray-600">
-                  • Request erasure of your personal data
-                </li>
-                <li className="text-body text-gray-600">
-                  • Object to processing of your personal data
-                </li>
-                <li className="text-body text-gray-600">
-                  • Request restriction of processing your personal data
-                </li>
-                <li className="text-body text-gray-600">
-                  • Request transfer of your personal data
-                </li>
-                <li className="text-body text-gray-600">
-                  • Right to withdraw consent
-                </li>
-              </ul>
+              <p className="text-body md:text-body-lg text-gray-600 mt-4 leading-relaxed">
+                Account-related data may be retained for a reasonable period after account closure, subject to deletion or anonymization thereafter.
+              </p>
             </div>
 
-            {/* Contact */}
+            {/* Children's Privacy */}
             <div>
               <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
-                6. Contact Us
+                10. Children's Privacy
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                The Services are not directed to children under 16. We do not knowingly collect personal data from children under 16. If we learn that we have collected such data, we will delete it.
+              </p>
+            </div>
+
+            {/* Your Privacy Rights */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                11. Your Privacy Rights
               </h2>
               <p className="text-body md:text-body-lg text-gray-600 mb-4 leading-relaxed">
-                If you have any questions about this privacy policy or our
-                privacy practices, please contact us at:
+                Depending on your jurisdiction, you may have certain rights, including:
+              </p>
+              <ul className="space-y-3 mb-4 ml-6">
+                <li className="text-body text-gray-600">– Access to your personal data</li>
+                <li className="text-body text-gray-600">– Correction or update of your data</li>
+                <li className="text-body text-gray-600">– Deletion of your data</li>
+                <li className="text-body text-gray-600">– Objection to or restriction of certain processing</li>
+                <li className="text-body text-gray-600">– Withdrawal of consent where applicable</li>
+              </ul>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                Requests may be submitted to legal@payai.network
+              </p>
+              <p className="text-body md:text-body-lg text-gray-600 mt-4 leading-relaxed">
+                We may need to verify your identity before responding.
+              </p>
+            </div>
+
+            {/* Third-Party Links */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                12. Third-Party Links
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                Our Services may contain links to third-party websites or services. We are not responsible for the privacy practices of such third parties.
+              </p>
+            </div>
+
+            {/* Changes to this Privacy Policy */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                13. Changes to this Privacy Policy
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 leading-relaxed">
+                We may modify this Privacy Policy from time to time. The "Last Updated" date will reflect the effective version. Continued use of the Services constitutes acceptance of changes.
+              </p>
+            </div>
+
+            {/* Contact Us */}
+            <div>
+              <h2 className="text-subheading md:text-heading font-semibold text-midnight mb-6">
+                14. Contact Us
+              </h2>
+              <p className="text-body md:text-body-lg text-gray-600 mb-4 leading-relaxed">
+                For questions about this Privacy Policy or our data practices, please contact us at:
               </p>
               <p className="text-body font-medium text-midnight">
-                Email: privacy@payai.network
+                legal@payai.network
               </p>
             </div>
           </div>
