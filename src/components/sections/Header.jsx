@@ -153,7 +153,7 @@ export function Header() {
               }}
               className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-relaxed md:leading-relaxed font-medium"
             >
-              Try x402 payments against a live merchant today. Get 100% of your payment refunded.
+              Try x402 payments against a live merchant today.
             </motion.p>
 
             <motion.div
