@@ -7,14 +7,14 @@
  * Configure the upstream sGTM container origin via env var.
  *
  * Example:
- * - STAPE_TARGET_ORIGIN="https://mts.payai.network"
- * - STAPE_TARGET_ORIGIN="mts.payai.network" (scheme omitted; defaults to https)
+ * - STAPE_TARGET_ORIGIN="https://sgtm.example.com"
+ * - STAPE_TARGET_ORIGIN="sgtm.example.com" (scheme omitted; defaults to https)
  */
 function getTarget() {
   const raw = process.env.STAPE_TARGET_ORIGIN?.trim();
   if (!raw) {
     throw new Error(
-      "Missing STAPE_TARGET_ORIGIN env var (expected e.g. https://mts.payai.network).",
+      "Missing STAPE_TARGET_ORIGIN env var (expected e.g. https://sgtm.example.com).",
     );
   }
 
