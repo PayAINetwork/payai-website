@@ -3,8 +3,30 @@
  *
  * Stape guide (Vercel): https://stape.io/helpdesk/documentation/how-to-use-same-origin-through-vercel#step-2-deploy-the-changes-and-test-it
  */
-const TARGET_ORIGIN = "https://mts.payai.network";
-const TARGET_HOST = "mts.payai.network";
+/**
+ * Configure the upstream sGTM container origin via env var.
+ *
+ * Example:
+ * - STAPE_TARGET_ORIGIN="https://mts.payai.network"
+ * - STAPE_TARGET_ORIGIN="mts.payai.network" (scheme omitted; defaults to https)
+ */
+function getTarget() {
+  const raw = process.env.STAPE_TARGET_ORIGIN?.trim();
+  if (!raw) {
+    throw new Error(
+      "Missing STAPE_TARGET_ORIGIN env var (expected e.g. https://mts.payai.network).",
+    );
+  }
+
+  const normalized = raw.startsWith("http://") || raw.startsWith("https://") ? raw : `https://${raw}`;
+
+  try {
+    const url = new URL(normalized);
+    return { origin: url.origin, host: url.host };
+  } catch {
+    throw new Error(`Invalid STAPE_TARGET_ORIGIN value: "${raw}"`);
+  }
+}
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,6 +42,10 @@ const HOP_BY_HOP_HEADERS = new Set([
   "transfer-encoding",
   "upgrade",
 ]);
+
+declare const process: {
+  env: Record<string, string | undefined>;
+};
 
 function getClientIp(req: Request) {
   const forwardedFor = req.headers.get("x-forwarded-for") || "";
@@ -39,7 +65,6 @@ function buildUpstreamHeaders(req: Request) {
   // Stape-recommended overrides/additions
   headers.set("x-forwarded-for", clientIp);
   headers.set("x-from-cdn", "cf-stape");
-  headers.set("host", TARGET_HOST);
   headers.set("cf-connecting-ip", clientIp);
 
   return headers;
@@ -59,8 +84,10 @@ function buildDownstreamHeaders(upstream: Response) {
 
 async function proxyToStape(req: Request) {
   const url = new URL(req.url);
-  const upstreamUrl = new URL(url.pathname + url.search, TARGET_ORIGIN);
+  const { origin: targetOrigin, host: targetHost } = getTarget();
+  const upstreamUrl = new URL(url.pathname + url.search, targetOrigin);
   const headers = buildUpstreamHeaders(req);
+  headers.set("host", targetHost);
 
   const method = req.method.toUpperCase();
   const hasBody = !(method === "GET" || method === "HEAD");
