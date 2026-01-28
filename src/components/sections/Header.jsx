@@ -3,24 +3,60 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Pointer, Book } from "lucide-react";
 import { motion } from "framer-motion";
+import { Play, ArrowRight } from "lucide-react";
 
 // Infinite scrolling partner logos component
 function InfinitePartnerScroll() {
   const partners = [
-    { name: "TGMetrics", path: "/partners/tgmetrics.svg", url: "https://www.tgmetrics.ai/" },
-    { name: "Solana Foundation", path: "/partners/solana-foundation.svg", url: "https://solana.org" },
-    { name: "Coinbase", path: "/partners/coinbase.svg", url: "https://www.coinbase.com" },
+    {
+      name: "TGMetrics",
+      path: "/partners/tgmetrics.svg",
+      url: "https://www.tgmetrics.ai/",
+    },
+    {
+      name: "Solana Foundation",
+      path: "/partners/solana-foundation.svg",
+      url: "https://solana.org",
+    },
+    {
+      name: "Coinbase",
+      path: "/partners/coinbase.svg",
+      url: "https://www.coinbase.com",
+    },
     { name: "x402", path: "/partners/x402.svg", url: "https://x402.org" },
-    { name: "OmniMinds", path: "/partners/omniminds.svg", url: "https://omniminds.ai/" },
-    { name: "Eliza OS", path: "/partners/eliza-os.svg", url: "https://elizaos.ai/" },
-    { name: "Compute", path: "/partners/compute.svg", url: "https://comput3.ai/" },
+    {
+      name: "OmniMinds",
+      path: "/partners/omniminds.svg",
+      url: "https://omniminds.ai/",
+    },
+    {
+      name: "Eliza OS",
+      path: "/partners/eliza-os.svg",
+      url: "https://elizaos.ai/",
+    },
+    {
+      name: "Compute",
+      path: "/partners/compute.svg",
+      url: "https://comput3.ai/",
+    },
     { name: "Tip", path: "/partners/tip.md.svg", url: "https://tip.md" },
     { name: "MC Pay", path: "/partners/MCPay.svg", url: "https://mcpay.tech" },
-    { name: "Oobe Protocol", path: "/partners/OOBE.svg", url: "https://www.oobeprotocol.ai/" },
-    { name: "Solana", path: "/partners/Solana.svg", url: "https://solana.com/" },
-    { name: "Polygon", path: "/partners/Polygon.svg", url: "https://polygon.technology" },
+    {
+      name: "Oobe Protocol",
+      path: "/partners/OOBE.svg",
+      url: "https://www.oobeprotocol.ai/",
+    },
+    {
+      name: "Solana",
+      path: "/partners/Solana.svg",
+      url: "https://solana.com/",
+    },
+    {
+      name: "Polygon",
+      path: "/partners/Polygon.svg",
+      url: "https://polygon.technology",
+    },
     { name: "Sei", path: "/partners/Sei.svg", url: "https://sei.io" },
     { name: "Base", path: "/partners/base.svg", url: "https://base.org" },
     { name: "Avax", path: "/partners/avax.svg", url: "https://avax.network" },
@@ -31,7 +67,7 @@ function InfinitePartnerScroll() {
     <div className="relative w-full overflow-hidden">
       <div className="flex items-center w-max animate-scroll hover:[animation-play-state:paused]">
         <div className="flex gap-8 pr-8">
-          {partners.map((p) => (
+          {partners.map((p) =>
             p.url ? (
               <a
                 key={`a-${p.name}`}
@@ -64,11 +100,11 @@ function InfinitePartnerScroll() {
                   priority={false}
                 />
               </div>
-            )
-          ))}
+            ),
+          )}
         </div>
         <div className="flex gap-8 pr-8" aria-hidden="true">
-          {partners.map((p) => (
+          {partners.map((p) =>
             p.url ? (
               <a
                 key={`b-${p.name}`}
@@ -101,8 +137,8 @@ function InfinitePartnerScroll() {
                   priority={false}
                 />
               </div>
-            )
-          ))}
+            ),
+          )}
         </div>
       </div>
     </div>
@@ -113,10 +149,10 @@ export function Header() {
   return (
     <section
       id="home"
-      className="relative py-8 md:py-16 lg:py-18 overflow-hidden"
+      className="max-h-[704px] bg-gradient-to-b from-white/0 to-white"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
+      <div className="container">
+        <div className="flex flex-col lg:flex-row gap-10 items-center">
           {/* Header text - Takes 8 columns on large screens */}
           <div className="lg:col-span-8">
             <motion.h1
@@ -127,22 +163,13 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-display md:text-display lg:text-6xl font-medium text-[#111729]"
+              className="text-display md:text-display lg:text-[56px] lg:tracking-[-1%] font-medium text-[#111729]"
               style={{ lineHeight: 1.2 }}
             >
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                className="block"
-              >
-                Solana-first, multi-network x402 facilitator.
-              </motion.span>
+              The Fastest Way for{" "}
+              <span className="text-[#1D45D8]">AI Agents and Apps</span> to
+              Transact
             </motion.h1>
-          </div>
-
-          {/* Rest of content - Takes 6 columns on large screens */}
-          <div className="lg:col-span-6 max-w-xl">
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -151,9 +178,10 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-4 md:mt-6 text-lg md:text-body-lg text-gray-600 leading-relaxed md:leading-relaxed font-medium"
+              className="mt-4 text-lg md:text-body text-[#71717A] leading-relaxed md:leading-relaxed"
             >
-              Try x402 payments against a live merchant today.
+              Build AI agents and apps that pay and get paid in real time with
+              x402, multi-chain micropayments powered by Solana.
             </motion.p>
 
             <motion.div
@@ -164,74 +192,72 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-10 md:mt-12 flex flex-row flex-wrap gap-3 md:gap-4"
+              className="mt-8 flex flex-row flex-wrap gap-3"
             >
-
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  className="inline-flex items-center justify-center  bg-[#FFFFFF]/70 text-gray-800 px-6 py-3 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-[#FFFFFF] min-h-[44px]"
+                  className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
                   href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
                   target="_blank"
                 >
-                  <Pointer className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Try x402
+                  Get Started
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Link>
               </motion.div>
-
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-6 py-3 text-body font-normal rounded-full transition-colors min-h-[44px]"
-                  href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_FACILITATOR || "#"}
+                  className="inline-flex items-center justify-center  bg-[#FFFFFF]/70 text-gray-800 px-4 py-2.5 text-sm font-medium border border-[$#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                  href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
                   target="_blank"
                 >
-                  <Book className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Facilitator
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Try x402
                 </Link>
               </motion.div>
-
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.2,
+                ease: [0.25, 0.25, 0, 1],
+              }}
+              className="mt-20 flex flex-row flex-wrap items-center gap-4"
+            >
+              <Image
+                src="/header/companies.png"
+                alt="Companies Image"
+                width={160}
+                height={52}
+                className="w-40 h-auto"
+              />
+              <p className="w-[170px] text-[#0A0A0A]/60">
+                Trusted by{" "}
+                <span className="font-semibold text-[#0A0A0A]">
+                  3000+ companies
+                </span>{" "}
+                of all sizes
+              </p>
             </motion.div>
           </div>
-        </div>
 
-        {/* Partner logos - Infinite horizontal scroll */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.25, 0, 1] }}
-          className="mt-20 md:mt-32 lg:mt-44"
-        >
-          <motion.div
-            initial={{ scale: 0.96, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            whileHover={{ y: -4 }}
-            className="bg-white/25 backdrop-blur-xl border border-white/40 rounded-2xl p-6 md:p-8 shadow-xl w-full max-w-6xl mx-auto overflow-hidden"
-          >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="text-body md:text-body-lg text-gray-600 mb-6 md:mb-8 font-medium text-center"
-            >
-              Ecosystem & Partners
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-            >
-              <InfinitePartnerScroll />
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          <Image
+            src="/header/hero.png"
+            alt="Hero Image"
+            width={600}
+            height={628}
+            className=""
+          />
+        </div>
       </div>
     </section>
   );
