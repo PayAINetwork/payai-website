@@ -51,7 +51,7 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.1, ease: [0.25, 0.25, 0, 1] }}
       className={`sticky top-0 z-50 w-full h-13 py-3 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.1)] ${
-        isScrolled ? "" : "bg-white"
+        isScrolled ? "bg-white/90" : "bg-white"
       }`}
     >
       <div className="container">

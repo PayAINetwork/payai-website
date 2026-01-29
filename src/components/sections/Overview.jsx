@@ -218,7 +218,7 @@ export const Overview = () => {
     <section className="bg-white">
       <div className="container pt-20 pb-8">
         <div className="max-w-[540px]">
-          <h2 className="text-[36px] font-medium">
+          <h2 className="text-[36px] text-[#09090B] font-medium">
             Fast, Scalable, and Ready for Any Use Case
           </h2>
           <p className="text-lg text-[#0A0A0A]/60 mt-4">

@@ -163,7 +163,7 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-display md:text-display lg:text-[56px] lg:tracking-[-1%] font-medium text-[#111729]"
+              className="text-display md:text-display lg:text-[56px] lg:tracking-[-1%] font-medium text-[#09090B]"
               style={{ lineHeight: 1.2 }}
             >
               The Fastest Way for{" "}
