@@ -81,12 +81,9 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                         width="24"
                         height="24"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                       >
-                        <feFlood
-                          flood-opacity="0"
-                          result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
                           in="SourceAlpha"
                           type="matrix"
@@ -148,8 +145,8 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                         y2="19"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#29DD6B" />
-                        <stop offset="1" stop-color="#25AA56" />
+                        <stop stopColor="#29DD6B" />
+                        <stop offset="1" stopColor="#25AA56" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -168,9 +165,9 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                     <path
                       d="M10.5 5.25V10.5H14.4375M18.375 10.5C18.375 11.5342 18.1713 12.5582 17.7756 13.5136C17.3798 14.4691 16.7997 15.3372 16.0685 16.0685C15.3372 16.7997 14.4691 17.3798 13.5136 17.7756C12.5582 18.1713 11.5342 18.375 10.5 18.375C9.46584 18.375 8.44181 18.1713 7.48637 17.7756C6.53093 17.3798 5.6628 16.7997 4.93153 16.0685C4.20027 15.3372 3.6202 14.4691 3.22445 13.5136C2.82869 12.5582 2.625 11.5342 2.625 10.5C2.625 8.41142 3.45469 6.40838 4.93153 4.93153C6.40838 3.45469 8.41142 2.625 10.5 2.625C12.5886 2.625 14.5916 3.45469 16.0685 4.93153C17.5453 6.40838 18.375 8.41142 18.375 10.5Z"
                       stroke="black"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
 
@@ -189,7 +186,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                 target="_blank"
               >
                 Get Started
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
                 className="inline-flex items-center justify-center  bg-[#FFFFFF]/70 text-gray-800 px-4 py-2.5 text-sm font-medium border border-[$#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
