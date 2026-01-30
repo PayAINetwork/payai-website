@@ -54,14 +54,47 @@ export function Navbar() {
         isScrolled ? "bg-white/90" : "bg-white"
       }`}
     >
-      <div className="container">
+      <div className="container-payai">
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="flex items-stretch justify-between"
         >
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 lg:gap-8">
+            {/* Mobile Menu Button */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              whileTap={{ scale: 0.95 }}
+              className="md:hidden flex items-center"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6 text-[#242424]" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6 text-[#242424]" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <motion.div
@@ -74,7 +107,7 @@ export function Navbar() {
                   alt="PayAI Logo"
                   width={118}
                   height={52}
-                  className="h-13 w-auto"
+                  className="h-12 lg:h-13 w-auto"
                   priority={true}
                 />
               </motion.div>
@@ -164,7 +197,7 @@ export function Navbar() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="flex items-center gap-2 lg:gap-3">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -175,7 +208,7 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#71717A] px-4 py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#71717A] p-2 lg:px-4 lg:py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
               >
                 <svg
                   width="16"
@@ -196,7 +229,7 @@ export function Navbar() {
                     </clipPath>
                   </defs>
                 </svg>
-                99.4k
+                <p className="hidden lg:block">99.4k</p>
               </Link>
             </motion.div>
             <motion.div
@@ -209,46 +242,12 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium rounded-lg transition-colors"
+                className="inline-flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-[13px] lg:text-sm font-medium rounded-lg transition-colors"
               >
                 Get Started
               </Link>
             </motion.div>
           </div>
-
-          {/* Mobile Menu Button */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            whileTap={{ scale: 0.95 }}
-            className="md:hidden flex items-center"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <AnimatePresence mode="wait">
-              {isMobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="w-6 h-6 text-gray-900" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="w-6 h-6 text-gray-900" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
         </motion.div>
       </div>
 

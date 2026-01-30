@@ -8,12 +8,14 @@ export default function FAQItem({ question, answer }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full border-b border-[#E4E4E7]  py-5">
+    <div className="w-full border-b border-[#E4E4E7] py-3 lg:py-5">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between text-left"
       >
-        <span className="text-xl font-medium text-[#09090B]">{question}</span>
+        <span className="text-sm lg:text-xl font-medium text-[#09090B]">
+          {question}
+        </span>
         <span className="text-black">{open ? <Minus /> : <Plus />}</span>
       </button>
 
@@ -26,7 +28,9 @@ export default function FAQItem({ question, answer }) {
             transition={{ duration: 0.1, ease: "easeOut" }}
             className="overflow-hidden"
           >
-            <div className="pt-4 text-[#0A0A0A]/60">{answer}</div>
+            <div className="pt-3 lg:pt-4 text-[13px] lg:text-base text-[#0A0A0A]/60">
+              {answer}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -40,21 +40,21 @@ const OVERVIEW_DATA = [
 
 const OverviewCard = ({ src, title, description, badge, isLive }) => {
   return (
-    <div className="flex border-y border-[#E4E4E7] h-[450px]">
+    <div className="flex border-y border-[#E4E4E7] lg:h-[450px]">
       <Image
         src="/features/bg-side.svg"
         alt="background-left"
         width="80"
         height="450"
-        className="h-[450px] object-cover"
+        className="w-4 lg:w-20 h-[450px] object-cover"
       />
-      <div className="grid grid-cols-2 border border-[#E4E4E7] bg-white h-[450px] w-full">
-        <div className="px-8 py-10 w-full flex flex-col justify-between">
-          <div className="flex gap-3">
-            <span className="px-4 py-2 rounded-[10px] border border-[#4D63F6] font-medium text-[#1D45D8] shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
+      <div className="grid gird-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 border border-[#E4E4E7] bg-white lg:h-[450px] w-full">
+        <div className="px-4 lg:px-8 py-8 lg:py-10 w-full flex flex-col justify-between gap-6">
+          <div className="flex gap-2 lg:gap-3">
+            <span className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-md lg:rounded-[10px] border border-[#4D63F6] font-medium text-sm lg:text-base text-[#1D45D8] shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
               {badge}
             </span>
-            <span className="inline-flex items-center gap-2 px-4 rounded-[10px] border border-[#E4E4E7] font-medium text-[#09090B] shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
+            <span className="inline-flex items-center gap-2 px-4 rounded-md lg:rounded-[10px] border border-[#E4E4E7] text-sm lg:text-base font-medium text-[#09090B] shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
               {isLive ? (
                 <>
                   <svg
@@ -177,8 +177,12 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
             </span>
           </div>
           <div>
-            <h3 className="text-[32px] font-medium text-[#09090B]">{title}</h3>
-            <p className="text-[#0A0A0A]/60 mt-2">{description}</p>
+            <h3 className="text-2xl lg:text-[32px] font-medium text-[#09090B]">
+              {title}
+            </h3>
+            <p className="text-sm lg:text-base text-[#0A0A0A]/60 mt-2">
+              {description}
+            </p>
             <div className="mt-8 flex flex-row flex-wrap gap-3">
               <Link
                 className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
@@ -198,8 +202,13 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
             </div>
           </div>
         </div>
-        <div className="relative w-full h-full">
-          <Image src={src} alt={title} fill className="object-cover" />
+        <div className="relative w-full h-auto lg:h-full">
+          <Image
+            src={src}
+            alt={title}
+            fill
+            className="object-cover w-full h-auto lg:h-full "
+          />
         </div>
       </div>
       <Image
@@ -207,7 +216,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
         alt="background-right"
         width="80"
         height="450"
-        className="h-[450px] object-cover"
+        className="w-4 lg:w-20 h-[450px] object-cover"
       />
     </div>
   );
@@ -216,12 +225,12 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
 export const Overview = () => {
   return (
     <section className="bg-white">
-      <div className="container pt-20 pb-8">
+      <div className="container-payai py-8 lg:pt-20 lg:pb-8">
         <div className="max-w-[540px]">
-          <h2 className="text-[36px] text-[#09090B] font-medium">
+          <h2 className="text-2xl lg:text-[36px] text-[#09090B] font-medium">
             Fast, Scalable, and Ready for Any Use Case
           </h2>
-          <p className="text-lg text-[#0A0A0A]/60 mt-4">
+          <p className="text-sm lg:text-lg text-[#0A0A0A]/60 mt-3 lg:mt-4">
             PayAI is a faciltiator for the x402 protocol, enabling merchants to
             accept stablecoin payments and micropayments with just a few lines
             of code.

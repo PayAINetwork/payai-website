@@ -28,12 +28,12 @@ const COMPANIES_DATA = [
 export const Testimonials = () => {
   return (
     <section className="bg-white">
-      <div className="container pt-20 pb-[60px] flex flex-col items-center">
-        <div className="w-[720px] flex flex-col items-center">
-          <h2 className="text-[36px] text-[#09090B]">
+      <div className="container-payai py-8 lg:pt-20 lg:pb-[60px] flex flex-col items-center">
+        <div className="lg:w-[720px] flex flex-col items-center">
+          <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center">
             Real Stories from the x402 Community
           </h2>
-          <p className="text-lg text-[#0A0A0A]/60 text-center mt-4">
+          <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-4">
             Hear from developers, partners, and early adopters who've
             experienced how x402 payments transform their apps and workflows.
           </p>
@@ -47,9 +47,9 @@ export const Testimonials = () => {
           <ArrowRight className="w-5 h-5 ml-2" />
         </Link>
       </div>
-      <div className="container pb-[60px] flex flex-col items-center">
-        <div className="flex flex-row">
-          <div className="px-8 py-18 w-[360px] border border-[#E4E4E7]">
+      <div className="container-payai pb-[60px] flex flex-col items-center">
+        <div className="flex flex-col-reverse lg:flex-row">
+          <div className="p-4 lg:px-8 lg:py-18 lg:w-[360px] border border-[#E4E4E7]">
             <div className="flex items-center gap-1.5">
               <svg
                 width="40"
@@ -64,14 +64,14 @@ export const Testimonials = () => {
                 />
               </svg>
 
-              <h3 className="text-[36px] font-medium">85%</h3>
+              <h3 className="text-2xl lg:text-[36px] font-medium">85%</h3>
             </div>
-            <p className="mt-2 text-[#0A0A0A]/60 text-lg">
+            <p className="mt-2 text-[#0A0A0A]/60 text-sm lg:text-lg">
               Faster Transaction Processing
             </p>
           </div>
-          <div className="px-8 py-10 flex-1 border border-[#E4E4E7]">
-            <p className="text-[#09090B] text-2xl font-medium">
+          <div className="p-4 lg:px-8 lg:py-10 flex-1 border border-[#E4E4E7]">
+            <p className="text-[#09090B] text-base lg:text-2xl font-medium">
               “Integrating x402 cut our transaction latency from 5 seconds to
               under 800 milliseconds. Our AI trading bots now settle payments in
               real time — no queues, no manual triggers”
@@ -86,14 +86,14 @@ export const Testimonials = () => {
               >
                 <line y1="0.5" x2="37" y2="0.5" stroke="#71717A" />
               </svg>
-              <p className=" text-[#71717A] text-lg">
+              <p className=" text-[#71717A] text-sm lg:text-lg">
                 Atlas Labs, AI Automation Platform
               </p>
             </div>
           </div>
         </div>
-        <div className="flex flex-row">
-          <div className="px-8 py-18 w-[360px] border border-[#E4E4E7]">
+        <div className="flex flex-col-reverse lg:flex-row">
+          <div className="p-4 lg:px-8 lg:py-18 lg:w-[360px] border border-[#E4E4E7]">
             <div className="flex items-center gap-1.5">
               <svg
                 width="40"
@@ -108,14 +108,14 @@ export const Testimonials = () => {
                 />
               </svg>
 
-              <h3 className="text-[36px] font-medium">$25K+</h3>
+              <h3 className="text-2xl lg:text-[36px] font-medium">$25K+</h3>
             </div>
-            <p className="mt-2 text-[#0A0A0A]/60 text-lg">
+            <p className="mt-2 text-[#0A0A0A]/60 text-sm lg:text-lg">
               On-chain transactions
             </p>
           </div>
-          <div className="px-8 py-10 flex-1 border border-[#E4E4E7]">
-            <p className="text-[#09090B] text-2xl font-medium">
+          <div className="p-4 lg:px-8 lg:py-10 flex-1 border border-[#E4E4E7]">
+            <p className="text-[#09090B] text-base lg:text-2xl font-medium">
               “With x402, we launched token-based memberships in days, not
               weeks. Over 2,000 users have already unlocked premium AI features
               using our native token”
@@ -130,34 +130,38 @@ export const Testimonials = () => {
               >
                 <line y1="0.5" x2="37" y2="0.5" stroke="#71717A" />
               </svg>
-              <p className=" text-[#71717A] text-lg">
+              <p className=" text-[#71717A] text-sm lg:text-lg">
                 NeuraStream, AI Content Platform
               </p>
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-row">
-          <div className="px-8 py-18 w-[360px] border border-[#E4E4E7]">
+        <div className="w-full flex flex-col lg:flex-row">
+          <div className="py-6 px-9 lg:p-10 lg:w-[360px] flex lg:flex-col items-center lg:items-start gap-4 border border-[#E4E4E7]">
             <Image
               src="/header/companies.png"
               alt="Companies Image"
               width={160}
               height={52}
-              className="w-40 h-auto"
+              className="w-30 lg:w-40 lg:h-full h-auto"
             />
-            <p className="w-[170px] mt-4 text-[#0A0A0A]/60 ">
+            <p className="lg:w-[170px] text-sm lg:text-base text-[#0A0A0A]/60 ">
               Trusted by{" "}
               <span className="font-semibold text-[#0A0A0A]">
-                3000+ companies
+                5000+ companies
               </span>{" "}
               of all sizes
             </p>
           </div>
-          <div className=" flex-1 grid grid-cols-5 border border-[#E4E4E7]">
+          <div className="h-[312px] lg:h-[200px] lg:flex-1 grid grid-cols-2 lg:grid-cols-5 border border-[#E4E4E7]">
             {COMPANIES_DATA.map((company, i) => (
               <div
                 key={i}
-                className="relative w-full flex items-center justify-center"
+                className={`relative w-full flex items-center justify-center ${
+                  i === COMPANIES_DATA.length - 1
+                    ? "col-span-2 lg:col-span-1"
+                    : ""
+                }`}
               >
                 <Image
                   src={company.src}

@@ -36,18 +36,18 @@ const FAQ_DATA = [
 export const FAQ = () => {
   return (
     <section className="bg-white">
-      <div className="container py-20 flex flex-col items-center">
+      <div className="container-payai py-20 flex flex-col items-center">
         <div className="max-w-[600px] flex flex-col items-center">
-          <h2 className="text-[36px] text-[#09090B]">
+          <h2 className="text-2xl lg:text-[36px] text-[#09090B]">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-[#0A0A0A]/60 text-center mt-4">
+          <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
             Explore the most common questions from our community and learn how
             to make the most of x402.
           </p>
         </div>
 
-        <div className="w-full max-w-[800px] mt-[60px] flex flex-col gap-4">
+        <div className="w-full max-w-[800px] mt-6 lg:mt-[60px] flex flex-col">
           {FAQ_DATA.map((item, index) => (
             <FAQItem
               key={index}

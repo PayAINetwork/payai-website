@@ -16,11 +16,13 @@ const PARTNERS_DATA = [
 
 export const Partners = () => {
   return (
-    <section className="pt-20 pb-8 bg-white">
-      <div className="container flex flex-col items-center">
-        <div className="w-[720px] flex flex-col items-center">
-          <h2 className="text-[36px] text-[#09090B]">Ecosystem & Partners</h2>
-          <p className="text-lg text-[#0A0A0A]/60 text-center mt-4">
+    <section className="bg-white">
+      <div className="container-payai p-8 lg:pt-20 lg:pb-8 flex flex-col items-center">
+        <div className="lg:w-[720px] flex flex-col items-center">
+          <h2 className="text-2xl lg:text-[36px] text-[#09090B]">
+            Ecosystem & Partners
+          </h2>
+          <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
             PayAI connects with leading networks and partners to deliver fast,
             reliable, and scalable micropayments across the Web3 ecosystem.
           </p>

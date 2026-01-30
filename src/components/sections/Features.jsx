@@ -539,37 +539,40 @@ export function Features() {
         alt="background-left"
         width="80"
         height="572"
+        className="hidden lg:block"
       />
       <div className="w-full grid grid-cols-1 md:grid-cols-2  border-x border-[#E4E4E7]">
-        <div className="px-[60px] py-20 grid grid-cols-2">
-          <div className="col-span-2">
-            <h2 className="text-[#09090B] font-medium text-[36px]">
+        <div className="px-4 py-8 lg:px-[60px] lg:py-20 grid grid-cols-1 lg:grid-cols-2">
+          <div className="lg:col-span-2">
+            <h2 className="text-[#09090B] font-medium text-2xl lg:text-[36px]">
               PayAI simplifies x402 payments for merchants
             </h2>
-            <p className="text-[#0A0A0A]/60 mt-4">
+            <p className="text-[#0A0A0A]/60 mt-3 lg:mt-4 text-sm lg:text-base">
               PayAI is a facilitator of the x402 payment standard, supporting
               usage-based payments for AI Agents, SaaS, and traditional
               applications. It enables fast and secure payments across digital
               currencies.
             </p>
           </div>
-          <div>
-            <h2 className="text-[#09090B] font-medium text-[36px]">
+          <div className="mt-6 lg:mt-0">
+            <h2 className="text-[#09090B] font-medium text-xl lg:text-[36px]">
               1 Seconds
             </h2>
-            <p className="text-[#0A0A0A]/60 mt-4">
+            <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
               Payments are verified and settled.
             </p>
           </div>
-          <div>
-            <h2 className="text-[#09090B] font-medium text-[36px]">99.9%</h2>
-            <p className="text-[#0A0A0A]/60 mt-4">
+          <div className="mt-3 lg:mt-0">
+            <h2 className="text-[#09090B] font-medium text-xl lg:text-[36px]">
+              99.9%
+            </h2>
+            <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
               Payment Success Rate across supported networks
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-2">
-          <div className="px-8 py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
             <svg
               width="36"
               height="36"
@@ -583,13 +586,15 @@ export function Features() {
               />
             </svg>
 
-            <h3 className="text-lg mt-14">Pay-Per-Request Pricing</h3>
-            <p className="text-[#71717A] mt-2">
+            <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
+              Pay-Per-Request Pricing
+            </h3>
+            <p className="text-sm lg:text-base text-[#71717A] mt-2">
               Charge per request, action, or usage — ideal for APIs, AI agents,
               and real-time services.
             </p>
           </div>
-          <div className="px-8 py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
             <svg
               width="36"
               height="36"
@@ -603,13 +608,15 @@ export function Features() {
               />
             </svg>
 
-            <h3 className="text-lg mt-14">Instant Settlement</h3>
-            <p className="text-[#71717A] mt-2">
+            <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
+              Instant Settlement
+            </h3>
+            <p className="text-sm lg:text-base text-[#71717A] mt-2">
               Payments settle immediately, with no delays or manual
               reconciliation.
             </p>
           </div>
-          <div className="px-8 py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
             <svg
               width="36"
               height="36"
@@ -623,13 +630,15 @@ export function Features() {
               />
             </svg>
 
-            <h3 className="text-lg mt-14">Client & Agent Payments</h3>
-            <p className="text-[#71717A] mt-2">
+            <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
+              Client & Agent Payments
+            </h3>
+            <p className="text-sm lg:text-base text-[#71717A] mt-2">
               Enable seamless payments between clients, apps, and AI agents
               through web flows.
             </p>
           </div>
-          <div className="px-8 py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
             <svg
               width="36"
               height="36"
@@ -643,8 +652,10 @@ export function Features() {
               />
             </svg>
 
-            <h3 className="text-lg mt-14">x402 Standard Adoption</h3>
-            <p className="text-[#71717A] mt-2">
+            <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
+              x402 Standard Adoption
+            </h3>
+            <p className="text-sm lg:text-base text-[#71717A] mt-2">
               Adopt the x402 standard without handling blockchain complexity,
               fees, or settlement logic.
             </p>
@@ -656,6 +667,7 @@ export function Features() {
         alt="background-right"
         width="80"
         height="572"
+        className="hidden lg:block"
       />
     </section>
   );
