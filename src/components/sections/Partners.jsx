@@ -1,4 +1,5 @@
 import Image from "next/image";
+import InfiniteLogoScroll from "@/components/ui/InfiniteLogoScroll";
 
 const PARTNERS_DATA = [
   { src: "/partners/solana-dark.svg", name: "solana" },
@@ -35,7 +36,25 @@ export const Partners = () => {
           className="mt-8"
         />
       </div>
-      <div className="bg-white flex border-y border-[#E4E4E7]">
+      <div className="flex lg:hidden border-y border-[#E4E4E7] w-full overflow-hidden">
+        <Image
+          src="/features/bg-side.svg"
+          alt="background-left"
+          width={16}
+          height={130}
+        />
+        <div className="flex-1 my-auto overflow-hidden min-w-0 border-x border-[#E4E4E7]">
+          <InfiniteLogoScroll data={PARTNERS_DATA} />
+        </div>
+        <Image
+          src="/features/bg-side.svg"
+          alt="background-right"
+          width={16}
+          height={130}
+        />
+      </div>
+
+      <div className="hidden lg:flex border-y bg-white border-[#E4E4E7]">
         <Image
           src="/features/bg-side.svg"
           alt="background-left"
@@ -43,7 +62,7 @@ export const Partners = () => {
           height="256"
           className="h-[256px] object-cover"
         />
-        <div className="w-full flex flex-wrap justify-center items-center gap-6 border-x border-[#E4E4E7]">
+        <div className="flex-1 flex flex-wrap justify-center items-center gap-6 border-x border-[#E4E4E7]">
           {PARTNERS_DATA.map((partner) => (
             <div
               key={partner.name}

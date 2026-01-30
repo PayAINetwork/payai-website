@@ -36,7 +36,7 @@ const FAQ_DATA = [
 export const FAQ = () => {
   return (
     <section className="bg-white">
-      <div className="container-payai py-20 flex flex-col items-center">
+      <div className="container-payai py-8 lg:py-20 flex flex-col items-center">
         <div className="max-w-[600px] flex flex-col items-center">
           <h2 className="text-2xl lg:text-[36px] text-[#09090B]">
             Frequently Asked Questions
