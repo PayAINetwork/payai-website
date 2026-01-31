@@ -229,7 +229,7 @@ export function Navbar() {
                     </clipPath>
                   </defs>
                 </svg>
-                <p className="hidden lg:block">99.4k</p>
+                <p className="hidden lg:block text-[13px] lg:text-sm">99.4k</p>
               </Link>
             </motion.div>
             <motion.div
