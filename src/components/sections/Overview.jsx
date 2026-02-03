@@ -179,16 +179,16 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
             </p>
             <div className="mt-8 flex flex-row flex-wrap gap-3">
               <Link
-                className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-                href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
+                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] ${isLive ? "bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white hover:bg-[#FFFFFF]" : "bg-gray-300 text-gray-500 cursor-not-allowed pointer-events-none"}`}
+                href={isLive ? process.env.NEXT_PUBLIC_FACILITATOR_PAYAI_NETWORK : "#"}
                 target="_blank"
               >
                 Get Started
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
-                className="inline-flex items-center justify-center  bg-[#FFFFFF]/70 text-gray-800 px-4 py-2.5 text-sm font-medium border border-[$#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
-                href={process.env.NEXT_PUBLIC_WEBSITE_URL_X402_ECHO || "#"}
+                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border shadow-[0_1px_2px_rgba(0,0,0,0.1)] ${isLive ? "bg-white text-gray-800 hover:bg-[#FFFFFF]" : "bg-gray-200 text-gray-500 cursor-not-allowed pointer-events-none"}`}
+                href={isLive ? process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK : "#"} 
                 target="_blank"
               >
                 Documentation
@@ -214,7 +214,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
 
 export const Overview = () => {
   return (
-    <section className="bg-white">
+    <section className="bg-white" id="use-cases">
       <div className="container-payai py-8 lg:pt-20 lg:pb-8">
         <div className="max-w-[540px]">
           <h2 className="text-2xl lg:text-[36px] leading-8 lg:leading-[44px] text-[#09090B] font-medium">

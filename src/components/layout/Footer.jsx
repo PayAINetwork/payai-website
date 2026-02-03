@@ -229,6 +229,7 @@ export function Footer() {
               </div>
               <p className="text-[#0A0A0A]">© 2026 PayAI, Inc.</p>
               <div className="hidden lg:flex gap-4 items-center">
+                <Link href={process.env.NEXT_PUBLIC_X_URL || "#"} target="_blank">
                 <svg
                   width="20"
                   height="20"
@@ -253,7 +254,8 @@ export function Footer() {
                     />
                   </g>
                 </svg>
-
+                </Link>
+                <Link href={process.env.NEXT_PUBLIC_LINKEDIN_URL || "#"} target="_blank">
                 <svg
                   width="21"
                   height="20"
@@ -270,7 +272,8 @@ export function Footer() {
                     fill="black"
                   />
                 </svg>
-
+                </Link>
+                <Link href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"} target="_blank">
                 <svg
                   width="18"
                   height="18"
@@ -283,7 +286,8 @@ export function Footer() {
                     fill="black"
                   />
                 </svg>
-
+                </Link>
+                <Link href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#"} target="_blank">
                 <svg
                   width="20"
                   height="20"
@@ -296,6 +300,8 @@ export function Footer() {
                     fill="#09090B"
                   />
                 </svg>
+                </Link>
+                 <Link href={process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK || "#"} target="_blank">
                 <svg
                   width="20"
                   height="20"
@@ -308,6 +314,7 @@ export function Footer() {
                     fill="#09090B"
                   />
                 </svg>
+                </Link>
               </div>
             </div>
           </div>
