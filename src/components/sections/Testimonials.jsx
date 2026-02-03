@@ -148,7 +148,7 @@ export const Testimonials = () => {
             <p className="lg:w-[170px] text-sm lg:text-base text-[#0A0A0A]/60 ">
               Trusted by{" "}
               <span className="font-semibold text-[#0A0A0A]">
-                5000+ companies
+                3000+ companies
               </span>{" "}
               of all sizes
             </p>

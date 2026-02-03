@@ -556,7 +556,7 @@ export function Features() {
           </div>
           <div className="mt-6 lg:mt-0">
             <h2 className="text-[#09090B] font-medium text-xl lg:text-[36px]">
-              1 Seconds
+              1 Second
             </h2>
             <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
               Payments are verified and settled.

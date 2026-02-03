@@ -225,7 +225,7 @@ export function Footer() {
                 >
                   <circle cx="3" cy="3" r="3" fill="#0C8C5F" />
                 </svg>
-                <span className="text-[#0A0A0A]/80">All system normal</span>
+                <span className="text-[#0A0A0A]/80">All systems normal</span>
               </div>
               <p className="text-[#0A0A0A]">© 2026 PayAI, Inc.</p>
               <div className="hidden lg:flex gap-4 items-center">
