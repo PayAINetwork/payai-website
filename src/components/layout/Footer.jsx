@@ -124,10 +124,10 @@ export function Footer() {
               <h4 className="text-sm text-[#71717A]">LEGAL</h4>
               <ul className="space-y-3 text-sm text-[#09090B] mt-6">
                 <li>
-                  <Link href="/privacy">Privacy Policy</Link>
+                  <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li>
-                  <Link href="/terms">Terms</Link>
+                  <Link href="/terms-of-service">Terms</Link>
                 </li>
               </ul>
             </div>
