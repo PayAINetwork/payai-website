@@ -176,7 +176,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
             <div className="mt-8 flex flex-row flex-wrap gap-3">
               <Link
                 className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] ${isLive ? "bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white hover:bg-[#FFFFFF]" : "bg-gray-300 text-gray-500 cursor-not-allowed pointer-events-none"}`}
-                href={isLive ? (process.env.NEXT_PUBLIC_FACILITATOR_PAYAI_NETWORK ?? "#") : "#"}
+                href={isLive ? (process.env.NEXT_PUBLIC_FACILITATOR_URL ?? "#") : "#"}
                 target="_blank"
               >
                 Get Started
@@ -184,7 +184,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
               </Link>
               <Link
                 className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border shadow-[0_1px_2px_rgba(0,0,0,0.1)] ${isLive ? "bg-white text-gray-800 hover:bg-[#FFFFFF]" : "bg-gray-200 text-gray-500 cursor-not-allowed pointer-events-none"}`}
-                href={isLive ? (process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK ?? "#") : "#"} 
+                href={isLive ? (process.env.NEXT_PUBLIC_DOCS_URL ?? "#") : "#"} 
                 target="_blank"
               >
                 Documentation

@@ -59,7 +59,7 @@ export function CTA() {
             >
               <Link
                 className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 lg:px-4 py-2 lg:py-2.5 text-[13px] lg:text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-                href={process.env.NEXT_PUBLIC_FACILITATOR_PAYAI_NETWORK || "#"}
+                href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
                 target="_blank"
               >
                 Get Started
@@ -73,7 +73,7 @@ export function CTA() {
             >
               <Link
                 className="inline-flex items-center justify-center  bg-white text-[#09090B] px-4 lg:px-4 py-2 lg:py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
-                href={process.env.NEXT_PUBLIC_X402_PAYAI_NETWORK || "#"}
+                href={process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL || "#"}
                 target="_blank"
               >
                 <Play className="w-4 lg:w-5 h-4 lg:h-5 mr-2" />
