@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X, Book, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,14 +9,37 @@ import Image from "next/image";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const isManualNavigation = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 20);
+      if (isManualNavigation.current) {
+        return;
+      }
+      const sections = ["home", "features", "services", "use-cases", "blog"];
+      const navbarHeight = 72;
+      const viewportTop = scrollTop + navbarHeight;
+      const threshold = 100;
+
+      let currentActive = "home";
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          if (viewportTop + threshold >= sectionTop) {
+            currentActive = sections[i];
+            break;
+          }
+        }
+      }
+
+      setActiveSection(currentActive);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -38,11 +61,29 @@ export function Navbar() {
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
+
+    isManualNavigation.current = true;
+    setActiveSection(targetId);
+
     smoothScrollTo(targetId);
-    // Close mobile menu if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
+
+    setTimeout(() => {
+      isManualNavigation.current = false;
+      const scrollTop = window.scrollY;
+      const viewportTop = scrollTop + 72 + 150;
+      const sections = ["home", "features", "services", "use-cases", "blog"];
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && viewportTop >= section.offsetTop) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    }, 1500);
   };
 
   return (
@@ -119,65 +160,135 @@ export function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
                   href="#home"
                   onClick={(e) => handleNavClick(e, "home")}
-                  className="bg-white flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
                 >
-                  Home
+                  {activeSection === "home" && (
+                    <motion.div
+                      layoutId="activeNavBg"
+                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">Home</span>
                 </Link>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.25 }}
-              >
-                <Link
-                  href="#services"
-                  onClick={(e) => handleNavClick(e, "services")}
-                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors"
-                >
-                  Services
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.25 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
                   href="#features"
                   onClick={(e) => handleNavClick(e, "features")}
-                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors"
+                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
                 >
-                  Features
+                  {activeSection === "features" && (
+                    <motion.div
+                      layoutId="activeNavBg"
+                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">Features</span>
                 </Link>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
-                  href="#blog"
-                  onClick={(e) => handleNavClick(e, "blog")}
-                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors"
+                  href="#services"
+                  onClick={(e) => handleNavClick(e, "services")}
+                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
                 >
-                  Blog
+                  {activeSection === "services" && (
+                    <motion.div
+                      layoutId="activeNavBg"
+                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">Services</span>
                 </Link>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
                   href="#use-cases"
                   onClick={(e) => handleNavClick(e, "use-cases")}
-                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors"
+                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
                 >
-                  Use Cases
+                  {activeSection === "use-cases" && (
+                    <motion.div
+                      layoutId="activeNavBg"
+                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">Use Cases</span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link
+                  href="#blog"
+                  onClick={(e) => handleNavClick(e, "blog")}
+                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
+                >
+                  {activeSection === "blog" && (
+                    <motion.div
+                      layoutId="activeNavBg"
+                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">Blog</span>
                 </Link>
               </motion.div>
               <motion.div
@@ -187,7 +298,7 @@ export function Navbar() {
               >
                 <Link
                   href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
-                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors hover:text-[#4D63F6]"
                   target="_blank"
                 >
                   Documentation
@@ -270,7 +381,11 @@ export function Navbar() {
                 <Link
                   href="#home"
                   onClick={(e) => handleNavClick(e, "home")}
-                  className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
+                  className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
+                    activeSection === "home"
+                      ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
+                      : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
+                  }`}
                 >
                   Home
                 </Link>
@@ -283,7 +398,11 @@ export function Navbar() {
                 <Link
                   href="#features"
                   onClick={(e) => handleNavClick(e, "features")}
-                  className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
+                  className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
+                    activeSection === "features"
+                      ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
+                      : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
+                  }`}
                 >
                   Features
                 </Link>
@@ -294,11 +413,15 @@ export function Navbar() {
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <Link
-                  href="#testimonials"
-                  onClick={(e) => handleNavClick(e, "testimonials")}
-                  className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
+                  href="#use-cases"
+                  onClick={(e) => handleNavClick(e, "use-cases")}
+                  className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
+                    activeSection === "use-cases"
+                      ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
+                      : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
+                  }`}
                 >
-                  Testimonials
+                  Use Cases
                 </Link>
               </motion.div>
               <motion.div
@@ -309,7 +432,11 @@ export function Navbar() {
                 <Link
                   href="#blog"
                   onClick={(e) => handleNavClick(e, "blog")}
-                  className="block py-2 text-body font-normal text-gray-900 hover:text-gray-600"
+                  className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
+                    activeSection === "blog"
+                      ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
+                      : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
+                  }`}
                 >
                   Blog
                 </Link>
