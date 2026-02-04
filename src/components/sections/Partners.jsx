@@ -18,7 +18,7 @@ const PARTNERS_DATA = [
 export const Partners = () => {
   return (
     <section className="bg-white">
-      <div className="container-payai p-8 lg:pt-20 lg:pb-8 flex flex-col items-center">
+      <div className="container-payai p-8 lg:pt-20 lg:pb-8 flex flex-col items-center h-screen">
         <div className="lg:w-[720px] flex flex-col items-center">
           <h2 className="text-2xl lg:text-[36px] text-[#09090B]">
             Ecosystem & Partners

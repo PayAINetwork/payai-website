@@ -10,7 +10,7 @@ export function Header() {
   return (
     <section
       id="home"
-      className="lg:max-h-[704px] bg-gradient-to-b from-white/0 to-white"
+      className="lg:max-h-[704px] bg-gradient-to-b from-white/0 to-white min-h-screen"
     >
       <div className="container-payai pt-8">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center">

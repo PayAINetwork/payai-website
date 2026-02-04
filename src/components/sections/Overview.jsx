@@ -40,10 +40,10 @@ const OVERVIEW_DATA = [
 
 const OverviewCard = ({ src, title, description, badge, isLive }) => {
   return (
-    <div className="flex border-y border-b-0 border-[#E4E4E7] lg:h-[450px]">
+    <div className="flex border-y border-b-0 border-[#E4E4E7] h-screen">
       <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y" />
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 divide-y divide-[#E4E4E7] lg:border border-[#E4E4E7] bg-white lg:h-[450px] w-full">
-        <div className="px-4 lg:px-8 py-8 lg:py-10 w-full flex flex-col justify-between gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 divide-y divide-[#E4E4E7] lg:border border-[#E4E4E7] bg-white h-screen w-full">
+        <div className="px-4 lg:px-8 py-8 lg:py-10 w-full flex flex-col justify-center gap-20">
           <div className="flex gap-2 lg:gap-3">
             <span className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-md lg:rounded-[10px] border border-[#4D63F6] font-medium text-sm lg:text-base text-[#1D45D8] shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
               {badge}
@@ -192,14 +192,13 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
             </div>
           </div>
         </div>
-        <div className=" w-full h-min lg:h-full border-x">
+        <div className="flex justify-center items-center border-x">
           <Image
             src={src}
             alt={title}
             width={600}
             height={450}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="w-full h-auto lg:h-full object-cover"
+            className="w-full h-auto object-cover"
           />
         </div>
       </div>

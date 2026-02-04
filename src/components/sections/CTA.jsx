@@ -8,11 +8,8 @@ import { Play, ArrowRight } from "lucide-react";
 
 export function CTA() {
   return (
-    <section
-      id="cta"
-      className="max-w-[1000rem] mx-auto p-4 lg:p-8 max-h-[644px]"
-    >
-      <div className="bg-white rounded-2xl lg:rounded-4xl p-6 lg:p-10 flex gap-10 items-center">
+    <section id="cta" className="max-w-[1000rem] mx-auto p-4 lg:p-8 h-screen">
+      <div className="bg-white h-full rounded-2xl lg:rounded-4xl p-6 lg:p-10 flex gap-10 items-center">
         <div className="flex flex-col">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
