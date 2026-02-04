@@ -186,9 +186,9 @@ export function Navbar() {
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
                 <Link
-                  href="#documentation"
-                  onClick={(e) => handleNavClick(e, "documentation")}
+                  href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                   className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors"
+                  target="_blank"
                 >
                   Documentation
                 </Link>

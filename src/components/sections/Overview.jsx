@@ -210,7 +210,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
 
 export const Overview = () => {
   return (
-    <section className="bg-white" id="use-cases">
+    <section className="bg-white" id="services">
       <div className="container-payai py-8 lg:pt-20 lg:pb-8">
         <div className="max-w-[540px]">
           <h2 className="text-2xl lg:text-[36px] leading-8 lg:leading-[44px] text-[#09090B] font-medium">

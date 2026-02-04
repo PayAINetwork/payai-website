@@ -27,7 +27,7 @@ const COMPANIES_DATA = [
 
 export const Testimonials = () => {
   return (
-    <section className="bg-white">
+    <section className="bg-white" id="use-cases">
       <div className="container-payai py-8 lg:pt-20 lg:pb-[60px] flex flex-col items-center">
         <div className="lg:w-[720px] flex flex-col items-center">
           <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center">

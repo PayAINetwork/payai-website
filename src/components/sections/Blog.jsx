@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 export const Blog = () => {
   return (
-    <section className="bg-white py-8 lg:py-20">
+    <section className="bg-white py-8 lg:py-20" id="blog">
       <div className="container-payai flex flex-col items-center">
         <div className="container-payai py-8 lg:pt-20 lg:pb-[60px] flex flex-col items-center">
           <div className="lg:w-[720px] flex flex-col items-center">
