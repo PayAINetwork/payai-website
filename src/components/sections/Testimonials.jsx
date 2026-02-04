@@ -40,7 +40,7 @@ export const Testimonials = () => {
         </div>
         <Link
           className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 mt-4 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-          href={"#"}
+          href="/built-with-payai"
           target="_blank"
         >
           See All Testimonial
