@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Book, Github } from "lucide-react";
+import { Menu, X, Book, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -321,12 +321,12 @@ export function Navbar() {
                   transition={{ duration: 0.3, delay: 0.3 }}
                 >
                   <Link
-                    href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
+                    className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
+                    href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
                     target="_blank"
-                    className="inline-flex items-center justify-center bg-white/70 text-gray-800 px-5 py-2 text-body font-normal border border-gray-200 rounded-full transition-colors hover:bg-white w-full"
                   >
-                    <Github className="w-4 h-4 mr-2" />
-                    Github
+                    Facilitator
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </motion.div>
                 <motion.div
@@ -335,11 +335,11 @@ export function Navbar() {
                   transition={{ duration: 0.3, delay: 0.35 }}
                 >
                   <Link
+                    className="inline-flex items-center justify-center  bg-[#FFFFFF]/70 text-[#09090B] px-3 py-2  lg:px-4 lg:py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
                     href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                     target="_blank"
-                    className="inline-flex items-center justify-center bg-primary hover:bg-primary-700 text-white px-5 py-2 text-body font-normal rounded-full transition-colors w-full"
                   >
-                    <Book className="w-4 h-4 mr-2" />
+                    <Book className="w-5 h-5 mr-2 text-[#09090B]" />
                     Docs
                   </Link>
                 </motion.div>
