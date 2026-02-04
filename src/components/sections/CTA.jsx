@@ -72,7 +72,7 @@ export function CTA() {
               transition={{ duration: 0.2 }}
             >
               <Link
-                className="inline-flex items-center justify-center  bg-white text-[#09090B] px-4 lg:px-4 py-2 lg:py-2.5 text-sm font-medium border border-[$#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                className="inline-flex items-center justify-center  bg-white text-[#09090B] px-4 lg:px-4 py-2 lg:py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
                 href={process.env.NEXT_PUBLIC_X402_PAYAI_NETWORK || "#"}
                 target="_blank"
               >
