@@ -42,7 +42,7 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
   return (
     <div className="flex border-y border-b-0 border-[#E4E4E7] lg:h-[450px]">
       <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y" />
-      <div className="grid gird-cols-1 lg:grid-cols-2 lg:grid-rows-1 divide-y divide-[#E4E4E7] lg:border border-[#E4E4E7] bg-white lg:h-[450px] w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 divide-y divide-[#E4E4E7] lg:border border-[#E4E4E7] bg-white lg:h-[450px] w-full">
         <div className="px-4 lg:px-8 py-8 lg:py-10 w-full flex flex-col justify-between gap-6">
           <div className="flex gap-2 lg:gap-3">
             <span className="px-3 lg:px-4 py-1.5 lg:py-2 rounded-md lg:rounded-[10px] border border-[#4D63F6] font-medium text-sm lg:text-base text-[#1D45D8] shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
@@ -217,7 +217,7 @@ export const Overview = () => {
             Fast, Scalable, and Ready for Any Use Case
           </h2>
           <p className="text-sm lg:text-lg text-[#0A0A0A]/60 mt-3 lg:mt-4">
-            PayAI is a faciltiator for the x402 protocol, enabling merchants to
+            PayAI is a facilitator for the x402 protocol, enabling merchants to
             accept stablecoin payments and micropayments with just a few lines
             of code.
           </p>

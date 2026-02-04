@@ -58,13 +58,13 @@ export const Blog = () => {
         </div>
       </div>
       <div className="border-y border-[#EDEDED]">
-        <div className="container-payai grid grid-c lg:grid-cols-3 border-x border-[#E4E4E7] bg-white lg:h-[360px] w-full">
+        <div className="container-payai grid grid-cols-1 lg:grid-cols-3 border-x border-[#E4E4E7] bg-white lg:h-[360px] w-full">
           <div className="px-4 lg:px-8 py-6 lg:py-10 w-full flex flex-col justify-between border border-[#EDEDED] gap-8">
             <div>
               <span className="text-[#1D45D8] font-medium">
                 Insights / Fintech
               </span>
-              <h4 className="text-2xl lg:text-[28px] lf:leading-[40px] font-medium text-[#09090B] mt-2 lg:mt-3 line-clamp-2">
+              <h4 className="text-2xl lg:text-[28px] lg:leading-[40px] font-medium text-[#09090B] mt-2 lg:mt-3 line-clamp-2">
                 Building Real-Time Payment Systems for AI Agents
               </h4>
               <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6 line-clamp-3">
