@@ -4,23 +4,23 @@ import Image from "next/image";
 
 const COMPANIES_DATA = [
   {
-    src: "/testimonials/teller-dark.png",
+    src: "/testimonials/teller-dark.webp",
     name: "teller",
   },
   {
-    src: "/testimonials/gamma-dark.png",
+    src: "/testimonials/gamma-dark.webp",
     name: "gamma",
   },
   {
-    src: "/testimonials/zapier-dark.png",
+    src: "/testimonials/zapier-dark.webp",
     name: "zapier",
   },
   {
-    src: "/testimonials/fanatics-dark.png",
+    src: "/testimonials/fanatics-dark.webp",
     name: "fanatics",
   },
   {
-    src: "/testimonials/continue-dark.png",
+    src: "/testimonials/continue-dark.webp",
     name: "continue",
   },
 ];
