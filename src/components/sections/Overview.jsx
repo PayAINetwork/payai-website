@@ -58,13 +58,41 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="7"
+                      fill="url(#paint0_linear_558_22991)"
+                    >
+                      <animate
+                        attributeName="r"
+                        from="7"
+                        to="11"
+                        dur="1.8s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        from="1"
+                        to="0"
+                        dur="1.8s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
                     <g filter="url(#filter0_dd_558_22991)">
                       <circle
                         cx="12"
                         cy="12"
                         r="7"
                         fill="url(#paint0_linear_558_22991)"
+                      >
+                      <animate
+                        attributeName="r"
+                        values="6.8;7;6.8"
+                        dur="1.8s"
+                        repeatCount="indefinite"
                       />
+                      </circle>
                       <circle cx="12" cy="12" r="7.5" stroke="white" />
                     </g>
                     <defs>
@@ -88,10 +116,8 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                           radius="2"
                           operator="dilate"
                           in="SourceAlpha"
-                          result="effect1_dropShadow_558_22991"
                         />
                         <feOffset />
-                        <feComposite in2="hardAlpha" operator="out" />
                         <feColorMatrix
                           type="matrix"
                           values="0 0 0 0 0.0862745 0 0 0 0 0.639216 0 0 0 0 0.290196 0 0 0 0.1 0"
@@ -99,36 +125,6 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
                         <feBlend
                           mode="normal"
                           in2="BackgroundImageFix"
-                          result="effect1_dropShadow_558_22991"
-                        />
-                        <feColorMatrix
-                          in="SourceAlpha"
-                          type="matrix"
-                          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                          result="hardAlpha"
-                        />
-                        <feMorphology
-                          radius="4"
-                          operator="dilate"
-                          in="SourceAlpha"
-                          result="effect2_dropShadow_558_22991"
-                        />
-                        <feOffset />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix
-                          type="matrix"
-                          values="0 0 0 0 0.0862745 0 0 0 0 0.639216 0 0 0 0 0.290196 0 0 0 0.2 0"
-                        />
-                        <feBlend
-                          mode="normal"
-                          in2="effect1_dropShadow_558_22991"
-                          result="effect2_dropShadow_558_22991"
-                        />
-                        <feBlend
-                          mode="normal"
-                          in="SourceGraphic"
-                          in2="effect2_dropShadow_558_22991"
-                          result="shape"
                         />
                       </filter>
                       <linearGradient

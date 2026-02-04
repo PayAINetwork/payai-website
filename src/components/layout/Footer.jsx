@@ -217,14 +217,94 @@ export function Footer() {
               </div>
               <div className="flex gap-2 items-center px-3 py-2 bg-[#F0F0F0]/50 rounded-full">
                 <svg
-                  width="6"
-                  height="6"
-                  viewBox="0 0 6 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="3" cy="3" r="3" fill="#0C8C5F" />
-                </svg>
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="7"
+                      fill="url(#paint0_linear_558_22991)"
+                    >
+                      <animate
+                        attributeName="r"
+                        from="7"
+                        to="11"
+                        dur="1.8s"
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        from="1"
+                        to="0"
+                        dur="1.8s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                    <g filter="url(#filter0_dd_558_22991)">
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="7"
+                        fill="url(#paint0_linear_558_22991)"
+                      >
+                        <animate
+                          attributeName="r"
+                          values="6.8;7;6.8"
+                          dur="1.8s"
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                      <circle cx="12" cy="12" r="7.5" stroke="white" />
+                    </g>
+                    <defs>
+                      <filter
+                        id="filter0_dd_558_22991"
+                        x="0"
+                        y="0"
+                        width="24"
+                        height="24"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                      >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix
+                          in="SourceAlpha"
+                          type="matrix"
+                          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                          result="hardAlpha"
+                        />
+                        <feMorphology
+                          radius="2"
+                          operator="dilate"
+                          in="SourceAlpha"
+                        />
+                        <feOffset />
+                        <feColorMatrix
+                          type="matrix"
+                          values="0 0 0 0 0.0862745 0 0 0 0 0.639216 0 0 0 0 0.290196 0 0 0 0.1 0"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in2="BackgroundImageFix"
+                        />
+                      </filter>
+                      <linearGradient
+                        id="paint0_linear_558_22991"
+                        x1="12"
+                        y1="5"
+                        x2="12"
+                        y2="19"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#29DD6B" />
+                        <stop offset="1" stopColor="#25AA56" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
                 <span className="text-[#0A0A0A]/80">All systems normal</span>
               </div>
               <p className="text-[#0A0A0A]">© 2026 PayAI, Inc.</p>
