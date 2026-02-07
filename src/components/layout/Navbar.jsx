@@ -91,7 +91,7 @@ export function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.1, ease: [0.25, 0.25, 0, 1] }}
-      className={`sticky top-0 z-50 w-full h-13 py-3 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.1)] ${
+      className={`sticky top-0 z-50 w-full h-13 py-3 md:py-0 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.1)] ${
         isScrolled ? "bg-white/90" : "bg-white"
       }`}
     >
@@ -141,7 +141,7 @@ export function Navbar() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center space-x-2 max-h-13"
+                className="flex items-center space-x-2 max-h-13 md:py-3"
               >
                 <Image
                   src="/horizontal-lockup.svg"
@@ -155,23 +155,24 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-2 bg-[#F5F5F5] p-1.5 rounded-xl">
+            <nav className="hidden md:flex items-center space-x-2 h-full">
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="h-full"
               >
                 <Link
                   href="#home"
                   onClick={(e) => handleNavClick(e, "home")}
-                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "home" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
                 >
                   {activeSection === "home" && (
                     <motion.div
                       layoutId="activeNavBg"
-                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -189,16 +190,17 @@ export function Navbar() {
                 transition={{ duration: 0.4, delay: 0.25 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="h-full"
               >
                 <Link
                   href="#features"
                   onClick={(e) => handleNavClick(e, "features")}
-                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "features" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
                 >
                   {activeSection === "features" && (
                     <motion.div
                       layoutId="activeNavBg"
-                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -216,16 +218,17 @@ export function Navbar() {
                 transition={{ duration: 0.4, delay: 0.25 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="h-full"
               >
                 <Link
                   href="#services"
                   onClick={(e) => handleNavClick(e, "services")}
-                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "services" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
                 >
                   {activeSection === "services" && (
                     <motion.div
                       layoutId="activeNavBg"
-                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -243,16 +246,17 @@ export function Navbar() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="h-full"
               >
                 <Link
                   href="#use-cases"
                   onClick={(e) => handleNavClick(e, "use-cases")}
-                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "use-cases" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
                 >
                   {activeSection === "use-cases" && (
                     <motion.div
                       layoutId="activeNavBg"
-                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -270,16 +274,17 @@ export function Navbar() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="h-full"
               >
                 <Link
                   href="#blog"
                   onClick={(e) => handleNavClick(e, "blog")}
-                  className="relative flex items-center px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-all duration-300 rounded-lg"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "blog" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
                 >
                   {activeSection === "blog" && (
                     <motion.div
                       layoutId="activeNavBg"
-                      className="absolute inset-0 bg-white rounded-lg shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -295,10 +300,11 @@ export function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
+                className="h-full"
               >
                 <Link
                   href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
-                  className="px-4 py-2 text-sm font-medium text-[#0A0A0A] transition-colors hover:text-[#4D63F6]"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "docs" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
                   target="_blank"
                 >
                   Documentation
@@ -353,7 +359,7 @@ export function Navbar() {
               <Link
                 href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
                 target="_blank"
-                className="inline-flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-[13px] lg:text-sm font-medium rounded-lg transition-colors"
+                className="inline-flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#4D63F6_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-[13px] lg:text-sm font-medium rounded-lg transition-colors"
               >
                 Get Started
               </Link>
@@ -377,6 +383,7 @@ export function Navbar() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
+                className="h-full"
               >
                 <Link
                   href="#home"
@@ -394,6 +401,7 @@ export function Navbar() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.15 }}
+                className="h-full"
               >
                 <Link
                   href="#features"
@@ -411,6 +419,7 @@ export function Navbar() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
+                className="h-full"
               >
                 <Link
                   href="#use-cases"
@@ -428,6 +437,7 @@ export function Navbar() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.25 }}
+                className="h-full"
               >
                 <Link
                   href="#blog"
@@ -448,7 +458,7 @@ export function Navbar() {
                   transition={{ duration: 0.3, delay: 0.3 }}
                 >
                   <Link
-                    className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
+                    className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#4D63F6_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
                     href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
                     target="_blank"
                   >
