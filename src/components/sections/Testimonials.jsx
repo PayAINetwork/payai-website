@@ -153,7 +153,7 @@ export const Testimonials = () => {
               of all sizes
             </p>
           </div>
-          <div className="h-[312px] lg:h-[200px] lg:flex-1 grid grid-cols-2 lg:grid-cols-5 border border-[#E4E4E7]">
+          <div className="hidden h-[312px] lg:h-[200px] lg:flex-1 sm:grid grid-cols-2 lg:grid-cols-5 border border-[#E4E4E7]">
             {COMPANIES_DATA.map((company, i) => (
               <div
                 key={i}
