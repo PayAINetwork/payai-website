@@ -8,7 +8,6 @@ export const Blog = async () => {
     limit: 4,
     include: ["authors", "tags"],
   });
-  console.log(posts)
 
   const [featured, ...others] = posts;
 
