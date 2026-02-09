@@ -167,7 +167,7 @@ export function Navbar() {
                 <Link
                   href="#home"
                   onClick={(e) => handleNavClick(e, "home")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "home" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "home" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
                   {activeSection === "home" && (
                     <motion.div
@@ -195,7 +195,7 @@ export function Navbar() {
                 <Link
                   href="#features"
                   onClick={(e) => handleNavClick(e, "features")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "features" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "features" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
                   {activeSection === "features" && (
                     <motion.div
@@ -223,7 +223,7 @@ export function Navbar() {
                 <Link
                   href="#services"
                   onClick={(e) => handleNavClick(e, "services")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "services" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "services" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
                   {activeSection === "services" && (
                     <motion.div
@@ -251,7 +251,7 @@ export function Navbar() {
                 <Link
                   href="#use-cases"
                   onClick={(e) => handleNavClick(e, "use-cases")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "use-cases" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "use-cases" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
                   {activeSection === "use-cases" && (
                     <motion.div
@@ -279,7 +279,7 @@ export function Navbar() {
                 <Link
                   href="#blog"
                   onClick={(e) => handleNavClick(e, "blog")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "blog" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "blog" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
                   {activeSection === "blog" && (
                     <motion.div
@@ -304,7 +304,7 @@ export function Navbar() {
               >
                 <Link
                   href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium  transition-all duration-300 ${activeSection === "docs" ? "text-[#4D63F6]" : "text-[#0A0A0A]"}`}
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "docs" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                   target="_blank"
                 >
                   Documentation
