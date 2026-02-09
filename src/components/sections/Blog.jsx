@@ -8,6 +8,7 @@ export const Blog = async () => {
     limit: 4,
     include: ["authors", "tags"],
   });
+  console.log(posts)
 
   const [featured, ...others] = posts;
 
@@ -34,12 +35,19 @@ export const Blog = async () => {
                   <span className="text-sm lg:text-base text-[#1D45D8] font-medium">
                     {featured.tags?.[0]?.name}
                   </span>
-                  <h3 className="text-2xl lg:text-[32px] lg:leading-[46px] font-medium text-[#09090B] mt-2 lg:mt-3">
-                    {featured.title}
-                  </h3>
+                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${featured.slug}`}>
+                    <h3 className="text-2xl lg:text-[32px] lg:leading-[46px] font-medium text-[#09090B] mt-2 lg:mt-3">
+                      {featured.title}
+                    </h3>
+                  </Link>
                   <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6">
                     {featured.excerpt}
                   </p>
+                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${featured.slug}`}>
+                    <p className="text-sm lg:text-base text-[#1D45D8] mt-3 lg:mt-6">
+                      Read More
+                    </p>
+                  </Link>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -91,12 +99,19 @@ export const Blog = async () => {
                   <span className="text-[#1D45D8] font-medium">
                     {post.tags?.[0]?.name}
                   </span>
-                  <h4 className="text-2xl lg:text-[28px] lg:leading-[40px] font-medium text-[#09090B] mt-2 lg:mt-3 line-clamp-2">
-                    {post.title}
-                  </h4>
+                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${post.slug}`}>
+                    <h4 className="text-2xl lg:text-[28px] lg:leading-[40px] font-medium text-[#09090B] mt-2 lg:mt-3 line-clamp-2">
+                      {post.title}
+                    </h4>
+                  </Link>
                   <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6 line-clamp-3">
                     {post.excerpt}
                   </p>
+                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${post.slug}`}>
+                    <p className="text-sm lg:text-base text-[#1D45D8] mt-3 lg:mt-6">
+                      Read More
+                    </p>
+                  </Link>
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="text-[13px] lg:text-sm text-[#0A0A0A]/60">
