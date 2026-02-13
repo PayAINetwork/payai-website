@@ -43,7 +43,7 @@ export const Testimonials = () => {
           href="/built-with-payai"
           target="_blank"
         >
-          See All Testimonial
+          See All Testimonials
           <ArrowRight className="w-5 h-5 ml-2" />
         </Link>
       </div>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ghost } from "@/lib/ghost";
 
+const blogBase = (process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "").replace(/\/+$/, "");
+
 export const Blog = async () => {
   const posts = await ghost.posts.browse({
     limit: 4,
@@ -34,7 +36,7 @@ export const Blog = async () => {
                   <span className="text-sm lg:text-base text-[#1D45D8] font-medium">
                     {featured.tags?.[0]?.name}
                   </span>
-                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${featured.slug}`}>
+                  <Link target="_blank" href={`${blogBase}/${featured.slug}`}>
                     <h3 className="text-2xl lg:text-[32px] lg:leading-[46px] font-medium text-[#09090B] mt-2 lg:mt-3">
                       {featured.title}
                     </h3>
@@ -42,7 +44,7 @@ export const Blog = async () => {
                   <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6">
                     {featured.excerpt}
                   </p>
-                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${featured.slug}`}>
+                  <Link target="_blank" href={`${blogBase}/${featured.slug}`}>
                     <p className="text-sm lg:text-base text-[#1D45D8] mt-3 lg:mt-6">
                       Read More
                     </p>
@@ -98,7 +100,7 @@ export const Blog = async () => {
                   <span className="text-[#1D45D8] font-medium">
                     {post.tags?.[0]?.name}
                   </span>
-                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${post.slug}`}>
+                  <Link target="_blank" href={`${blogBase}/${post.slug}`}>
                     <h4 className="text-2xl lg:text-[28px] lg:leading-[40px] font-medium text-[#09090B] mt-2 lg:mt-3 line-clamp-2">
                       {post.title}
                     </h4>
@@ -106,7 +108,7 @@ export const Blog = async () => {
                   <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6 line-clamp-3">
                     {post.excerpt}
                   </p>
-                  <Link target="_blank" href={`${process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK}${post.slug}`}>
+                  <Link target="_blank" href={`${blogBase}/${post.slug}`}>
                     <p className="text-sm lg:text-base text-[#1D45D8] mt-3 lg:mt-6">
                       Read More
                     </p>
@@ -130,7 +132,7 @@ export const Blog = async () => {
       <div className="container-payai flex justify-center mt-8 lg:mt-16">
         <Link
           className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-          href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "#"}
+          href={blogBase || "#"}
           target="_blank"
         >
           Read Blog

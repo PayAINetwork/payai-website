@@ -307,7 +307,7 @@ export function Navbar() {
                   className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "docs" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                   target="_blank"
                 >
-                  Documentation
+                  Docs
                 </Link>
               </motion.div>
             </nav>
@@ -357,7 +357,7 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={process.env.NEXT_PUBLIC_DOCS_URL || "#"}
+                href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
                 target="_blank"
                 className="inline-flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#4D63F6_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-[13px] lg:text-sm font-medium rounded-lg transition-colors"
               >

@@ -1,59 +1,9 @@
 "use client";
 
-import {
-  Twitter,
-  Github,
-  Linkedin,
-  Send,
-  BookText,
-  ChartCandlestick,
-} from "lucide-react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
-  const socialLinks = [
-    {
-      title: "Twitter",
-      href: process.env.NEXT_PUBLIC_TWITTER_URL,
-      Icon: Twitter,
-    },
-    {
-      title: "LinkedIn",
-      href: process.env.NEXT_PUBLIC_LINKEDIN_URL,
-      Icon: Linkedin,
-    },
-    {
-      title: "Telegram",
-      href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
-      Icon: Send,
-    },
-    { title: "Github", href: process.env.NEXT_PUBLIC_GITHUB_URL, Icon: Github },
-    { title: "Docs", href: process.env.NEXT_PUBLIC_DOCS_URL, Icon: BookText },
-    {
-      title: "DexScreener",
-      href: process.env.NEXT_PUBLIC_DEXSCREENER_URL,
-      Icon: ChartCandlestick,
-    },
-  ];
-
-  const developerLinks = [
-    { label: "Documentation", href: process.env.NEXT_PUBLIC_DOCS_URL },
-    { label: "GitHub", href: process.env.NEXT_PUBLIC_GITHUB_URL },
-  ].filter((l) => !!l.href);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
   return (
     <footer className="bg-white">
       <div className="border-y border-[#EDEDED]">

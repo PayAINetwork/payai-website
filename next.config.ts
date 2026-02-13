@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "blog.payai.network",
         pathname: "/content/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "payai.ghost.io",
+        pathname: "/content/images/**",
+      },
     ],
   },
 };
