@@ -22,10 +22,10 @@ export const Blog = async ({ showPrimary = true }) => {
         <div className="container-payai py-8 lg:pt-0 lg:pb-[60px] flex flex-col items-center">
           <div className="lg:w-[720px] flex flex-col items-center">
             <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center">
-              Blog
+              Case Studies
             </h2>
             <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
-              Read up on updates, tutorials, and actionable tips.
+              Read case studies about projects built with PayAI.
             </p>
           </div>
         </div>
@@ -138,7 +138,7 @@ export const Blog = async ({ showPrimary = true }) => {
           href={blogBase || "#"}
           target="_blank"
         >
-          Read Blog
+          View All Case Studies
           <ArrowRight className="w-5 h-5 ml-2" />
         </Link>
       </div>
