@@ -3,9 +3,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ghost } from "@/lib/ghost";
 
-const blogBase = (process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "").replace(/\/+$/, "");
+const blogBase = (process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "").replace(
+  /\/+$/,
+  "",
+);
 
-export const Blog = async () => {
+export const Blog = async ({ showPrimary = true }) => {
   const posts = await ghost.posts.browse({
     limit: 4,
     include: ["authors", "tags"],
@@ -16,7 +19,7 @@ export const Blog = async () => {
   return (
     <section className="bg-white py-8 lg:py-20" id="blog">
       <div className="container-payai flex flex-col items-center">
-        <div className="container-payai py-8 lg:pt-20 lg:pb-[60px] flex flex-col items-center">
+        <div className="container-payai py-8 lg:pt-0 lg:pb-[60px] flex flex-col items-center">
           <div className="lg:w-[720px] flex flex-col items-center">
             <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center">
               Blog
@@ -28,7 +31,7 @@ export const Blog = async () => {
         </div>
       </div>
       <div className="space-y-6 lg:space-y-[60px]">
-        {featured && (
+        {featured && showPrimary && (
           <div className="border-y border-[#EDEDED]">
             <div className="container-payai grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 border-x border-[#E4E4E7] bg-white lg:h-[520px] w-full">
               <div className="border border-[#EDEDED]   px-4 lg:px-8 py-6 lg:py-10 w-full flex flex-col justify-between gap-8">
