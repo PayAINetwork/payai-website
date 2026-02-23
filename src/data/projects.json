@@ -1,0 +1,98 @@
+[
+    {
+        "logo": "/projects/near-protocol.jpg",
+        "name": "NEAR Protocol",
+        "description": "A scalable Layer-1 blockchain focused on developer-friendly tools and fast, low-cost transactions.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Blockchain"
+    },
+    {
+        "logo": "/projects/wurk-fun.jpg",
+        "name": "WURK.FUN",
+        "description": "WURK.FUN integrates PayAI to power on-demand payments between users and AI agents with usage-based pricing.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "AI Agents"
+    },
+    {
+        "logo": "/projects/pixel-games-ai.jpg",
+        "name": "Pixel Games AI",
+        "description": "Pixel Games AI uses PayAI to support instant in-game transactions and AI-driven gameplay services.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Gaming"
+    },
+    {
+        "logo": "/projects/x402-monopoly.jpg",
+        "name": "x402 Monopoly",
+        "description": "x402 Monopoly showcases pay-per-action payments in a game environment using the x402 standard.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Gaming"
+    },
+    {
+        "logo": "/projects/predict.jpg",
+        "name": "Predict",
+        "description": "Predict integrates PayAI to enable real-time and usage-based payments for prediction and AI insights.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "AI Agents"
+    },
+    {
+        "logo": "/projects/earnfi.jpg",
+        "name": "EarnFi",
+        "description": "EarnFi is a Web3 rewards platform that helps users discover, track, and manage on-chain incentives.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Blockchain"
+    },
+    {
+        "logo": "/projects/skale.jpg",
+        "name": "Skale",
+        "description": "Skale is a high-performance blockchain network built for scalable and gas-free decentralized applications.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Blockchain"
+    },
+    {
+        "logo": "/projects/tgmetrics.jpg",
+        "name": "tgmetrics",
+        "description": "tgmetrics integrates PayAI to power on-demand analytics and insights for Telegram communities.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Analytics"
+    },
+    {
+        "logo": "/projects/nofa-ai.jpg",
+        "name": "NOFA AI",
+        "description": "Powered by PayAI, agents transact and settle strategies in real time. Advanced trading capabilities are now accessible to everyone.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "Trading"
+    },
+    {
+        "logo": "/projects/t54-ai.jpg",
+        "name": "t54 AI",
+        "description": "t54 ai provides AI tools and services for data-driven applications.With PayAI, each AI request can be monetized individually.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "AI Agents"
+    },
+    {
+        "logo": "/projects/dira-network.jpg",
+        "name": "DIRA Network",
+        "description": "DIRA Network is a decentralized network for AI and data interoperability. PayAI supports automated payments.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "AI Agents"
+    },
+    {
+        "logo": "/projects/aimo-network.jpg",
+        "name": "AiMo Network",
+        "description": "AiMo Network enables AI-native services and autonomous agents.PayAI powers usage-based payments between agents and applications.",
+        "websiteUrl": "",
+        "twitterUrl": "",
+        "category": "AI Agents"
+    }
+]
