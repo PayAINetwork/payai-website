@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const HeroBuiltWithPayai = () => {
   return (
-    <section className="container-payai bg-white border-y border-[#E4E4E7]">
+    <section id="home" className="container-payai bg-white border-y border-[#E4E4E7]">
       <div className="grid grid-cols-2 divide-x divide-[#E4E4E7] border-x border-[#E4E4E7]">
         <div className="px-8 py-20">
           <h1 className="text-2xl lg:text-[56px] leading-[66px] lg:tracking-[-1%] font-medium text-[#09090B]">

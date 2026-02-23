@@ -90,7 +90,7 @@ const PROJECTS_DATA = [
 
 export const Projects = () => {
   return (
-    <section className="bg-white">
+    <section id="features" className="bg-white">
       <div className="container-payai p-8 lg:py-[60px] flex items-center justify-center">
         <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center font-medium leading-[2.75rem] max-w-[612px]">
           Discover projects across AI, Web2, and Web3.

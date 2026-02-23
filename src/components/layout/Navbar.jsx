@@ -209,63 +209,7 @@ export function Navbar() {
                       }}
                     />
                   )}
-                  <span className="relative z-10">Features</span>
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.25 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="h-full"
-              >
-                <Link
-                  href="#services"
-                  onClick={(e) => handleNavClick(e, "services")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "services" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
-                >
-                  {activeSection === "services" && (
-                    <motion.div
-                      layoutId="activeNavBg"
-                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">Services</span>
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="h-full"
-              >
-                <Link
-                  href="#use-cases"
-                  onClick={(e) => handleNavClick(e, "use-cases")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "use-cases" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
-                >
-                  {activeSection === "use-cases" && (
-                    <motion.div
-                      layoutId="activeNavBg"
-                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">Use Cases</span>
+                  <span className="relative z-10">Projects</span>
                 </Link>
               </motion.div>
               <motion.div
@@ -412,25 +356,7 @@ export function Navbar() {
                       : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
                   }`}
                 >
-                  Features
-                </Link>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                className="h-full"
-              >
-                <Link
-                  href="#use-cases"
-                  onClick={(e) => handleNavClick(e, "use-cases")}
-                  className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
-                    activeSection === "use-cases"
-                      ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
-                      : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  Use Cases
+                  Projects
                 </Link>
               </motion.div>
               <motion.div
