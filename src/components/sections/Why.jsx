@@ -13,12 +13,12 @@ export const Why = () => {
           </p>
         </div>
       </div>
-      <div className="flex border-y border-[#EDEDED]">
-        <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y"></div>
+      <div className="flex border-y border-[#E4E4E7]">
+        <div className="w-5 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y"></div>
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-4 border-x border-[#E4E4E7]">
-          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
-              $1.5M+
+              $35M+
             </span>
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
               Transactions Processed
@@ -28,7 +28,7 @@ export const Why = () => {
               platforms.
             </p>
           </div>
-          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
               {"<1s"}
             </span>
@@ -40,7 +40,7 @@ export const Why = () => {
               autonomous interactions.
             </p>
           </div>
-          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
               10+
             </span>
@@ -52,7 +52,7 @@ export const Why = () => {
               deployment.
             </p>
           </div>
-          <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
+          <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
               250+
             </span>
@@ -65,7 +65,7 @@ export const Why = () => {
             </p>
           </div>
         </div>
-        <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y"></div>
+        <div className="w-5 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y"></div>
       </div>
     </section>
   );
