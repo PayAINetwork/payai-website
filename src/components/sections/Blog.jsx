@@ -10,11 +10,21 @@ const blogBase = (process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "").replace(
 
 export const Blog = async ({ showPrimary = true }) => {
   const posts = await ghost.posts.browse({
-    limit: 4,
+    limit: 'all',
     include: ["authors", "tags"],
+    filter: "tag:case-studies",
+    order: "published_at DESC",
   });
 
-  const [featured, ...others] = posts;
+  const caseStudies = posts.length > 0
+    ? posts
+    : (await ghost.posts.browse({
+      limit: 'all',
+      include: ["authors", "tags"],
+    })).filter(post => post.tags.some(tag => tag.name.toLowerCase() === "case-studies" || tag.slug === "case-studies"));
+
+  // const [featured, ...others] = posts;
+  const [featured, ...others] = caseStudies;
 
   return (
     <section className="bg-white py-8 lg:py-20" id="blog">
