@@ -78,8 +78,8 @@ export const Projects = () => {
         </h2>
       </div>
 
-      <div className="container-payai border-y bg-white border-[#E4E4E7]">
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 border-x  border-[#E4E4E7]">
+      <div className="bg-white border-y border-[#E4E4E7] flex justify-center items-center">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 border-x  border-[#E4E4E7] max-w-[100rem] mx-4 sm:mx-6 lg:mx-20  bg-white w-full">
           <div className="lg:col-span-3 flex flex-col lg:flex-row border-b border-b-[#E4E4E7]">
             <div className="flex-1 flex px-8 py-6 border-r border-[#E4E4E7]">
               <input

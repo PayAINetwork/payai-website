@@ -2,8 +2,8 @@ import LogoGrid from "../ui/LogoGrid";
 
 export const HeroBuiltWithPayai = () => {
   return (
-    <section id="home" className="container-payai bg-white border-y border-[#E4E4E7]">
-      <div className="grid md:grid-cols-2 grid-cols-1 border-x border-[#E4E4E7]">
+    <section id="home" className="bg-white border-y border-[#E4E4E7] flex justify-center items-center">
+      <div className="grid md:grid-cols-2 grid-cols-1 border-x border-[#E4E4E7] max-w-[100rem] mx-4 sm:mx-6 lg:mx-20  bg-white w-full">
         
         <div className="order-1 relative w-full min-h-[400px] md:order-2 overflow-hidden border-l-0 md:border-l border-[#E4E4E7]">
           <LogoGrid/>
