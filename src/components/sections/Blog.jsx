@@ -9,26 +9,37 @@ const blogBase = (process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "").replace(
 );
 
 export const Blog = async () => {
-  let posts = await ghost.posts.browse({
-    limit: "all",
-    include: ["authors", "tags"],
-    filter: "tag:case-studies",
-    order: "published_at desc"
-  });
+  let posts = [];
 
-  if (posts.length === 0) {
-    const allPosts = await ghost.posts.browse({
+  try {
+    posts = await ghost.posts.browse({
       limit: "all",
       include: ["authors", "tags"],
+      filter: "tag:case-studies",
       order: "published_at desc"
     });
+  } catch (error) {
+    console.error('Ghost API filter failed, trying fallback:', error);
+  }
 
-    posts = allPosts.filter(post => 
-      post.tags?.some(tag => 
-        tag.slug === "case-studies" || 
-        tag.name.toLowerCase() === "case studies"
-      )
-    );
+  if (posts.length === 0) {
+    try {
+      const allPosts = await ghost.posts.browse({
+        limit: "all",
+        include: ["authors", "tags"],
+        order: "published_at desc"
+      });
+
+      posts = allPosts.filter(post => 
+        post.tags?.some(tag => 
+          tag.slug === "case-studies" || 
+          tag.name.toLowerCase() === "case studies"
+        )
+      );
+    } catch (fallbackError) {
+      console.error('Ghost API fallback also failed:', fallbackError);
+      posts = [];
+    }
   }
 
   const [featured, ...others] = posts;
