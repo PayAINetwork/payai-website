@@ -105,6 +105,8 @@ export const Projects = () => {
             </div>
             <div className="flex-1 flex px-8 py-6">
               <select 
+                aria-label="Filter projects by category"
+                id="category-filter"
                 className="flex-1 text-sm lg:text-base text-[#09090B] bg-transparent focus:ring-transparent cursor-pointer"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
@@ -128,6 +130,7 @@ export const Projects = () => {
                 Try adjusting your search or filter to find what you're looking for.
               </p>
               <button 
+                aria-label="clear filters"
                 onClick={() => { setSearch(""); setSelectedCategory("All Projects"); }}
                 className="mt-4 text-sm text-[#4D63F6] font-medium hover:underline"
               >
@@ -203,6 +206,7 @@ export const Projects = () => {
           {totalPages > 1 && (
           <div className="flex items-center gap-1">
             <button
+              aria-label="Previous page"
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               className={`w-10 h-10 flex items-center justify-center border border-[#E4E4E7] rounded-md 
@@ -217,6 +221,7 @@ export const Projects = () => {
             </button>
             {getPageNumbers().map((page, index) => (
               <button
+                aria-label="page number"
                 key={index}
                 onClick={() => typeof page === 'number' && setCurrentPage(page)}
                 disabled={page === '...'}
@@ -232,6 +237,7 @@ export const Projects = () => {
               </button>
             ))}
             <button
+              aria-label="next page"
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
               className={`w-10 h-10 flex items-center justify-center border border-[#E4E4E7] rounded-md 

@@ -107,6 +107,7 @@ export const Blog = async () => {
                         src={featured.feature_image}
                         alt={featured.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover"
                       />
                     )}

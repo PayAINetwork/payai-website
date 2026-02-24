@@ -259,6 +259,7 @@ export function Footer() {
                 <Link
                   href={process.env.NEXT_PUBLIC_X_URL || "#"}
                   target="_blank"
+                  aria-label="PayAI X"
                 >
                   <svg
                     width="20"
@@ -288,6 +289,7 @@ export function Footer() {
                 <Link
                   href={process.env.NEXT_PUBLIC_LINKEDIN_URL || "#"}
                   target="_blank"
+                  aria-label="PayAI LinkedIn"
                 >
                   <svg
                     width="21"
@@ -309,6 +311,7 @@ export function Footer() {
                 <Link
                   href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
                   target="_blank"
+                  aria-label="PayAI GitHub"
                 >
                   <svg
                     width="18"
@@ -326,6 +329,7 @@ export function Footer() {
                 <Link
                   href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#"}
                   target="_blank"
+                  aria-label="PayAI Telegram"
                 >
                   <svg
                     width="20"
@@ -343,6 +347,7 @@ export function Footer() {
                 <Link
                   href={process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK || "#"}
                   target="_blank"
+                  aria-label="PayAI Docs"
                 >
                   <svg
                     width="20"
