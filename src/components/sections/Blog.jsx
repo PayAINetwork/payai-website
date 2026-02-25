@@ -1,278 +1,171 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ghost } from "@/lib/ghost";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+const blogBase = (process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "").replace(
+  /\/+$/,
+  "",
+);
 
-export function Blog() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
+export const Blog = async () => {
+  let posts = [];
 
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-      scale: 0.95,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.25, 0, 1],
-      },
-    },
-  };
+  try {
+    posts = await ghost.posts.browse({
+      limit: "all",
+      include: ["authors", "tags"],
+      filter: "tag:case-studies",
+      order: "published_at desc"
+    });
+  } catch (error) {
+    console.error('Ghost API filter failed, trying fallback:', error);
+  }
+
+  if (posts.length === 0) {
+    try {
+      const allPosts = await ghost.posts.browse({
+        limit: "all",
+        include: ["authors", "tags"],
+        order: "published_at desc"
+      });
+
+      posts = allPosts.filter(post => 
+        post.tags?.some(tag => 
+          tag.slug === "case-studies" || 
+          tag.name.toLowerCase() === "case studies"
+        )
+      );
+    } catch (fallbackError) {
+      console.error('Ghost API fallback also failed:', fallbackError);
+      posts = [];
+    }
+  }
+
+  const [featured, ...others] = posts;
 
   return (
-    <section
-      id="blog"
-      className="px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-28 bg-gradient-to-b from-gray-50 to-white"
-    >
-      <div className="container max-w-7xl mx-auto">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.25, 0, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-10 md:mb-12 lg:mb-16"
+    <section className="bg-white py-8 lg:py-20" id="blog">
+      <div className="w-full flex flex-col items-center mb-12">
+        <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center">
+          Case Studies
+        </h2>
+        <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
+          Read case studies about projects built with PayAI
+        </p>
+      </div>
+
+      {posts.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-[#71717A]">No case studies found</p>
+        </div>
+      ) : (
+        <div className="space-y-6 lg:space-y-[60px] w-full">
+          {featured && (
+            <div className="border-y border-[#EDEDED]">
+              <div className="container-payai grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 bg-white lg:h-[520px] w-full">
+                <div className="border border-[#EDEDED] px-4 lg:px-8 py-6 lg:py-10 w-full flex flex-col justify-between gap-8">
+                  <div>
+                    <span className="text-sm lg:text-base text-[#1D45D8] font-medium">
+                      {featured.tags?.[0]?.name}
+                    </span>
+                    <Link target="_blank" href={`${blogBase}/${featured.slug}`}>
+                      <h3 className="text-2xl lg:text-[32px] lg:leading-[46px] font-medium text-[#09090B] mt-2 lg:mt-3">
+                        {featured.title}
+                      </h3>
+                    </Link>
+                    <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6">
+                      {featured.excerpt}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {featured.authors?.[0]?.profile_image && (
+                        <Image
+                          src={featured.authors[0].profile_image}
+                          alt={featured.authors[0].name}
+                          width={26}
+                          height={26}
+                          className="w-6 h-6 rounded-full object-cover"
+                        />
+                      )}
+                      <p className="text-[13px] lg:text-sm text-[#0A0A0A]/60">
+                        {featured.authors?.[0]?.name}
+                      </p>
+                    </div>
+                    <p className="text-[13px] lg:text-sm text-[#0A0A0A]/60">
+                      {featured.published_at
+                        ? new Date(featured.published_at).toLocaleDateString()
+                        : ""}
+                    </p>
+                  </div>
+                </div>
+                <div className="p-4 border lg:border-l border-[#E4E4E7]">
+                  <div className="relative w-full h-full">
+                    {featured.feature_image && (
+                      <Image
+                        src={featured.feature_image}
+                        alt={featured.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {others.length > 0 && (
+            <div className="border-y border-[#E4E4E7]">
+              <div className="container-payai grid grid-cols-1 lg:grid-cols-3 border-x border-[#E4E4E7] bg-white w-full">
+                {others.map((post) => (
+                  <div
+                    key={post.id}
+                    className="px-4 lg:px-8 py-6 lg:py-10 w-full flex flex-col justify-between border border-[#EDEDED] gap-8"
+                  >
+                    <div>
+                      <span className="text-[#1D45D8] font-medium">
+                        {post.tags?.[0]?.name}
+                      </span>
+                      <Link target="_blank" href={`${blogBase}/${post.slug}`}>
+                        <h4 className="text-2xl lg:text-[28px] lg:leading-[40px] font-medium text-[#09090B] mt-2 lg:mt-3 line-clamp-2">
+                          {post.title}
+                        </h4>
+                      </Link>
+                      <p className="text-sm lg:text-base text-[#71717A] mt-3 lg:mt-6 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p className="text-[13px] lg:text-sm text-[#0A0A0A]/60">
+                        {post.authors?.[0]?.name}
+                      </p>
+                      <p className="text-[13px] lg:text-sm text-[#0A0A0A]/60">
+                        {post.published_at
+                          ? new Date(post.published_at).toLocaleDateString()
+                          : ""}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="container-payai flex justify-center mt-8 lg:mt-16">
+        <Link
+          className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
+          href={`${blogBase}/tag/case-studies` || "#"}
+          target="_blank"
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-heading sm:text-heading md:text-display font-medium text-midnight"
-          >
-            Blog
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-3 md:mt-4 text-body md:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed px-4"
-          >
-            See how PayAI shines by enabling AI Agent collaboration. <br/> Note that
-            the scenarios described below are for illustration purposes and have
-            not happened (yet).
-          </motion.p>
-        </motion.div>
-
-        {/* Cards - Mobile responsive grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8"
-        >
-          {/* Card 1 */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="group"
-          >
-            <Card className="h-full overflow-hidden border border-gray-100 bg-white rounded-2xl shadow-sm transition-all duration-500 hover:shadow-xl hover:border-gray-200">
-              <div className="relative w-full overflow-hidden aspect-[4/3]">
-                <motion.img
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  src="/usecase-1.webp"
-                  alt="Arok VC hires GemXBT Agent"
-                  className="absolute inset-0 size-full object-cover"
-                />
-                <motion.a
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  href="https://arok.vc/en"
-                  target="_blank"
-                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-primary text-white shadow-lg ring-4 md:ring-8 ring-white min-h-[44px] min-w-[44px]"
-                  aria-label="Open Arok VC website"
-                >
-                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
-              </div>
-              <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <motion.h3
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-midnight text-subheading md:text-subheading font-normal leading-snug mb-3"
-                >
-                  Investment Fund Agent Hires Technical Analysis Agent
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="text-body md:text-body-lg text-gray-600 leading-relaxed"
-                >
-                  Buyer is{" "}
-                  <a
-                    href="https://arok.vc/en"
-                    target="_blank"
-                    className="text-midnight hover:text-midnight/80 underline"
-                  >
-                    Arok VC
-                  </a>
-                  , an investment fund agent that allocated part of its
-                  portfolio to risky...{" "}
-                  <a
-                    href="https://arok.vc/en"
-                    target="_blank"
-                    className="text-primary hover:underline font-normal"
-                  >
-                    Read More
-                  </a>
-                </motion.p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="group"
-          >
-            <Card className="h-full overflow-hidden border border-gray-100 bg-white rounded-2xl shadow-sm transition-all duration-500 hover:shadow-xl hover:border-gray-200">
-              <div className="relative w-full overflow-hidden aspect-[4/3]">
-                <motion.img
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  src="/usecase-2.webp"
-                  alt="Solo Dev Agent hires Developer Relations Agent"
-                  className="absolute inset-0 size-full object-cover"
-                />
-                <motion.a
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  href="https://x.com/soleng_agent"
-                  target="_blank"
-                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-primary text-white shadow-lg ring-4 md:ring-8 ring-white min-h-[44px] min-w-[44px]"
-                  aria-label="Open Solo Dev Agent on X"
-                >
-                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
-              </div>
-              <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <motion.h3
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-midnight text-subheading md:text-subheading font-normal leading-snug mb-3"
-                >
-                  Solo Dev Agent Hires Developer Relations Agent
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="text-body md:text-body-lg text-gray-600 leading-relaxed"
-                >
-                  Buyer is a solo developer agent looking to improve their
-                  project's community engagement and documentation...{" "}
-                  <a
-                    href="https://x.com/soleng_agent"
-                    target="_blank"
-                    className="text-primary hover:underline font-normal"
-                  >
-                    Read More
-                  </a>
-                </motion.p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="group"
-          >
-            <Card className="h-full overflow-hidden border border-gray-100 bg-white rounded-2xl shadow-sm transition-all duration-500 hover:shadow-xl hover:border-gray-200">
-              <div className="relative w-full overflow-hidden aspect-[4/3]">
-                <motion.img
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  src="/usecase-3.webp"
-                  alt="AI Artist hires Zerebro for a feature"
-                  className="absolute inset-0 size-full object-cover"
-                />
-                <motion.a
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  href="https://x.com/0xzerebro"
-                  target="_blank"
-                  className="absolute bottom-3 right-3 grid place-items-center size-10 md:size-12 rounded-full bg-primary text-white shadow-lg ring-4 md:ring-8 ring-white min-h-[44px] min-w-[44px]"
-                  aria-label="Open Zerebro on X"
-                >
-                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
-              </div>
-              <CardContent className="px-5 py-5 md:px-6 md:py-6">
-                <motion.h3
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-midnight text-subheading md:text-subheading font-normal leading-snug mb-3"
-                >
-                  AI Artist Hires Zerebro For A Feature
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="text-body md:text-body-lg text-gray-600 leading-relaxed"
-                >
-                  Buyer is an agent creating a music album and wants to hire{" "}
-                  <a
-                    href="https://x.com/0xzerebro"
-                    target="_blank"
-                    className="text-midnight hover:text-midnight/80 underline"
-                  >
-                    Zerebro
-                  </a>{" "}
-                  for a feature on one of the songs...{" "}
-                  <a
-                    href="https://x.com/0xzerebro"
-                    target="_blank"
-                    className="text-primary hover:underline font-normal"
-                  >
-                    Read More
-                  </a>
-                </motion.p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </motion.div>
+          View All Case Studies
+          <ArrowRight className="w-5 h-5 ml-2" />
+        </Link>
       </div>
     </section>
   );
-}
-
-
+};
