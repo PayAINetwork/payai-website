@@ -6,19 +6,21 @@ import { div } from "framer-motion/client";
 const OVERVIEW_DATA = [
   {
     src: "/overview/facilitator.svg",
-    title: "Start Selling Immediately",
+    title: "Start selling immediately",
     description:
       "Accept payments from $0.01 to $1,000,000. Perfect for all use cases. Whether it is microtransactions for AI Agents, one-time sales for digital content, or recurring sales for SaaS.",
     isLive: true,
     badge: "x402 Facilitator",
+    url: process.env.NEXT_PUBLIC_FACILITATOR_URL,
   },
   {
     src: "/overview/merchant.svg",
-    title: "Test Payments Against a Live Merchant",
+    title: "Test payments against a live merchant",
     description:
       "Run real x402 transactions against a live merchant—for free. Get 100% of your test payment refunded, with PayAI covering the network fees.",
     isLive: true,
     badge: "x402 Echo Merchant",
+    url: process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL,
   },
   {
     src: "/overview/payment.svg",
@@ -30,7 +32,7 @@ const OVERVIEW_DATA = [
   },
   {
     src: "/overview/token.svg",
-    title: "Cross-Network Payments",
+    title: "Cross-network payments",
     description:
       "Get paid no matter where your customers are. More networks, more sales.",
     isLive: false,
@@ -38,7 +40,7 @@ const OVERVIEW_DATA = [
   },
 ];
 
-const OverviewCard = ({ src, title, description, badge, isLive }) => {
+const OverviewCard = ({ src, title, description, badge, isLive, url }) => {
   return (
     <div className="flex border-y border-b-0 border-[#E4E4E7] h-screen">
       <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y" />
@@ -167,16 +169,16 @@ const OverviewCard = ({ src, title, description, badge, isLive }) => {
             </span>
           </div>
           <div>
-            <h3 className="text-2xl lg:text-[32px] font-medium text-[#09090B]">
+            <h3 className="text-2xl lg:text-[56px] lg:leading-[1.1] font-medium text-[#09090B]">
               {title}
             </h3>
-            <p className="text-sm lg:text-base text-[#0A0A0A]/60 mt-2">
+            <p className="text-sm lg:text-xl lg:leading-relaxed text-[#0A0A0A]/60 mt-3 lg:mt-6">
               {description}
             </p>
             <div className="mt-8 flex flex-row flex-wrap gap-3">
               <Link
                 className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] ${isLive ? "bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white hover:bg-[#FFFFFF]" : "bg-gray-300 text-gray-500 cursor-not-allowed pointer-events-none"}`}
-                href={isLive ? (process.env.NEXT_PUBLIC_FACILITATOR_URL ?? "#") : "#"}
+                href={isLive ? (url ?? "#") : "#"}
                 target="_blank"
               >
                 Get Started
@@ -231,6 +233,7 @@ export const Overview = () => {
             description={item.description}
             badge={item.badge}
             isLive={item.isLive}
+            url={item.url}
           />
         ))}
       </div>

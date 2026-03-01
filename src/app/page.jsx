@@ -9,20 +9,23 @@ import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
 import { Blog } from "@/components/sections/Blog";
 import { Footer } from "@/components/layout/Footer";
+import { ShuffledLogosProvider } from "@/context/ShuffledLogosContext";
 
 export default function Page() {
   return (
-    <div>
-      <Navbar />
-      <Header />
-      <Features />
-      <Partners />
-      <Overview />
-      <Testimonials />
-      <FAQ />
-      <Blog />
-      <CTA />
-      <Footer />
-    </div>
+    <ShuffledLogosProvider>
+      <div>
+        <Navbar />
+        <Header />
+        <Features />
+        <Partners />
+        <Overview />
+        <Testimonials />
+        <FAQ />
+        <Blog />
+        <CTA />
+        <Footer />
+      </div>
+    </ShuffledLogosProvider>
   );
 }

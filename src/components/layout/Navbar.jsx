@@ -6,17 +6,33 @@ import { Menu, X, Book, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-export function Navbar() {
+function formatCount(n) {
+  if (n == null) return null;
+  if (n >= 1000) return `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k`;
+  return String(n);
+}
+
+export function Navbar({ activePage = "home" }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState(activePage);
+  const [followerCount, setFollowerCount] = useState(null);
   const isManualNavigation = useRef(false);
+
+  useEffect(() => {
+    fetch("/api/github-stats")
+      .then((res) => res.ok && res.json())
+      .then((data) => {
+        if (data?.followers != null) setFollowerCount(data.followers);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 20);
-      if (isManualNavigation.current) {
+      if (activePage !== "home" || isManualNavigation.current) {
         return;
       }
       const sections = ["home", "features", "services", "use-cases", "blog"];
@@ -43,7 +59,7 @@ export function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [activePage]);
 
   // Custom smooth scroll function with navbar offset
   const smoothScrollTo = (targetId) => {
@@ -165,8 +181,8 @@ export function Navbar() {
                 className="h-full"
               >
                 <Link
-                  href="#home"
-                  onClick={(e) => handleNavClick(e, "home")}
+                  href={activePage === "home" ? "#home" : "/"}
+                  onClick={activePage === "home" ? (e) => handleNavClick(e, "home") : undefined}
                   className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "home" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
                   {activeSection === "home" && (
@@ -193,11 +209,10 @@ export function Navbar() {
                 className="h-full"
               >
                 <Link
-                  href="#features"
-                  onClick={(e) => handleNavClick(e, "features")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "features" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
+                  href="/ecosystem"
+                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "projects" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
                 >
-                  {activeSection === "features" && (
+                  {activeSection === "projects" && (
                     <motion.div
                       layoutId="activeNavBg"
                       className="absolute inset-0 border-b-2 border-[#4D63F6]"
@@ -209,7 +224,7 @@ export function Navbar() {
                       }}
                     />
                   )}
-                  <span className="relative z-10">Projects</span>
+                  <span className="relative z-10">Ecosystem</span>
                 </Link>
               </motion.div>
               <motion.div
@@ -221,22 +236,10 @@ export function Navbar() {
                 className="h-full"
               >
                 <Link
-                  href="#blog"
-                  onClick={(e) => handleNavClick(e, "blog")}
-                  className={`relative h-full flex items-center px-4 text-sm font-medium ${activeSection === "blog" ? "text-[#4D63F6] hover:bg-blue-50" : "text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"}`}
+                  href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "#"}
+                  target="_blank"
+                  className="relative h-full flex items-center px-4 text-sm font-medium text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"
                 >
-                  {activeSection === "blog" && (
-                    <motion.div
-                      layoutId="activeNavBg"
-                      className="absolute inset-0 border-b-2 border-[#4D63F6]"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
                   <span className="relative z-10">Blog</span>
                 </Link>
               </motion.div>
@@ -290,7 +293,11 @@ export function Navbar() {
                     </clipPath>
                   </defs>
                 </svg>
-                <p className="hidden lg:block text-[13px] lg:text-sm">99.4k</p>
+                {followerCount != null && (
+                  <p className="hidden lg:block text-[13px] lg:text-sm">
+                    {formatCount(followerCount)}
+                  </p>
+                )}
               </Link>
             </motion.div>
             <motion.div
@@ -330,8 +337,8 @@ export function Navbar() {
                 className="h-full"
               >
                 <Link
-                  href="#home"
-                  onClick={(e) => handleNavClick(e, "home")}
+                  href={activePage === "home" ? "#home" : "/"}
+                  onClick={activePage === "home" ? (e) => handleNavClick(e, "home") : undefined}
                   className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
                     activeSection === "home"
                       ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
@@ -348,15 +355,14 @@ export function Navbar() {
                 className="h-full"
               >
                 <Link
-                  href="#features"
-                  onClick={(e) => handleNavClick(e, "features")}
+                  href="/ecosystem"
                   className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
-                    activeSection === "features"
+                    activeSection === "projects"
                       ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
                       : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
                   }`}
                 >
-                  Projects
+                  Ecosystem
                 </Link>
               </motion.div>
               <motion.div
@@ -366,13 +372,9 @@ export function Navbar() {
                 className="h-full"
               >
                 <Link
-                  href="#blog"
-                  onClick={(e) => handleNavClick(e, "blog")}
-                  className={`block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 ${
-                    activeSection === "blog"
-                      ? "bg-[#F5F5F5] text-[#4D63F6] font-medium"
-                      : "text-gray-900 hover:text-gray-600 hover:bg-gray-50"
-                  }`}
+                  href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "#"}
+                  target="_blank"
+                  className="block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 text-gray-900 hover:text-gray-600 hover:bg-gray-50"
                 >
                   Blog
                 </Link>

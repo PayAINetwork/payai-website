@@ -1,31 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-
-const COMPANIES_DATA = [
-  {
-    src: "/testimonials/teller-dark.webp",
-    name: "teller",
-  },
-  {
-    src: "/testimonials/gamma-dark.webp",
-    name: "gamma",
-  },
-  {
-    src: "/testimonials/zapier-dark.webp",
-    name: "zapier",
-  },
-  {
-    src: "/testimonials/fanatics-dark.webp",
-    name: "fanatics",
-  },
-  {
-    src: "/testimonials/continue-dark.webp",
-    name: "continue",
-  },
-];
+import { useShuffledLogos } from "@/context/ShuffledLogosContext";
 
 export const Testimonials = () => {
+  const shuffledLogos = useShuffledLogos();
   return (
     <section className="bg-white" id="use-cases">
       <div className="container-payai py-8 lg:pt-20 lg:pb-[60px] flex flex-col items-center">
@@ -38,14 +19,6 @@ export const Testimonials = () => {
             experienced how x402 payments transform their apps and workflows.
           </p>
         </div>
-        <Link
-          className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 mt-4 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-          href="/built-with-payai"
-          target="_blank"
-        >
-          See All Testimonials
-          <ArrowRight className="w-5 h-5 ml-2" />
-        </Link>
       </div>
       <div className="container-payai pb-[60px] flex flex-col items-center">
         <div className="flex flex-col-reverse lg:flex-row">
@@ -136,42 +109,53 @@ export const Testimonials = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-col lg:flex-row">
-          <div className="py-6 px-9 lg:p-10 lg:w-[360px] flex lg:flex-col items-center lg:items-start gap-4 border border-[#E4E4E7]">
-            <Image
-              src="/header/companies.png"
-              alt="Companies Image"
-              width={160}
-              height={52}
-              className="w-30 lg:w-40 lg:h-full h-auto"
-            />
-            <p className="lg:w-[170px] text-sm lg:text-base text-[#0A0A0A]/60 ">
+        <Link href="/ecosystem" className="w-full flex flex-col lg:flex-row group cursor-pointer">
+          <div className="py-6 px-9 lg:p-10 lg:w-[360px] flex lg:flex-col items-center lg:items-start gap-4 border border-[#E4E4E7] transition-colors group-hover:bg-[#F8F9FF]">
+            <div className="flex items-center -space-x-2">
+              {shuffledLogos.map((project) => (
+                <Image
+                  key={project.name}
+                  src={project.logo}
+                  alt={project.name}
+                  width={40}
+                  height={40}
+                  className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-white object-cover"
+                />
+              ))}
+            </div>
+            <p className="lg:w-[170px] text-sm lg:text-base text-[#0A0A0A]/60 transition-colors group-hover:text-[#1D45D8]">
               Trusted by{" "}
-              <span className="font-semibold text-[#0A0A0A]">
-                3000+ companies
+              <span className="font-semibold text-[#0A0A0A] transition-colors group-hover:text-[#1D45D8]">
+                1000+ companies
               </span>{" "}
               of all sizes
             </p>
           </div>
-          <div className="hidden h-[312px] lg:h-[200px] lg:flex-1 sm:grid grid-cols-2 lg:grid-cols-5 border border-[#E4E4E7]">
-            {COMPANIES_DATA.map((company, i) => (
+          <div className="hidden lg:flex-1 sm:grid grid-cols-2 lg:grid-cols-5 border border-[#E4E4E7] transition-colors group-hover:bg-[#F8F9FF]">
+            {shuffledLogos.map((project) => (
               <div
-                key={i}
-                className={`relative w-full flex items-center justify-center ${
-                  i === COMPANIES_DATA.length - 1
-                    ? "col-span-2 lg:col-span-1"
-                    : ""
-                }`}
+                key={project.name}
+                className="relative w-full flex items-center justify-center min-h-[120px] lg:min-h-[200px]"
               >
                 <Image
-                  src={company.src}
-                  alt={company.name}
-                  fill
-                  className="object-contain"
+                  src={project.logo}
+                  alt={project.name}
+                  width={64}
+                  height={64}
+                  className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl object-cover"
                 />
               </div>
             ))}
           </div>
+        </Link>
+        <div className="flex justify-center mt-8 lg:mt-16">
+          <Link
+            className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-4 py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
+            href="/ecosystem"
+          >
+            See All Testimonials
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Link>
         </div>
       </div>
     </section>

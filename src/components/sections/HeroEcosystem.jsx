@@ -1,6 +1,6 @@
 import LogoGrid from "../ui/LogoGrid";
 
-export const HeroBuiltWithPayai = () => {
+export const HeroEcosystem = () => {
   return (
     <section id="home" className="bg-white border-y border-[#E4E4E7] flex justify-center items-center">
       <div className="grid md:grid-cols-2 grid-cols-1 border-x border-[#E4E4E7] max-w-[100rem] mx-4 sm:mx-6 lg:mx-20  bg-white w-full">

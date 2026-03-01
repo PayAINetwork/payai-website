@@ -5,8 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Play, ArrowRight } from "lucide-react";
+import { useShuffledLogos } from "@/context/ShuffledLogosContext";
 
 export function Header() {
+  const shuffledLogos = useShuffledLogos();
+
   return (
     <section
       id="home"
@@ -92,22 +95,29 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="mt-8 lg:mt-20 flex flex-col lg:flex-row flex-wrap lg:items-center gap-4"
+              className="mt-8 lg:mt-20"
             >
-              <Image
-                src="/header/companies.png"
-                alt="Companies Image"
-                width={160}
-                height={52}
-                className="w-28 lg:w-40 h-auto"
-              />
-              <p className="w-[170px] text-[#0A0A0A]/60 text-sm lg:text-base">
-                Trusted by{" "}
-                <span className="font-semibold text-[#0A0A0A]">
-                  3000+ companies
-                </span>{" "}
-                of all sizes
-              </p>
+              <Link href="/ecosystem" className="flex flex-col lg:flex-row flex-wrap lg:items-center gap-4 group">
+                <div className="flex items-center -space-x-2">
+                  {shuffledLogos.map((project) => (
+                    <Image
+                      key={project.name}
+                      src={project.logo}
+                      alt={project.name}
+                      width={40}
+                      height={40}
+                      className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-white object-cover"
+                    />
+                  ))}
+                </div>
+                <p className="w-[170px] text-[#0A0A0A]/60 text-sm lg:text-base transition-colors group-hover:text-[#1D45D8]">
+                  Trusted by{" "}
+                  <span className="font-semibold text-[#0A0A0A] transition-colors group-hover:text-[#1D45D8]">
+                    1000+ companies
+                  </span>{" "}
+                  of all sizes
+                </p>
+              </Link>
             </motion.div>
           </div>
 

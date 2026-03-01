@@ -3,96 +3,352 @@
         "logo": "/projects/near-protocol.jpg",
         "name": "NEAR Protocol",
         "description": "A scalable Layer-1 blockchain focused on developer-friendly tools and fast, low-cost transactions.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "websiteUrl": "https://www.near.org",
+        "twitterUrl": "https://x.com/NEARProtocol",
         "category": "Blockchain"
     },
     {
         "logo": "/projects/wurk-fun.jpg",
         "name": "WURK.FUN",
-        "description": "WURK.FUN integrates PayAI to power on-demand payments between users and AI agents with usage-based pricing.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "WURK.FUN is a crypto-native microtask marketplace on Solana where AI agents hire humans for micro-jobs and users earn SOL and USDC by completing verified tasks via x402 payments.",
+        "websiteUrl": "https://wurk.fun",
+        "twitterUrl": "https://x.com/WURKDOTFUN",
         "category": "AI Agents"
     },
     {
         "logo": "/projects/pixel-games-ai.jpg",
         "name": "Pixel Games AI",
-        "description": "Pixel Games AI uses PayAI to support instant in-game transactions and AI-driven gameplay services.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "Pixel Games AI uses PayAI to support instant in-game transactions and AI-driven gameplay services in the Web3 gaming space.",
+        "websiteUrl": "https://pixelgames.ai/",
+        "twitterUrl": "https://x.com/pixelgamesai",
         "category": "Gaming"
     },
     {
         "logo": "/projects/x402-monopoly.jpg",
         "name": "x402 Monopoly",
         "description": "x402 Monopoly showcases pay-per-action payments in a game environment using the x402 standard.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "websiteUrl": "https://www.x402monopoly.com",
+        "twitterUrl": "https://x.com/x402monopoly",
         "category": "Gaming"
     },
     {
         "logo": "/projects/predict.jpg",
         "name": "Predict",
-        "description": "Predict integrates PayAI to enable real-time and usage-based payments for prediction and AI insights.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "Predict is the BNB-native prediction market where users trade real-world event outcomes using USDT and other stable assets, with collateral that can earn yield while positions stay open.",
+        "websiteUrl": "https://predict.fun",
+        "twitterUrl": "https://x.com/predictdotfun",
         "category": "AI Agents"
     },
     {
         "logo": "/projects/earnfi.jpg",
         "name": "EarnFi",
         "description": "EarnFi is a Web3 rewards platform that helps users discover, track, and manage on-chain incentives.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "websiteUrl": "https://earnfi.fun",
+        "twitterUrl": "https://x.com/EarnFidotfun",
         "category": "Blockchain"
     },
     {
         "logo": "/projects/skale.jpg",
         "name": "Skale",
         "description": "Skale is a high-performance blockchain network built for scalable and gas-free decentralized applications.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "websiteUrl": "https://www.skale.space",
+        "twitterUrl": "https://x.com/SkaleNetwork",
         "category": "Blockchain"
     },
     {
         "logo": "/projects/tgmetrics.jpg",
         "name": "tgmetrics",
-        "description": "tgmetrics integrates PayAI to power on-demand analytics and insights for Telegram communities.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "tgmetrics is an AI-driven analytics platform that scores crypto projects by analyzing sentiment, engagement, and activity from both Telegram and X, serving as a growth engine for communities and a discovery tool for investors.",
+        "websiteUrl": "https://www.tgmetrics.ai",
+        "twitterUrl": "https://x.com/tgmetrics",
         "category": "Analytics"
     },
     {
         "logo": "/projects/nofa-ai.jpg",
         "name": "NOFA AI",
-        "description": "Powered by PayAI, agents transact and settle strategies in real time. Advanced trading capabilities are now accessible to everyone.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "NOFA AI is an autonomous trading platform that brings real market execution to AI agents, offering a no-code Agent Studio, live execution layer, and institutional-grade risk management powered by Aster and Binance.",
+        "websiteUrl": "https://www.nofa.ai",
+        "twitterUrl": "https://x.com/nofA_ai",
         "category": "Trading"
     },
     {
         "logo": "/projects/t54-ai.jpg",
         "name": "t54 AI",
-        "description": "t54 ai provides AI tools and services for data-driven applications.With PayAI, each AI request can be monetized individually.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "t54 Labs is building a trust layer for the agentic economy, providing AI agent identity verification, real-time risk controls, and settlement infrastructure, backed by Ripple and Franklin Templeton.",
+        "websiteUrl": "https://www.t54.ai",
+        "twitterUrl": "https://x.com/t54ai",
         "category": "AI Agents"
     },
     {
         "logo": "/projects/dira-network.jpg",
         "name": "DIRA Network",
-        "description": "DIRA Network is a decentralized network for AI and data interoperability. PayAI supports automated payments.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "DIRA Network is the world's largest AI agents marketplace and directory, enabling users to discover, test, and scale AI agents while integrating x402 payments and ERC-8004 identity for on-chain agent access.",
+        "websiteUrl": "https://aiagentsdirectory.com",
+        "twitterUrl": "https://x.com/dira_network",
         "category": "AI Agents"
     },
     {
         "logo": "/projects/aimo-network.jpg",
         "name": "AiMo Network",
-        "description": "AiMo Network enables AI-native services and autonomous agents.PayAI powers usage-based payments between agents and applications.",
-        "websiteUrl": "",
-        "twitterUrl": "",
+        "description": "AiMo Network is agent-native middleware providing permissionless access to hundreds of AI models through a single OpenAI-compatible API, with transparent blockchain-based x402 pay-per-use payments.",
+        "websiteUrl": "https://aimo.network",
+        "twitterUrl": "https://x.com/AiMoNetwork",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Canza",
+        "logo": "/projects/canza.png",
+        "description": "Canza is an AI-powered Web3 trading dashboard with customizable widgets, real-time market data, and seamless Solana wallet integration for DeFi management.",
+        "websiteUrl": "https://canza.app",
+        "twitterUrl": "https://x.com/canza_io",
+        "category": "DeFi"
+    },
+    {
+        "name": "Compute3",
+        "logo": "/projects/compute3.svg",
+        "description": "Compute3 provides enterprise GPU infrastructure for AI workloads, offering per-second billing and Docker-based orchestration with access to GPUs ranging from L4 to B300 and zero vendor lock-in.",
+        "websiteUrl": "https://compute3.ai",
+        "twitterUrl": "https://x.com/comput3ai",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "Gloria AI",
+        "logo": "/projects/gloria-ai.png",
+        "description": "Gloria AI is an AI-powered news intelligence platform providing real-time sentiment analysis and market intelligence with API, bot, and MCP integrations.",
+        "websiteUrl": "https://itsgloria.ai",
+        "twitterUrl": "https://x.com/itsgloria_ai",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Nansen",
+        "logo": "/projects/nansen.png",
+        "description": "Nansen is a blockchain analytics platform that enriches on-chain data with millions of wallet labels to help users discover trading opportunities, conduct due diligence, and monitor portfolios.",
+        "websiteUrl": "https://nansen.ai",
+        "twitterUrl": "https://x.com/nansen_ai",
+        "category": "Analytics"
+    },
+    {
+        "name": "Syraa",
+        "logo": "/projects/syraa.png",
+        "description": "Syraa is an AI trading infrastructure layer providing institutional-grade trading tools including real-time sentiment analysis, risk scoring, and automated execution.",
+        "websiteUrl": "https://syraa.fun",
+        "twitterUrl": "https://x.com/syra_agent",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Voxight",
+        "logo": "/projects/voxight.webp",
+        "description": "Voxight transforms Twitter Spaces into AI-powered summaries using OpenAI Whisper for transcription, delivering intelligent recaps via x402 micropayments at 1 USDC per summary.",
+        "websiteUrl": "https://voxight.online",
+        "twitterUrl": "https://x.com/voxight",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Xona Agent",
+        "logo": "/projects/xona-agent.png",
+        "description": "Xona is a creative AI agent built on the x402 payment protocol, offering pay-per-use access to AI-powered image generation, video creation, and content analysis tools.",
+        "websiteUrl": "https://xona-agent.com",
+        "twitterUrl": "https://x.com/xona_agent",
+        "category": "AI Agents"
+    },
+    {
+        "name": "GPThree",
+        "logo": "/projects/gpthree.png",
+        "description": "GPThree is an AI agent platform that provides AI-powered services and tools for the Web3 ecosystem, integrated with the x402 payment protocol.",
+        "websiteUrl": "https://gpthree.ai",
+        "twitterUrl": "https://x.com/gpthree_ai",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Relai",
+        "logo": "/projects/relai.png",
+        "description": "Relai is an x402 API marketplace that enables developers to monetize APIs with instant micropayments on Solana, Base, Avalanche, SKALE, Ethereum, and Polygon, with built-in custodial wallets and MCP support.",
+        "websiteUrl": "https://relai.fi",
+        "twitterUrl": "https://x.com/_relai",
+        "category": "DeFi"
+    },
+    {
+        "name": "Jatevo",
+        "logo": "/projects/jatevo.png",
+        "description": "Jatevo is a decentralized GPU LLM inference network that routes prompts across distributed GPU nodes for low-latency, cost-efficient hosting of frontier open-source language models.",
+        "websiteUrl": "https://jatevo.ai",
+        "twitterUrl": "https://x.com/JatevoId",
+        "category": "AI Agents"
+    },
+    {
+        "name": "PinionOS",
+        "logo": "/projects/pinionos.png",
+        "description": "PinionOS is a client SDK, Claude Code plugin, and skill server framework for the Pinion protocol, enabling x402 micropayments on Base so agents can call on-chain skills without managing payments.",
+        "websiteUrl": "https://pinionos.com",
+        "twitterUrl": "https://x.com/PinionOS",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "Tip.md",
+        "logo": "/projects/tip-md.svg",
+        "description": "Tip.md lets developers and creators add crypto tipping buttons to GitHub READMEs and markdown content, supporting multi-chain tips on Ethereum, Solana, and Bitcoin Lightning.",
+        "websiteUrl": "https://tip.md",
+        "twitterUrl": "https://x.com/tipdotmd",
+        "category": "Payments"
+    },
+    {
+        "name": "x420",
+        "logo": "/projects/x420.png",
+        "description": "x420 is a token launchpad on Base that implements HTTP 420 (\"Enhance Your Calm\") as a rate-limiting protocol, allowing AI agents and web services to negotiate cooldown periods as a complement to x402 payments.",
+        "websiteUrl": "https://x420.dev",
+        "twitterUrl": "https://x.com/x420yo",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "Serpent",
+        "logo": "/projects/serpent.png",
+        "description": "Serpent is the credibility layer for early-stage projects and builders on Solana, combining curator insights with on-chain data to surface real builders and high-potential projects before the crowd catches on.",
+        "websiteUrl": "https://www.discoverserpent.com",
+        "twitterUrl": "https://x.com/discoverserpent",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Kamiyo",
+        "logo": "/projects/kamiyo.png",
+        "description": "Kamiyo is a trust and payment infrastructure layer on Solana providing escrow, private oracle voting with ZK proofs, and quality-based settlement for autonomous AI agent transactions.",
+        "websiteUrl": "https://www.kamiyo.ai",
+        "twitterUrl": "https://x.com/kamiyoai",
+        "category": "AI Agents"
+    },
+    {
+        "name": "8004scan",
+        "logo": "/projects/8004scan.png",
+        "description": "8004scan is a blockchain explorer for ERC-8004 AI agents, letting users discover, create, and interact with autonomous agents while tracking identity registries, reputation, and network activity.",
+        "websiteUrl": "https://www.8004scan.io",
+        "twitterUrl": "https://x.com/8004_scan",
+        "category": "Analytics"
+    },
+    {
+        "name": "x402wall",
+        "logo": "/projects/x402wall.png",
+        "description": "x402wall is a permanent advertising grid on Solana where users buy brick-sized ad slots for 1 USDC each via x402 payments, with permanent ownership and the ability to resell on a marketplace.",
+        "websiteUrl": "https://x402wall.fun",
+        "twitterUrl": "https://x.com/x402wall",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "Engrave Protocol",
+        "logo": "/projects/engrave-protocol.png",
+        "description": "Engrave Protocol provides BTCFi tools for AI agents, offering real-time Bitcoin blockchain data access via MCP with pay-per-request USDC micropayments on Solana using the x402 protocol.",
+        "websiteUrl": "https://engrave-protocol.ai",
+        "twitterUrl": "https://x.com/engraveprotocol",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "QuickSync",
+        "logo": "/projects/quicksync.png",
+        "description": "QuickSync is a privacy-first, decentralized platform for sharing, building, and monetizing digital experiences using zero-knowledge encryption and Web3 APIs without middlemen or surveillance.",
+        "websiteUrl": "https://quicksync.me",
+        "twitterUrl": "https://x.com/Quick_Sync",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "Holoworld AI",
+        "logo": "/projects/holoworld-ai.png",
+        "description": "Holoworld AI is a platform for creating intelligent virtual characters with customizable personalities and knowledge bases, enabling AI-powered storytelling across Discord, Telegram, YouTube, and more.",
+        "websiteUrl": "https://www.holoworldai.com",
+        "twitterUrl": "https://x.com/HoloworldAI",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Cascade",
+        "logo": "/projects/cascade.png",
+        "description": "Cascade is a permissionless automatic payment splitting protocol for Solana with a non-custodial design and a 1% protocol fee.",
+        "websiteUrl": "https://cascade.fyi",
+        "twitterUrl": "https://x.com/cascade_fyi",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Readia",
+        "logo": "/projects/readia.png",
+        "description": "Readia brings x402 payments to any content platform, enabling agentic commerce in minutes with a multi-chain SDK offering peer-to-peer instant settlement for the new content economy.",
+        "websiteUrl": "https://www.readia.io",
+        "twitterUrl": "https://x.com/Readia_io",
+        "category": "AI Agents"
+    },
+    {
+        "name": "OOBE",
+        "logo": "/projects/oobe.png",
+        "description": "OOBE Protocol is a Solana-native framework for building, deploying, and monetizing AI agents on-chain with no coding required, featuring conversational memory, parallel function execution, and smart tool selection.",
+        "websiteUrl": "https://www.oobeprotocol.ai",
+        "twitterUrl": "https://x.com/OOBEonSol",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Migrate.fun",
+        "logo": "/projects/migrate-fun.png",
+        "description": "Migrate.fun is a token migration platform on Solana that lets projects transition tokens to new contracts with automated liquidity pool creation, safeguarded migrations, and refund mechanisms.",
+        "websiteUrl": "https://www.migratefun.com",
+        "twitterUrl": "https://x.com/MigrateFun",
+        "category": "DeFi"
+    },
+    {
+        "name": "Stellar",
+        "logo": "/projects/stellar.png",
+        "description": "Stellar is a decentralized Layer-1 blockchain network for fast, low-cost payments and asset tokenization, backed by the nonprofit Stellar Development Foundation.",
+        "websiteUrl": "https://stellar.org",
+        "twitterUrl": "https://x.com/StellarOrg",
+        "category": "Blockchain"
+    },
+    {
+        "name": "Polygon",
+        "logo": "/projects/polygon.png",
+        "description": "Polygon is a leading Ethereum-compatible blockchain platform for scalable, low-cost transactions with near-instant finality, widely adopted for DeFi, gaming, and payments.",
+        "websiteUrl": "https://polygon.technology",
+        "twitterUrl": "https://x.com/0xPolygon",
+        "category": "Blockchain"
+    },
+    {
+        "name": "SOON",
+        "logo": "/projects/soon.png",
+        "description": "SOON (Solana Optimistic Network) is a high-performance SVM rollup stack built on the OP Stack, delivering 30,000+ TPS with 50ms block times and enabling SVM Layer-2 deployment on any Layer-1.",
+        "websiteUrl": "https://soo.network",
+        "twitterUrl": "https://x.com/soon_svm",
+        "category": "Blockchain"
+    },
+    {
+        "name": "Blockrun",
+        "logo": "/projects/blockrun.svg",
+        "description": "Blockrun is a pay-as-you-go AI gateway that routes requests to the cheapest capable LLM across 30+ models via x402 payments on Base, Solana, and XRPL, claiming to save 78% on LLM costs.",
+        "websiteUrl": "https://blockrun.ai",
+        "twitterUrl": "https://t.me/bc1max",
+        "category": "Infrastructure"
+    },
+    {
+        "name": "Gradient",
+        "logo": "/projects/gradient.png",
+        "description": "Gradient is building the first fully distributed AI runtime on Solana, a peer-powered infrastructure where intelligence is hosted, served, and owned by the people through the Open Intelligence Stack.",
+        "websiteUrl": "https://gradient.network",
+        "twitterUrl": "https://x.com/gradient_hq",
+        "category": "AI Agents"
+    },
+    {
+        "name": "1ly",
+        "logo": "/projects/1ly.png",
+        "description": "1ly turns any link into an instant paid product using the x402 protocol, enabling developers, creators, and AI agents to monetize APIs and digital content with USDC on Base and Solana.",
+        "websiteUrl": "https://1ly.store",
+        "twitterUrl": "https://x.com/1ly_store",
+        "category": "SaaS"
+    },
+    {
+        "name": "Lucid",
+        "logo": "/projects/lucid.png",
+        "description": "Lucid is a multi-bridge liquidity hub combining x402 and ERC-8004 to give AI agents identity, payment capability, and autonomous operation across multiple chains.",
+        "websiteUrl": "https://www.lucidlabs.fi",
+        "twitterUrl": "https://x.com/LucidChain",
+        "category": "AI Agents"
+    },
+    {
+        "name": "Mind Network",
+        "logo": "/projects/mind-network.png",
+        "description": "Mind Network pioneers Fully Homomorphic Encryption (FHE) infrastructure for Web3, enabling quantum-resistant, fully encrypted data and AI computation with the HTTPZ zero-trust protocol.",
+        "websiteUrl": "https://www.mindnetwork.xyz",
+        "twitterUrl": "https://x.com/mindnetwork_xyz",
         "category": "AI Agents"
     }
 ]
