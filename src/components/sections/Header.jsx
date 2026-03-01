@@ -25,6 +25,7 @@ function InfinitePartnerScroll() {
     { name: "Base", path: "/partners/base.svg", url: "https://base.org" },
     { name: "Avax", path: "/partners/avax.svg", url: "https://avax.network" },
     { name: "Iotex", path: "/partners/IoTex.svg", url: "https://iotex.io/" },
+    { name: "Mind Network", path: "/partners/mind-network.svg", url: "https://mindnetwork.xyz/" },
   ];
 
   return (
