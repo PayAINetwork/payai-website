@@ -23,7 +23,7 @@ export const Projects = () => {
   const filteredProjects = useMemo(() => {
     return PROJECTS_DATA.filter((p) => {
       const query = debouncedSearch.toLowerCase().trim();
-      const matchesSearch = 
+      const matchesSearch =
         !query ||
         p.name.toLowerCase().includes(query) ||
         p.description.toLowerCase().includes(query) ||
@@ -32,7 +32,7 @@ export const Projects = () => {
       const matchesCategory = selectedCategory === "All Projects" || p.category === selectedCategory;
 
       return matchesSearch && matchesCategory;
-    })
+    }).sort((a, b) => (b.testimonial ? 1 : 0) - (a.testimonial ? 1 : 0));
   }, [debouncedSearch, selectedCategory]);
 
   // PAGINATION
@@ -139,7 +139,7 @@ export const Projects = () => {
             </div>
           ) : (
             paginatedProjects.map((project, key) => (
-              <div key={`${project.name}-${key}`} className="flex flex-col space-y-6 p-8 border border-[#E4E4E7]">
+              <div key={`${project.name}-${key}`} className="flex flex-col space-y-6 p-8 border border-[#E4E4E7] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
                 <Image
                   src={project.logo}
                   alt={project.name}
@@ -153,14 +153,26 @@ export const Projects = () => {
                   </h3>
                   <p className="text-sm lg:text-base text-[#71717A]">
                     {project.description}
-                  </p>                  
+                  </p>
+                  {project.testimonial && (
+                    <div className="mt-3 bg-[#F8F9FF] rounded-lg p-3">
+                      <p className="text-sm italic text-[#09090B]">
+                        &ldquo;{project.testimonial}&rdquo;
+                      </p>
+                      {project.testimonialAuthor && (
+                        <p className="mt-1.5 text-xs text-[#71717A]">
+                          &mdash; {project.testimonialAuthor}
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <div className="flex gap-3">
                   <Link
                     href={project.websiteUrl || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 border border-[#E4E4E7] rounded-lg flex-1 py-2.5 shadow-xsmall"
+                    className="flex items-center justify-center gap-2 border border-[#E4E4E7] rounded-lg flex-1 py-2.5 shadow-xsmall cursor-pointer transition-colors hover:bg-[#F8F9FF] hover:border-[#4D63F6]/30"
                   >
                     <div>
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -175,7 +187,7 @@ export const Projects = () => {
                     href={project.twitterUrl || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 border border-[#E4E4E7] rounded-lg flex-1 py-2.5 shadow-xsmall"
+                    className="flex items-center justify-center gap-2 border border-[#E4E4E7] rounded-lg flex-1 py-2.5 shadow-xsmall cursor-pointer transition-colors hover:bg-[#F8F9FF] hover:border-[#4D63F6]/30"
                   >
                     <div>
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

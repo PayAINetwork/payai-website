@@ -18,7 +18,7 @@ export const Why = () => {
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-4 border-x border-[#E4E4E7]">
           <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
-              $35M+
+              35M+
             </span>
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
               Transactions Processed

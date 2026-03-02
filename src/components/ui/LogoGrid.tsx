@@ -20,7 +20,7 @@ const logos = [
 
 export default function LogoGrid() {
     return (
-        <div className="absolute top-0 -left-[15%] transform skew-x-12 h-full w-[130%] overflow-hidden">
+        <div className="absolute top-0 -right-[15%] transform -skew-x-6 h-full w-[130%] overflow-hidden">
             <div className="grid grid-cols-5 w-full h-full overflow-hidden">
                 {logos.map((logo, index) => (
                     <div 
@@ -34,7 +34,7 @@ export default function LogoGrid() {
                             `}
                     >
                         {logo.src ? (
-                            <div className="transform skew-x-3 w-fit h-fit hover:scale-110
+                            <div className="transform -skew-x-3 w-fit h-fit hover:scale-110
                                 transition-all duration-300">
                                 <Image
                                     src={logo.src}
@@ -45,7 +45,7 @@ export default function LogoGrid() {
                                 />
                             </div>
                         ) : (
-                            <div className="transform skew-x-3" />
+                            <div className="transform -skew-x-3" />
                         )}
                     </div>
                 ))}

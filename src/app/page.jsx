@@ -21,8 +21,8 @@ export default function Page() {
         <Partners />
         <Overview />
         <Testimonials />
-        <FAQ />
         <Blog />
+        <FAQ />
         <CTA />
         <Footer />
       </div>

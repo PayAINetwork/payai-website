@@ -1,13 +1,5 @@
 [
-    {
-        "logo": "/projects/near-protocol.jpg",
-        "name": "NEAR Protocol",
-        "description": "A scalable Layer-1 blockchain focused on developer-friendly tools and fast, low-cost transactions.",
-        "websiteUrl": "https://www.near.org",
-        "twitterUrl": "https://x.com/NEARProtocol",
-        "category": "Blockchain"
-    },
-    {
+{
         "logo": "/projects/wurk-fun.jpg",
         "name": "WURK.FUN",
         "description": "WURK.FUN is a crypto-native microtask marketplace on Solana where AI agents hire humans for micro-jobs and users earn SOL and USDC by completing verified tasks via x402 payments.",
@@ -160,7 +152,7 @@
         "category": "AI Agents"
     },
     {
-        "name": "Relai",
+        "name": "RelAI",
         "logo": "/projects/relai.png",
         "description": "Relai is an x402 API marketplace that enables developers to monetize APIs with instant micropayments on Solana, Base, Avalanche, SKALE, Ethereum, and Polygon, with built-in custodial wallets and MCP support.",
         "websiteUrl": "https://relai.fi",

@@ -8,8 +8,7 @@ export const JoinUs = () => {
               Showcase Your Integration
             </h2>
             <p className="text-sm lg:text-base text-[#0A0A0A]/60 text-center mt-6">
-              Join our partnership program to collaborate on real-time payments,
-              AI integrations, products, and ecosystem growth.
+              Building with PayAI and x402? Share your project and join the growing ecosystem of builders shaping the future of AI payments.
             </p>
 
             <a
