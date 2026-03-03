@@ -50,10 +50,10 @@ export function Footer() {
               <h4 className="text-sm text-[#71717A]">COMPANY</h4>
               <ul className="space-y-3 text-sm text-[#09090B] mt-6">
                 <li>
-                  <Link href="/careers">Careers</Link>
+                  <a href={process.env.NEXT_PUBLIC_CAREERS_URL} target="_blank" rel="noopener noreferrer">Careers</a>
                 </li>
                 <li>
-                  <Link href="/sales">Sales</Link>
+                  <a href={process.env.NEXT_PUBLIC_SALES_URL} target="_blank" rel="noopener noreferrer">Sales</a>
                 </li>
               </ul>
             </div>

@@ -48,11 +48,11 @@
         "category": "Blockchain"
     },
     {
-        "logo": "/projects/tgmetrics.jpg",
-        "name": "tgmetrics",
-        "description": "tgmetrics is an AI-driven analytics platform that scores crypto projects by analyzing sentiment, engagement, and activity from both Telegram and X, serving as a growth engine for communities and a discovery tool for investors.",
-        "websiteUrl": "https://www.tgmetrics.ai",
-        "twitterUrl": "https://x.com/tgmetrics",
+        "logo": "/projects/blips.png",
+        "name": "Blips",
+        "description": "Blips is an analytics and growth platform offering metrics, campaigns, launches, and incubation for token projects across Solana launchpads.",
+        "websiteUrl": "https://blips.run",
+        "twitterUrl": "https://x.com/blipsdotrun",
         "category": "Analytics"
     },
     {
@@ -85,7 +85,9 @@
         "description": "AiMo Network is agent-native middleware providing permissionless access to hundreds of AI models through a single OpenAI-compatible API, with transparent blockchain-based x402 pay-per-use payments.",
         "websiteUrl": "https://aimo.network",
         "twitterUrl": "https://x.com/AiMoNetwork",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "We tried many x402 facilitators in the early development stages. PayAI offers the most stable and covered services so we don't have to worry about our LLMs api calls failing at the facilitator level. Bullish on the PayAI team!",
+        "testimonialAuthor": "AiMo Network Team"
     },
     {
         "name": "Canza",
@@ -141,7 +143,9 @@
         "description": "Xona is a creative AI agent built on the x402 payment protocol, offering pay-per-use access to AI-powered image generation, video creation, and content analysis tools.",
         "websiteUrl": "https://xona-agent.com",
         "twitterUrl": "https://x.com/xona_agent",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "XONA is a Creative AI Agent bridging multiple generation models and creative resources. With x402, we can monetize our services seamlessly, allowing other agents to access them in a pay-per-use, no subscription or API key hassle fashion. Multi-chain and powered by PayAI, our discovery and earning layer keeps expanding!",
+        "testimonialAuthor": "Xona Agent Team"
     },
     {
         "name": "GPThree",

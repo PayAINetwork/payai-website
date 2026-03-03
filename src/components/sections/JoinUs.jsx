@@ -13,9 +13,11 @@ export const JoinUs = () => {
 
             <a
               className="mt-8 inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#1D45D8]"
-              href="#get-started"
+              href="https://github.com/PayAINetwork/payai-website/issues/new?template=add-project.yml"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Join Now
+              Add Your Project
               <svg
                 width="20"
                 height="20"

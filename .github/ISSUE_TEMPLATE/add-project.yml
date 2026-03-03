@@ -1,0 +1,86 @@
+name: Add Project to Ecosystem
+description: Submit your project to be listed on the PayAI ecosystem page.
+title: "[Ecosystem] "
+labels: ["ecosystem"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in joining the PayAI ecosystem! Please fill out the details below so we can add your project to the ecosystem page.
+
+  - type: input
+    id: project-name
+    attributes:
+      label: Project Name
+      placeholder: e.g. My Project
+    validations:
+      required: true
+
+  - type: textarea
+    id: logo
+    attributes:
+      label: Project Logo
+      description: Drag and drop your project logo here (square, at least 128x128px, PNG/JPG/SVG/WebP).
+      placeholder: Drag and drop your logo image here.
+    validations:
+      required: true
+
+  - type: input
+    id: website-url
+    attributes:
+      label: Website URL
+      placeholder: https://yourproject.com
+    validations:
+      required: true
+
+  - type: input
+    id: twitter-url
+    attributes:
+      label: Twitter/X URL
+      placeholder: https://x.com/yourproject
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - AI Agents
+        - Analytics
+        - Blockchain
+        - DeFi
+        - Gaming
+        - Infrastructure
+        - Payments
+        - SaaS
+        - Trading
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Project Description
+      description: A 1-2 sentence summary of what your project does and how it uses PayAI or x402.
+      placeholder: Describe your project...
+    validations:
+      required: true
+
+  - type: textarea
+    id: testimonial
+    attributes:
+      label: Testimonial (optional)
+      description: Share a quote about your experience building with x402 and PayAI.
+      placeholder: e.g. "With x402, we launched pay-per-use AI services in a weekend..."
+    validations:
+      required: false
+
+  - type: input
+    id: testimonial-author
+    attributes:
+      label: Testimonial Author (optional)
+      description: Attribution for the testimonial quote.
+      placeholder: e.g. CTO, Your Project
+    validations:
+      required: false
