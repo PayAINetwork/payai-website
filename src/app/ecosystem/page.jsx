@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroEcosystem } from "@/components/sections/HeroEcosystem";
