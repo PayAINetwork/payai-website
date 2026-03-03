@@ -8,11 +8,6 @@ const PARTNERS_DATA = [
   { src: "/partners/polygon-dark.png", name: "polygon" },
   { src: "/partners/avalanche-dark.png", name: "avalanche" },
   { src: "/partners/sei-dark.png", name: "sei" },
-  { src: "/partners/eliza-dark.png", name: "eliza" },
-  { src: "/partners/tgmetrics-dark.png", name: "tgmetrics" },
-  { src: "/partners/OOBE-dark.png", name: "OOBE" },
-  { src: "/partners/compute-dark.png", name: "compute" },
-  { src: "/partners/omniminds-dark.png", name: "omniminds" },
 ];
 
 export const Partners = () => {
