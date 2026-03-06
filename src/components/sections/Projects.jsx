@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PROJECTS_DATA from '@/data/projects.json';
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
 
 export const Projects = () => {
@@ -34,6 +34,11 @@ export const Projects = () => {
       return matchesSearch && matchesCategory;
     }).sort((a, b) => (b.testimonial ? 1 : 0) - (a.testimonial ? 1 : 0));
   }, [debouncedSearch, selectedCategory]);
+
+  const goToPage = useCallback((page) => {
+    setCurrentPage(page);
+    document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   // PAGINATION
   useEffect(() => {
@@ -219,7 +224,7 @@ export const Projects = () => {
           <div className="flex items-center gap-1">
             <button
               aria-label="Previous page"
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              onClick={() => goToPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
               className={`w-10 h-10 flex items-center justify-center border border-[#E4E4E7] rounded-md 
                 ${currentPage === 1 
@@ -235,7 +240,7 @@ export const Projects = () => {
               <button
                 aria-label="page number"
                 key={index}
-                onClick={() => typeof page === 'number' && setCurrentPage(page)}
+                onClick={() => typeof page === 'number' && goToPage(page)}
                 disabled={page === '...'}
                 className={`w-10 h-10 flex items-center justify-center border border-[#E4E4E7] rounded-md text-sm font-medium
                   ${page === currentPage 
@@ -250,7 +255,7 @@ export const Projects = () => {
             ))}
             <button
               aria-label="next page"
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
               className={`w-10 h-10 flex items-center justify-center border border-[#E4E4E7] rounded-md 
                 ${currentPage === totalPages 

@@ -62,10 +62,16 @@ export function Footer() {
               <h4 className="text-sm text-[#71717A]">SUPPORT</h4>
               <ul className="space-y-3 text-sm text-[#09090B] mt-6">
                 <li>
-                  <Link href="/help">Help Center</Link>
+                  <a href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK} target="_blank" rel="noopener noreferrer">Blog</a>
                 </li>
                 <li>
-                  <Link href="/contact">Contact</Link>
+                  <a href={process.env.NEXT_PUBLIC_DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>
+                </li>
+                <li>
+                  <a href={process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK} target="_blank" rel="noopener noreferrer">Documentation</a>
+                </li>
+                <li>
+                  <a href={process.env.NEXT_PUBLIC_GITHUB_URL} target="_blank" rel="noopener noreferrer">Github</a>
                 </li>
               </ul>
             </div>
