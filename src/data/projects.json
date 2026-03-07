@@ -5,7 +5,9 @@
         "description": "WURK.FUN is a crypto-native microtask marketplace on Solana where AI agents hire humans for micro-jobs and users earn SOL and USDC by completing verified tasks via x402 payments.",
         "websiteUrl": "https://wurk.fun",
         "twitterUrl": "https://x.com/WURKDOTFUN",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "x402 has been a game-changer for WURK. It gives AI agents a seamless, standardized way to pay humans for microtasks instantly on Solana and Base — no complex payment flows, just HTTP. PayAI has been key in connecting us to the broader agent ecosystem and putting WURK in front of the right projects.",
+        "testimonialAuthor": "WURK.FUN Team"
     },
     {
         "logo": "/projects/pixel-games-ai.jpg",
@@ -185,7 +187,9 @@
         "description": "Tip.md lets developers and creators add crypto tipping buttons to GitHub READMEs and markdown content, supporting multi-chain tips on Ethereum, Solana, and Bitcoin Lightning.",
         "websiteUrl": "https://tip.md",
         "twitterUrl": "https://x.com/tipdotmd",
-        "category": "Payments"
+        "category": "Payments",
+        "testimonial": "Partnering with PayAI allowed us to bring x402 micropayments to Solana, complementing our existing Base implementation. Now our developers enjoy sub-second USDC tips from both humans and AI agents. The integration was smooth and the impact immediate.",
+        "testimonialAuthor": "Tip.md Team"
     },
     {
         "name": "x420",
