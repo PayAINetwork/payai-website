@@ -1,5 +1,5 @@
 [
-{
+    {
         "logo": "/projects/wurk-fun.jpg",
         "name": "WURK.FUN",
         "description": "WURK.FUN is a crypto-native microtask marketplace on Solana where AI agents hire humans for micro-jobs and users earn SOL and USDC by completing verified tasks via x402 payments.",
@@ -350,5 +350,14 @@
         "websiteUrl": "https://www.mindnetwork.xyz",
         "twitterUrl": "https://x.com/mindnetwork_xyz",
         "category": "AI Agents"
+    },
+    {
+        "name": "PayAI",
+        "logo": "/projects/payai.png",
+        "description": "This is a test payai project",
+        "websiteUrl": "https://payai.network",
+        "twitterUrl": "https://x.com/payainetwork",
+        "category": "AI Agents",
+        "testimonial": "Wel ove x402"
     }
 ]
