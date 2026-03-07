@@ -187,7 +187,9 @@
         "description": "Tip.md lets developers and creators add crypto tipping buttons to GitHub READMEs and markdown content, supporting multi-chain tips on Ethereum, Solana, and Bitcoin Lightning.",
         "websiteUrl": "https://tip.md",
         "twitterUrl": "https://x.com/tipdotmd",
-        "category": "Payments"
+        "category": "Payments",
+        "testimonial": "Partnering with PayAI allowed us to bring x402 micropayments to Solana, complementing our existing Base implementation. Now our developers enjoy sub-second USDC tips from both humans and AI agents. The integration was smooth and the impact immediate.",
+        "testimonialAuthor": "Tip.md Team"
     },
     {
         "name": "x420",
