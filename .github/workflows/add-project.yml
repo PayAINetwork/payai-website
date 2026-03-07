@@ -1,0 +1,154 @@
+name: Add Project to Ecosystem
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-project:
+    if: contains(github.event.issue.labels.*.name, 'ecosystem')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse issue and update project data
+        id: project
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { execFileSync } = require('child_process');
+            const body = context.payload.issue.body || '';
+
+            function getField(label) {
+              const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(`### ${escaped}\\s*\\n\\n([\\s\\S]*?)(?=\\n### |$)`);
+              const match = body.match(regex);
+              if (!match) return '';
+              const value = match[1].trim();
+              if (value === '_No response_' || value === 'None') return '';
+              return value;
+            }
+
+            const projectName = getField('Project Name');
+            if (!projectName) {
+              core.setFailed('Could not parse project name from issue body');
+              return;
+            }
+
+            const logoRaw = getField('Project Logo');
+            const websiteUrl = getField('Website URL');
+            const twitterUrl = getField('Twitter/X URL');
+            const category = getField('Category');
+            const description = getField('Project Description');
+            const testimonial = getField('Testimonial (optional)');
+            const testimonialAuthor = getField('Testimonial Author (optional)');
+
+            // Extract image URL from markdown syntax or plain URL
+            let logoUrl = logoRaw;
+            const imgMatch = logoRaw.match(/!\[.*?\]\((.*?)\)/);
+            if (imgMatch) logoUrl = imgMatch[1];
+            logoUrl = logoUrl.trim();
+
+            if (!logoUrl) {
+              core.setFailed('Could not find logo URL in issue body');
+              return;
+            }
+
+            // Create slug for filename
+            const slug = projectName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+            // Determine file extension from URL or content-type header
+            let ext = '.png';
+            const urlExtMatch = logoUrl.match(/\.(png|jpe?g|svg|webp)(?:\?|$)/i);
+            if (urlExtMatch) {
+              ext = '.' + urlExtMatch[1].toLowerCase();
+              if (ext === '.jpeg') ext = '.jpg';
+            } else {
+              try {
+                const headers = execFileSync('curl', ['-sI', logoUrl], { encoding: 'utf8' });
+                const ct = headers.match(/content-type:\s*image\/([\w+]+)/i);
+                if (ct) {
+                  const type = ct[1].toLowerCase();
+                  if (type === 'jpeg' || type === 'jpg') ext = '.jpg';
+                  else if (type === 'png') ext = '.png';
+                  else if (type === 'svg+xml') ext = '.svg';
+                  else if (type === 'webp') ext = '.webp';
+                }
+              } catch (e) {
+                core.info('Could not detect content-type, defaulting to .png');
+              }
+            }
+
+            // Download logo
+            const logoFilename = `${slug}${ext}`;
+            const logoPath = `public/projects/${logoFilename}`;
+            execFileSync('curl', ['-sL', logoUrl, '-o', logoPath]);
+
+            // Update projects.json
+            const projectsPath = 'src/data/projects.json';
+            const projects = JSON.parse(fs.readFileSync(projectsPath, 'utf8'));
+
+            if (projects.some(p => p.name.toLowerCase() === projectName.toLowerCase())) {
+              core.setFailed(`Project "${projectName}" already exists in the ecosystem`);
+              return;
+            }
+
+            const entry = {
+              name: projectName,
+              logo: `/projects/${logoFilename}`,
+              description,
+              websiteUrl,
+              twitterUrl,
+              category
+            };
+
+            if (testimonial) entry.testimonial = testimonial;
+            if (testimonialAuthor) entry.testimonialAuthor = testimonialAuthor;
+
+            projects.push(entry);
+            fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 4) + '\n');
+
+            core.setOutput('slug', slug);
+            core.setOutput('project-name', projectName);
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLUG: ${{ steps.project.outputs.slug }}
+          PROJECT_NAME: ${{ steps.project.outputs.project-name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          BRANCH="ecosystem/add-${SLUG}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add src/data/projects.json "public/projects/"
+          git commit -m "feat: add ${PROJECT_NAME} to ecosystem
+
+          Closes #${ISSUE_NUMBER}"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --title "Add ${PROJECT_NAME} to ecosystem" \
+            --body "Adds **${PROJECT_NAME}** to the ecosystem page.
+
+          Closes #${ISSUE_NUMBER}
+
+          > Auto-generated from issue #${ISSUE_NUMBER}"
+
+      - name: Comment on issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLUG: ${{ steps.project.outputs.slug }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PROJECT_NAME: ${{ steps.project.outputs.project-name }}
+        run: |
+          PR_URL=$(gh pr list --head "ecosystem/add-${SLUG}" --json url --jq '.[0].url')
+          gh issue comment "$ISSUE_NUMBER" \
+            --body "A pull request has been created to add **${PROJECT_NAME}** to the ecosystem: ${PR_URL}"
