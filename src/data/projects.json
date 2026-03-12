@@ -31,7 +31,9 @@
         "description": "Predict is the BNB-native prediction market where users trade real-world event outcomes using USDT and other stable assets, with collateral that can earn yield while positions stay open.",
         "websiteUrl": "https://predict.fun",
         "twitterUrl": "https://x.com/predictdotfun",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "PayAI has enabled us to list our Prediction Market agent on their platform, allowing anyone to use x402 micropayments to bring prediction agents into the Solana ecosystem and pay for their services seamlessly.",
+        "testimonialAuthor": "Predict Team"
     },
     {
         "logo": "/projects/earnfi.jpg",
@@ -205,7 +207,9 @@
         "description": "Serpent is the credibility layer for early-stage projects and builders on Solana, combining curator insights with on-chain data to surface real builders and high-potential projects before the crowd catches on.",
         "websiteUrl": "https://www.discoverserpent.com",
         "twitterUrl": "https://x.com/discoverserpent",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "We started talking with PayAI before Serpent even launched. Their expertise and guidance were massive for us while we were still figuring things out, and the impact they're having, not just on x402 but the space as a whole, is something we really respect. We're huge fans of what they're building and look forward to working together more as we both grow.",
+        "testimonialAuthor": "Serpent Team"
     },
     {
         "name": "Kamiyo",
@@ -213,7 +217,9 @@
         "description": "Kamiyo is a trust and payment infrastructure layer on Solana providing escrow, private oracle voting with ZK proofs, and quality-based settlement for autonomous AI agent transactions.",
         "websiteUrl": "https://www.kamiyo.ai",
         "twitterUrl": "https://x.com/kamiyoai",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "x402 gives us a clean foundation for machine-native payments, and PayAI made it practical to integrate into KAMIYO. The facilitator flow is straightforward, the multi-network support is solid, and fits perfect with the reliability and safety controls we need for agent-driven transactions.",
+        "testimonialAuthor": "Kamiyo Team"
     },
     {
         "name": "8004scan",
@@ -245,7 +251,9 @@
         "description": "QuickSync is a privacy-first, decentralized platform for sharing, building, and monetizing digital experiences using zero-knowledge encryption and Web3 APIs without middlemen or surveillance.",
         "websiteUrl": "https://quicksync.me",
         "twitterUrl": "https://x.com/Quick_Sync",
-        "category": "Infrastructure"
+        "category": "Infrastructure",
+        "testimonial": "Our experience working with the x402 ecosystem via RelAI has shown us just how adaptable PayAI can be. Even as an auxiliary part of our platform, the ease of facilitation has added significant value to our offering, allowing us to provide more diverse options to our users. It's a massive value-add for any modern ecosystem project.",
+        "testimonialAuthor": "QuickSync Team"
     },
     {
         "name": "Holoworld AI",
