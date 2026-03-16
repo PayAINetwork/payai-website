@@ -212,14 +212,14 @@
         "testimonialAuthor": "Serpent Team"
     },
     {
-        "name": "Kamiyo",
+        "name": "KAMIYO",
         "logo": "/projects/kamiyo.png",
-        "description": "Kamiyo is a trust and payment infrastructure layer on Solana providing escrow, private oracle voting with ZK proofs, and quality-based settlement for autonomous AI agent transactions.",
+        "description": "KAMIYO is a trust and payment infrastructure layer on Solana providing escrow, private oracle voting with ZK proofs, and quality-based settlement for autonomous AI agent transactions.",
         "websiteUrl": "https://www.kamiyo.ai",
         "twitterUrl": "https://x.com/kamiyoai",
         "category": "AI Agents",
         "testimonial": "x402 gives us a clean foundation for machine-native payments, and PayAI made it practical to integrate into KAMIYO. The facilitator flow is straightforward, the multi-network support is solid, and fits perfect with the reliability and safety controls we need for agent-driven transactions.",
-        "testimonialAuthor": "Kamiyo Team"
+        "testimonialAuthor": "KAMIYO Team"
     },
     {
         "name": "8004scan",
