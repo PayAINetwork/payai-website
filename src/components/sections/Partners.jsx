@@ -8,7 +8,7 @@ const PARTNERS_DATA = [
   { src: "/partners/polygon-dark.png", name: "polygon" },
   { src: "/partners/avalanche-dark.png", name: "avalanche" },
   { src: "/partners/sei-dark.png", name: "sei" },
-  { src: "/partners/Nansen.png", name: "nansen" },
+  { src: "/partners/nansen.png", name: "nansen" },
 ];
 
 export const Partners = () => {
