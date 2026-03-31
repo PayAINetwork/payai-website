@@ -41,7 +41,9 @@
         "description": "EarnFi is a Web3 rewards platform that helps users discover, track, and manage on-chain incentives.",
         "websiteUrl": "https://earnfi.fun",
         "twitterUrl": "https://x.com/EarnFidotfun",
-        "category": "Blockchain"
+        "category": "Blockchain",
+        "testimonial": "Integrating PayAI as our x402 facilitator has enabled seamless micro-payments on our platform, allowing users to seamlessly create jobs and launch campaigns without delays or friction, while benefiting from some of the lowest fees in crypto.",
+        "testimonialAuthor": "EarnFi Team"
     },
     {
         "logo": "/projects/skale.jpg",
@@ -349,7 +351,9 @@
         "description": "Lucid is a multi-bridge liquidity hub combining x402 and ERC-8004 to give AI agents identity, payment capability, and autonomous operation across multiple chains.",
         "websiteUrl": "https://www.lucidlabs.fi",
         "twitterUrl": "https://x.com/LucidChain",
-        "category": "AI Agents"
+        "category": "AI Agents",
+        "testimonial": "Using PayAI has been a game-changer for us at LucidChain. It eliminates a ton of hassle around agent-to-agent payments and micro-transactions, letting our AI agents interact and settle seamlessly. This powers the backbone of our Internet of AI platform so we can stay laser-focused on building composable AI infrastructure instead of wrestling with payment complexities.",
+        "testimonialAuthor": "Eli Alegria, Lucid CEO"
     },
     {
         "name": "Mind Network",
