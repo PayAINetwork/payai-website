@@ -91,6 +91,13 @@ export function Footer() {
             {/* FOOTER */}
             <div className="lg:col-span-3 border-t flex flex-row lg:flex-row flex-wrap gap-2 items-center justify-center lg:justify-between border-[#E4E4E7] py-6 lg:px-10">
               <div className="lg:hidden flex gap-4 items-center">
+                <Link
+                  href={process.env.NEXT_PUBLIC_X_URL || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="PayAI X"
+                  className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                >
                 <svg
                   width="20"
                   height="20"
@@ -115,7 +122,15 @@ export function Footer() {
                     />
                   </g>
                 </svg>
+                </Link>
 
+                <Link
+                  href={process.env.NEXT_PUBLIC_LINKEDIN_URL || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="PayAI LinkedIn"
+                  className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                >
                 <svg
                   width="21"
                   height="20"
@@ -132,7 +147,15 @@ export function Footer() {
                     fill="black"
                   />
                 </svg>
+                </Link>
 
+                <Link
+                  href={process.env.NEXT_PUBLIC_GITHUB_URL || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="PayAI GitHub"
+                  className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                >
                 <svg
                   width="18"
                   height="18"
@@ -145,7 +168,15 @@ export function Footer() {
                     fill="black"
                   />
                 </svg>
+                </Link>
 
+                <Link
+                  href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="PayAI Telegram"
+                  className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                >
                 <svg
                   width="20"
                   height="20"
@@ -158,6 +189,15 @@ export function Footer() {
                     fill="#09090B"
                   />
                 </svg>
+                </Link>
+
+                <Link
+                  href={process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="PayAI Docs"
+                  className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                >
                 <svg
                   width="20"
                   height="20"
@@ -170,6 +210,7 @@ export function Footer() {
                     fill="#09090B"
                   />
                 </svg>
+                </Link>
               </div>
               <div className="flex gap-2 items-center px-3 py-2 bg-[#F0F0F0]/50 rounded-full">
                 <svg
