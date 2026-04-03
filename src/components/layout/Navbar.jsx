@@ -283,7 +283,12 @@ export function Navbar({ activePage = "home" }) {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-2 lg:gap-3">
-            <div className="hidden lg:block relative" ref={socialMenuRef}>
+            <div
+              className="hidden lg:block relative"
+              ref={socialMenuRef}
+              onMouseEnter={() => setIsSocialMenuOpen(true)}
+              onMouseLeave={() => setIsSocialMenuOpen(false)}
+            >
               <button
                 type="button"
                 onClick={() => setIsSocialMenuOpen((prev) => !prev)}
@@ -300,7 +305,8 @@ export function Navbar({ activePage = "home" }) {
               </button>
 
               {isSocialMenuOpen && (
-                <div className="absolute right-0 mt-2 z-50 w-[368px] rounded-xl border border-[#E4E4E7] bg-white shadow-[0_12px_32px_rgba(0,0,0,0.1)] p-3">
+                <div className="absolute right-0 z-50 w-[368px] pt-2">
+                <div className="rounded-xl border border-[#E4E4E7] bg-white shadow-[0_12px_32px_rgba(0,0,0,0.1)] p-3">
                   <div className="grid grid-cols-6 gap-2">
                     <Link
                       href={process.env.NEXT_PUBLIC_X_URL || "#"}
@@ -400,6 +406,7 @@ export function Navbar({ activePage = "home" }) {
                       Join Dev Discord
                     </Link>
                   </div>
+                </div>
                 </div>
               )}
             </div>
