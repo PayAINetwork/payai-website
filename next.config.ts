@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "payai.ghost.io",
         pathname: "/content/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "storage.ghost.io",
+        pathname: "/**",
+      },
     ],
   },
 };
