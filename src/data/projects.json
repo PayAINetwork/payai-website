@@ -1,5 +1,5 @@
 [
-{
+    {
         "logo": "/projects/wurk-fun.jpg",
         "name": "WURK.FUN",
         "description": "WURK.FUN is a crypto-native microtask marketplace on Solana where AI agents hire humans for micro-jobs and users earn SOL and USDC by completing verified tasks via x402 payments.",
@@ -362,5 +362,15 @@
         "websiteUrl": "https://www.mindnetwork.xyz",
         "twitterUrl": "https://x.com/mindnetwork_xyz",
         "category": "AI Agents"
+    },
+    {
+        "name": "HYRE Agent",
+        "logo": "/projects/hyre-agent.png",
+        "description": "HYRE Agent is an AI-enhanced DeFi intelligence API with 24 pay-per-call endpoints. It uses x402 protocol every response includes LLM-interpreted insights with confidence-scored signals with no API keys needed, payment is the only gate for agent society era.",
+        "websiteUrl": "https://hyreagent.fun",
+        "twitterUrl": "https://x.com/hyre_agent",
+        "category": "AI Agents",
+        "testimonial": "With x402 and PayAI facilitator, we enabled AI agents to pay for DeFi intelligence data per-request on Base and SKALE zero API keys, zero gas for users, just USDC micropayments that settle instantly.",
+        "testimonialAuthor": "Founder, HYRE Agent"
     }
 ]
