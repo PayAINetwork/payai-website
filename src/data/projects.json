@@ -365,7 +365,7 @@
     },
     {
         "name": "HYRE Agent",
-        "logo": "/projects/hyre-agent.png",
+        "logo": "/projects/hyre-agent.svg",
         "description": "HYRE Agent is an AI-enhanced DeFi intelligence API with 24 pay-per-call endpoints. It uses x402 protocol every response includes LLM-interpreted insights with confidence-scored signals with no API keys needed, payment is the only gate for agent society era.",
         "websiteUrl": "https://hyreagent.fun",
         "twitterUrl": "https://x.com/hyre_agent",
