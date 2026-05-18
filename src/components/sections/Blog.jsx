@@ -62,12 +62,12 @@ export const Blog = async ({ variant = "all" }) => {
     <section className="bg-white py-8 lg:py-20" id="blog">
       <div className="w-full flex flex-col items-center mb-12">
         <h2 className="text-2xl lg:text-[36px] text-[#09090B] text-center">
-          {isCaseStudies ? "Case Studies" : "Blog"}
+          {isCaseStudies ? "Case Studies" : "Latest Article"}
         </h2>
         <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
           {isCaseStudies
             ? "Read case studies about projects in the PayAI ecosystem"
-            : "Stay up to date with the latest from PayAI"}
+            : "See how PayAI thinks about building in Agent commerce. Notes that the scenarios described are for illustration purposes only and have not happened yet."}
         </p>
       </div>
 

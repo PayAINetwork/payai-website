@@ -4,32 +4,32 @@ const FAQ_DATA = [
   {
     question: "What is x402?",
     answer:
-      "x402 is a real-time, usage-based payment infrastructure that enables AI agents, apps, and platforms to send and receive micropayments instantly across multiple blockchains, powered by Solana and Web3 technology.",
+      "x402 is a universal payment aggregator for AI agents and apps. We provide two products: the x402 Facilitator (HTTP 402 payments protocol) and the Agent Payments SDK (one integration to accept payments from every major blockchain via Crossmint-powered wallets).",
   },
   {
-    question: "How fast are transactions on x402?",
+    question: "What is x402 Facilitator?",
     answer:
-      "Transactions on x402 are processed in near real-time, with payments verified and settled within seconds, making it suitable for high-frequency and usage-based applications.",
+      "The x402 Facilitator turns any HTTP endpoint into a paid API. It uses the HTTP 402 status code so any agent can pay programmatically — no keys, no accounts, no friction. PayAI hosts the facilitator and handles settlement across networks.",
   },
   {
-    question: "Which chains does x402 support?",
+    question: "What is the Agent Payments SDK?",
     answer:
-      "x402 supports multiple blockchain networks, including Solana, Base, Polygon, Avalanche, and other EVM-compatible chains, allowing flexible cross-chain integrations.",
+      "The Agent Payments SDK is a protocol-neutral middleware package (@payai/agent-payments) that lets merchants accept payments via both x402 and MPP across every supported chain with one integration. It ships with framework adapters for Express, Next.js, Hono, and Elysia.",
   },
   {
-    question: "What is the minimum payment amount?",
+    question: "How does automatic catalog listing work?",
     answer:
-      "x402 is designed for micropayments, allowing developers to charge very small amounts per request or usage, with no fixed minimum that would limit real-time or pay-per-action models.",
+      "When you go live on PayAI, your service is automatically listed in 12+ active agentic catalogs and marketplaces (LobsterCash, AgentCash, AgentWallet, MPP, Coinbase Bazaar, and more). Agents browsing for paid endpoints find you instantly — no manual submission required.",
   },
   {
-    question: "How can developers integrate x402 into their app?",
+    question: "What is Crossmint and why are you using it?",
     answer:
-      "Developers can integrate x402 using PayAI’s APIs and SDKs, enabling usage-based payments with just a few lines of code, without needing to manage wallets, settlements, or blockchain complexity.",
+      "Crossmint is our wallet infrastructure partner. Their non-custodial, multi-chain wallet stack gives every PayAI merchant and buyer a wallet on every supported network out of the box, so there is no bridging, manual setup, or per-chain integration to manage.",
   },
   {
-    question: "Is x402 secure?",
+    question: "Which SDKs are available?",
     answer:
-      "Yes. x402 leverages blockchain-native security, cryptographic verification, and on-chain settlement to ensure transactions are transparent, tamper-resistant, and secure by design.",
+      "Today: TypeScript and Python, with Go and Rust on the roadmap. The TypeScript SDK ships framework-specific subpath exports (Express, Next.js, Hono, Elysia) plus a manual mode for custom servers.",
   },
 ];
 

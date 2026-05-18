@@ -3,12 +3,14 @@ export const revalidate = 3600;
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Header } from "@/components/sections/Header";
-import { Features } from "@/components/sections/Features";
 import { Partners } from "@/components/sections/Partners";
-import { Overview } from "@/components/sections/Overview";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { AgentSDK } from "@/components/sections/AgentSDK";
+import { Facilitator } from "@/components/sections/Facilitator";
+import { MeetBuyers } from "@/components/sections/MeetBuyers";
+import { IntegrateOnce } from "@/components/sections/IntegrateOnce";
+import { CommandCenter } from "@/components/sections/CommandCenter";
+import { BuilderTestimonials } from "@/components/sections/BuilderTestimonials";
 import { FAQ } from "@/components/sections/FAQ";
-import { CTA } from "@/components/sections/CTA";
 import { Blog } from "@/components/sections/Blog";
 import { Footer } from "@/components/layout/Footer";
 import { ShuffledLogosProvider } from "@/context/ShuffledLogosContext";
@@ -19,13 +21,15 @@ export default function Page() {
       <div>
         <Navbar />
         <Header />
-        <Features />
         <Partners />
-        <Overview />
-        <Testimonials />
-        <Blog />
+        <AgentSDK />
+        <Facilitator />
+        <MeetBuyers />
+        <IntegrateOnce />
+        <CommandCenter />
+        <BuilderTestimonials />
         <FAQ />
-        <CTA />
+        <Blog />
         <Footer />
       </div>
     </ShuffledLogosProvider>
