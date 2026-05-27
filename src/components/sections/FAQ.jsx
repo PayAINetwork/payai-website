@@ -1,4 +1,6 @@
 import FAQItem from "../ui/FAQItem";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildFaqSchema } from "@/lib/schema";
 
 const FAQ_DATA = [
   {
@@ -35,7 +37,9 @@ const FAQ_DATA = [
 
 export const FAQ = () => {
   return (
-    <section className="bg-white">
+    <section id="faq" className="bg-white">
+      {/* SEO: FAQPage structured data mirrors the questions rendered below. */}
+      <JsonLd data={buildFaqSchema(FAQ_DATA)} id="ld-faq" />
       <div className="container-payai py-8 lg:py-20 flex flex-col items-center">
         <div className="max-w-[600px] flex flex-col items-center">
           <h2 className="text-2xl lg:text-[36px] text-[#09090B]">

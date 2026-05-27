@@ -34,8 +34,13 @@ export function Footer() {
                 />
 
                 <Link
-                  href="#"
+                  href={
+                    process.env.NEXT_PUBLIC_SUBSCRIBE_URL ||
+                    process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK ||
+                    "https://blog.payai.network"
+                  }
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="absolute right-1 top-1 bottom-1 inline-flex items-center justify-center
       bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)]
       text-white px-4 py-2.5 text-sm font-medium rounded-lg

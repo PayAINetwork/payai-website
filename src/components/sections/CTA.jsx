@@ -81,7 +81,7 @@ export function CTA() {
         </div>
         <Image
           src="/cta/hero.jpg"
-          alt="Hero Image"
+          alt="AI agents sending x402 payments through the PayAI facilitator"
           width={628}
           height={500}
           className="rounded-3xl hidden lg:block"

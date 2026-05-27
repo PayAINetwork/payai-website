@@ -176,21 +176,46 @@ const OverviewCard = ({ src, title, description, badge, isLive, url }) => {
               {description}
             </p>
             <div className="mt-8 flex flex-row flex-wrap gap-3">
-              <Link
-                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] ${isLive ? "bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white hover:bg-[#FFFFFF]" : "bg-gray-300 text-gray-500 cursor-not-allowed pointer-events-none"}`}
-                href={isLive ? (url ?? "#") : "#"}
-                target="_blank"
-              >
-                Get Started
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <Link
-                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border shadow-[0_1px_2px_rgba(0,0,0,0.1)] ${isLive ? "bg-white text-gray-800 hover:bg-[#FFFFFF]" : "bg-gray-200 text-gray-500 cursor-not-allowed pointer-events-none"}`}
-                href={isLive ? (process.env.NEXT_PUBLIC_DOCS_URL ?? "#") : "#"} 
-                target="_blank"
-              >
-                Documentation
-              </Link>
+              {/* SEO: render disabled CTAs as <span>, not <a href="#">, to avoid
+                  shipping dead links in the rendered HTML. */}
+              {isLive ? (
+                <Link
+                  className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white hover:bg-[#FFFFFF]"
+                  href={url ?? "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get Started
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              ) : (
+                <span
+                  className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-gray-300 text-gray-500 cursor-not-allowed"
+                  aria-disabled="true"
+                  role="button"
+                >
+                  Get Started
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </span>
+              )}
+              {isLive ? (
+                <Link
+                  className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border shadow-[0_1px_2px_rgba(0,0,0,0.1)] bg-white text-gray-800 hover:bg-[#FFFFFF]"
+                  href={process.env.NEXT_PUBLIC_DOCS_URL ?? "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Documentation
+                </Link>
+              ) : (
+                <span
+                  className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border shadow-[0_1px_2px_rgba(0,0,0,0.1)] bg-gray-200 text-gray-500 cursor-not-allowed"
+                  aria-disabled="true"
+                  role="button"
+                >
+                  Documentation
+                </span>
+              )}
             </div>
           </div>
         </div>

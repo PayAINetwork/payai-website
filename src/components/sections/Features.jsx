@@ -5,7 +5,8 @@ export function Features() {
     <section id="features" className="bg-white flex border-y border-[#E4E4E7]">
       <Image
         src="/features/bg-side.svg"
-        alt="background-left"
+        alt=""
+        aria-hidden="true"
         width="80"
         height="572"
         className="hidden lg:block"
@@ -23,18 +24,18 @@ export function Features() {
               currencies.
             </p>
           </div>
-          <div className="mt-6 lg:mt-0">
-            <h2 className="text-[#09090B] font-medium text-xl lg:text-[36px]">
+          <div className="mt-6 lg:mt-0" role="group" aria-label="Settlement speed">
+            <p className="text-[#09090B] font-medium text-xl lg:text-[36px]">
               &lt; 1 Second
-            </h2>
+            </p>
             <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
               Payments are verified and settled.
             </p>
           </div>
-          <div className="mt-3 lg:mt-0">
-            <h2 className="text-[#09090B] font-medium text-xl lg:text-[36px]">
+          <div className="mt-3 lg:mt-0" role="group" aria-label="Payment success rate">
+            <p className="text-[#09090B] font-medium text-xl lg:text-[36px]">
               99.9%
-            </h2>
+            </p>
             <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
               Payment Success Rate across supported networks
             </p>
@@ -133,7 +134,8 @@ export function Features() {
       </div>
       <Image
         src="/features/bg-side.svg"
-        alt="background-right"
+        alt=""
+        aria-hidden="true"
         width="80"
         height="572"
         className="hidden lg:block"
