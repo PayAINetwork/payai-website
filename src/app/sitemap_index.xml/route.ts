@@ -1,3 +1,11 @@
+/**
+ * Aggregates sitemaps from all PayAI subdomains so Google can crawl one entry
+ * point and discover content across marketing, blog, and docs. Helps mitigate
+ * the SEO equity fragmentation that comes with hosting on separate subdomains.
+ *
+ * If you add a new subdomain (e.g. status.payai.network), add its sitemap here
+ * and verify the URL responds with valid XML before deploying.
+ */
 export function GET() {
   const sitemaps = [
     "https://payai.network/sitemap.xml",
@@ -13,6 +21,7 @@ ${sitemaps.map((url) => `  <sitemap>\n    <loc>${url}</loc>\n  </sitemap>`).join
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
     },
   });
 }
