@@ -19,6 +19,18 @@ export function Header() {
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-center">
           {/* Header text - Takes 8 columns on large screens */}
           <div className="lg:col-span-8">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.1,
+                ease: [0.25, 0.25, 0, 1],
+              }}
+              className="text-xs lg:text-sm font-medium text-[#1D45D8] tracking-wide uppercase"
+            >
+              x402 Facilitator &amp; Agent Payments SDK
+            </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -27,12 +39,11 @@ export function Header() {
                 delay: 0.2,
                 ease: [0.25, 0.25, 0, 1],
               }}
-              className="text-[32px] lg:text-[56px] lg:tracking-[-1%] font-medium text-[#09090B]"
+              className="mt-3 text-[32px] lg:text-[56px] lg:tracking-[-1%] font-medium text-[#09090B]"
               style={{ lineHeight: 1.2 }}
             >
-              The Fastest Way for{" "}
-              <span className="text-[#1D45D8]">AI Agents and Apps</span> to
-              Transact
+              The <span className="text-[#1D45D8]">x402 Facilitator</span> for
+              AI Agents and Apps
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -44,8 +55,9 @@ export function Header() {
               }}
               className="mt-4 text-sm lg:text-body text-[#71717A] leading-relaxed md:leading-relaxed"
             >
-              Build AI agents and apps that pay and get paid in real time with
-              x402, multi-chain micropayments powered by Solana.
+              Accept agentic payments on every major chain with one
+              integration — multi-chain micropayments powered by Solana, no API
+              keys, no accounts, instant settlement.
             </motion.p>
 
             <motion.div
@@ -123,10 +135,11 @@ export function Header() {
 
           <Image
             src="/header/hero.png"
-            alt="Hero Image"
+            alt="AI agents and apps transacting through PayAI's x402 payment facilitator"
             width={600}
             height={628}
             className="w-full h-auto lg:w-auto lg:h-full"
+            priority
           />
         </div>
       </div>
