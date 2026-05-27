@@ -1,11 +1,62 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+} from "@/lib/schema";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PayAI - Payments for the AI Age",
+  metadataBase: new URL("https://payai.network"),
+  title: {
+    default: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
+    template: "%s | PayAI",
+  },
   description:
-    "PayAI enables autonomous agents to transact with each other and humans — securely, seamlessly, and 24/7.",
+    "PayAI is the x402 payment facilitator for AI agents and apps. Accept agentic payments on every major chain with one integration — no API keys, no accounts, instant settlement.",
+  keywords: [
+    "x402 facilitator",
+    "x402 payments",
+    "AI agent payments",
+    "agentic payments",
+    "agent payments SDK",
+    "stablecoin micropayments",
+    "HTTP 402",
+    "API monetization",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://payai.network",
+    siteName: "PayAI",
+    title: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
+    description:
+      "The x402 facilitator for AI agents and apps. Multi-chain micropayments powered by Solana. Get paid by AI agents in 5 minutes.",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
+    description:
+      "The x402 facilitator for AI agents and apps. Multi-chain micropayments powered by Solana.",
+    images: ["/twitter-image.png"],
+    site: "@PayAINetwork",
+    creator: "@PayAINetwork",
+  },
+  alternates: {
+    canonical: "https://payai.network",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -60,6 +111,16 @@ export default function RootLayout({
             />
           </noscript>
         )}
+        {/*
+         * SEO: site-wide structured data.
+         * Rendered in <body>, not <head>, per the Next.js App Router recommendation
+         * (https://nextjs.org/docs/app/guides/json-ld). Putting <script> tags with
+         * dangerouslySetInnerHTML directly in <head> can cause hydration mismatches
+         * because React's head management may reorder or dedupe them. Google reads
+         * JSON-LD from anywhere in the document, so body placement is fully valid.
+         */}
+        <JsonLd data={buildOrganizationSchema()} id="ld-organization" />
+        <JsonLd data={buildWebSiteSchema()} id="ld-website" />
         {children}
       </body>
     </html>
