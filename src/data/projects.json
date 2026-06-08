@@ -378,5 +378,15 @@
         "category": "AI Agents",
         "testimonial": "With x402 and PayAI facilitator, we enabled AI agents to pay for DeFi intelligence data per-request on Base and SKALE zero API keys, zero gas for users, just USDC micropayments that settle instantly.",
         "testimonialAuthor": "Founder, HYRE Agent"
+    },
+    {
+        "name": "Obscra",
+        "logo": "/projects/obscra.png",
+        "description": "OBSCRA is a privacy-first data marketplace on Solana where creators sell encrypted files directly to buyers. Every transaction is verified with zero knowledge proofs and settled instantly via x402 payments no middlemen, no custodians, no plaintext data ever touches a server.",
+        "websiteUrl": "https://obscra.app/",
+        "twitterUrl": "https://x.com/obscra_void?s=21",
+        "category": "DeFi",
+        "testimonial": "\"x402 and PayAI made payments disappear into the background of OBSCRA  exactly where they belong. Sub-2-second settlement, zero middlemen, zero friction. This is the payment stack we've been waiting for.\"",
+        "testimonialAuthor": "Obscra Developer"
     }
 ]
