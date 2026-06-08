@@ -48,10 +48,16 @@ jobs:
             const testimonial = getField('Testimonial (optional)');
             const testimonialAuthor = getField('Testimonial Author (optional)');
 
-            // Extract image URL from markdown syntax or plain URL
-            let logoUrl = logoRaw;
-            const imgMatch = logoRaw.match(/!\[.*?\]\((.*?)\)/);
-            if (imgMatch) logoUrl = imgMatch[1];
+            // Extract image URL. GitHub stores uploaded images as <img src="...">
+            // tags (sometimes wrapped in a markdown link); older submissions may use
+            // markdown image syntax or a plain URL. Handle all cases.
+            let logoUrl = '';
+            const imgTag = logoRaw.match(/<img[^>]*\bsrc=["']([^"']+)["']/i);
+            const mdImg = logoRaw.match(/!\[[^\]]*\]\(([^)]+)\)/);
+            const bareUrl = logoRaw.match(/https?:\/\/[^\s)"'<>]+/);
+            if (imgTag) logoUrl = imgTag[1];
+            else if (mdImg) logoUrl = mdImg[1];
+            else if (bareUrl) logoUrl = bareUrl[0];
             logoUrl = logoUrl.trim();
 
             if (!logoUrl) {
@@ -87,7 +93,16 @@ jobs:
             // Download logo
             const logoFilename = `${slug}${ext}`;
             const logoPath = `public/projects/${logoFilename}`;
-            execFileSync('curl', ['-sL', logoUrl, '-o', logoPath]);
+            try {
+              execFileSync('curl', ['-fsL', logoUrl, '-o', logoPath]);
+            } catch (e) {
+              core.setFailed(`Failed to download logo from: ${logoUrl}`);
+              return;
+            }
+            if (!fs.existsSync(logoPath) || fs.statSync(logoPath).size === 0) {
+              core.setFailed(`Downloaded logo is empty from: ${logoUrl}`);
+              return;
+            }
 
             // Update projects.json
             const projectsPath = 'src/data/projects.json';
