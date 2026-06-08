@@ -1,5 +1,13 @@
 [
     {
+        "logo": "/projects/done.png",
+        "name": "_done",
+        "description": "_done offers pay-per-call tools and APIs for AI agents — including bulk DMARC lookups, domain age checks, HTTP status checks, and QR code generation — settled in USDC on Base via x402, with no accounts, API keys, or subscriptions.",
+        "websiteUrl": "https://underscoredone.com",
+        "twitterUrl": "https://x.com/underscoredone",
+        "category": "AI Agents"
+    },
+    {
         "logo": "/projects/wurk-fun.jpg",
         "name": "WURK.FUN",
         "description": "WURK.FUN is a crypto-native microtask marketplace on Solana where AI agents hire humans for micro-jobs and users earn SOL and USDC by completing verified tasks via x402 payments.",
