@@ -378,5 +378,13 @@
         "category": "AI Agents",
         "testimonial": "With x402 and PayAI facilitator, we enabled AI agents to pay for DeFi intelligence data per-request on Base and SKALE zero API keys, zero gas for users, just USDC micropayments that settle instantly.",
         "testimonialAuthor": "Founder, HYRE Agent"
+    },
+    {
+        "name": "ZZ Workflow Test",
+        "logo": "/projects/zz-workflow-test.png",
+        "description": "Throwaway issue to verify the ecosystem auto-PR workflow logo parsing fix. Safe to delete.",
+        "websiteUrl": "https://example.com",
+        "twitterUrl": "https://x.com/example",
+        "category": "Infrastructure"
     }
 ]
