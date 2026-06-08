@@ -214,14 +214,12 @@
         "testimonialAuthor": "Serpent Team"
     },
     {
-        "name": "KAMIYO",
-        "logo": "/projects/kamiyo.png",
-        "description": "KAMIYO is a trust and payment infrastructure layer on Solana providing escrow, private oracle voting with ZK proofs, and quality-based settlement for autonomous AI agent transactions.",
-        "websiteUrl": "https://www.kamiyo.ai",
-        "twitterUrl": "https://x.com/kamiyoai",
-        "category": "AI Agents",
-        "testimonial": "x402 gives us a clean foundation for machine-native payments, and PayAI made it practical to integrate into KAMIYO. The facilitator flow is straightforward, the multi-network support is solid, and fits perfect with the reliability and safety controls we need for agent-driven transactions.",
-        "testimonialAuthor": "KAMIYO Team"
+        "name": "MilyPay",
+        "logo": "/projects/milypay.svg",
+        "description": "MilyPay is an x402 service provider offering Australian data APIs — business identity, property, weather, and civic information — with pay-per-call settlement in AUDD, a regulated AUD-native stablecoin on Solana, letting AI agents access data without API keys or signup.",
+        "websiteUrl": "https://milypay.xyz",
+        "twitterUrl": "https://x.com/1milysec",
+        "category": "Infrastructure"
     },
     {
         "name": "8004scan",
