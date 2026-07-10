@@ -378,5 +378,13 @@
         "category": "AI Agents",
         "testimonial": "With x402 and PayAI facilitator, we enabled AI agents to pay for DeFi intelligence data per-request on Base and SKALE zero API keys, zero gas for users, just USDC micropayments that settle instantly.",
         "testimonialAuthor": "Founder, HYRE Agent"
+    },
+    {
+        "name": "STALL",
+        "logo": "/projects/stall.png",
+        "description": "STALL is an x402 pay-per-call capability platform exposing 293 machine-callable tools — financial and market data, crypto and on-chain intelligence, OSINT, and developer utilities — that AI agents discover and pay for per request in USDC on Base, with no accounts and no API keys.",
+        "websiteUrl": "https://the-stall.intuitek.ai",
+        "twitterUrl": "https://x.com/IntuiTek149992",
+        "category": "Infrastructure"
     }
 ]
