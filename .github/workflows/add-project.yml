@@ -2,7 +2,7 @@ name: Add Project to Ecosystem
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
 
 jobs:
   add-project:
