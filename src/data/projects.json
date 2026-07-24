@@ -378,5 +378,15 @@
         "category": "AI Agents",
         "testimonial": "With x402 and PayAI facilitator, we enabled AI agents to pay for DeFi intelligence data per-request on Base and SKALE zero API keys, zero gas for users, just USDC micropayments that settle instantly.",
         "testimonialAuthor": "Founder, HYRE Agent"
+    },
+    {
+        "name": "Utilia",
+        "logo": "/projects/utilia.svg",
+        "description": "Utilia provides machine-payable Solana transaction simulation, diagnostics, priority-fee estimates, and token-risk analysis over x402 v2 and remote MCP. Agents pay $0.002–$0.008 USDC per result through PayAI with no account, subscription, or API key; an open-source npm client handles wallet-funded calls locally.",
+        "websiteUrl": "https://utilia.ink",
+        "twitterUrl": "https://x.com/utiliax402",
+        "category": "Infrastructure",
+        "testimonial": "“PayAI let us turn four focused Solana intelligence tools into accountless, pay-per-result infrastructure that autonomous agents can discover and buy.”",
+        "testimonialAuthor": "Utilia"
     }
 ]
