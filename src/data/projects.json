@@ -388,5 +388,13 @@
         "category": "Infrastructure",
         "testimonial": "“PayAI let us turn four focused Solana intelligence tools into accountless, pay-per-result infrastructure that autonomous agents can discover and buy.”",
         "testimonialAuthor": "Utilia"
+    },
+    {
+        "name": "ManyHands Evidence API",
+        "logo": "/projects/manyhands-evidence-api.png",
+        "description": "ManyHands provides deterministic evidence operations over public UK official\nsources, including snapshots, change checks, deadline scans, citation packs,\nand PDF evidence. Its paid API uses x402 v2 USDC on Base, with public\ndocumentation and per-call pricing from $0.01 to $0.05.",
+        "websiteUrl": "https://manyhands.uk/evidence-api/",
+        "twitterUrl": "https://x.com/WinsleyMedium/status/2081127520393458110",
+        "category": "SaaS"
     }
 ]
