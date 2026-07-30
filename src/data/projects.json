@@ -396,5 +396,15 @@
         "websiteUrl": "https://manyhands.uk/evidence-api/",
         "twitterUrl": "https://x.com/WinsleyMedium/status/2081127520393458110",
         "category": "SaaS"
+    },
+    {
+        "name": "Pnl Labs",
+        "logo": "/projects/pnl-labs.png",
+        "description": "rust & risk verdicts for AI trading agents on Solana, paid per call via x402. Four checks: wallet trust (proof of REAL realized PnL, not peak scores — 50% of tracked \"smart money\" is actually losing money), token safety, trade execution cost, and wallet funding forensics. Machine-first JSON, MCP server, USDC on Solana.",
+        "websiteUrl": "https://pnllabs.com",
+        "twitterUrl": "@pnllabs",
+        "category": "Analytics",
+        "testimonial": "We audited 30 tracked 'smart money' wallets — half are genuinely losing money on-chain. Registry score 100, real result: −47 SOL.",
+        "testimonialAuthor": "CTO"
     }
 ]
