@@ -396,5 +396,13 @@
         "websiteUrl": "https://manyhands.uk/evidence-api/",
         "twitterUrl": "https://x.com/WinsleyMedium/status/2081127520393458110",
         "category": "SaaS"
+    },
+    {
+        "name": "PulseNetwork",
+        "logo": "/projects/pulsenetwork.svg",
+        "description": "PulseNetwork is a fleet of 75 pay-per-call data APIs for AI agents: 900+ x402 endpoints covering token safety, crypto, macro, sports, travel, climate, and more, settled in stablecoins on Solana, Base, and other supported networks. No accounts, API keys, or subscriptions.",
+        "websiteUrl": "https://pulse.theaslangroupllc.com",
+        "twitterUrl": "https://x.com/pulsenetwork_ai",
+        "category": "AI Agents"
     }
 ]
