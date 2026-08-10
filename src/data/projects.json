@@ -404,5 +404,12 @@
         "websiteUrl": "https://pulse.theaslangroupllc.com",
         "twitterUrl": "https://x.com/pulsenetwork_ai",
         "category": "AI Agents"
+    },
+        "name": "ByKaranteli",
+        "logo": "/projects/bykaranteli.png",
+        "description": "ByKaranteli is a crypto derivatives data terminal that turns multi-exchange liquidation maps, funding and open-interest history, Deribit options flow, CFTC COT positioning and VPIN order-flow toxicity into machine-callable endpoints. 13 of them are x402 pay-per-call at $0.002 to $0.010 USDC on Solana and Base mainnet, settled through the Coinbase CDP facilitator, with no account, subscription or API key: free catalog at https://bykaranteli.com/api/x402. The same data set is also exposed to agents through a hosted MCP server (20 read-only tools, v0.7.3) at https://mcp.bykaranteli.com.",
+        "websiteUrl": "https://bykaranteli.com",
+        "twitterUrl": "https://x.com/bykaranteli",
+        "category": "Analytics"
     }
 ]
