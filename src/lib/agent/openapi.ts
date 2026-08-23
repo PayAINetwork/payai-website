@@ -221,7 +221,17 @@ export function buildOpenApiDocument() {
           summary: "List supported payment kinds",
           description:
             "Returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. Call this before constructing payment requirements so you only advertise networks that are live. Solana `exact` entries include an `extra.feePayer` address that sponsors gas for gasless settlement; `upto` entries include `extra.facilitatorAddress`.",
-          security: [],
+          parameters: [
+            {
+              name: "Authorization",
+              in: "header",
+              required: false,
+              description:
+                "Optional `Bearer <api-key>`. Read here to steer which settlement lane the advertised Solana fee payer belongs to, so an account with a reserved lane sees its own fee payer. Omit it for the shared lane.",
+              schema: { type: "string" },
+              example: "Bearer pk_live_example",
+            },
+          ],
           responses: {
             "200": {
               description: "The currently supported payment kinds.",
@@ -278,31 +288,9 @@ export function buildOpenApiDocument() {
                 },
               },
             },
-            "400": {
-              description:
-                "The request body failed schema validation, or the scheme/network is not supported.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/VerifyResponse" },
-                },
-              },
-            },
-            "403": {
-              description: "Rejected by a compliance or abuse-prevention hook.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/VerifyResponse" },
-                },
-              },
-            },
-            "500": {
-              description: "Unexpected facilitator error.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/VerifyResponse" },
-                },
-              },
-            },
+            "400": { $ref: "#/components/responses/VerificationError" },
+            "403": { $ref: "#/components/responses/VerificationError" },
+            "500": { $ref: "#/components/responses/VerificationError" },
           },
         },
       },
@@ -349,48 +337,16 @@ export function buildOpenApiDocument() {
                 },
               },
             },
-            "400": {
-              description: "Invalid request body, scheme, or network.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/SettleResponse" },
-                },
-              },
-            },
-            "403": {
-              description: "Rejected by a compliance or abuse-prevention hook.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/SettleResponse" },
-                },
-              },
-            },
-            "429": {
-              description:
-                "Capacity limit reached for this payment kind — retry with backoff.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/SettleResponse" },
-                },
-              },
-            },
-            "500": {
-              description: "Unexpected facilitator error.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/SettleResponse" },
-                },
-              },
-            },
-            "503": {
-              description:
-                "A dependency was unavailable and the facilitator failed closed rather than risk an unsafe settlement.",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/SettleResponse" },
-                },
-              },
-            },
+            "400": { $ref: "#/components/responses/SettlementError" },
+
+            "403": { $ref: "#/components/responses/SettlementError" },
+
+            "429": { $ref: "#/components/responses/SettlementError" },
+
+            "500": { $ref: "#/components/responses/SettlementError" },
+
+            "503": { $ref: "#/components/responses/SettlementError" },
+
           },
         },
       },
@@ -498,26 +454,20 @@ export function buildOpenApiDocument() {
          * but both carry a stable machine-readable code plus human-readable
          * detail, which is what an integration should branch on.
          */
+        /*
+         * The error contract both concrete failure shapes satisfy. Referenced
+         * by VerifyResponse and SettleResponse via allOf so the model is stated
+         * once and every error response resolves back to it.
+         */
         FacilitatorError: {
           type: "object",
           description:
-            "Shape shared by every failure response. `POST /verify` returns VerifyResponse and `POST /settle` returns SettleResponse; both include a stable reason code and a human-readable message, and both are JSON on 4xx and 5xx as well as 200.",
+            "Every failure response carries a stable machine-readable reason code and a human-readable message, and is JSON on 4xx and 5xx as well as on 200. Branch on the reason code; it does not change across releases.",
           properties: {
-            reasonCode: {
-              type: "string",
-              description:
-                "`invalidReason` on /verify, `errorReason` on /settle. Stable across releases; branch on this.",
-              examples: INVALID_REASONS,
-            },
-            message: {
-              type: "string",
-              description:
-                "`invalidMessage` on /verify, `errorMessage` on /settle. Human-readable, includes field-level validation detail.",
-            },
-            retryable: {
+            success: {
               type: "boolean",
               description:
-                "Not returned on the wire — derived. `settlement_pending`, `service_unavailable`, and `upto_channel_capacity_exhausted` are retryable; validation and compliance reasons are not.",
+                "False on failure. `POST /verify` expresses the same thing as `isValid`.",
             },
           },
         },
@@ -563,9 +513,10 @@ export function buildOpenApiDocument() {
           },
         },
         VerifyResponse: {
+          allOf: [{ $ref: "#/components/schemas/FacilitatorError" }],
           type: "object",
           description:
-            "Result of a verification attempt. Always JSON, including on 4xx and 5xx.",
+            "Result of a verification attempt. Always JSON, including on 4xx and 5xx. Satisfies the FacilitatorError contract: `invalidReason` is the stable reason code, `invalidMessage` the human-readable detail.",
           required: ["isValid"],
           properties: {
             isValid: {
@@ -589,9 +540,10 @@ export function buildOpenApiDocument() {
           },
         },
         SettleResponse: {
+          allOf: [{ $ref: "#/components/schemas/FacilitatorError" }],
           type: "object",
           description:
-            "Result of a settlement attempt. Always JSON, including on 4xx and 5xx.",
+            "Result of a settlement attempt. Always JSON, including on 4xx and 5xx. Satisfies the FacilitatorError contract: `errorReason` is the stable reason code, `errorMessage` the human-readable detail.",
           required: ["success", "transaction", "network", "payer"],
           properties: {
             success: {

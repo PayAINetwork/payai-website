@@ -7,6 +7,13 @@
  */
 import { SITE_URL, DOCS_URL, FACILITATOR_URL, MCP_URL, GITHUB_URL } from "@/lib/site";
 
+/**
+ * Canonical MCP endpoint on this origin. It proxies straight through to
+ * {@link MCP_URL}, so an agent that discovers PayAI here can complete the
+ * handshake without following a manifest to a second host.
+ */
+const MCP_ENDPOINT = `${SITE_URL}/mcp`;
+
 const MCP_SERVER_DESCRIPTION =
   "Search and retrieve the PayAI documentation corpus: x402 protocol reference, merchant and client quickstarts, supported networks, and facilitator pricing.";
 
@@ -22,8 +29,13 @@ export function buildMcpManifest() {
     remotes: [
       {
         type: "streamable-http",
-        url: MCP_URL,
+        url: MCP_ENDPOINT,
         description: "Streamable HTTP MCP server. No authentication required.",
+      },
+      {
+        type: "streamable-http",
+        url: MCP_URL,
+        description: "Same server on its origin host.",
       },
     ],
   };
@@ -41,7 +53,7 @@ export function buildAiCatalog() {
         {
           name: "PayAI Documentation",
           description: MCP_SERVER_DESCRIPTION,
-          url: MCP_URL,
+          url: MCP_ENDPOINT,
           transport: "streamable-http",
           authentication: "none",
         },

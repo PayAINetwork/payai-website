@@ -192,7 +192,7 @@ Questions about the terms, privacy practices, or data requests.
 - Telegram: ${TELEGRAM_URL}
 - Blog: ${BLOG_URL}
 - Merchant portal: ${MERCHANT_PORTAL_URL}
-- Documentation MCP server: ${MCP_URL}
+- MCP server: ${SITE_URL}/mcp
 
 ${FOOTER}`;
 }
@@ -303,7 +303,7 @@ Throughput is limited per client at the edge; exceeding it returns HTTP 429. The
 - [OpenAPI 3.1 description](${SITE_URL}/openapi.json)
 - [llms.txt](${SITE_URL}/llms.txt) — when to use PayAI and how to call it
 - [llms-full.txt](${SITE_URL}/llms-full.txt) — the whole site as one document
-- [MCP server](${MCP_URL}) — Streamable HTTP, no authentication, searches the PayAI docs corpus
+- [MCP server](${SITE_URL}/mcp) — Streamable HTTP, no authentication, searches the PayAI docs corpus. Also at `/.well-known/mcp`.
 - [MCP manifest](${SITE_URL}/.well-known/mcp.json) and [AI catalog](${SITE_URL}/.well-known/ai-catalog.json)
 - [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog)
 

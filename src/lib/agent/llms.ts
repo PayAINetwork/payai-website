@@ -56,7 +56,7 @@ ${WHEN_TO_USE}
 - [PayAI OpenAPI description](${SITE_URL}/openapi.json): OpenAPI 3.1 spec for the PayAI x402 Facilitator API — verify, settle, supported networks, and Bazaar discovery.
 - [PayAI Facilitator API](${FACILITATOR_URL}): production facilitator endpoint. Point your x402 middleware or client here.
 - [PayAI documentation](${DOCS_URL}): quickstarts, protocol reference, and supported networks.
-- [PayAI documentation MCP server](${MCP_URL}): Streamable HTTP MCP server for searching the PayAI docs corpus.
+- [PayAI MCP server](${SITE_URL}/mcp): Streamable HTTP MCP server for searching the PayAI docs corpus. No authentication. Also reachable at ${SITE_URL}/.well-known/mcp and on its origin host at ${MCP_URL}.
 - [x402 quickstart](${DOCS_URL}/x402/quickstart): fastest path from zero to a paid request.
 - [Merchant quickstarts](${DOCS_URL}/x402/servers/introduction): Express, Hono, Next.js, FastAPI, Flask, and Gin.
 - [Client quickstarts](${DOCS_URL}/x402/clients/introduction): Axios, Fetch, httpx, requests, and Go net/http.
