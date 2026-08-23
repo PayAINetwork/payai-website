@@ -40,6 +40,16 @@ export const FAQ_DATA: FaqEntry[] = [
       "No. Verification and settlement work without any PayAI relationship, and buyers never sign up to pay a PayAI-backed merchant. An API key is optional and only affects credit accounting, dedicated throughput lanes, and usage analytics. You can create one in the merchant portal at https://merchant.payai.network when you want those, and keep using the free tier until then.",
   },
   {
+    question: "What does PayAI cost?",
+    answer:
+      "PayAI has a free tier that covers ordinary integration and testing volume, after which settlement is billed per transaction from a prepaid credit balance rather than as a percentage of the amount moved — a flat per-settlement cost is what makes sub-cent payments viable. Rates vary by network, because the underlying chain fee does. Current rates and free-tier limits are published at https://docs.payai.network/x402/facilitators/pricing, and you can top up credits (or enable automatic top-up) in the merchant portal.",
+  },
+  {
+    question: "What happens if a payment fails or a settlement times out?",
+    answer:
+      "Verification and settlement return structured JSON on every outcome, including errors, so failures are machine-readable rather than something to parse out of an HTML page. If a settlement outruns its response budget, PayAI answers with errorReason settlement_pending and the broadcast transaction hash — the payment may still land, so treat it as unresolved rather than failed and re-submit the identical request to poll for the real result. Settlement is idempotent per payment, so retrying cannot double-charge.",
+  },
+  {
     question: "How do agents discover services that accept x402 payments?",
     answer:
       "Query GET https://facilitator.payai.network/discovery/resources. It returns the PayAI Bazaar: a live catalog of HTTP endpoints and MCP tools that accept x402 payments, each with the payment terms an agent needs to construct a payment and, where the seller published them, input and output schemas so the resource can be called as a tool.",
