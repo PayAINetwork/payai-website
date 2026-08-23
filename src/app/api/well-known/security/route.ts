@@ -1,4 +1,4 @@
-import { SITE_URL, SECURITY_EMAIL } from "@/lib/site";
+import { SITE_URL, INFO_EMAIL } from "@/lib/site";
 
 /**
  * RFC 9116 security.txt, served at /.well-known/security.txt via a rewrite in
@@ -18,7 +18,7 @@ function expires(): string {
 
 export function GET() {
   const body = [
-    `Contact: mailto:${SECURITY_EMAIL}`,
+    `Contact: mailto:${INFO_EMAIL}`,
     `Expires: ${expires()}`,
     "Preferred-Languages: en",
     `Canonical: ${SITE_URL}/.well-known/security.txt`,

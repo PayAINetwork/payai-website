@@ -16,7 +16,7 @@ import {
   GITHUB_URL,
   DISCORD_URL,
   X_URL,
-  SUPPORT_EMAIL,
+  INFO_EMAIL,
 } from "@/lib/site";
 
 const WHEN_TO_USE = `## When to use PayAI
@@ -90,7 +90,7 @@ Every content page on this site also serves Markdown. Request it with \`Accept: 
 
 ## Contact
 
-- Support: ${SUPPORT_EMAIL}
+- Email: ${INFO_EMAIL}
 - Discord: ${DISCORD_URL}
 - X: ${X_URL}
 `;

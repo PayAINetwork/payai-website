@@ -39,21 +39,14 @@ export function buildOrganizationSchema() {
       {
         "@type": "ContactPoint",
         contactType: "customer support",
-        email: "support@payai.network",
+        email: "info@payai.network",
         url: `${SITE_URL}/contact`,
         availableLanguage: ["English"],
       },
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        email: "support@payai.network",
-        url: `${SITE_URL}/contact`,
-        availableLanguage: ["English"],
-      },
-      {
-        "@type": "ContactPoint",
-        contactType: "technical support",
-        email: "security@payai.network",
+        email: "info@payai.network",
         url: `${SITE_URL}/contact`,
         availableLanguage: ["English"],
       },
@@ -108,7 +101,7 @@ export function buildContactPageSchema() {
       "@type": "Organization",
       name: "PayAI",
       url: SITE_URL,
-      email: "support@payai.network",
+      email: "info@payai.network",
     },
   };
 }

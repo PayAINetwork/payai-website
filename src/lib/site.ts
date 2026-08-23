@@ -62,9 +62,18 @@ export const PARTNERSHIP_URL = env(
   "https://forms.gle/qi1eeb8X5Uu56erx6",
 );
 
-export const SUPPORT_EMAIL = "support@payai.network";
+/*
+ * Only two mailboxes exist. Do not add a plausible-looking third — these
+ * addresses are published in Organization JSON-LD, security.txt, and the
+ * OpenAPI contact block, so an address that does not receive mail sends
+ * vulnerability reports and support requests into a void.
+ */
+
+/** General enquiries: support, sales, partnerships, and security reports. */
+export const INFO_EMAIL = "info@payai.network";
+
+/** Legal and privacy. The address named in the Terms of Service. */
 export const LEGAL_EMAIL = "legal@payai.network";
-export const SECURITY_EMAIL = "security@payai.network";
 
 /**
  * Legal entity as stated in the Terms of Service. Kept here so structured data

@@ -10,7 +10,7 @@
  * PayAINetwork/payai-x402-facilitator repository — every operation here must
  * exist in production.
  */
-import { FACILITATOR_URL, DOCS_URL, SITE_URL, SUPPORT_EMAIL } from "@/lib/site";
+import { FACILITATOR_URL, DOCS_URL, SITE_URL, INFO_EMAIL } from "@/lib/site";
 
 const PAYMENT_PAYLOAD = {
   type: "object",
@@ -169,9 +169,9 @@ export function buildOpenApiDocument() {
       ].join("\n"),
       termsOfService: `${SITE_URL}/terms-of-service`,
       contact: {
-        name: "PayAI Support",
+        name: "PayAI",
         url: `${SITE_URL}/contact`,
-        email: SUPPORT_EMAIL,
+        email: INFO_EMAIL,
       },
       license: { name: "Proprietary", url: `${SITE_URL}/terms-of-service` },
     },

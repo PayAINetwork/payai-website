@@ -21,9 +21,8 @@ import {
   LINKEDIN_URL,
   TELEGRAM_URL,
   DISCORD_URL,
-  SUPPORT_EMAIL,
+  INFO_EMAIL,
   LEGAL_EMAIL,
-  SECURITY_EMAIL,
   LEGAL_NAME,
   JURISDICTION,
   PARTNERSHIP_URL,
@@ -48,7 +47,7 @@ const FOOTER = `## More from PayAI
 - Agent guide: ${SITE_URL}/llms.txt
 - Blog: ${BLOG_URL}
 - GitHub: ${GITHUB_URL}
-- Support: ${SUPPORT_EMAIL}`;
+- Support: ${INFO_EMAIL}`;
 
 function homeMarkdown(): string {
   const faq = FAQ_DATA.map(
@@ -147,14 +146,14 @@ ${FOOTER}`;
 function contactMarkdown(): string {
   return `# Contact PayAI
 
-PayAI is operated by ${LEGAL_NAME}, registered in ${JURISDICTION}. We work remotely and answer fastest in Discord.
+PayAI is operated by ${LEGAL_NAME}, registered in ${JURISDICTION}. The team works remotely; ${INFO_EMAIL} reaches us for anything below.
 
 ## Support
 
 Integration help, API questions, and bug reports.
 
-- Email: ${SUPPORT_EMAIL}
-- Discord: ${DISCORD_URL} — the fastest route to an engineer
+- Email: ${INFO_EMAIL}
+- Discord: ${DISCORD_URL} — the community channel, and the quickest place to get eyes on an integration problem
 - Documentation: ${DOCS_URL}
 - Service health: \`GET ${FACILITATOR_URL}/health\`
 
@@ -164,16 +163,14 @@ Before opening a support request, check the quickstart at ${DOCS_URL}/x402/quick
 
 Volume pricing, dedicated throughput, ecosystem listings, and integration partnerships.
 
-- Email: ${SUPPORT_EMAIL}
+- Email: ${INFO_EMAIL}
 - Telegram: ${TELEGRAM_URL}
 - Partnership enquiry form: ${PARTNERSHIP_URL}
 - Ecosystem directory: ${SITE_URL}/ecosystem
 
 ## Security
 
-Report a vulnerability privately. Please do not open a public issue.
-
-- Email: ${SECURITY_EMAIL}
+Report a vulnerability privately to ${INFO_EMAIL}. Please do not open a public issue. The machine-readable version of this is at ${SITE_URL}/.well-known/security.txt.
 
 ## Legal and privacy
 
