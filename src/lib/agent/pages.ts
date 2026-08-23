@@ -16,7 +16,6 @@ import {
   BLOG_URL,
   MERCHANT_PORTAL_URL,
   ECHO_MERCHANT_URL,
-  MCP_URL,
   GITHUB_URL,
   X_URL,
   LINKEDIN_URL,
@@ -303,7 +302,7 @@ Throughput is limited per client at the edge; exceeding it returns HTTP 429. The
 - [OpenAPI 3.1 description](${SITE_URL}/openapi.json)
 - [llms.txt](${SITE_URL}/llms.txt) — when to use PayAI and how to call it
 - [llms-full.txt](${SITE_URL}/llms-full.txt) — the whole site as one document
-- [MCP server](${SITE_URL}/mcp) — Streamable HTTP, no authentication, searches the PayAI docs corpus. Also at `/.well-known/mcp`.
+- [MCP server](${SITE_URL}/mcp) — Streamable HTTP, no authentication, searches the PayAI docs corpus. Also at \`/.well-known/mcp\`.
 - [MCP manifest](${SITE_URL}/.well-known/mcp.json) and [AI catalog](${SITE_URL}/.well-known/ai-catalog.json)
 - [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog)
 
