@@ -67,12 +67,19 @@ export async function GET(request: NextRequest) {
    * path meant a login interstitial or error page could be served as though it
    * were site content.
    */
-  const derived = DERIVED_PAGES.has(pathname)
-    ? await deriveFromHtml(request.nextUrl.origin, pathname)
-    : null;
-  if (derived) {
+  if (DERIVED_PAGES.has(pathname)) {
+    const derived = await deriveFromHtml(request.nextUrl.origin, pathname);
+    const body =
+      derived ??
+      /*
+       * The page exists — the sitemap vouches for it — so a failed derivation
+       * must not answer 404. Point at the canonical HTML instead, and let the
+       * agent decide whether to fetch it.
+       */
+      `# ${SITE_URL}${pathname}\n\nA Markdown representation of this page could not be generated. Read the canonical HTML version instead: ${SITE_URL}${pathname}`;
+
     return new Response(
-      `${derived}\n\n---\n\nCanonical HTML: ${SITE_URL}${pathname}\n`,
+      `${body}\n\n---\n\nCanonical HTML: ${SITE_URL}${pathname}\n`,
       { headers: MARKDOWN_HEADERS },
     );
   }
