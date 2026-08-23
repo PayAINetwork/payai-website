@@ -1,0 +1,9 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "payai-website",
+      "url": "http://localhost:3111"
+    }
+  ]
+}

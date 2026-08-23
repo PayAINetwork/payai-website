@@ -1,24 +1,38 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://payai.network";
+  const lastModified = new Date();
 
   return [
+    { url: SITE_URL, lastModified, changeFrequency: "weekly", priority: 1 },
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: `${SITE_URL}/ecosystem`,
+      lastModified,
       changeFrequency: "weekly",
-      priority: 1,
+      priority: 0.8,
     },
     {
-      url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/about`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${SITE_URL}/contact`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${SITE_URL}/privacy-policy`,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/terms-of-service`,
-      lastModified: new Date(),
+      url: `${SITE_URL}/terms-of-service`,
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.3,
     },

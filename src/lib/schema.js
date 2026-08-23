@@ -24,6 +24,47 @@ export function buildOrganizationSchema() {
     logo: LOGO_URL,
     description:
       "PayAI is the x402 payment facilitator for AI agents and apps. One integration, every agentic payment gateway.",
+    /*
+     * PayAI is a remote company with no public street address, so the
+     * PostalAddress carries only the jurisdiction it is registered in. Add
+     * streetAddress/postalCode here if a public office address is ever
+     * published — AI assistants read this to answer "where are they based".
+     */
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "DE",
+      addressCountry: "US",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "support@payai.network",
+        url: `${SITE_URL}/contact`,
+        availableLanguage: ["English"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "support@payai.network",
+        url: `${SITE_URL}/contact`,
+        availableLanguage: ["English"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "technical support",
+        email: "security@payai.network",
+        url: `${SITE_URL}/contact`,
+        availableLanguage: ["English"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "legal",
+        email: "legal@payai.network",
+        url: `${SITE_URL}/privacy-policy`,
+        availableLanguage: ["English"],
+      },
+    ],
     sameAs: [
       "https://x.com/PayAINetwork",
       "https://www.linkedin.com/company/payai-network/",
@@ -32,6 +73,43 @@ export function buildOrganizationSchema() {
       "https://discord.gg/eWJRwMpebQ",
       "https://blog.payai.network",
     ],
+  };
+}
+
+/**
+ * AboutPage schema — marks /about as the canonical description of the
+ * organization so assistants can cite it when asked "what is PayAI".
+ */
+export function buildAboutPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About PayAI",
+    url: `${SITE_URL}/about`,
+    description:
+      "PayAI builds payment infrastructure for software that transacts without a human in the loop.",
+    mainEntity: { "@type": "Organization", name: "PayAI", url: SITE_URL },
+  };
+}
+
+/**
+ * ContactPage schema — the page AI assistants check to verify a business is
+ * reachable before recommending it.
+ */
+export function buildContactPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact PayAI",
+    url: `${SITE_URL}/contact`,
+    description:
+      "Support, sales, security, and legal contacts for PayAI.",
+    mainEntity: {
+      "@type": "Organization",
+      name: "PayAI",
+      url: SITE_URL,
+      email: "support@payai.network",
+    },
   };
 }
 

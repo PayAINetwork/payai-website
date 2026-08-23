@@ -1,5 +1,6 @@
 import Image from "next/image";
 import InfiniteLogoScroll from "@/components/ui/InfiniteLogoScroll";
+import { FACILITATOR_URL, DOCS_URL } from "@/lib/site";
 
 const PARTNERS_DATA = [
   { src: "/partners/solana-dark.svg", name: "solana" },
@@ -22,6 +23,52 @@ export const Partners = () => {
           <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
             PayAI connects with leading networks and partners to deliver fast,
             reliable, and scalable micropayments across the Web3 ecosystem.
+          </p>
+
+          {/*
+            The supported chains were previously communicated only through
+            partner logos, which left the list invisible to screen readers, AI
+            crawlers, and anyone with images disabled. Stated in text here.
+          */}
+          <h3 className="text-base lg:text-xl font-medium text-[#09090B] text-center mt-8">
+            Supported networks
+          </h3>
+          <p className="text-sm lg:text-base text-[#0A0A0A]/60 text-center mt-3">
+            PayAI is Solana-first and settles USDC micropayments on{" "}
+            <strong className="font-medium text-[#09090B]">Solana</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">Base</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">Polygon</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">Avalanche</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">Arbitrum</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">Sei</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">X Layer</strong>, and{" "}
+            <strong className="font-medium text-[#09090B]">SKALE</strong> — on
+            mainnet and on each network&apos;s testnet. Solana carries most
+            production volume because it is the cheapest and fastest place to
+            settle a sub-cent payment, and PayAI sponsors the network fee there,
+            so a payer holds USDC and nothing else.
+          </p>
+          <p className="text-sm lg:text-base text-[#0A0A0A]/60 text-center mt-3">
+            Both x402 v1 network names and x402 v2 CAIP-2 identifiers are
+            accepted. For the authoritative live list, call{" "}
+            <a
+              href={`${FACILITATOR_URL}/supported`}
+              className="underline text-[#09090B]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GET /supported
+            </a>{" "}
+            on the facilitator, or read the{" "}
+            <a
+              href={`${DOCS_URL}/x402/supported-networks`}
+              className="underline text-[#09090B]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              supported networks documentation
+            </a>
+            .
           </p>
         </div>
         <Image
