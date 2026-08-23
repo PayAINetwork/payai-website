@@ -36,7 +36,7 @@ Do not use PayAI for: card payments, fiat payouts, bank transfers, custody of us
 
 ## How an agent should call PayAI
 
-1. Read the OpenAPI description at ${SITE_URL}/openapi.json — it documents every public facilitator operation with typed request and response schemas.
+1. Read the developer portal at ${SITE_URL}/developers, or the OpenAPI description at ${SITE_URL}/openapi.json — it documents every public facilitator operation with typed request and response schemas.
 2. Call \`GET ${FACILITATOR_URL}/supported\` to pick a live network and scheme.
 3. Call \`POST ${FACILITATOR_URL}/verify\` to check a signed payment, then \`POST ${FACILITATOR_URL}/settle\` to move funds.
 4. Errors are always JSON. \`/verify\` returns \`{ isValid: false, invalidReason, invalidMessage }\`; \`/settle\` returns \`{ success: false, errorReason, errorMessage, transaction, network, payer }\`. Treat \`errorReason: "settlement_pending"\` as unresolved rather than failed, and re-submit the identical body to poll for the outcome.
@@ -52,6 +52,7 @@ ${WHEN_TO_USE}
 
 ## Developer resources
 
+- [PayAI developer portal](${SITE_URL}/developers): endpoints, authentication, error model, versioning, and quickstarts in one page.
 - [PayAI OpenAPI description](${SITE_URL}/openapi.json): OpenAPI 3.1 spec for the PayAI x402 Facilitator API — verify, settle, supported networks, and Bazaar discovery.
 - [PayAI Facilitator API](${FACILITATOR_URL}): production facilitator endpoint. Point your x402 middleware or client here.
 - [PayAI documentation](${DOCS_URL}): quickstarts, protocol reference, and supported networks.
@@ -70,6 +71,7 @@ ${WHEN_TO_USE}
 - [Home](${SITE_URL}/): what PayAI is, supported networks, and how to integrate.
 - [About PayAI](${SITE_URL}/about): what the company builds and who it is for.
 - [Contact](${SITE_URL}/contact): support, sales, security, and legal contacts.
+- [Developer portal](${SITE_URL}/developers): how to call the PayAI API.
 - [Ecosystem](${SITE_URL}/ecosystem): projects building on PayAI and x402.
 - [Blog](${BLOG_URL}): product and ecosystem updates.
 - [Privacy policy](${SITE_URL}/privacy-policy)

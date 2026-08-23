@@ -94,6 +94,9 @@ export function Footer() {
               <h4 className="text-sm text-[#71717A]">DEVELOPERS</h4>
               <ul className="space-y-3 text-sm text-[#09090B] mt-6">
                 <li>
+                  <Link href="/developers">Developer Portal</Link>
+                </li>
+                <li>
                   <a href="/openapi.json">API Reference</a>
                 </li>
                 <li>

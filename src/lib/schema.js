@@ -114,6 +114,25 @@ export function buildContactPageSchema() {
 }
 
 /**
+ * TechArticle schema for the developer portal — the page AI assistants cite
+ * when asked how to call the PayAI API.
+ */
+export function buildDeveloperPortalSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    name: "PayAI Developer Portal",
+    headline: "PayAI Developer Portal — x402 Facilitator API",
+    url: `${SITE_URL}/developers`,
+    description:
+      "Endpoints, authentication, error model, versioning, and quickstarts for the PayAI x402 Facilitator API.",
+    author: { "@type": "Organization", name: "PayAI", url: SITE_URL },
+    publisher: { "@type": "Organization", name: "PayAI", logo: LOGO_URL },
+    about: { "@type": "SoftwareApplication", name: "PayAI x402 Facilitator API" },
+  };
+}
+
+/**
  * WebSite schema — enables sitelinks search box in SERPs and clarifies the canonical site.
  */
 export function buildWebSiteSchema() {

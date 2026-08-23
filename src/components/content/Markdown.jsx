@@ -134,6 +134,33 @@ function toBlocks(markdown) {
       continue;
     }
 
+    // Pipe table: a header row, a delimiter row, then body rows.
+    if (/^\|.*\|$/.test(line.trim())) {
+      flushParagraph();
+      flushList();
+      const cells = line
+        .trim()
+        .slice(1, -1)
+        .split("|")
+        .map((cell) => cell.trim());
+      const isDelimiter = cells.every((cell) => /^:?-{2,}:?$/.test(cell));
+      const previous = blocks[blocks.length - 1];
+
+      if (isDelimiter && previous?.kind === "tableHead") continue;
+
+      if (previous?.kind === "tableHead" || previous?.kind === "table") {
+        const table =
+          previous.kind === "tableHead"
+            ? { kind: "table", head: previous.cells, rows: [] }
+            : previous;
+        table.rows.push(cells);
+        blocks[blocks.length - 1] = table;
+      } else {
+        blocks.push({ kind: "tableHead", cells });
+      }
+      continue;
+    }
+
     const item = line.match(/^[-*]\s+(.*)$/);
     if (item) {
       flushParagraph();
@@ -200,6 +227,40 @@ export function Markdown({ markdown, headingOffset = 0, skipFirstHeading = false
                 </li>
               ))}
             </ul>
+          );
+        }
+        if (block.kind === "table" || block.kind === "tableHead") {
+          const head = block.kind === "table" ? block.head : block.cells;
+          const rows = block.kind === "table" ? block.rows : [];
+          return (
+            /* Wide tables scroll inside their own container so the page body never does. */
+            <div key={key} className="mb-6 overflow-x-auto">
+              <table className="w-full border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-[#E4E4E7]">
+                    {head.map((cell, i) => (
+                      <th
+                        key={`${key}-h${i}`}
+                        className="py-2 pr-4 font-medium text-midnight whitespace-nowrap"
+                      >
+                        {renderInline(cell, `${key}-h${i}`)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row, r) => (
+                    <tr key={`${key}-r${r}`} className="border-b border-[#F4F4F5]">
+                      {row.map((cell, c) => (
+                        <td key={`${key}-r${r}c${c}`} className="py-2 pr-4 align-top text-gray-600">
+                          {renderInline(cell, `${key}-r${r}c${c}`)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           );
         }
         if (block.kind === "code") {

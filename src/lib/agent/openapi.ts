@@ -157,6 +157,12 @@ export function buildOpenApiDocument() {
         "",
         "**Error shape.** Errors are JSON, never HTML. `/verify` failures return `{ isValid: false, invalidReason, invalidMessage }`; `/settle` failures return `{ success: false, errorReason, errorMessage, transaction, network, payer }`. The `x402` client SDKs expect this shape on non-2xx responses too, so an error body is always parseable.",
         "",
+        "**Versioning.** The facilitator is versioned by the x402 protocol version it speaks, not by a URL path segment. Every request carries `x402Version` (1 or 2) in its body, and `GET /supported` advertises which (version, scheme, network) combinations are live — v1 uses short network names (`base`), v2 uses CAIP-2 identifiers (`eip155:8453`). Both versions are served from the same endpoints, so an integration pins a version by what it sends, not by what it calls.",
+        "",
+        "**Deprecation.** A payment kind is withdrawn by disappearing from `GET /supported` before the endpoints stop accepting it, so a client that checks `/supported` sees a removal in advance. Breaking changes to the request or response shapes arrive as a new `x402Version`; existing versions keep working until they are removed from `/supported`.",
+        "",
+        "**Rate limits.** Throughput is limited per client at the edge; exceeding it returns HTTP 429. The facilitator does not currently emit `RateLimit` response headers, so back off on the status code rather than on a header budget.",
+        "",
         `Full guides: ${DOCS_URL}/x402/quickstart`,
       ].join("\n"),
       termsOfService: `${SITE_URL}/terms-of-service`,
@@ -199,13 +205,12 @@ export function buildOpenApiDocument() {
             "200": {
               description: "Service is healthy.",
               content: {
-                "text/plain": { schema: { type: "string", examples: ["OK"] } },
+                "text/plain": {
+                  schema: { $ref: "#/components/schemas/HealthResponse" },
+                },
               },
             },
-            "500": {
-              description:
-                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
-            },
+            "500": { $ref: "#/components/responses/UnstructuredServerError" },
           },
         },
       },
@@ -226,10 +231,7 @@ export function buildOpenApiDocument() {
                 },
               },
             },
-            "500": {
-              description:
-                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
-            },
+            "500": { $ref: "#/components/responses/UnstructuredServerError" },
           },
         },
       },
@@ -425,10 +427,7 @@ export function buildOpenApiDocument() {
                 },
               },
             },
-            "500": {
-              description:
-                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
-            },
+            "500": { $ref: "#/components/responses/UnstructuredServerError" },
           },
         },
       },
@@ -449,15 +448,36 @@ export function buildOpenApiDocument() {
                 },
               },
             },
-            "500": {
-              description:
-                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
-            },
+            "500": { $ref: "#/components/responses/UnstructuredServerError" },
           },
         },
       },
     },
     components: {
+      responses: {
+        VerificationError: {
+          description:
+            "Verification failed. Always JSON — read `invalidReason` for the machine-readable cause.",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/VerifyResponse" },
+            },
+          },
+        },
+        SettlementError: {
+          description:
+            "Settlement failed or is unresolved. Always JSON — read `errorReason`.",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/SettleResponse" },
+            },
+          },
+        },
+        UnstructuredServerError: {
+          description:
+            "Unexpected facilitator error on a read endpoint. Unlike /verify and /settle these have no structured error body, so the response is not guaranteed to be JSON.",
+        },
+      },
       securitySchemes: {
         bearerApiKey: {
           type: "http",
@@ -467,6 +487,40 @@ export function buildOpenApiDocument() {
         },
       },
       schemas: {
+        HealthResponse: {
+          type: "string",
+          description: "Literal readiness token.",
+          examples: ["OK"],
+        },
+        /*
+         * The facilitator's error model in one place. /verify and /settle each
+         * return their own response shape on failure — never a bare envelope —
+         * but both carry a stable machine-readable code plus human-readable
+         * detail, which is what an integration should branch on.
+         */
+        FacilitatorError: {
+          type: "object",
+          description:
+            "Shape shared by every failure response. `POST /verify` returns VerifyResponse and `POST /settle` returns SettleResponse; both include a stable reason code and a human-readable message, and both are JSON on 4xx and 5xx as well as 200.",
+          properties: {
+            reasonCode: {
+              type: "string",
+              description:
+                "`invalidReason` on /verify, `errorReason` on /settle. Stable across releases; branch on this.",
+              examples: INVALID_REASONS,
+            },
+            message: {
+              type: "string",
+              description:
+                "`invalidMessage` on /verify, `errorMessage` on /settle. Human-readable, includes field-level validation detail.",
+            },
+            retryable: {
+              type: "boolean",
+              description:
+                "Not returned on the wire — derived. `settlement_pending`, `service_unavailable`, and `upto_channel_capacity_exhausted` are retryable; validation and compliance reasons are not.",
+            },
+          },
+        },
         PaymentPayload: PAYMENT_PAYLOAD,
         PaymentRequirements: PAYMENT_REQUIREMENTS,
         VerifyRequest: VERIFY_SETTLE_REQUEST,

@@ -32,6 +32,7 @@ import {
 import { FAQ_DATA } from "@/data/faq";
 import projects from "@/data/projects.json";
 import sitemap from "@/app/sitemap";
+import { buildOpenApiDocument } from "@/lib/agent/openapi";
 
 type ProjectEntry = {
   name: string;
@@ -218,12 +219,126 @@ ${list}
 ${FOOTER}`;
 }
 
+
+function developersMarkdown(): string {
+  const spec = buildOpenApiDocument();
+
+  /*
+   * The endpoint table is generated from the OpenAPI document rather than
+   * retyped, so the portal cannot drift from the spec it points at.
+   */
+  const operations = Object.entries(spec.paths).flatMap(([path, item]) =>
+    Object.entries(item as Record<string, { operationId?: string; summary?: string }>)
+      .filter(([method]) => ["get", "post", "put", "patch", "delete"].includes(method))
+      .map(([method, op]) => ({
+        method: method.toUpperCase(),
+        path,
+        operationId: op.operationId ?? "",
+        summary: op.summary ?? "",
+      })),
+  );
+
+  const table = [
+    "| Method | Path | Operation | What it does |",
+    "| --- | --- | --- | --- |",
+    ...operations.map(
+      (o) => `| ${o.method} | \`${o.path}\` | \`${o.operationId}\` | ${o.summary} |`,
+    ),
+  ].join("\n");
+
+  return `# PayAI Developer Portal
+
+Everything needed to charge for a request, pay for one, or find something worth paying for. The API is public, unauthenticated for reads, and described in full at [${SITE_URL}/openapi.json](${SITE_URL}/openapi.json).
+
+## Base URL
+
+\`\`\`
+${FACILITATOR_URL}
+\`\`\`
+
+Point x402 middleware or an x402 client at that host. There is no separate sandbox: testnet networks are served from the same endpoints, and [the Echo Merchant](${ECHO_MERCHANT_URL}) is a live merchant that returns HTTP 402 so you can exercise a real payment for free.
+
+## Endpoints
+
+${table}
+
+The full request and response schemas, including every documented failure reason, are in the [OpenAPI 3.1 description](${SITE_URL}/openapi.json).
+
+## Authentication
+
+Read endpoints need none. \`POST /verify\` and \`POST /settle\` accept an optional bearer token:
+
+\`\`\`
+Authorization: Bearer <api-key>
+\`\`\`
+
+The key affects credit accounting, dedicated throughput lanes, and usage analytics — not access. Without one you are served on the free tier. Create a key at [${MERCHANT_PORTAL_URL}](${MERCHANT_PORTAL_URL}).
+
+## Error model
+
+Errors are JSON on every status, including 4xx and 5xx, because a client that has already signed a payment needs to know precisely what happened.
+
+- \`POST /verify\` returns \`{ isValid: false, invalidReason, invalidMessage }\`
+- \`POST /settle\` returns \`{ success: false, errorReason, errorMessage, transaction, network, payer }\`
+
+Branch on \`invalidReason\` / \`errorReason\` — these are stable across releases. The message is for humans and carries field-level validation detail.
+
+One reason deserves special handling: \`settlement_pending\` means the settlement outran its response budget and is **still in flight**. It is not a failure. The response carries the broadcast \`transaction\` hash; re-submit the identical request to poll for the real outcome, and treat \`duplicate_settlement\` on that poll as "still working". Settlement is idempotent per payment, so retrying cannot double-charge.
+
+## Versioning and deprecation
+
+The facilitator is versioned by the x402 protocol version it speaks, not by a URL path segment. Requests carry \`x402Version\` (1 or 2); both are served from the same endpoints, so you pin a version by what you send.
+
+- **x402 v1** uses short network names — \`base\`, \`solana\`
+- **x402 v2** uses CAIP-2 identifiers — \`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`
+
+Call \`GET ${FACILITATOR_URL}/supported\` to see which combinations are live. A payment kind is withdrawn from that list before the endpoints stop accepting it, so polling \`/supported\` gives advance notice of a removal. Breaking changes arrive as a new \`x402Version\`.
+
+## Rate limits
+
+Throughput is limited per client at the edge; exceeding it returns HTTP 429. The facilitator does not currently emit \`RateLimit\` response headers, so back off on the status code rather than on a header budget.
+
+## Machine-readable surfaces
+
+- [OpenAPI 3.1 description](${SITE_URL}/openapi.json)
+- [llms.txt](${SITE_URL}/llms.txt) — when to use PayAI and how to call it
+- [llms-full.txt](${SITE_URL}/llms-full.txt) — the whole site as one document
+- [MCP server](${MCP_URL}) — Streamable HTTP, no authentication, searches the PayAI docs corpus
+- [MCP manifest](${SITE_URL}/.well-known/mcp.json) and [AI catalog](${SITE_URL}/.well-known/ai-catalog.json)
+- [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog)
+
+Every page on this site also serves Markdown — send \`Accept: text/markdown\` or append \`.md\` to the path.
+
+## Quickstarts
+
+Accept payments:
+
+- [Express](${DOCS_URL}/x402/servers/typescript/express) · [Hono](${DOCS_URL}/x402/servers/typescript/hono) · [Next.js](${DOCS_URL}/x402/servers/typescript/nextjs)
+- [FastAPI](${DOCS_URL}/x402/servers/python/fastapi) · [Flask](${DOCS_URL}/x402/servers/python/flask)
+- [Gin](${DOCS_URL}/x402/servers/go/gin)
+
+Make payments:
+
+- [Axios](${DOCS_URL}/x402/clients/typescript/axios) · [Fetch](${DOCS_URL}/x402/clients/typescript/fetch)
+- [httpx](${DOCS_URL}/x402/clients/python/httpx) · [requests](${DOCS_URL}/x402/clients/python/requests)
+- [Go net/http](${DOCS_URL}/x402/clients/go/http)
+
+Prefer no SDK? The manual flows spell out the raw HTTP exchange: [TypeScript](${DOCS_URL}/x402/clients/typescript/manual-flow) · [Python](${DOCS_URL}/x402/clients/python/manual-flow).
+
+## Discovery
+
+\`GET ${FACILITATOR_URL}/discovery/resources\` returns the PayAI Bazaar: every resource currently accepting x402 payments, with the payment terms needed to call it and, where the seller published them, input and output schemas. \`GET ${FACILITATOR_URL}/discovery/stats\` returns catalog size, settlement counts, and per-network volume.
+
+${FOOTER}`;
+}
+
 /** Authored markdown, keyed by pathname (no trailing slash). */
 export const AUTHORED_PAGES: Record<string, () => string> = {
   "/": homeMarkdown,
   "/about": aboutMarkdown,
   "/contact": contactMarkdown,
   "/ecosystem": ecosystemMarkdown,
+  "/developers": developersMarkdown,
 };
 
 /**
