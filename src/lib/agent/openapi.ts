@@ -202,6 +202,10 @@ export function buildOpenApiDocument() {
                 "text/plain": { schema: { type: "string", examples: ["OK"] } },
               },
             },
+            "500": {
+              description:
+                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
+            },
           },
         },
       },
@@ -221,6 +225,10 @@ export function buildOpenApiDocument() {
                   schema: { $ref: "#/components/schemas/SupportedResponse" },
                 },
               },
+            },
+            "500": {
+              description:
+                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
             },
           },
         },
@@ -417,6 +425,10 @@ export function buildOpenApiDocument() {
                 },
               },
             },
+            "500": {
+              description:
+                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
+            },
           },
         },
       },
@@ -436,6 +448,10 @@ export function buildOpenApiDocument() {
                   schema: { $ref: "#/components/schemas/DiscoveryStatsResponse" },
                 },
               },
+            },
+            "500": {
+              description:
+                "Unexpected facilitator error. These read endpoints have no structured error body — unlike /verify and /settle, an unhandled failure here is answered by the default Express handler and is not guaranteed to be JSON.",
             },
           },
         },

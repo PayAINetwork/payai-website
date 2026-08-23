@@ -37,6 +37,12 @@ export default function FAQItem({ question, answer }) {
         id={panelId}
         role="region"
         aria-labelledby={buttonId}
+        /*
+         * Mounted always so the answers reach the server-rendered HTML, but
+         * hidden from assistive tech while collapsed so screen readers match
+         * what is on screen.
+         */
+        aria-hidden={!open}
         initial={false}
         animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
         transition={{ duration: 0.1, ease: "easeOut" }}

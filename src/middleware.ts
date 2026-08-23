@@ -14,7 +14,14 @@ import { isMarkdownPath } from "@/lib/agent/pages";
  */
 
 const MARKDOWN_TYPE = "text/markdown";
-const SERVED_TYPES = ["text/html", "text/markdown", "text/plain", "application/json"];
+const SERVED_TYPES = [
+  "text/html",
+  "text/markdown",
+  "text/plain",
+  "application/json",
+  // Next's own RSC payload type — never 406 the framework's navigations.
+  "text/x-component",
+];
 
 type AcceptEntry = { type: string; q: number };
 
@@ -90,6 +97,15 @@ function problemJson(status: number, title: string, detail: string, resolution: 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const accept = parseAccept(request.headers.get("accept") ?? "");
+
+  /*
+   * Client-side navigations and prefetches are Next's own traffic on the same
+   * pathnames. They must never be negotiated into Markdown or rejected with a
+   * 406, or in-app routing breaks.
+   */
+  const isRscRequest =
+    request.headers.has("rsc") || request.headers.has("next-router-prefetch");
+  if (isRscRequest) return NextResponse.next();
 
   // `.md` suffix: an explicit request for the Markdown variant.
   if (pathname.endsWith(".md")) {

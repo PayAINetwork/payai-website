@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       { source: "/.well-known/mcp.json", destination: "/api/well-known/mcp" },
       { source: "/.well-known/ai-catalog.json", destination: "/api/well-known/ai-catalog" },
       { source: "/.well-known/api-catalog", destination: "/api/well-known/api-catalog" },
+      { source: "/.well-known/security.txt", destination: "/api/well-known/security" },
     ];
   },
   images: {
