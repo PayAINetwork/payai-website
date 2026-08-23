@@ -10,5 +10,18 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/vary-probe",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(?i).*text/markdown.*"
+        }
+      ],
+      "destination": "/_agent/_probe.md"
+    }
   ]
 }
