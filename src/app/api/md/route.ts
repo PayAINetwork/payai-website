@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { AUTHORED_PAGES, notFoundMarkdown } from "@/lib/agent/pages";
+import { AUTHORED_PAGES, DERIVED_PAGES, notFoundMarkdown } from "@/lib/agent/pages";
 import { htmlToMarkdown } from "@/lib/agent/htmlToMarkdown";
 import { SITE_URL } from "@/lib/site";
 
@@ -38,9 +38,12 @@ async function deriveFromHtml(origin: string, pathname: string): Promise<string 
   try {
     const response = await fetch(`${origin}${pathname}`, {
       headers: { Accept: "text/html" },
+      // A redirect means an interstitial, not the page — never derive from it.
+      redirect: "manual",
       next: { revalidate: 3600 },
     });
-    if (!response.ok) return null;
+    if (response.status !== 200) return null;
+    if (!response.headers.get("content-type")?.includes("text/html")) return null;
     const markdown = htmlToMarkdown(await response.text());
     return markdown.length > 200 ? markdown : null;
   } catch {
@@ -60,11 +63,13 @@ export async function GET(request: NextRequest) {
   }
 
   /*
-   * Anything without authored Markdown — the legal pages, and any page added
-   * later — is derived from its own rendered HTML. A path that does not exist
-   * fails this fetch, which is what produces the Markdown 404 below.
+   * Only pages the sitemap vouches for are derived. Deriving from an arbitrary
+   * path meant a login interstitial or error page could be served as though it
+   * were site content.
    */
-  const derived = await deriveFromHtml(request.nextUrl.origin, pathname);
+  const derived = DERIVED_PAGES.has(pathname)
+    ? await deriveFromHtml(request.nextUrl.origin, pathname)
+    : null;
   if (derived) {
     return new Response(
       `${derived}\n\n---\n\nCanonical HTML: ${SITE_URL}${pathname}\n`,

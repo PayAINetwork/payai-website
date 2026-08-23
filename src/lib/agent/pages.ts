@@ -31,6 +31,7 @@ import {
 } from "@/lib/site";
 import { FAQ_DATA } from "@/data/faq";
 import projects from "@/data/projects.json";
+import sitemap from "@/app/sitemap";
 
 type ProjectEntry = {
   name: string;
@@ -225,8 +226,20 @@ export const AUTHORED_PAGES: Record<string, () => string> = {
   "/ecosystem": ecosystemMarkdown,
 };
 
-/** Pages whose markdown is derived from their rendered HTML at request time. */
-export const DERIVED_PAGES = new Set(["/privacy-policy", "/terms-of-service"]);
+/**
+ * Pages whose Markdown is derived from their own rendered HTML at request time.
+ *
+ * Sourced from the sitemap so a new page picks up a Markdown representation
+ * automatically, and so this can never list a page that does not exist. The
+ * allowlist matters: deriving Markdown from whatever a self-fetch happens to
+ * return means an interstitial or an error page can be served as if it were
+ * site content.
+ */
+export const DERIVED_PAGES: Set<string> = new Set(
+  sitemap()
+    .map((entry) => new URL(entry.url).pathname.replace(/\/+$/, "") || "/")
+    .filter((pathname) => !(pathname in AUTHORED_PAGES)),
+);
 
 export function isMarkdownPath(pathname: string): boolean {
   return pathname in AUTHORED_PAGES || DERIVED_PAGES.has(pathname);
