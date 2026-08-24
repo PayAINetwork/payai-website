@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SocialLinks } from "./SocialLinks";
+import { LEGAL_NAME } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -217,7 +218,7 @@ export function Footer() {
                 </svg>
                 <span className="text-[#0A0A0A]/80">All systems normal</span>
               </div>
-              <p className="text-[#0A0A0A]">© 2026 PayAI, Inc.</p>
+              <p className="text-[#0A0A0A]">© 2026 {LEGAL_NAME}</p>
               <SocialLinks className="order-first lg:order-none" />
             </div>
           </div>

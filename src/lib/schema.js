@@ -8,6 +8,8 @@
  */
 
 const SITE_URL = "https://payai.network";
+/** Legal entity as named in the Terms of Service. */
+const LEGAL_NAME = "PayAI Network, LLC";
 const LOGO_URL = `${SITE_URL}/horizontal-lockup.svg`;
 
 /**
@@ -19,7 +21,7 @@ export function buildOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "PayAI",
-    legalName: "PayAI, Inc.",
+    legalName: LEGAL_NAME,
     url: SITE_URL,
     logo: LOGO_URL,
     description:
