@@ -52,6 +52,15 @@ export default {
         container: "1280px",
       },
       maxWidth: {
+        // The Relume preset replaces theme.maxWidth wholesale with its own
+        // scale (xxs/xs/sm/md/lg/xl/xxl/full), dropping Tailwind's numeric
+        // keys. Re-add them so `max-w-3xl` and friends compile instead of
+        // being silently discarded.
+        "2xl": "42rem", // 672px
+        "3xl": "48rem", // 768px
+        "4xl": "56rem", // 896px
+        "5xl": "64rem", // 1024px
+        "6xl": "72rem", // 1152px
         "7xl": "80rem", // 1280px
       },
       colors: {
