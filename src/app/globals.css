@@ -273,3 +273,166 @@ pre {
     @apply bg-background text-foreground;
   }
 }
+
+/*
+ * Typography for post bodies rendered from the Ghost Content API.
+ *
+ * Ghost returns finished HTML, so this styles that markup rather than being
+ * applied by the components. Scoped to .blog-prose so it can never leak into
+ * the marketing pages.
+ *
+ * The Koenig card classes below (kg-*) are the ones the current 21 posts
+ * actually use — image, callout, and CTA cards. If a post starts using a card
+ * type that is not styled here it will render unstyled but readable; add it
+ * rather than pulling in Ghost's own stylesheet, which would put a
+ * render-blocking third-party request on the site's most linked pages.
+ */
+.blog-prose {
+  @apply text-[17px] leading-[1.75] text-[#27272A];
+}
+
+.blog-prose > * + * {
+  @apply mt-6;
+}
+
+.blog-prose h2 {
+  @apply mt-12 text-2xl lg:text-[32px] lg:leading-[44px] font-medium text-[#09090B] scroll-mt-24;
+}
+
+.blog-prose h3 {
+  @apply mt-10 text-xl lg:text-2xl font-medium text-[#09090B] scroll-mt-24;
+}
+
+.blog-prose h4 {
+  @apply mt-8 text-lg font-medium text-[#09090B] scroll-mt-24;
+}
+
+.blog-prose a {
+  @apply text-[#1D45D8] underline underline-offset-2 hover:opacity-70;
+}
+
+.blog-prose strong {
+  @apply font-semibold text-[#09090B];
+}
+
+.blog-prose ul {
+  @apply list-disc pl-6;
+}
+
+.blog-prose ol {
+  @apply list-decimal pl-6;
+}
+
+.blog-prose li + li {
+  @apply mt-2;
+}
+
+.blog-prose li > ul,
+.blog-prose li > ol {
+  @apply mt-2;
+}
+
+.blog-prose blockquote {
+  @apply border-l-4 border-[#4D63F6] pl-5 italic text-[#3F3F46];
+}
+
+.blog-prose code {
+  @apply rounded bg-[#F4F4F5] px-1.5 py-0.5 font-mono text-[0.875em] text-[#09090B];
+}
+
+.blog-prose pre {
+  @apply overflow-x-auto rounded-xl bg-[#0A192F] p-5 text-sm leading-relaxed text-[#E4E4E7];
+}
+
+.blog-prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+.blog-prose hr {
+  @apply my-10 border-t border-[#E4E4E7];
+}
+
+.blog-prose img {
+  @apply h-auto w-full rounded-lg;
+}
+
+.blog-prose figcaption {
+  @apply mt-3 text-center text-sm text-[#71717A];
+}
+
+/* Wide tables are the one element most likely to overflow on mobile. */
+.blog-prose .table-wrapper {
+  @apply overflow-x-auto;
+}
+
+.blog-prose table {
+  @apply w-full border-collapse text-left text-[15px];
+}
+
+.blog-prose th,
+.blog-prose td {
+  @apply border border-[#E4E4E7] px-4 py-2.5 align-top;
+}
+
+.blog-prose th {
+  @apply bg-[#FAFAFA] font-medium text-[#09090B];
+}
+
+/* --- Koenig cards ------------------------------------------------------- */
+
+.blog-prose .kg-card {
+  @apply my-8;
+}
+
+/*
+ * Ghost's width variants break out of the measure. The negative margins are
+ * capped by the viewport at small sizes so a full-width card cannot introduce
+ * horizontal page scroll.
+ */
+.blog-prose .kg-width-wide {
+  @apply lg:-mx-16;
+}
+
+.blog-prose .kg-width-full {
+  @apply lg:-mx-24;
+}
+
+.blog-prose .kg-image-card img {
+  @apply mx-auto rounded-lg border border-[#EDEDED];
+}
+
+.blog-prose .kg-callout-card {
+  @apply flex gap-4 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] px-5 py-4;
+}
+
+.blog-prose .kg-callout-card-blue {
+  @apply border-[#C4CDFB] bg-[#F0F2FE];
+}
+
+.blog-prose .kg-callout-emoji {
+  @apply shrink-0 text-xl leading-[1.6];
+}
+
+.blog-prose .kg-callout-text {
+  @apply text-[15px] leading-[1.7] text-[#27272A];
+}
+
+.blog-prose .kg-cta-card {
+  @apply rounded-xl border border-[#E4E4E7] px-6 py-6;
+}
+
+.blog-prose .kg-cta-bg-blue {
+  @apply border-[#C4CDFB] bg-[#F0F2FE];
+}
+
+.blog-prose .kg-cta-minimal {
+  @apply border-0 bg-transparent px-0;
+}
+
+.blog-prose .kg-cta-text {
+  @apply text-[15px] leading-[1.7];
+}
+
+.blog-prose .kg-cta-button {
+  @apply mt-4 inline-flex items-center justify-center rounded-lg bg-[#1D45D8] px-4 py-2.5 text-sm font-medium text-white no-underline hover:opacity-90;
+}
