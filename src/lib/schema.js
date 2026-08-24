@@ -66,7 +66,6 @@ export function buildOrganizationSchema() {
       "https://github.com/PayAINetwork",
       "https://t.me/PayAINetwork",
       "https://discord.gg/eWJRwMpebQ",
-      "https://blog.payai.network",
     ],
   };
 }
@@ -163,5 +162,129 @@ export function buildFaqSchema(items) {
         text: answer,
       },
     })),
+  };
+}
+
+/**
+ * Blog schema for the blog index — names the collection so assistants can tell
+ * the archive apart from an individual post.
+ */
+export function buildBlogSchema(posts) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${SITE_URL}/blog`,
+    name: "PayAI Blog",
+    url: `${SITE_URL}/blog`,
+    description:
+      "Insights and updates from the x402 ecosystem and PayAI Network — agentic payments, facilitator engineering, and the machine economy.",
+    publisher: {
+      "@type": "Organization",
+      name: "PayAI",
+      logo: { "@type": "ImageObject", url: LOGO_URL },
+    },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      datePublished: post.published_at,
+    })),
+  };
+}
+
+/**
+ * BlogPosting schema for a single post.
+ *
+ * Built from Ghost's own fields rather than hand-authored in the post's code
+ * injection, so dates and authorship cannot drift from what is published.
+ * `dateModified` matters here: it is how a crawler knows an updated post is
+ * worth recrawling.
+ */
+export function buildBlogPostingSchema(post) {
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  const authors = post.authors?.length
+    ? post.authors
+    : [post.primary_author].filter(Boolean);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    headline: post.title,
+    url,
+    /*
+     * Authored summaries only. Ghost's synthesised `excerpt` is a hard 500-character
+     * cut of the body that ends mid-word, which is not something to publish as a
+     * description in structured data.
+     */
+    ...(post.meta_description || post.custom_excerpt
+      ? { description: post.meta_description || post.custom_excerpt }
+      : {}),
+    ...(post.feature_image ? { image: [post.feature_image] } : {}),
+    datePublished: post.published_at,
+    dateModified: post.updated_at || post.published_at,
+    author: authors.length
+      ? authors.map((author) => ({
+          "@type": "Person",
+          name: author.name,
+          ...(author.website ? { url: author.website } : {}),
+        }))
+      : [{ "@type": "Organization", name: "PayAI", url: SITE_URL }],
+    publisher: {
+      "@type": "Organization",
+      name: "PayAI",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: LOGO_URL },
+    },
+    ...(post.tags?.length
+      ? { keywords: post.tags.map((tag) => tag.name).join(", ") }
+      : {}),
+    ...(post.reading_time
+      ? { timeRequired: `PT${post.reading_time}M` }
+      : {}),
+    isPartOf: { "@type": "Blog", "@id": `${SITE_URL}/blog` },
+  };
+}
+
+/**
+ * BreadcrumbList — tells search engines where a post sits in the hierarchy,
+ * which is the point of moving the blog into a subdirectory in the first place.
+ *
+ * @param {Array<{ name: string, path: string }>} trail
+ */
+export function buildBreadcrumbSchema(trail) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map(({ name, path }, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name,
+      item: `${SITE_URL}${path}`,
+    })),
+  };
+}
+
+/**
+ * CollectionPage schema for a tag archive.
+ */
+export function buildTagPageSchema(tag, posts) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${tag.name} — PayAI Blog`,
+    url: `${SITE_URL}/blog/tag/${tag.slug}`,
+    ...(tag.description ? { description: tag.description } : {}),
+    isPartOf: { "@type": "Blog", "@id": `${SITE_URL}/blog` },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: posts.map((post, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${SITE_URL}/blog/${post.slug}`,
+        name: post.title,
+      })),
+    },
   };
 }

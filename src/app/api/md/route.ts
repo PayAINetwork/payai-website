@@ -1,5 +1,11 @@
 import { NextRequest } from "next/server";
-import { AUTHORED_PAGES, DERIVED_PAGES, notFoundMarkdown } from "@/lib/agent/pages";
+import {
+  AUTHORED_PAGES,
+  DERIVED_PAGES,
+  isBlogPath,
+  notFoundMarkdown,
+} from "@/lib/agent/pages";
+import { blogMarkdown } from "@/lib/blog";
 import { htmlToMarkdown } from "@/lib/agent/htmlToMarkdown";
 import { SITE_URL } from "@/lib/site";
 
@@ -60,6 +66,26 @@ export async function GET(request: NextRequest) {
   const authored = AUTHORED_PAGES[pathname];
   if (authored) {
     return new Response(authored(), { headers: MARKDOWN_HEADERS });
+  }
+
+  /*
+   * Blog posts come from Ghost, so they are absent from DERIVED_PAGES and are
+   * rendered from the CMS payload rather than by re-reading our own HTML. A
+   * slug Ghost does not know still has to 404 — answering 200 for every
+   * /blog/<anything> would hand crawlers an unbounded set of soft-404s.
+   */
+  if (isBlogPath(pathname)) {
+    const markdown = await blogMarkdown(pathname, SITE_URL);
+    if (markdown) {
+      return new Response(
+        `${markdown}\n\n---\n\nCanonical HTML: ${SITE_URL}${pathname}\n`,
+        { headers: MARKDOWN_HEADERS },
+      );
+    }
+    return new Response(notFoundMarkdown(pathname), {
+      status: 404,
+      headers: MARKDOWN_HEADERS,
+    });
   }
 
   /*

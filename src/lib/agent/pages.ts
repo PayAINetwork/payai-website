@@ -29,7 +29,7 @@ import {
 } from "@/lib/site";
 import { FAQ_DATA } from "@/data/faq";
 import projects from "@/data/projects.json";
-import sitemap from "@/app/sitemap";
+import { staticSitemapEntries } from "@/app/sitemap";
 import { buildOpenApiDocument } from "@/lib/agent/openapi";
 
 type ProjectEntry = {
@@ -345,15 +345,28 @@ export const AUTHORED_PAGES: Record<string, () => string> = {
  * allowlist matters: deriving Markdown from whatever a self-fetch happens to
  * return means an interstitial or an error page can be served as if it were
  * site content.
+ *
+ * Blog posts are deliberately absent: they come from Ghost, so enumerating
+ * them would make this async, and middleware — which reads this set — cannot
+ * await. `isMarkdownPath` matches them by prefix instead.
  */
 export const DERIVED_PAGES: Set<string> = new Set(
-  sitemap()
+  staticSitemapEntries()
     .map((entry) => new URL(entry.url).pathname.replace(/\/+$/, "") || "/")
     .filter((pathname) => !(pathname in AUTHORED_PAGES)),
 );
 
+/** True for the blog index and any post or tag archive beneath it. */
+export function isBlogPath(pathname: string): boolean {
+  return pathname === "/blog" || pathname.startsWith("/blog/");
+}
+
 export function isMarkdownPath(pathname: string): boolean {
-  return pathname in AUTHORED_PAGES || DERIVED_PAGES.has(pathname);
+  return (
+    pathname in AUTHORED_PAGES ||
+    DERIVED_PAGES.has(pathname) ||
+    isBlogPath(pathname)
+  );
 }
 
 export function allMarkdownPaths(): string[] {
@@ -371,7 +384,7 @@ No page exists at \`${pathname}\` on ${SITE_URL}.
 - [Home](${SITE_URL}/) — what PayAI is and how to integrate
 - [Agent guide (llms.txt)](${SITE_URL}/llms.txt) — start here if you are an agent
 - [Full site text (llms-full.txt)](${SITE_URL}/llms-full.txt)
-- [Sitemap index](${SITE_URL}/sitemap_index.xml) — every indexable URL across payai.network, blog, and docs
+- [Sitemap index](${SITE_URL}/sitemap_index.xml) — every indexable URL across payai.network and docs
 - [OpenAPI description](${SITE_URL}/openapi.json) — the callable facilitator API
 - [Documentation](${DOCS_URL}) — quickstarts and protocol reference
 - [Contact](${SITE_URL}/contact)
