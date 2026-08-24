@@ -1,0 +1,388 @@
+/**
+ * Markdown representations of PayAI's public pages.
+ *
+ * Served under `Accept: text/markdown` content negotiation and at the `.md`
+ * path suffix. Authored rather than scraped so the agent-facing copy can be
+ * denser and more literal than the marketing page — an agent wants the
+ * endpoint, the network list, and the decision criteria, not the hero image.
+ *
+ * Keep in sync with the rendered pages: the facts here (networks, endpoints,
+ * pricing posture) must match what the site and docs actually say.
+ */
+import {
+  SITE_URL,
+  FACILITATOR_URL,
+  DOCS_URL,
+  BLOG_URL,
+  MERCHANT_PORTAL_URL,
+  ECHO_MERCHANT_URL,
+  GITHUB_URL,
+  X_URL,
+  LINKEDIN_URL,
+  TELEGRAM_URL,
+  DISCORD_URL,
+  INFO_EMAIL,
+  LEGAL_EMAIL,
+  LEGAL_NAME,
+  JURISDICTION,
+  PARTNERSHIP_URL,
+} from "@/lib/site";
+import { FAQ_DATA } from "@/data/faq";
+import projects from "@/data/projects.json";
+import sitemap from "@/app/sitemap";
+import { buildOpenApiDocument } from "@/lib/agent/openapi";
+
+type ProjectEntry = {
+  name: string;
+  description: string;
+  websiteUrl?: string;
+  category?: string;
+};
+
+const FOOTER = `## More from PayAI
+
+- Documentation: ${DOCS_URL}
+- OpenAPI description: ${SITE_URL}/openapi.json
+- Facilitator API: ${FACILITATOR_URL}
+- Agent guide: ${SITE_URL}/llms.txt
+- Blog: ${BLOG_URL}
+- GitHub: ${GITHUB_URL}
+- Support: ${INFO_EMAIL}`;
+
+function homeMarkdown(): string {
+  const faq = FAQ_DATA.map(
+    ({ question, answer }) => `### ${question}\n\n${answer}`,
+  ).join("\n\n");
+
+  return `# PayAI — the x402 Facilitator for AI Agents and Apps
+
+Accept agentic payments on every major chain with one integration. Multi-chain micropayments powered by Solana, with no API keys, no accounts, and instant settlement.
+
+## What PayAI does
+
+PayAI is a facilitator for the [x402 payment standard](${DOCS_URL}/x402/introduction). x402 uses the HTTP \`402 Payment Required\` status code to make payment a property of a request: a server answers an unpaid request with \`402\` plus machine-readable payment terms, the client signs a stablecoin payment, and the facilitator verifies and settles it on-chain.
+
+As the facilitator, PayAI takes the blockchain work off both sides. A merchant does not run an RPC node, hold a private key, manage nonces, or reconcile settlements. A buyer does not create an account or hold native gas tokens — PayAI sponsors gas on Solana, so a payer needs only USDC.
+
+- **Pay-per-request pricing.** Charge per request, action, or unit of usage — suited to APIs, AI agents, and real-time services.
+- **Instant settlement.** Payments verify and settle in under a second, with no manual reconciliation.
+- **Client and agent payments.** The same rail serves human web flows and autonomous agents.
+- **x402 standard adoption.** Adopt x402 without handling chain selection, gas, fee logic, or settlement.
+
+Payments range from $0.01 to $1,000,000: microtransactions for AI agents, one-time digital-content sales, and recurring SaaS charges all use the same endpoint.
+
+## Supported networks
+
+PayAI is Solana-first and also settles on Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE, on both mainnet and the corresponding testnets. Both x402 v1 short network names (\`base\`, \`solana\`) and x402 v2 CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`) are supported.
+
+For the authoritative live list, call \`GET ${FACILITATOR_URL}/supported\` — it returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. The documented list is at ${DOCS_URL}/x402/supported-networks.
+
+## Integrate
+
+Point x402 middleware or an x402 client at the facilitator:
+
+\`\`\`
+${FACILITATOR_URL}
+\`\`\`
+
+- Merchants (accept payments): ${DOCS_URL}/x402/servers/introduction — quickstarts for Express, Hono, Next.js, FastAPI, Flask, and Gin.
+- Clients and agents (make payments): ${DOCS_URL}/x402/clients/introduction — quickstarts for Axios, Fetch, httpx, requests, and Go net/http.
+- Quickstart: ${DOCS_URL}/x402/quickstart
+- API reference: ${SITE_URL}/openapi.json
+
+## Products
+
+- **x402 Facilitator** — live. Accept payments from $0.01 to $1,000,000 across every supported network.
+- **x402 Echo Merchant** — live. Run real x402 transactions against a live merchant for free; test payments are fully refunded and PayAI covers network fees. ${ECHO_MERCHANT_URL}
+- **Payment Splitting** — coming soon. Receive payments to one account and distribute to multiple recipients, for marketplaces and multi-party workflows.
+- **Token Gateway** — coming soon. Cross-network payments, so buyers can pay from whichever chain they hold funds on.
+
+## Discovery: the PayAI Bazaar
+
+PayAI indexes the services that accept x402 payments. \`GET ${FACILITATOR_URL}/discovery/resources\` returns the live catalog — HTTP endpoints and MCP tools, each with the payment terms needed to call it and, where the seller published them, input and output schemas. \`GET ${FACILITATOR_URL}/discovery/stats\` returns aggregate catalog size, settlement counts, and per-network volume.
+
+## Frequently asked questions
+
+${faq}
+
+${FOOTER}`;
+}
+
+function aboutMarkdown(): string {
+  return `# About PayAI
+
+PayAI builds payment infrastructure for software that transacts without a human in the loop.
+
+## What we build
+
+PayAI operates a production facilitator for the [x402 protocol](${DOCS_URL}/x402/introduction). x402 turns the long-dormant HTTP \`402 Payment Required\` status code into a working payment handshake: a server answers an unpaid request with \`402\` and machine-readable terms, the client signs a stablecoin payment, and a facilitator verifies and settles it on-chain. The whole exchange is two HTTP round trips, and neither side needs an account with the other.
+
+The facilitator is the part that touches the chain. PayAI verifies signed payment payloads, broadcasts settlements, sponsors gas where the chain allows it, screens for compliance, and returns a structured result — so a merchant integrates payments as middleware rather than as a blockchain project.
+
+## Why this matters
+
+Existing payment rails assume a human: a card to enter, an account to create, a checkout to complete, a chargeback window to wait out. Autonomous software has none of those. It needs to pay for a single API call, immediately, for a fraction of a cent, without onboarding.
+
+That is the gap PayAI fills. An agent that hits a paywalled endpoint can settle in under a second and continue. A service that wants to sell to agents can price per request instead of negotiating contracts.
+
+## How we are different
+
+- **Solana-first, multi-chain in practice.** PayAI settles on Solana, Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE. Solana carries the majority of production volume because it is the cheapest and fastest place to settle a sub-cent payment.
+- **Gasless for the payer.** On Solana, PayAI sponsors the network fee. A payer holds USDC and nothing else — no native token, no top-up ritual.
+- **No accounts on the critical path.** A buyer needs no PayAI relationship to pay a PayAI-backed merchant. An API key is optional, and only affects credit accounting and rate lanes.
+- **Open and inspectable.** The SDKs, integrations, and examples are open source at ${GITHUB_URL}, and the facilitator API is fully described at ${SITE_URL}/openapi.json.
+
+## Who it is for
+
+Merchants selling API calls, MCP tools, inference, data, or compute to software buyers. Agent developers whose agents need to pay for things at runtime. Platforms that want usage-based pricing without building settlement infrastructure.
+
+## The company
+
+${LEGAL_NAME} is registered in ${JURISDICTION}. The team works remotely. Reach us at ${SITE_URL}/contact.
+
+${FOOTER}`;
+}
+
+function contactMarkdown(): string {
+  return `# Contact PayAI
+
+PayAI is operated by ${LEGAL_NAME}, registered in ${JURISDICTION}. The team works remotely; ${INFO_EMAIL} reaches us for anything below.
+
+## Support
+
+Integration help, API questions, and bug reports.
+
+- Email: ${INFO_EMAIL}
+- Discord: ${DISCORD_URL} — the community channel, and the quickest place to get eyes on an integration problem
+- Documentation: ${DOCS_URL}
+- Service health: \`GET ${FACILITATOR_URL}/health\`
+
+Before opening a support request, check the quickstart at ${DOCS_URL}/x402/quickstart and confirm your network is live via \`GET ${FACILITATOR_URL}/supported\`.
+
+## Sales and partnerships
+
+Volume pricing, dedicated throughput, ecosystem listings, and integration partnerships.
+
+- Email: ${INFO_EMAIL}
+- Telegram: ${TELEGRAM_URL}
+- Partnership enquiry form: ${PARTNERSHIP_URL}
+- Ecosystem directory: ${SITE_URL}/ecosystem
+
+## Security
+
+Report a vulnerability privately to ${INFO_EMAIL}. Please do not open a public issue. The machine-readable version of this is at ${SITE_URL}/.well-known/security.txt.
+
+## Legal and privacy
+
+Questions about the terms, privacy practices, or data requests.
+
+- Email: ${LEGAL_EMAIL}
+- Privacy policy: ${SITE_URL}/privacy-policy
+- Terms of service: ${SITE_URL}/terms-of-service
+
+## Elsewhere
+
+- X: ${X_URL}
+- LinkedIn: ${LINKEDIN_URL}
+- GitHub: ${GITHUB_URL}
+- Telegram: ${TELEGRAM_URL}
+- Blog: ${BLOG_URL}
+- Merchant portal: ${MERCHANT_PORTAL_URL}
+- MCP server: ${SITE_URL}/mcp
+
+${FOOTER}`;
+}
+
+function ecosystemMarkdown(): string {
+  const list = (projects as ProjectEntry[])
+    .map((p) => {
+      const url = p.websiteUrl ? ` — ${p.websiteUrl}` : "";
+      const category = p.category ? ` _(${p.category})_` : "";
+      return `- **${p.name}**${category}${url}\n  ${p.description}`;
+    })
+    .join("\n");
+
+  return `# PayAI Ecosystem
+
+Projects building on PayAI and the x402 protocol: agents that pay, services that charge per request, and infrastructure that connects them.
+
+For the live, machine-readable catalog of services that currently accept x402 payments — including their payment terms and callable schemas — query \`GET ${FACILITATOR_URL}/discovery/resources\` instead of this page. This page lists ecosystem partners; that endpoint lists everything payable right now.
+
+## Projects
+
+${list}
+
+${FOOTER}`;
+}
+
+
+function developersMarkdown(): string {
+  const spec = buildOpenApiDocument();
+
+  /*
+   * The endpoint table is generated from the OpenAPI document rather than
+   * retyped, so the portal cannot drift from the spec it points at.
+   */
+  const operations = Object.entries(spec.paths).flatMap(([path, item]) =>
+    Object.entries(item as Record<string, { operationId?: string; summary?: string }>)
+      .filter(([method]) => ["get", "post", "put", "patch", "delete"].includes(method))
+      .map(([method, op]) => ({
+        method: method.toUpperCase(),
+        path,
+        operationId: op.operationId ?? "",
+        summary: op.summary ?? "",
+      })),
+  );
+
+  const table = [
+    "| Method | Path | Operation | What it does |",
+    "| --- | --- | --- | --- |",
+    ...operations.map(
+      (o) => `| ${o.method} | \`${o.path}\` | \`${o.operationId}\` | ${o.summary} |`,
+    ),
+  ].join("\n");
+
+  return `# PayAI Developer Portal
+
+Everything needed to charge for a request, pay for one, or find something worth paying for. The API is public, unauthenticated for reads, and described in full at [${SITE_URL}/openapi.json](${SITE_URL}/openapi.json).
+
+## Base URL
+
+\`\`\`
+${FACILITATOR_URL}
+\`\`\`
+
+Point x402 middleware or an x402 client at that host. There is no separate sandbox: testnet networks are served from the same endpoints, and [the Echo Merchant](${ECHO_MERCHANT_URL}) is a live merchant that returns HTTP 402 so you can exercise a real payment for free.
+
+## Endpoints
+
+${table}
+
+The full request and response schemas, including every documented failure reason, are in the [OpenAPI 3.1 description](${SITE_URL}/openapi.json).
+
+## Authentication
+
+Read endpoints need none. \`POST /verify\` and \`POST /settle\` accept an optional bearer token:
+
+\`\`\`
+Authorization: Bearer <api-key>
+\`\`\`
+
+The key affects credit accounting, dedicated throughput lanes, and usage analytics — not access. Without one you are served on the free tier. Create a key at [${MERCHANT_PORTAL_URL}](${MERCHANT_PORTAL_URL}).
+
+## Error model
+
+Errors are JSON on every status, including 4xx and 5xx, because a client that has already signed a payment needs to know precisely what happened.
+
+- \`POST /verify\` returns \`{ isValid: false, invalidReason, invalidMessage }\`
+- \`POST /settle\` returns \`{ success: false, errorReason, errorMessage, transaction, network, payer }\`
+
+Branch on \`invalidReason\` / \`errorReason\` — these are stable across releases. The message is for humans and carries field-level validation detail.
+
+One reason deserves special handling: \`settlement_pending\` means the settlement outran its response budget and is **still in flight**. It is not a failure. The response carries the broadcast \`transaction\` hash; re-submit the identical request to poll for the real outcome, and treat \`duplicate_settlement\` on that poll as "still working". Settlement is idempotent per payment, so retrying cannot double-charge.
+
+## Versioning and deprecation
+
+The facilitator is versioned by the x402 protocol version it speaks, not by a URL path segment. Requests carry \`x402Version\` (1 or 2); both are served from the same endpoints, so you pin a version by what you send.
+
+- **x402 v1** uses short network names — \`base\`, \`solana\`
+- **x402 v2** uses CAIP-2 identifiers — \`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`
+
+Call \`GET ${FACILITATOR_URL}/supported\` to see which combinations are live. A payment kind is withdrawn from that list before the endpoints stop accepting it, so polling \`/supported\` gives advance notice of a removal. Breaking changes arrive as a new \`x402Version\`.
+
+## Rate limits
+
+Throughput is limited per client at the edge; exceeding it returns HTTP 429. The facilitator does not currently emit \`RateLimit\` response headers, so back off on the status code rather than on a header budget.
+
+## Machine-readable surfaces
+
+- [OpenAPI 3.1 description](${SITE_URL}/openapi.json)
+- [llms.txt](${SITE_URL}/llms.txt) — when to use PayAI and how to call it
+- [llms-full.txt](${SITE_URL}/llms-full.txt) — the whole site as one document
+- [MCP server](${SITE_URL}/mcp) — Streamable HTTP, no authentication, searches the PayAI docs corpus. Also at \`/.well-known/mcp\`.
+- [MCP manifest](${SITE_URL}/.well-known/mcp.json) and [AI catalog](${SITE_URL}/.well-known/ai-catalog.json)
+- [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog)
+
+Every page on this site also serves Markdown — send \`Accept: text/markdown\` or append \`.md\` to the path.
+
+## Quickstarts
+
+Accept payments:
+
+- [Express](${DOCS_URL}/x402/servers/typescript/express) · [Hono](${DOCS_URL}/x402/servers/typescript/hono) · [Next.js](${DOCS_URL}/x402/servers/typescript/nextjs)
+- [FastAPI](${DOCS_URL}/x402/servers/python/fastapi) · [Flask](${DOCS_URL}/x402/servers/python/flask)
+- [Gin](${DOCS_URL}/x402/servers/go/gin)
+
+Make payments:
+
+- [Axios](${DOCS_URL}/x402/clients/typescript/axios) · [Fetch](${DOCS_URL}/x402/clients/typescript/fetch)
+- [httpx](${DOCS_URL}/x402/clients/python/httpx) · [requests](${DOCS_URL}/x402/clients/python/requests)
+- [Go net/http](${DOCS_URL}/x402/clients/go/http)
+
+Prefer no SDK? The manual flows spell out the raw HTTP exchange: [TypeScript](${DOCS_URL}/x402/clients/typescript/manual-flow) · [Python](${DOCS_URL}/x402/clients/python/manual-flow).
+
+## Discovery
+
+\`GET ${FACILITATOR_URL}/discovery/resources\` returns the PayAI Bazaar: every resource currently accepting x402 payments, with the payment terms needed to call it and, where the seller published them, input and output schemas. \`GET ${FACILITATOR_URL}/discovery/stats\` returns catalog size, settlement counts, and per-network volume.
+
+${FOOTER}`;
+}
+
+/** Authored markdown, keyed by pathname (no trailing slash). */
+export const AUTHORED_PAGES: Record<string, () => string> = {
+  "/": homeMarkdown,
+  "/about": aboutMarkdown,
+  "/contact": contactMarkdown,
+  "/ecosystem": ecosystemMarkdown,
+  "/developers": developersMarkdown,
+};
+
+/**
+ * Pages whose Markdown is derived from their own rendered HTML at request time.
+ *
+ * Sourced from the sitemap so a new page picks up a Markdown representation
+ * automatically, and so this can never list a page that does not exist. The
+ * allowlist matters: deriving Markdown from whatever a self-fetch happens to
+ * return means an interstitial or an error page can be served as if it were
+ * site content.
+ */
+export const DERIVED_PAGES: Set<string> = new Set(
+  sitemap()
+    .map((entry) => new URL(entry.url).pathname.replace(/\/+$/, "") || "/")
+    .filter((pathname) => !(pathname in AUTHORED_PAGES)),
+);
+
+export function isMarkdownPath(pathname: string): boolean {
+  return pathname in AUTHORED_PAGES || DERIVED_PAGES.has(pathname);
+}
+
+export function allMarkdownPaths(): string[] {
+  return [...Object.keys(AUTHORED_PAGES), ...DERIVED_PAGES];
+}
+
+/** Markdown body served for any path that does not exist. */
+export function notFoundMarkdown(pathname: string): string {
+  return `# 404 — Not Found
+
+No page exists at \`${pathname}\` on ${SITE_URL}.
+
+## Where to look instead
+
+- [Home](${SITE_URL}/) — what PayAI is and how to integrate
+- [Agent guide (llms.txt)](${SITE_URL}/llms.txt) — start here if you are an agent
+- [Full site text (llms-full.txt)](${SITE_URL}/llms-full.txt)
+- [Sitemap index](${SITE_URL}/sitemap_index.xml) — every indexable URL across payai.network, blog, and docs
+- [OpenAPI description](${SITE_URL}/openapi.json) — the callable facilitator API
+- [Documentation](${DOCS_URL}) — quickstarts and protocol reference
+- [Contact](${SITE_URL}/contact)
+
+## Pages on this site
+
+${allMarkdownPaths()
+  .sort()
+  .map((p) => `- ${SITE_URL}${p === "/" ? "/" : p}`)
+  .join("\n")}
+
+If you were looking for an API endpoint, the facilitator API lives on a different host: ${FACILITATOR_URL}. See ${SITE_URL}/openapi.json for its operations.
+`;
+}
