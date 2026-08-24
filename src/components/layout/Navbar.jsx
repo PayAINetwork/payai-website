@@ -257,8 +257,7 @@ export function Navbar({ activePage = "home" }) {
                 className="h-full"
               >
                 <Link
-                  href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "#"}
-                  target="_blank"
+                  href="/blog"
                   className="relative h-full flex items-center px-4 text-sm font-medium text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"
                 >
                   <span className="relative z-10">Blog</span>
@@ -482,8 +481,7 @@ export function Navbar({ activePage = "home" }) {
                 className="h-full"
               >
                 <Link
-                  href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK || "#"}
-                  target="_blank"
+                  href="/blog"
                   className="block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 text-gray-900 hover:text-gray-600 hover:bg-gray-50"
                 >
                   Blog

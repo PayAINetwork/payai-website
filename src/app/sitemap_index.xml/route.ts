@@ -1,7 +1,9 @@
 /**
- * Aggregates sitemaps from all PayAI subdomains so Google can crawl one entry
- * point and discover content across marketing, blog, and docs. Helps mitigate
- * the SEO equity fragmentation that comes with hosting on separate subdomains.
+ * Aggregates sitemaps across PayAI hosts so Google can crawl one entry point.
+ *
+ * The blog is no longer listed here: it moved from blog.payai.network into
+ * /blog on this domain, so its posts are in this site's own sitemap.xml. Docs
+ * remain on their own subdomain and still need aggregating.
  *
  * If you add a new subdomain (e.g. status.payai.network), add its sitemap here
  * and verify the URL responds with valid XML before deploying.
@@ -9,7 +11,6 @@
 export function GET() {
   const sitemaps = [
     "https://payai.network/sitemap.xml",
-    "https://blog.payai.network/sitemap.xml",
     "https://docs.payai.network/sitemap.xml",
   ];
 

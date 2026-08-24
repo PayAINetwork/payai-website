@@ -73,14 +73,14 @@ ${WHEN_TO_USE}
 - [Contact](${SITE_URL}/contact): support, sales, security, and legal contacts.
 - [Developer portal](${SITE_URL}/developers): how to call the PayAI API.
 - [Ecosystem](${SITE_URL}/ecosystem): projects building on PayAI and x402.
-- [Blog](${BLOG_URL}): product and ecosystem updates.
+- [Blog](${BLOG_URL}): product and ecosystem updates. Every post is listed at ${BLOG_URL}.md and syndicated at ${BLOG_URL}/rss.xml.
 - [Privacy policy](${SITE_URL}/privacy-policy)
 - [Terms of service](${SITE_URL}/terms-of-service)
 
 ## Machine-readable surfaces
 
 - [llms-full.txt](${SITE_URL}/llms-full.txt): this guide plus the full text of every page on this site.
-- [Sitemap index](${SITE_URL}/sitemap_index.xml): covers payai.network, blog, and docs.
+- [Sitemap index](${SITE_URL}/sitemap_index.xml): covers payai.network and docs.
 - [MCP manifest](${SITE_URL}/.well-known/mcp.json)
 - [AI catalog](${SITE_URL}/.well-known/ai-catalog.json)
 - [API catalog (RFC 9727)](${SITE_URL}/.well-known/api-catalog)

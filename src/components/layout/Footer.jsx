@@ -36,13 +36,7 @@ export function Footer() {
                 />
 
                 <Link
-                  href={
-                    process.env.NEXT_PUBLIC_SUBSCRIBE_URL ||
-                    process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK ||
-                    "https://blog.payai.network"
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={process.env.NEXT_PUBLIC_SUBSCRIBE_URL || "/blog"}
                   className="absolute right-1 top-1 bottom-1 inline-flex items-center justify-center
       bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)]
       text-white px-4 py-2.5 text-sm font-medium rounded-lg
@@ -72,7 +66,7 @@ export function Footer() {
               <h4 className="text-sm text-[#71717A]">SUPPORT</h4>
               <ul className="space-y-3 text-sm text-[#09090B] mt-6">
                 <li>
-                  <a href={process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK} target="_blank" rel="noopener noreferrer">Blog</a>
+                  <Link href="/blog">Blog</Link>
                 </li>
                 <li>
                   <a href={process.env.NEXT_PUBLIC_DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>

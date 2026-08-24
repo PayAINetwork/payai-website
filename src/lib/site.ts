@@ -26,10 +26,13 @@ export const DOCS_URL = env(
   process.env.NEXT_PUBLIC_DOCS_PAYAI_NETWORK,
   "https://docs.payai.network",
 );
-export const BLOG_URL = env(
-  process.env.NEXT_PUBLIC_BLOG_PAYAI_NETWORK,
-  "https://blog.payai.network",
-);
+/**
+ * The blog is a subdirectory of this site, not a subdomain. Deliberately not
+ * read from NEXT_PUBLIC_BLOG_PAYAI_NETWORK: that variable still points at the
+ * old host in the deployed environments, and it must not be able to send
+ * agents or crawlers back to a URL that now only answers with a redirect.
+ */
+export const BLOG_URL = `${SITE_URL}/blog`;
 export const MERCHANT_PORTAL_URL = "https://merchant.payai.network";
 export const ECHO_MERCHANT_URL = env(
   process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL,
