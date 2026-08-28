@@ -15,7 +15,13 @@ const PARTNERS_DATA = [
 export const Partners = () => {
   return (
     <section className="bg-white">
-      <div className="container-payai p-8 lg:pt-20 lg:pb-8 flex flex-col items-center lg:h-screen">
+      {/*
+        min-h-screen, not h-screen: the section still fills the viewport on
+        large screens, but a hard 100vh clipped its own content once the
+        supported-networks copy was added, spilling the diagram over the
+        partner logo strip below.
+      */}
+      <div className="container-payai p-8 lg:pt-20 lg:pb-8 flex flex-col items-center lg:min-h-screen">
         <div className="lg:w-[720px] flex flex-col items-center">
           <h2 className="text-2xl lg:text-[36px] text-[#09090B]">
             Ecosystem & Partners
