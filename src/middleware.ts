@@ -150,6 +150,10 @@ export const config = {
   /*
    * Skip Next internals and static assets. The Markdown and Link header logic
    * only ever applies to content pages, and /api/md must not re-enter here.
+   *
+   * /mts is the Stape sGTM proxy. Its traffic is analytics transport, not
+   * content: negotiating it into Markdown, or 406-ing a beacon whose Accept
+   * header we do not like, would silently drop events.
    */
-  matcher: ["/((?!_next/static|_next/image|api/md|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|mp4|woff|woff2|txt|xml|json)$).*)"],
+  matcher: ["/((?!_next/static|_next/image|api/md|mts(?:/|$)|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico|mp4|woff|woff2|txt|xml|json)$).*)"],
 };
