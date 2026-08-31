@@ -32,21 +32,12 @@ export const metadata: Metadata = {
     title: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
     description:
       "The x402 facilitator for AI agents and apps. Multi-chain micropayments powered by Solana. Get paid by AI agents in 5 minutes.",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
     description:
       "The x402 facilitator for AI agents and apps. Multi-chain micropayments powered by Solana.",
-    images: ["/twitter-image.png"],
     site: "@PayAINetwork",
     creator: "@PayAINetwork",
   },
