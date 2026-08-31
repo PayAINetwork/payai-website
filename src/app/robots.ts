@@ -34,12 +34,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/mts/",
       },
       ...AI_AGENTS.map((userAgent) => ({
         userAgent,
         allow: "/",
-        disallow: "/mts/",
       })),
     ],
     sitemap: `${SITE_URL}/sitemap_index.xml`,
