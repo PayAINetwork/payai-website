@@ -1,5 +1,14 @@
 /**
- * Same-origin proxy endpoint for Stape sGTM.
+ * Same-origin proxy for Stape sGTM, mounted at /mts.
+ *
+ * Stape's Custom Loader is configured with the path prefix `/mts`, which is
+ * baked into the loader script itself — it asks this origin for
+ * `/mts/<file>.js` and then sends its events to `/mts/<gtm path>`. That is
+ * why this is a catch-all: every one of those paths has to land here.
+ *
+ * The tagging server serves the same resources at its root and answers the
+ * prefixed form with a 400, so the prefix is ours to add on the loader side
+ * and strip on the way out. See PATH_PREFIX below.
  *
  * Stape guide (Vercel): https://stape.io/helpdesk/documentation/how-to-use-same-origin-through-vercel#step-2-deploy-the-changes-and-test-it
  */
@@ -82,10 +91,22 @@ function buildDownstreamHeaders(upstream: Response) {
   return headers;
 }
 
+/*
+ * The prefix the Stape Custom Loader uses on this origin. It exists only on
+ * our side of the proxy: the tagging server expects the unprefixed path.
+ */
+const PATH_PREFIX = "/mts";
+
+function upstreamPath(pathname: string) {
+  if (pathname === PATH_PREFIX) return "/";
+  if (pathname.startsWith(`${PATH_PREFIX}/`)) return pathname.slice(PATH_PREFIX.length);
+  return pathname;
+}
+
 async function proxyToStape(req: Request) {
   const url = new URL(req.url);
   const { origin: targetOrigin, host: targetHost } = getTarget();
-  const upstreamUrl = new URL(url.pathname + url.search, targetOrigin);
+  const upstreamUrl = new URL(upstreamPath(url.pathname) + url.search, targetOrigin);
   const headers = buildUpstreamHeaders(req);
   headers.set("host", targetHost);
 
