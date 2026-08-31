@@ -84,8 +84,15 @@ function buildDownstreamHeaders(upstream: Response) {
   for (const [key, value] of upstream.headers.entries()) {
     const k = key.toLowerCase();
     if (HOP_BY_HOP_HEADERS.has(k)) continue;
-    // Let the platform handle these to avoid mismatches.
-    if (k === "content-length") continue;
+    /*
+     * fetch() has already decoded the upstream body, so the upstream's
+     * content-encoding no longer describes what we are about to send. Passing
+     * it on makes a browser try to gunzip plain text and fail the request with
+     * ERR_CONTENT_DECODING_FAILED — curl does not decode by default, so this
+     * only shows up in a real browser. content-length is stale for the same
+     * reason; let the platform recompute both.
+     */
+    if (k === "content-encoding" || k === "content-length") continue;
     headers.set(key, value);
   }
   return headers;
