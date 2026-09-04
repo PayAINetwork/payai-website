@@ -28,16 +28,23 @@ const AI_AGENTS = [
   "MistralAI-User",
 ];
 
+const PRIVATE_CHECKOUT_PATHS = [
+  "/x402-commerce-checkout/api/",
+  "/x402-commerce-checkout/checkout/",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
+        disallow: PRIVATE_CHECKOUT_PATHS,
       },
       ...AI_AGENTS.map((userAgent) => ({
         userAgent,
         allow: "/",
+        disallow: PRIVATE_CHECKOUT_PATHS,
       })),
     ],
     sitemap: `${SITE_URL}/sitemap_index.xml`,

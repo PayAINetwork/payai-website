@@ -6,6 +6,7 @@ import { Header } from "@/components/sections/Header";
 import { Features } from "@/components/sections/Features";
 import { Partners } from "@/components/sections/Partners";
 import { Overview } from "@/components/sections/Overview";
+import { CommerceCheckoutSpotlight } from "@/components/sections/CommerceCheckoutSpotlight";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
@@ -22,6 +23,7 @@ export default function Page() {
         <Features />
         <Partners />
         <Overview />
+        <CommerceCheckoutSpotlight />
         <Testimonials />
         <Blog />
         <FAQ />

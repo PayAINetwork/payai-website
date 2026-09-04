@@ -98,6 +98,9 @@ export function Footer() {
                   <Link href="/developers">Developer Portal</Link>
                 </li>
                 <li>
+                  <Link href="/x402-commerce-checkout">Anthropic Commerce Checkout</Link>
+                </li>
+                <li>
                   <a href="/openapi.json">API Reference</a>
                 </li>
                 <li>

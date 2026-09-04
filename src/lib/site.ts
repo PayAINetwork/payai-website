@@ -35,6 +35,7 @@ export const ECHO_MERCHANT_URL = env(
   process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL,
   "https://x402.payai.network",
 );
+export const COMMERCE_CHECKOUT_URL = `${SITE_URL}/x402-commerce-checkout`;
 
 /** Streamable HTTP MCP server for the PayAI documentation corpus. */
 export const MCP_URL = `${DOCS_URL}/mcp`;

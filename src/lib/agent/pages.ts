@@ -16,6 +16,7 @@ import {
   BLOG_URL,
   MERCHANT_PORTAL_URL,
   ECHO_MERCHANT_URL,
+  COMMERCE_CHECKOUT_URL,
   GITHUB_URL,
   X_URL,
   LINKEDIN_URL,
@@ -94,6 +95,7 @@ ${FACILITATOR_URL}
 
 - **x402 Facilitator** — live. Accept payments from $0.01 to $1,000,000 across every supported network.
 - **x402 Echo Merchant** — live. Run real x402 transactions against a live merchant for free; test payments are fully refunded and PayAI covers network fees. ${ECHO_MERCHANT_URL}
+- **x402 checkout for Anthropic commerce agents** — live and open source. Add facilitator-neutral SVM and EVM settlement to an agent scaffolded with Anthropic Commerce Builder, while keeping payment URLs and credentials outside the model. ${COMMERCE_CHECKOUT_URL}
 - **Payment Splitting** — coming soon. Receive payments to one account and distribute to multiple recipients, for marketplaces and multi-party workflows.
 - **Token Gateway** — coming soon. Cross-network payments, so buyers can pay from whichever chain they hold funds on.
 
