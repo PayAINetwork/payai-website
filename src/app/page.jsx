@@ -14,6 +14,12 @@ import { Blog } from "@/components/sections/Blog";
 import { Footer } from "@/components/layout/Footer";
 import { ShuffledLogosProvider } from "@/context/ShuffledLogosContext";
 
+export const metadata = {
+  alternates: {
+    canonical: "https://payai.network",
+  },
+};
+
 export default function Page() {
   return (
     <ShuffledLogosProvider>

@@ -9,7 +9,16 @@ import { Blog } from "@/components/sections/Blog";
 import { JoinUs } from "@/components/sections/JoinUs";
 import { Footer } from "@/components/layout/Footer";
 
-export default function PrivacyPolicy() {
+export const metadata = {
+  title: "PayAI Ecosystem",
+  description:
+    "Explore projects, tools, and teams building agentic commerce and x402 payment infrastructure across the PayAI ecosystem.",
+  alternates: {
+    canonical: "https://payai.network/ecosystem",
+  },
+};
+
+export default function Ecosystem() {
   return (
     <div className="min-h-screen">
       <Navbar activePage="projects" />
