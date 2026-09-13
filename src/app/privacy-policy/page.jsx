@@ -2,6 +2,15 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+export const metadata = {
+  title: "Privacy Policy",
+  description:
+    "Learn how PayAI Network collects, uses, stores, and protects personal information across its websites, software, and services.",
+  alternates: {
+    canonical: "https://payai.network/privacy-policy",
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen">

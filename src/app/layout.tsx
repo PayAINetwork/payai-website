@@ -41,9 +41,6 @@ export const metadata: Metadata = {
     site: "@PayAINetwork",
     creator: "@PayAINetwork",
   },
-  alternates: {
-    canonical: "https://payai.network",
-  },
   robots: {
     index: true,
     follow: true,

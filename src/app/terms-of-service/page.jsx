@@ -2,6 +2,15 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+export const metadata = {
+  title: "Terms and Conditions",
+  description:
+    "Read the terms governing access to and use of PayAI Network websites, software, APIs, and services.",
+  alternates: {
+    canonical: "https://payai.network/terms-of-service",
+  },
+};
+
 export default function TermsOfService() {
   return (
     <div className="min-h-screen">
