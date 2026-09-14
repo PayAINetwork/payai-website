@@ -12,7 +12,7 @@ function formatCount(n) {
   return String(n);
 }
 
-export function Navbar({ activePage = "home" }) {
+export function Navbar({ activePage = null }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSocialMenuOpen, setIsSocialMenuOpen] = useState(false);

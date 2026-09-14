@@ -24,7 +24,7 @@ export default function Page() {
   return (
     <ShuffledLogosProvider>
       <div>
-        <Navbar />
+        <Navbar activePage="home" />
         <Header />
         <Features />
         <Partners />
