@@ -124,7 +124,9 @@ test("pricing, amount and discovery claims share qualified source guidance", () 
   for (const text of [AUTHORED_PAGES["/"](), AUTHORED_PAGES["/about"](), developer, buildLlmsTxt(), JSON.stringify(FAQ_DATA)]) {
     assert.doesNotMatch(text, /settle in under a second|Payments verify and settle in under a second|cheapest and fastest|Rates vary by network|\$0\.01 to \$1,000,000|everything payable right now|never holds merchant balances/);
   }
-  assert.match(guidance.PRICING_GUIDANCE, /\$0\.001 per settlement/);
+  assert.match(guidance.PRICING_GUIDANCE, /gas plus 30%/);
+  assert.match(guidance.PRICING_GUIDANCE, /\$0\.001 per credit/);
+  assert.match(guidance.PRICING_GUIDANCE, /facilitator\.payai\.network\/pricing/);
   assert.match(guidance.PRICING_GUIDANCE, /not a monthly reset/);
   assert.match(guidance.DISCOVERY_GUIDANCE, /not proof of current availability/);
 });
