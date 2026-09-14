@@ -5,7 +5,8 @@ import { div } from "framer-motion/client";
 
 const OVERVIEW_DATA = [
   {
-    src: "/overview/facilitator.svg",
+    src: "/overview/facilitator-reviewed.svg",
+    alt: "Payment operations: verify, settle, inspect the result. Timing depends on network, scheme and load.",
     title: "Charge for a request",
     description:
       "Accept stablecoin payments for APIs, digital content and agent services. Choose terms supported by your payment scheme and network, and account for facilitator fees separately from your customer price.",
@@ -14,7 +15,8 @@ const OVERVIEW_DATA = [
     url: process.env.NEXT_PUBLIC_FACILITATOR_URL,
   },
   {
-    src: "/overview/merchant.svg",
+    src: "/overview/merchant-reviewed.svg",
+    alt: "Echo Merchant checklist: start on a testnet, review terms, test the flow and inspect the result and refund behavior.",
     title: "Test payments against a live merchant",
     description:
       "Exercise the payment flow against the x402 Echo Merchant. It advertises refunds of test payments; review the selected network, payment terms and refund behavior before using real funds. Start on a testnet.",
@@ -40,7 +42,7 @@ const OVERVIEW_DATA = [
   },
 ];
 
-const OverviewCard = ({ src, title, description, badge, isLive, url }) => {
+const OverviewCard = ({ src, alt, title, description, badge, isLive, url }) => {
   return (
     <div className="flex border-y border-b-0 border-[#E4E4E7] h-screen">
       <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y" />
@@ -222,8 +224,8 @@ const OverviewCard = ({ src, title, description, badge, isLive, url }) => {
         <div className="flex justify-center items-center border-x">
           <Image
             src={src}
-            alt={title}
-            width={600}
+            alt={alt || title}
+            width={640}
             height={450}
             className="w-full h-auto object-cover"
           />
@@ -254,6 +256,7 @@ export const Overview = () => {
           <OverviewCard
             key={index}
             src={item.src}
+            alt={item.alt}
             title={item.title}
             description={item.description}
             badge={item.badge}

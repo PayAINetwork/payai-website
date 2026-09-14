@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="450" viewBox="0 0 640 450" role="img" aria-labelledby="title desc">
+  <title id="title">Echo Merchant: review terms, test a payment, inspect the outcome</title>
+  <desc id="desc">Start on a testnet. Review the selected network and payment terms, test the supported flow, and inspect the result and refund behavior before using real funds. This is a checklist, not executable code or a refund guarantee.</desc>
+  <defs>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#e4e4e7"/></pattern>
+  </defs>
+  <rect width="640" height="450" fill="#fafbff"/>
+  <rect width="640" height="450" fill="url(#dots)" opacity=".45"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="40" y="53" font-size="28" font-weight="600" fill="#09090b">Echo Merchant quick check</text>
+    <text x="40" y="82" font-size="18" fill="#52525b">Start on a testnet.</text>
+    <path d="M80 148v210" stroke="#c7d2fe" stroke-width="3"/>
+    <g fill="white" stroke="#e4e4e7">
+      <rect x="40" y="106" width="560" height="84" rx="18"/>
+      <rect x="40" y="210" width="560" height="84" rx="18"/>
+      <rect x="40" y="314" width="560" height="84" rx="18"/>
+    </g>
+    <g fill="#1d45d8"><circle cx="80" cy="148" r="23"/><circle cx="80" cy="252" r="23"/><circle cx="80" cy="356" r="23"/></g>
+    <g fill="white" text-anchor="middle" font-size="22" font-weight="600"><text x="80" y="156">1</text><text x="80" y="260">2</text><text x="80" y="364">3</text></g>
+    <g fill="#09090b" font-size="25" font-weight="600"><text x="120" y="142">Review the terms</text><text x="120" y="246">Test the payment flow</text><text x="120" y="350">Inspect the outcome</text></g>
+    <g fill="#52525b" font-size="19"><text x="120" y="169">Check the selected network and price.</text><text x="120" y="273">Follow the supported quickstart.</text><text x="120" y="377">Check the result and refund behavior.</text></g>
+    <text x="320" y="432" text-anchor="middle" font-size="18" fill="#52525b">Review refund behavior before using real funds.</text>
+  </g>
+</svg>

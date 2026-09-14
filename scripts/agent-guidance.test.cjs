@@ -165,3 +165,39 @@ test("hero uses the visually reviewed illustration with its real dimensions and 
   assert.match(source, /Illustrative scenario, not a live booking interface\./);
   assert.equal(createHash("sha256").update(readFileSync(resolve(root, "../public/header/hero.png"))).digest("hex"), "118abba51e4a843b2963a4eb1cc9b740ff9891f684f1bad1d8e9b72684a374fc");
 });
+
+test("overview diagrams state operation semantics without executable mock code or KPI promises", () => {
+  const assets = ["facilitator-reviewed", "merchant-reviewed"].map(name =>
+    readFileSync(resolve(root, `../public/overview/${name}.svg`), "utf8"));
+  for (const svg of assets) {
+    assert.match(svg, /<svg[^>]+width="640" height="450" viewBox="0 0 640 450"/);
+    assert.match(svg, /aria-labelledby="title desc"/);
+    assert.match(svg, /<title id="title">/);
+    assert.match(svg, /<desc id="desc">/);
+    assert.doesNotMatch(svg, /800ms|100% Uptime|No Friction|Free to Start|localhost|curl|\$0\.01|\bSOL\b/);
+    assert.doesNotMatch(svg, /<script|<image|<foreignObject|href=|onload=/i);
+    assert.ok(Buffer.byteLength(svg) < 5000);
+  }
+  assert.match(assets[0], /Timing depends on network, scheme and load\./);
+  assert.match(assets[0], /Reconcile unresolved outcomes before retrying\./);
+  assert.match(assets[1], /Start on a testnet\./);
+  assert.match(assets[1], /Check the result and refund behavior\./);
+  const overview = readFileSync(resolve(root, "components/sections/Overview.jsx"), "utf8");
+  assert.match(overview, /src: "\/overview\/facilitator-reviewed\.svg"/);
+  assert.match(overview, /src: "\/overview\/merchant-reviewed\.svg"/);
+  assert.doesNotMatch(overview, /src: "\/overview\/(facilitator|merchant)\.svg"/);
+  assert.equal((overview.match(/isLive: false/g) ?? []).length, 2);
+  const cta = readFileSync(resolve(root, "components/sections/CTA.jsx"), "utf8");
+  assert.match(cta, /src="\/overview\/facilitator-reviewed\.svg"/);
+  assert.doesNotMatch(cta, /\/cta\/hero\.jpg|AI agents sending x402 payments/);
+});
+
+test("original overview assets and CTA photograph remain recoverable", () => {
+  for (const [file, digest] of Object.entries({
+    "overview/facilitator.svg": "1757c8f3bc3b3a68702aad38a4d0fb3a5dac3f6c23a833b7c80c30db3d9c7893",
+    "overview/merchant.svg": "9f19a0aba6c86dbc995d13c69602fa091e7eb38ac6bd53e502842bde4e556766",
+    "overview/payment.svg": "4b9fe9ff17dda3c523fac103ba72da1b07f6a179522de703827692d64b912c32",
+    "overview/token.svg": "37cf7a2721cca638c28eee31f0a26e6c01ee0b3f53c0b1c1ea13fe11ad5f9980",
+    "cta/hero.jpg": "82ace75b8ceff2dd547f919a17ff5c7526e89b26909ffa4edea724e6e0c71ee5",
+  })) assert.equal(createHash("sha256").update(readFileSync(resolve(root, `../public/${file}`))).digest("hex"), digest);
+});
