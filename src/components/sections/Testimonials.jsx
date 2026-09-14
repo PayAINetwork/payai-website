@@ -103,11 +103,11 @@ export const Testimonials = () => {
               ))}
             </div>
             <p className="lg:w-[170px] text-sm lg:text-base text-[#0A0A0A]/60 transition-colors group-hover:text-[#1D45D8]">
-              Trusted by{" "}
+              Explore{" "}
               <span className="font-semibold text-[#0A0A0A] transition-colors group-hover:text-[#1D45D8]">
-                1000+ companies
+                the x402 ecosystem
               </span>{" "}
-              of all sizes
+              and its builders
             </p>
           </div>
           <div className="hidden lg:grid lg:flex-1 lg:grid-cols-5 border border-[#E4E4E7] transition-colors group-hover:bg-[#F8F9FF]">

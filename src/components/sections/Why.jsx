@@ -9,7 +9,7 @@ export const Why = () => {
           </h2>
           <p className="text-sm lg:text-lg text-[#0A0A0A]/60">
             PayAI powers real-time, usage-based payments for AI agents and
-            platforms with instant settlement and granular pricing.
+            platforms through supported on-chain payment operations.
           </p>
         </div>
       </div>
@@ -18,50 +18,47 @@ export const Why = () => {
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-4 border-x border-[#E4E4E7]">
           <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
-              35M+
+              HTTP 402
             </span>
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
-              Transactions Processed
+              Pay Per Request
             </h3>
             <p className="text-sm lg:text-base text-[#71717A] mt-2">
-              Powering real-time micropayments across AI agents, and Web3
-              platforms.
+              Advertise machine-readable payment terms for APIs and agent services.
             </p>
           </div>
           <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
-              {"<1s"}
+              On-chain
             </span>
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
-              Settlement Time
+              Verify and Settle
             </h3>
             <p className="text-sm lg:text-base text-[#71717A] mt-2">
-              Payments are verified and settled instantly to support live,
-              autonomous interactions.
+              Check the operation result and preserve receipts. Timing depends
+              on the network, scheme and load.
             </p>
           </div>
           <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
-              10+
+              SVM / EVM
             </span>
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
-              Networks Supported
+              Supported Payment Kinds
             </h3>
             <p className="text-sm lg:text-base text-[#71717A] mt-2">
-              Live on Solana with expanding EVM support for seamless multi-chain
-              deployment.
+              Check GET /supported for current protocol, scheme and network combinations.
             </p>
           </div>
           <div className="p-5 lg:px-8 lg:py-10 border border-[#E4E4E7] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8] transition-all">
             <span className="text-4xl lg:text-5xl text-[#1D45D8] font-medium">
-              250+
+              Tools &amp; APIs
             </span>
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
-              AI-Driven Projects
+              Discover the Ecosystem
             </h3>
             <p className="text-sm lg:text-base text-[#71717A] mt-2">
-              Trusted by AI agents, marketplaces platforms building
-              pay-per-request experiences.
+              Explore listed projects and verify current provider requirements before paying.
             </p>
           </div>
         </div>

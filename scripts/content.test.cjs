@@ -41,3 +41,20 @@ test("code and explicit Markdown email links keep their existing behavior", () =
   assert.match(html, />Security<\/a>\./);
   assert.match(html, /href="https:\/\/payai.network\/contact"/);
 });
+
+test("payment reason codes keep intraword underscores without italicizing intervening text", () => {
+  const html = render("settlement_pending is unresolved; duplicate_settlement can be a replay marker. PAYAI_API_KEY_ID remains literal.");
+  assert.match(html, /settlement_pending/);
+  assert.match(html, /duplicate_settlement/);
+  assert.match(html, /PAYAI_API_KEY_ID/);
+  assert.doesNotMatch(html, /<em>/);
+});
+
+test("standalone emphasis still works alongside identifiers, code and URLs", () => {
+  const html = render("_a_ and (_several words_) with foo_bar_baz, `_code_` and https://example.com/foo_bar.");
+  assert.match(html, /<em>a<\/em>/);
+  assert.match(html, /<em>several words<\/em>/);
+  assert.match(html, /foo_bar_baz/);
+  assert.match(html, />_code_<\/code>/);
+  assert.match(html, /href="https:\/\/example.com\/foo_bar"/);
+});

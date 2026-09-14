@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "PayAI",
     title: "PayAI — x402 Payment Facilitator for AI Agents & Apps",
     description:
-      "The x402 facilitator for AI agents and apps. Multi-chain micropayments powered by Solana. Get paid by AI agents in 5 minutes.",
+      "Accept stablecoin payments from AI agents and apps across supported Solana and EVM networks. Explore PayAI's x402 integration guides.",
   },
   twitter: {
     card: "summary_large_image",

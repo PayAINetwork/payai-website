@@ -34,9 +34,8 @@ export function CTA() {
             }}
             className="mt-3 lg:mt-6 text-sm lg:text-body text-[#71717A] leading-relaxed md:leading-relaxed"
           >
-            Start Building with x402 today and Integrate real-time, usage-based
-            payments into your AI agents, apps, or platforms in just a few
-            minutes.
+            Start with a supported quickstart, test the payment flow, and add
+            usage-based payments to your AI agents, apps or platforms.
           </motion.p>
 
           <motion.div

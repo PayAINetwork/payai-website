@@ -123,11 +123,11 @@ export function Header() {
                   ))}
                 </div>
                 <p className="w-[170px] text-[#0A0A0A]/60 text-sm lg:text-base transition-colors group-hover:text-[#1D45D8]">
-                  Trusted by{" "}
+                  Explore{" "}
                   <span className="font-semibold text-[#0A0A0A] transition-colors group-hover:text-[#1D45D8]">
-                    1000+ companies
+                    the x402 ecosystem
                   </span>{" "}
-                  of all sizes
+                  and its builders
                 </p>
               </Link>
             </motion.div>

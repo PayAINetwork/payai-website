@@ -18,7 +18,7 @@ import {
   X_URL,
   INFO_EMAIL,
 } from "@/lib/site";
-import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE } from "@/lib/agent/payment-guidance";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, DISCOVERY_GUIDANCE, PRICING_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 const WHEN_TO_USE = `## When to use PayAI
 
@@ -28,12 +28,14 @@ Reach for PayAI when you are doing any of these:
 
 - **Charging for an API, MCP tool, or agent service per request.** Put x402 middleware in front of a route and point it at \`${FACILITATOR_URL}\`. You get paid in USDC per call, with no signup flow for your buyers. Start at ${DOCS_URL}/x402/servers/introduction.
 - **Paying for a resource that returned HTTP 402.** Use an x402 client SDK; it reads the payment requirements, signs, and retries. Start at ${DOCS_URL}/x402/clients/introduction.
-- **Finding services an agent can buy right now.** Query \`GET ${FACILITATOR_URL}/discovery/resources\` for the live catalog of x402-payable HTTP endpoints and MCP tools, including their payment terms and, where published, their input and output schemas.
-- **Settling agent payments on Solana.** PayAI is Solana-first and sponsors gas, so the payer needs only USDC — no SOL for fees. It also settles on Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE.
+- **Discovering payment-enabled services.** ${DISCOVERY_GUIDANCE}
+- **Settling agent payments on supported networks.** PayAI supports Solana and EVM payment kinds. Sponsored Solana flows can cover the payer's transaction fee; setup and service costs are separate.
 - **Checking which chains and schemes are live** before advertising payment terms: \`GET ${FACILITATOR_URL}/supported\`.
 - **Testing an x402 integration end to end** against a real merchant that returns 402: ${ECHO_MERCHANT_URL}.
 
-Do not use PayAI for: card payments, fiat payouts, bank transfers, custody of user funds, or subscription billing. PayAI settles stablecoin micropayments over HTTP; it is not a payment processor for consumer checkout and it never holds merchant balances.
+PayAI's facilitator verifies and settles supported stablecoin payment operations. It does not itself provide card acquiring, fiat bank payouts or a subscription scheduler. Human checkout can use x402 too. Channel schemes can involve funded on-chain escrow and a separate payout lifecycle; review their custody and recovery model rather than assuming every operation is an immediate wallet-to-wallet transfer.
+
+${PRICING_GUIDANCE}
 
 ## How an agent should call PayAI
 

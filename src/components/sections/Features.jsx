@@ -20,24 +20,24 @@ export function Features() {
             <p className="text-[#0A0A0A]/60 mt-3 lg:mt-4 text-sm lg:text-base">
               PayAI is a facilitator of the x402 payment standard, supporting
               usage-based payments for AI Agents, SaaS, and traditional
-              applications. It enables fast and secure payments across digital
-              currencies.
+              applications. It handles supported payment verification and
+              settlement operations.
             </p>
           </div>
-          <div className="mt-6 lg:mt-0" role="group" aria-label="Settlement speed">
+          <div className="mt-6 lg:mt-0" role="group" aria-label="Payment verification">
             <p className="text-[#09090B] font-medium text-xl lg:text-[36px]">
-              &lt; 1 Second
+              Verify
             </p>
             <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
-              Payments are verified and settled.
+              Check a signed payment against the selected scheme&apos;s requirements.
             </p>
           </div>
-          <div className="mt-3 lg:mt-0" role="group" aria-label="Payment success rate">
+          <div className="mt-3 lg:mt-0" role="group" aria-label="Payment settlement">
             <p className="text-[#09090B] font-medium text-xl lg:text-[36px]">
-              99.9%
+              Settle
             </p>
             <p className="text-[#0A0A0A]/60 mt-2 lg:mt-4 text-sm lg:text-base">
-              Payment Success Rate across supported networks
+              Process the payment operation and inspect its result before serving paid access.
             </p>
           </div>
         </div>
@@ -79,11 +79,11 @@ export function Features() {
             </svg>
 
             <h3 className="text-base lg:text-lg mt-8 lg:mt-14">
-              Instant Settlement
+              On-Chain Settlement
             </h3>
             <p className="text-sm lg:text-base text-[#71717A] mt-2">
-              Payments settle immediately, with no delays or manual
-              reconciliation.
+              Timing depends on the network, scheme and current load. Retain
+              receipts and reconcile unresolved outcomes.
             </p>
           </div>
           <div className="p-5 lg:px-8 lg:py-10 border border-[#EDEDED] hover:bg-[#F6F8FF] hover:border-b-[3px] hover:border-b-[#1D45D8]">
@@ -126,8 +126,8 @@ export function Features() {
               x402 Standard Adoption
             </h3>
             <p className="text-sm lg:text-base text-[#71717A] mt-2">
-              Adopt the x402 standard without handling blockchain complexity,
-              fees, or settlement logic.
+              Use compatible middleware for payment verification and settlement.
+              Configure your pricing, access and recovery rules.
             </p>
           </div>
         </div>

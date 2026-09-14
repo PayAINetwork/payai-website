@@ -7,7 +7,7 @@
  * agents (src/lib/agent/pages.ts).
  */
 export type FaqEntry = { question: string; answer: string };
-import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE } from "@/lib/agent/payment-guidance";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, PRICING_GUIDANCE, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 export const FAQ_DATA: FaqEntry[] = [
   {
@@ -23,17 +23,17 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Which chains does x402 support?",
     answer:
-      "PayAI settles on Solana, Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE, across both mainnet and testnets. Solana carries most production volume because it is the cheapest and fastest place to settle a sub-cent payment, and PayAI sponsors the network fee there so payers need only USDC. Call GET https://facilitator.payai.network/supported for the authoritative live list.",
+      "PayAI supports payment kinds across Solana and EVM networks including Base, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. Mainnet/testnet and scheme availability can differ. Call GET https://facilitator.payai.network/supported for the currently advertised combinations. Sponsored Solana payment flows can cover transaction fees for the payer; this does not remove every setup or service cost.",
   },
   {
     question: "What is the minimum payment amount?",
     answer:
-      "There is no protocol minimum. PayAI settles amounts from $0.01 to $1,000,000 through the same endpoint, so you can charge a fraction of a cent per API call or thousands of dollars for a one-time purchase. In practice the floor is set by the network fee on your chosen chain, which is why Solana is the default for high-frequency micropayments.",
+      AMOUNT_GUIDANCE,
   },
   {
     question: "How can developers integrate x402 into their app?",
     answer:
-      "Point x402 middleware or an x402 client at https://facilitator.payai.network. Merchants add a few lines to an existing route — quickstarts exist for Express, Hono, Next.js, FastAPI, Flask, and Gin. Clients and agents use an x402-aware HTTP client such as Axios, Fetch, httpx, requests, or Go net/http, which reads the 402 response, signs, and retries automatically. You never manage wallets, RPC nodes, gas, or settlement logic. The full API is described at https://payai.network/openapi.json.",
+      "Configure compatible x402 middleware to use https://facilitator.payai.network. Merchant and client quickstarts are available at https://docs.payai.network/x402/quickstart. Buyers still need a funded wallet and secure signing; merchants configure payment terms, authentication where required, and result/recovery handling. The facilitator handles supported blockchain verification and settlement operations. Pin and test your SDK version; the core API is described at https://payai.network/openapi.json.",
   },
   {
     question: "Do I need an account or API key to use PayAI?",
@@ -43,7 +43,7 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "What does PayAI cost?",
     answer:
-      "PayAI has a free tier that covers ordinary integration and testing volume, after which settlement is billed per transaction from a prepaid credit balance rather than as a percentage of the amount moved — a flat per-settlement cost is what makes sub-cent payments viable. Rates vary by network, because the underlying chain fee does. Current rates and free-tier limits are published at https://docs.payai.network/x402/facilitators/pricing, and you can top up credits (or enable automatic top-up) in the merchant portal.",
+      PRICING_GUIDANCE,
   },
   {
     question: "What happens if a payment fails or a settlement times out?",
@@ -53,7 +53,7 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "How do agents discover services that accept x402 payments?",
     answer:
-      "Query GET https://facilitator.payai.network/discovery/resources. It returns the PayAI Bazaar: a live catalog of HTTP endpoints and MCP tools that accept x402 payments, each with the payment terms an agent needs to construct a payment and, where the seller published them, input and output schemas so the resource can be called as a tool.",
+      DISCOVERY_GUIDANCE,
   },
   {
     question: "Is x402 secure?",
