@@ -49,10 +49,9 @@ export const Partners = () => {
             <strong className="font-medium text-[#09090B]">Sei</strong>,{" "}
             <strong className="font-medium text-[#09090B]">X Layer</strong>, and{" "}
             <strong className="font-medium text-[#09090B]">SKALE</strong> — on
-            mainnet and on each network&apos;s testnet. Solana carries most
-            production volume because it is the cheapest and fastest place to
-            settle a sub-cent payment, and PayAI sponsors the network fee there,
-            so a payer holds USDC and nothing else.
+            supported mainnets and testnets. Availability differs by scheme and
+            network. Sponsored Solana flows can cover the payer&apos;s transaction
+            fee; setup costs and facilitator fees are separate.
           </p>
           <p className="text-sm lg:text-base text-[#0A0A0A]/60 text-center mt-3">
             Both x402 v1 network names and x402 v2 CAIP-2 identifiers are

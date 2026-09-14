@@ -25,7 +25,7 @@ export function buildOrganizationSchema() {
     url: SITE_URL,
     logo: LOGO_URL,
     description:
-      "PayAI is the x402 payment facilitator for AI agents and apps. One integration, every agentic payment gateway.",
+      "PayAI is an x402 payment facilitator for AI agents and apps, supporting stablecoin payments across advertised Solana and EVM payment kinds.",
     /*
      * PayAI is a remote company with no public street address, so the
      * PostalAddress carries only the jurisdiction it is registered in. Add

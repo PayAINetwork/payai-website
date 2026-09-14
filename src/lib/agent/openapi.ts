@@ -11,7 +11,7 @@
  * exist in production.
  */
 import { FACILITATOR_URL, DOCS_URL, SITE_URL, INFO_EMAIL } from "@/lib/site";
-import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE } from "@/lib/agent/payment-guidance";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE, DISCOVERY_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 const PAYMENT_PAYLOAD_V1 = {
   type: "object",
@@ -178,7 +178,7 @@ export function buildOpenApiDocument() {
       summary:
         "Verify and settle x402 micropayments across Solana and EVM networks, and browse the PayAI Bazaar catalog of x402-payable resources.",
       description: [
-        "The PayAI Facilitator implements the facilitator role of the [x402 protocol](https://docs.payai.network/x402/introduction): it verifies signed payment payloads and settles them on-chain so a resource server never has to touch a wallet, an RPC node, or a private key.",
+        "The PayAI Facilitator implements the facilitator role of the [x402 protocol](https://docs.payai.network/x402/introduction): it handles supported payment verification and settlement operations. Buyers still need secure wallet signing; merchants configure payment terms, required authentication and recovery handling.",
         "",
         "**When an agent should call this API**",
         "",
@@ -255,7 +255,7 @@ export function buildOpenApiDocument() {
           tags: ["Operations", "Payments"],
           summary: "List supported payment kinds",
           description:
-            "Returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. Call this before constructing payment requirements so you only advertise networks that are live. Solana `exact` entries include an `extra.feePayer` address that sponsors gas for gasless settlement; `upto` entries include `extra.facilitatorAddress`.",
+            "Returns currently advertised (x402 version, scheme, network) combinations and scheme-specific metadata. Check this before constructing payment requirements. Extra fields can identify a fee payer, facilitator address, required authentication or batch admission policy; do not assume every scheme has the same fields.",
           security: [{ bearerJwt: [] }, {}],
           responses: {
             "200": {
@@ -385,7 +385,7 @@ export function buildOpenApiDocument() {
           tags: ["Discovery"],
           summary: "List x402-payable resources in the PayAI Bazaar",
           description:
-            "Returns the catalog of resources that accept x402 payments, newest first. Each item carries the payment terms (`accepts`) an agent needs to construct a payment, plus optional `inputSchema`/`outputSchema` for resources that describe themselves well enough to be called as a tool. Use this to answer 'what can I buy with an agent payment right now?'.",
+            DISCOVERY_GUIDANCE,
           security: [],
           parameters: [
             {
@@ -421,7 +421,7 @@ export function buildOpenApiDocument() {
           tags: ["Discovery"],
           summary: "Get aggregate PayAI Bazaar statistics",
           description:
-            "Returns catalog size, settlement counts over 24h/7d/30d, settlement volume, facilitator uptime, a per-network settlement breakdown, and the busiest merchant hosts. Useful for answering questions about x402 adoption and which networks carry real traffic.",
+            "Returns cached catalog and settlement summaries. Preserve each field's definition, window and precision; catalog hosts, resources and entries are not interchangeable with paying companies or active developers. These summaries alone do not establish market share, acquisition attribution or endpoint latency percentiles.",
           security: [],
           responses: {
             "200": {
@@ -612,7 +612,7 @@ export function buildOpenApiDocument() {
         },
         DiscoveryItem: {
           type: "object",
-          description: "One x402-payable resource in the Bazaar catalog.",
+          description: "One catalog entry with last-recorded seller declarations; not a live availability or quality guarantee.",
           required: ["resource", "accepts", "type", "x402Version", "lastUpdated"],
           properties: {
             resource: {

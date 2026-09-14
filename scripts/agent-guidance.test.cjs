@@ -112,3 +112,32 @@ test("document generation is deterministic", () => {
   assert.equal(AUTHORED_PAGES["/developers"](), developer);
   assert.equal(buildLlmsFullTxt(pages), full);
 });
+
+test("pricing, amount and discovery claims share qualified source guidance", () => {
+  assert.equal(FAQ_DATA.find(x => x.question === "What does PayAI cost?").answer, guidance.PRICING_GUIDANCE);
+  assert.equal(FAQ_DATA.find(x => x.question === "What is the minimum payment amount?").answer, guidance.AMOUNT_GUIDANCE);
+  assert.equal(FAQ_DATA.find(x => x.question.startsWith("How do agents discover")).answer, guidance.DISCOVERY_GUIDANCE);
+  for (const text of [AUTHORED_PAGES["/"](), developer, AUTHORED_PAGES["/ecosystem"](), buildLlmsTxt(), spec.paths["/discovery/resources"].get.description]) {
+    assert.ok(text.includes(guidance.DISCOVERY_GUIDANCE));
+  }
+  for (const text of [AUTHORED_PAGES["/"](), AUTHORED_PAGES["/about"](), developer, buildLlmsTxt(), JSON.stringify(FAQ_DATA)]) {
+    assert.doesNotMatch(text, /settle in under a second|Payments verify and settle in under a second|cheapest and fastest|Rates vary by network|\$0\.01 to \$1,000,000|everything payable right now|never holds merchant balances/);
+  }
+  assert.match(guidance.PRICING_GUIDANCE, /\$0\.001 per settlement/);
+  assert.match(guidance.PRICING_GUIDANCE, /not a monthly reset/);
+  assert.match(guidance.DISCOVERY_GUIDANCE, /not proof of current availability/);
+});
+
+test("first-party homepage sections do not reintroduce unsupported KPI or timing badges", () => {
+  const files = ["Features", "Partners", "Overview", "Header", "Testimonials", "CTA"];
+  for (const name of files) {
+    const source = readFileSync(resolve(root, `components/sections/${name}.jsx`), "utf8");
+    assert.doesNotMatch(source, /99\.9%|&lt; 1 Second|1000\+ companies|Instant Settlement|Payments settle immediately|cheapest and fastest|\$0\.01 to \$1,000,000|100% of your test payment refunded/);
+  }
+  const features = readFileSync(resolve(root, "components/sections/Features.jsx"), "utf8");
+  assert.match(features, /aria-label="Payment verification"/);
+  assert.match(features, /aria-label="Payment settlement"/);
+  const overview = readFileSync(resolve(root, "components/sections/Overview.jsx"), "utf8");
+  assert.equal((overview.match(/isLive: false/g) ?? []).length, 2);
+  assert.match(overview, /start on a testnet/i);
+});

@@ -10,3 +10,12 @@ export const ERROR_GUIDANCE =
 
 export const RATE_LIMIT_GUIDANCE =
   "Edge admission limits and account-wide batch limits are distinct. Limiting can return 429 or 503; inspect the body and respect Retry-After when present. Back off rather than assuming a fixed header budget or treating configured limits as measured settlement throughput. See https://docs.payai.network/x402/facilitators/capacity-and-limits.";
+
+export const PRICING_GUIDANCE =
+  "PayAI's published facilitator fee is $0.001 per settlement beyond the applicable free allowance. Ordinary exact payments have a current default allowance of up to 1,000 lifetime settlements per receiving wallet, with shared-pool limits and legacy allowances described in the pricing guide. This is not a monthly reset. Batch authentication, channel deposits and token-account setup are separate requirements. The facilitator fee is not the price your API charges its customers. Review current pricing and your account terms at https://docs.payai.network/x402/facilitators/pricing.";
+
+export const DISCOVERY_GUIDANCE =
+  "GET https://facilitator.payai.network/discovery/resources returns the Bazaar catalog, including last-recorded payment terms and seller-declared schemas when available. Entries can persist without refresh; a listing is not proof of current availability, successful settlement or service quality. Inspect lastUpdated, then obtain current requirements from the provider before paying. See https://docs.payai.network/x402/facilitators/bazaar.";
+
+export const AMOUNT_GUIDANCE =
+  "There is no single advertised payment range that applies to every PayAI scheme and network. Choose a customer price that satisfies the asset's precision, the advertised requirements and the selected scheme's rules. Batch deposit limits are not the price of each API request, and network costs are distinct from facilitator fees. Check current pricing and scheme guidance before choosing an amount.";

@@ -32,7 +32,7 @@ import { FAQ_DATA } from "@/data/faq";
 import projects from "@/data/projects.json";
 import sitemap from "@/app/sitemap";
 import { buildOpenApiDocument } from "@/lib/agent/openapi";
-import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE } from "@/lib/agent/payment-guidance";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE, PRICING_GUIDANCE, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 type ProjectEntry = {
   name: string;
@@ -64,18 +64,20 @@ Accept stablecoin payments from agents and apps across supported Solana and EVM 
 
 PayAI is a facilitator for the [x402 payment standard](${DOCS_URL}/x402/introduction). x402 uses the HTTP \`402 Payment Required\` status code to make payment a property of a request: a server answers an unpaid request with \`402\` plus machine-readable payment terms, the client signs a stablecoin payment, and the facilitator verifies and settles it on-chain.
 
-As the facilitator, PayAI takes the blockchain work off both sides. A merchant does not run an RPC node, hold a private key, manage nonces, or reconcile settlements. A buyer does not create an account or hold native gas tokens — PayAI sponsors gas on Solana, so a payer needs only USDC.
+PayAI handles supported blockchain verification and settlement operations. Buyers still need a funded wallet and secure signing; merchants configure payment terms, required authentication and recovery handling. Sponsored Solana flows can cover the payer's transaction fee, but setup and service costs are separate.
 
 - **Pay-per-request pricing.** Charge per request, action, or unit of usage — suited to APIs, AI agents, and real-time services.
-- **Instant settlement.** Payments verify and settle in under a second, with no manual reconciliation.
+- **On-chain settlement.** Timing depends on the network, scheme and load. Inspect the operation's result and reconcile unresolved outcomes.
 - **Client and agent payments.** The same rail serves human web flows and autonomous agents.
-- **x402 standard adoption.** Adopt x402 without handling chain selection, gas, fee logic, or settlement.
+- **x402 standard adoption.** Use compatible middleware and configure supported networks, payment terms and access rules.
 
-Payments range from $0.01 to $1,000,000: microtransactions for AI agents, one-time digital-content sales, and recurring SaaS charges all use the same endpoint.
+${AMOUNT_GUIDANCE}
+
+${PRICING_GUIDANCE}
 
 ## Supported networks
 
-PayAI is Solana-first and also settles on Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE, on both mainnet and the corresponding testnets. Both x402 v1 short network names (\`base\`, \`solana\`) and x402 v2 CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`) are supported.
+PayAI supports payment kinds across Solana and EVM networks including Base, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. Mainnet/testnet and scheme availability can differ. x402 v1 uses short network names (\`base\`, \`solana\`); v2 uses CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`).
 
 For the authoritative live list, call \`GET ${FACILITATOR_URL}/supported\` — it returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. The documented list is at ${DOCS_URL}/x402/supported-networks.
 
@@ -94,15 +96,17 @@ ${FACILITATOR_URL}
 
 ## Products
 
-- **x402 Facilitator** — live. Accept payments from $0.01 to $1,000,000 across every supported network.
-- **x402 Echo Merchant** — live. Run real x402 transactions against a live merchant for free; test payments are fully refunded and PayAI covers network fees. ${ECHO_MERCHANT_URL}
+- **x402 Facilitator** — live. Verify and settle payment operations supported by the selected scheme and network.
+- **x402 Echo Merchant** — live. Exercise the payment flow against a demo that advertises test-payment refunds. Review the selected network, terms and refund behavior before using real funds; start on a testnet. ${ECHO_MERCHANT_URL}
 - **x402 checkout for Anthropic commerce agents** — live and open source. Add facilitator-neutral SVM and EVM settlement to an agent scaffolded with Anthropic Commerce Builder, while keeping payment URLs and credentials outside the model. ${COMMERCE_CHECKOUT_URL}
 - **Payment Splitting** — coming soon. Receive payments to one account and distribute to multiple recipients, for marketplaces and multi-party workflows.
 - **Token Gateway** — coming soon. Cross-network payments, so buyers can pay from whichever chain they hold funds on.
 
 ## Discovery: the PayAI Bazaar
 
-PayAI indexes the services that accept x402 payments. \`GET ${FACILITATOR_URL}/discovery/resources\` returns the live catalog — HTTP endpoints and MCP tools, each with the payment terms needed to call it and, where the seller published them, input and output schemas. \`GET ${FACILITATOR_URL}/discovery/stats\` returns aggregate catalog size, settlement counts, and per-network volume.
+${DISCOVERY_GUIDANCE}
+
+\`GET ${FACILITATOR_URL}/discovery/stats\` exposes cached catalog and settlement summaries. Catalog hosts, resource URLs and entries are different counts; none is automatically a count of paying companies or active developers.
 
 ## Frequently asked questions
 
@@ -118,22 +122,22 @@ PayAI builds payment infrastructure for software that transacts without a human 
 
 ## What we build
 
-PayAI operates a production facilitator for the [x402 protocol](${DOCS_URL}/x402/introduction). x402 turns the long-dormant HTTP \`402 Payment Required\` status code into a working payment handshake: a server answers an unpaid request with \`402\` and machine-readable terms, the client signs a stablecoin payment, and a facilitator verifies and settles it on-chain. The whole exchange is two HTTP round trips, and neither side needs an account with the other.
+PayAI operates a production facilitator for the [x402 protocol](${DOCS_URL}/x402/introduction). A server answers an unpaid request with \`402\` and machine-readable terms, the client signs a stablecoin payment, and a facilitator verifies and settles the selected payment operation. Wallet funding, authentication, channel setup and recovery depend on the integration; the full workflow is not always two HTTP round trips.
 
 The facilitator is the part that touches the chain. PayAI verifies signed payment payloads, broadcasts settlements, sponsors gas where the chain allows it, screens for compliance, and returns a structured result — so a merchant integrates payments as middleware rather than as a blockchain project.
 
 ## Why this matters
 
-Existing payment rails assume a human: a card to enter, an account to create, a checkout to complete, a chargeback window to wait out. Autonomous software has none of those. It needs to pay for a single API call, immediately, for a fraction of a cent, without onboarding.
+Agents and applications may need to buy a single API response, inference request or unit of compute at runtime. x402 makes the payment terms machine-readable and links payment to the resource request. Other payment systems can also support automation; the integration and economic tradeoffs differ.
 
-That is the gap PayAI fills. An agent that hits a paywalled endpoint can settle in under a second and continue. A service that wants to sell to agents can price per request instead of negotiating contracts.
+PayAI supports that payment flow so a service can price per request. Confirmation time, fees and operational limits depend on the network and payment scheme; verification alone is not payment settlement.
 
 ## How we are different
 
-- **Solana-first, multi-chain in practice.** PayAI settles on Solana, Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE. Solana carries the majority of production volume because it is the cheapest and fastest place to settle a sub-cent payment.
-- **Gasless for the payer.** On Solana, PayAI sponsors the network fee. A payer holds USDC and nothing else — no native token, no top-up ritual.
+- **Solana and EVM support.** Check \`GET ${FACILITATOR_URL}/supported\` for the currently advertised network, scheme and protocol-version combinations.
+- **Sponsored payment flows.** Supported Solana flows can cover the payer's transaction fee. This does not eliminate every setup or service cost.
 - **Buyer and merchant credentials are different.** A buyer can pay without a PayAI merchant account. Ordinary exact payments can use the available free tier; batch settlement requires merchant authentication. A resource provider can impose its own access requirements.
-- **Open and inspectable.** The SDKs, integrations, and examples are open source at ${GITHUB_URL}, and the facilitator API is fully described at ${SITE_URL}/openapi.json.
+- **Inspectable integration guidance.** SDKs, integrations and examples are available at ${GITHUB_URL}; check each repository's license. Core API operations are described at ${SITE_URL}/openapi.json, with scheme-specific guides in the docs.
 
 ## Who it is for
 
@@ -209,7 +213,7 @@ function ecosystemMarkdown(): string {
 
 Projects building on PayAI and the x402 protocol: agents that pay, services that charge per request, and infrastructure that connects them.
 
-For the live, machine-readable catalog of services that currently accept x402 payments — including their payment terms and callable schemas — query \`GET ${FACILITATOR_URL}/discovery/resources\` instead of this page. This page lists ecosystem partners; that endpoint lists everything payable right now.
+This page lists ecosystem projects, not a complete or continuously verified service inventory. ${DISCOVERY_GUIDANCE}
 
 ## Projects
 
@@ -255,13 +259,13 @@ Start here to charge for a request, pay for one, or discover payment-enabled res
 ${FACILITATOR_URL}
 \`\`\`
 
-Point x402 middleware or an x402 client at that host. There is no separate sandbox: testnet networks are served from the same endpoints, and [the Echo Merchant](${ECHO_MERCHANT_URL}) is a live merchant that returns HTTP 402 so you can exercise a real payment for free.
+Configure compatible x402 middleware to use that host. Supported testnets use the same facilitator base URL; select the intended network explicitly. [The Echo Merchant](${ECHO_MERCHANT_URL}) offers demo payment endpoints and advertises test-payment refunds. Start on a testnet and review its terms before using real funds.
 
 ## Endpoints
 
 ${table}
 
-The full request and response schemas, including every documented failure reason, are in the [OpenAPI 3.1 description](${SITE_URL}/openapi.json).
+Core request/response envelopes and example failure reasons are in the [OpenAPI 3.1 description](${SITE_URL}/openapi.json). Consult the selected scheme's guide for its complete lifecycle and validation rules.
 
 ## Authentication
 
@@ -326,7 +330,9 @@ Prefer no SDK? The manual flows spell out the raw HTTP exchange: [TypeScript](${
 
 ## Discovery
 
-\`GET ${FACILITATOR_URL}/discovery/resources\` returns the PayAI Bazaar: every resource currently accepting x402 payments, with the payment terms needed to call it and, where the seller published them, input and output schemas. \`GET ${FACILITATOR_URL}/discovery/stats\` returns catalog size, settlement counts, and per-network volume.
+${DISCOVERY_GUIDANCE}
+
+\`GET ${FACILITATOR_URL}/discovery/stats\` returns cached catalog and settlement summaries. Preserve their definitions and windows; do not treat a catalog count as paying-customer attribution.
 
 ${FOOTER}`;
 }

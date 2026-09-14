@@ -5,6 +5,8 @@ on:
     paths:
       - "src/components/layout/Navbar.jsx"
       - "src/components/content/Markdown.jsx"
+      - "src/components/sections/**"
+      - "src/lib/schema.js"
       - "src/app/**"
       - "scripts/navigation.test.cjs"
       - "scripts/content.test.cjs"
@@ -19,6 +21,8 @@ on:
     paths:
       - "src/components/layout/Navbar.jsx"
       - "src/components/content/Markdown.jsx"
+      - "src/components/sections/**"
+      - "src/lib/schema.js"
       - "src/app/**"
       - "scripts/navigation.test.cjs"
       - "scripts/content.test.cjs"

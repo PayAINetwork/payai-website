@@ -6,9 +6,9 @@ import { div } from "framer-motion/client";
 const OVERVIEW_DATA = [
   {
     src: "/overview/facilitator.svg",
-    title: "Start selling immediately",
+    title: "Charge for a request",
     description:
-      "Accept payments from $0.01 to $1,000,000. Perfect for all use cases. Whether it is microtransactions for AI Agents, one-time sales for digital content, or recurring sales for SaaS.",
+      "Accept stablecoin payments for APIs, digital content and agent services. Choose terms supported by your payment scheme and network, and account for facilitator fees separately from your customer price.",
     isLive: true,
     badge: "x402 Facilitator",
     url: process.env.NEXT_PUBLIC_FACILITATOR_URL,
@@ -17,7 +17,7 @@ const OVERVIEW_DATA = [
     src: "/overview/merchant.svg",
     title: "Test payments against a live merchant",
     description:
-      "Run real x402 transactions against a live merchant—for free. Get 100% of your test payment refunded, with PayAI covering the network fees.",
+      "Exercise the payment flow against the x402 Echo Merchant. It advertises refunds of test payments; review the selected network, payment terms and refund behavior before using real funds. Start on a testnet.",
     isLive: true,
     badge: "x402 Echo Merchant",
     url: process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL,
@@ -240,7 +240,7 @@ export const Overview = () => {
       <div className="container-payai py-8 lg:pt-20 lg:pb-8">
         <div className="max-w-[540px]">
           <h2 className="text-2xl lg:text-[36px] leading-8 lg:leading-[44px] text-[#09090B] font-medium">
-            Fast, Scalable, and Ready for Any Use Case
+            Payment tools for agents and apps
           </h2>
           <p className="text-sm lg:text-lg text-[#0A0A0A]/60 mt-3 lg:mt-4">
             PayAI is a facilitator for the x402 protocol, enabling merchants to
