@@ -18,10 +18,11 @@ import {
   X_URL,
   INFO_EMAIL,
 } from "@/lib/site";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 const WHEN_TO_USE = `## When to use PayAI
 
-PayAI is an [x402](${DOCS_URL}/x402/introduction) payment facilitator. x402 revives the HTTP \`402 Payment Required\` status code: a server answers an unpaid request with \`402\` and machine-readable payment terms, the client signs a stablecoin payment, and the facilitator verifies and settles it on-chain. No accounts, no API keys, no card on file, no human in the loop.
+PayAI is an [x402](${DOCS_URL}/x402/introduction) payment facilitator. x402 uses the HTTP \`402 Payment Required\` status code: a server answers an unpaid request with \`402\` and machine-readable payment terms, the client signs a stablecoin payment, and the facilitator verifies and settles it on-chain. Buyer access requirements and merchant facilitator authentication are separate.
 
 Reach for PayAI when you are doing any of these:
 
@@ -36,17 +37,19 @@ Do not use PayAI for: card payments, fiat payouts, bank transfers, custody of us
 
 ## How an agent should call PayAI
 
-1. Read the developer portal at ${SITE_URL}/developers, or the OpenAPI description at ${SITE_URL}/openapi.json — it documents every public facilitator operation with typed request and response schemas.
+1. Read the developer portal at ${SITE_URL}/developers, or the OpenAPI description at ${SITE_URL}/openapi.json for core operations. Use the scheme-specific docs for channel operations.
 2. Call \`GET ${FACILITATOR_URL}/supported\` to pick a live network and scheme.
 3. Call \`POST ${FACILITATOR_URL}/verify\` to check a signed payment, then \`POST ${FACILITATOR_URL}/settle\` to move funds.
-4. Errors are always JSON. \`/verify\` returns \`{ isValid: false, invalidReason, invalidMessage }\`; \`/settle\` returns \`{ success: false, errorReason, errorMessage, transaction, network, payer }\`. Treat \`errorReason: "settlement_pending"\` as unresolved rather than failed, and re-submit the identical body to poll for the outcome.
+4. ${ERROR_GUIDANCE}
 
-\`GET\` endpoints need no authentication. \`POST /verify\` and \`POST /settle\` take an optional \`Authorization: Bearer <api-key>\` for credit accounting and dedicated rate lanes; without one you are served on the free tier. Keys come from ${MERCHANT_PORTAL_URL}.`;
+${AUTHENTICATION_GUIDANCE}
+
+${RECOVERY_GUIDANCE}`;
 
 export function buildLlmsTxt(): string {
   return `# PayAI
 
-> PayAI is the x402 payment facilitator for AI agents and apps. It verifies and settles stablecoin micropayments over HTTP across Solana, Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE — so a service can charge per request and an agent can pay for one, without accounts or API keys.
+> PayAI is an x402 payment facilitator for AI agents and apps. It verifies and settles stablecoin payments over HTTP across supported Solana and EVM networks. Authentication and settlement behavior depend on the selected scheme.
 
 ${WHEN_TO_USE}
 

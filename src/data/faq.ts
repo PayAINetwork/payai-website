@@ -7,17 +7,18 @@
  * agents (src/lib/agent/pages.ts).
  */
 export type FaqEntry = { question: string; answer: string };
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 export const FAQ_DATA: FaqEntry[] = [
   {
     question: "What is x402?",
     answer:
-      "x402 is an open payment standard built on the HTTP 402 Payment Required status code. A server answers an unpaid request with 402 and machine-readable payment terms; the client signs a stablecoin payment and retries; a facilitator verifies and settles it on-chain. It lets AI agents, apps, and platforms send and receive micropayments instantly across multiple blockchains, with no accounts, API keys, or checkout flow.",
+      "x402 is an open payment standard built on the HTTP 402 Payment Required status code. A server answers an unpaid request with 402 and machine-readable payment terms; the client signs a stablecoin payment and retries; a facilitator verifies and settles it on-chain. Buyer access requirements and merchant facilitator authentication are separate, and depend on the provider and payment scheme.",
   },
   {
     question: "How fast are transactions on x402?",
     answer:
-      "Payments are verified and settled in under a second on PayAI's supported networks, which is what makes x402 usable for per-request pricing. Settlement is confirmed on-chain rather than promised, so a merchant can serve the paid resource immediately after PayAI returns success. If a settlement outruns its response budget, PayAI returns the broadcast transaction hash with a settlement_pending status so the payment can be reconciled instead of silently lost.",
+      "Timing depends on the network, payment scheme, confirmation policy and current load; there is no universal sub-second settlement guarantee. Verification does not move funds, and a transaction hash alone does not prove confirmation. A settlement_pending response is unresolved and can have an empty transaction field. For channel schemes, interpret success in the context of the specific operation, not automatically as the final merchant payout.",
   },
   {
     question: "Which chains does x402 support?",
@@ -37,7 +38,7 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Do I need an account or API key to use PayAI?",
     answer:
-      "No. Verification and settlement work without any PayAI relationship, and buyers never sign up to pay a PayAI-backed merchant. An API key is optional and only affects credit accounting, dedicated throughput lanes, and usage analytics. You can create one in the merchant portal at https://merchant.payai.network when you want those, and keep using the free tier until then.",
+      AUTHENTICATION_GUIDANCE,
   },
   {
     question: "What does PayAI cost?",
@@ -47,7 +48,7 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "What happens if a payment fails or a settlement times out?",
     answer:
-      "Verification and settlement return structured JSON on every outcome, including errors, so failures are machine-readable rather than something to parse out of an HTML page. If a settlement outruns its response budget, PayAI answers with errorReason settlement_pending and the broadcast transaction hash — the payment may still land, so treat it as unresolved rather than failed and re-submit the identical request to poll for the real result. Settlement is idempotent per payment, so retrying cannot double-charge.",
+      `${ERROR_GUIDANCE} ${RECOVERY_GUIDANCE}`,
   },
   {
     question: "How do agents discover services that accept x402 payments?",
@@ -57,6 +58,6 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Is x402 secure?",
     answer:
-      "Payments are cryptographically signed by the payer and settled on-chain, so every transaction is verifiable and tamper-resistant, and a facilitator can never move more than the payer authorized. PayAI verifies the signature, the amount, the network, and the payer's balance before settling, screens transactions for compliance, and fails closed rather than settling when a dependency is unavailable. Settlement is idempotent per payment, so a retried request cannot double-charge.",
+      "Signed authorizations and scheme-specific validation are important controls, not a blanket security guarantee. Keep merchant private keys server-side, verify the advertised terms and network, and distinguish payment verification from settlement. Preserve receipts and reconcile unresolved operations before issuing a new authorization. Channel schemes have their own deposit, payout and recovery lifecycle; review the relevant integration guide.",
   },
 ];
