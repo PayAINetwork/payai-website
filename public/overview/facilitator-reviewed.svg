@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="450" viewBox="0 0 640 450" role="img" aria-labelledby="title desc">
+  <title id="title">Payment operations: verify, settle, inspect the result</title>
+  <desc id="desc">Verification checks a signed payment against requirements. Settlement processes the payment operation. Inspect its result and reconcile unresolved outcomes. Timing depends on network, scheme and load.</desc>
+  <defs>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#e4e4e7"/></pattern>
+    <linearGradient id="blue" x2="1" y2="1"><stop stop-color="#4d63f6"/><stop offset="1" stop-color="#1d45d8"/></linearGradient>
+  </defs>
+  <rect width="640" height="450" fill="#fafbff"/>
+  <rect width="640" height="450" fill="url(#dots)" opacity=".45"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="40" y="53" font-size="28" font-weight="600" fill="#09090b">Payment operations</text>
+    <text x="40" y="82" font-size="18" fill="#52525b">A conceptual view of the facilitator</text>
+    <rect x="40" y="112" width="260" height="170" rx="20" fill="white" stroke="#e4e4e7"/>
+    <rect x="340" y="112" width="260" height="170" rx="20" fill="white" stroke="#e4e4e7"/>
+    <circle cx="78" cy="151" r="21" fill="url(#blue)"/>
+    <path d="m68 151 7 7 13-15" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="111" y="160" font-size="26" font-weight="600" fill="#09090b">Verify</text>
+    <text x="62" y="210" font-size="20" fill="#52525b">Check a signed payment</text>
+    <text x="62" y="238" font-size="20" fill="#52525b">against requirements.</text>
+    <path d="M308 197h24m-7-7 7 7-7 7" fill="none" stroke="#1d45d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="378" cy="151" r="21" fill="url(#blue)"/>
+    <path d="M367 151h22m-7-7 7 7-7 7" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="411" y="160" font-size="26" font-weight="600" fill="#09090b">Settle</text>
+    <text x="362" y="210" font-size="20" fill="#52525b">Process the selected</text>
+    <text x="362" y="238" font-size="20" fill="#52525b">payment operation.</text>
+    <rect x="40" y="306" width="560" height="88" rx="18" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="62" y="340" font-size="23" font-weight="600" fill="#1d45d8">Inspect the result.</text>
+    <text x="62" y="370" font-size="20" fill="#373f67">Reconcile unresolved outcomes before retrying.</text>
+    <text x="320" y="428" text-anchor="middle" font-size="18" fill="#52525b">Timing depends on network, scheme and load.</text>
+  </g>
+</svg>

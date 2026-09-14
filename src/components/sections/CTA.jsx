@@ -79,11 +79,11 @@ export function CTA() {
           </motion.div>
         </div>
         <Image
-          src="/cta/hero.jpg"
-          alt="AI agents sending x402 payments through the PayAI facilitator"
-          width={628}
-          height={500}
-          className="rounded-3xl hidden lg:block"
+          src="/overview/facilitator-reviewed.svg"
+          alt="Conceptual payment operations: verify, settle and inspect the result."
+          width={640}
+          height={450}
+          className="rounded-3xl hidden lg:block lg:w-1/2 h-auto"
         />
       </div>
     </section>
