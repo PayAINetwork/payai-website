@@ -36,6 +36,13 @@ test("an unspecified page navigates Home instead of scrolling a missing section"
   assert.deepEqual(homeLinks({}), ["/"]);
 });
 
+test("the collapsed mobile menu has an accessible name and state", () => {
+  const html = renderToStaticMarkup(React.createElement(Navbar, {}));
+  assert.match(html, /<button[^>]*type="button"[^>]*aria-label="Open navigation menu"[^>]*aria-expanded="false"/);
+  assert.match(source, /aria-label=\{isMobileMenuOpen \? "Close navigation menu" : "Open navigation menu"\}/);
+  assert.match(source, /aria-expanded=\{isMobileMenuOpen\}/);
+});
+
 test("the explicit homepage retains its section link", () => {
   assert.deepEqual(homeLinks({ activePage: "home" }), ["#home"]);
   const page = readFileSync(resolve(__dirname, "../src/app/page.jsx"), "utf8");

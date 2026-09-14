@@ -15,7 +15,7 @@ import React from "react";
  * not clickable is a worse page than the Markdown it came from.
  */
 const INLINE =
-  /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|_[^_]+_|https?:\/\/[^\s<>()]+[^\s<>().,;:]|[\w.+-]+@[\w-]+\.[\w.]+)/g;
+  /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|_[^_]+_|https?:\/\/[^\s<>()]+[^\s<>().,;:]|[\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g;
 
 function renderInline(text, keyPrefix) {
   return text.split(INLINE).filter(Boolean).map((token, index) => {
@@ -69,7 +69,7 @@ function renderInline(text, keyPrefix) {
         </a>
       );
     }
-    if (/^[\w.+-]+@[\w-]+\.[\w.]+$/.test(token)) {
+    if (/^[\w.+-]+@[\w-]+(?:\.[\w-]+)+$/.test(token)) {
       return (
         <a
           key={key}

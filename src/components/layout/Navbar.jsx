@@ -142,6 +142,9 @@ export function Navbar({ activePage = null }) {
           <div className="flex items-center gap-4 lg:gap-8">
             {/* Mobile Menu Button */}
             <motion.button
+              type="button"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.3 }}

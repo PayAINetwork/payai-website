@@ -4,16 +4,20 @@ on:
   pull_request:
     paths:
       - "src/components/layout/Navbar.jsx"
+      - "src/components/content/Markdown.jsx"
       - "src/app/**"
       - "scripts/navigation.test.cjs"
+      - "scripts/content.test.cjs"
       - "package*.json"
       - ".github/workflows/navigation.yml"
   push:
     branches: [main]
     paths:
       - "src/components/layout/Navbar.jsx"
+      - "src/components/content/Markdown.jsx"
       - "src/app/**"
       - "scripts/navigation.test.cjs"
+      - "scripts/content.test.cjs"
       - "package*.json"
       - ".github/workflows/navigation.yml"
 
@@ -32,3 +36,4 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test:navigation
+      - run: npm run test:content
