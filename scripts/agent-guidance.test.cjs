@@ -3,6 +3,7 @@ const { readFileSync } = require("node:fs");
 const { createRequire } = require("node:module");
 const { resolve } = require("node:path");
 const { test } = require("node:test");
+const { createHash } = require("node:crypto");
 const ts = require("typescript");
 
 // Load actual pure document builders with the existing TypeScript dependency.
@@ -146,4 +147,21 @@ test("first-party homepage sections do not reintroduce unsupported KPI or timing
   const ecosystem = readFileSync(resolve(root, "components/sections/HeroEcosystem.jsx"), "utf8");
   assert.match(ecosystem, /\{projects.length\}/);
   assert.match(ecosystem, /Projects Listed/);
+});
+
+test("hero uses the visually reviewed illustration with its real dimensions and qualification", () => {
+  // This ties the selected bytes to manual visual review; it is not OCR or a claim detector.
+  const asset = readFileSync(resolve(root, "../public/header/hero-claims-reviewed.png"));
+  assert.equal(asset.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
+  assert.equal(asset.readUInt32BE(16), 1226);
+  assert.equal(asset.readUInt32BE(20), 1283);
+  assert.equal(createHash("sha256").update(asset).digest("hex"), "fc632ab3ea825c9c2a4ca88ee8b826ea7d62db4c74fd4055acc8337db314c33d");
+  const source = readFileSync(resolve(root, "components/sections/Header.jsx"), "utf8");
+  assert.match(source, /src="\/header\/hero-claims-reviewed\.png"/);
+  assert.doesNotMatch(source, /src="\/header\/hero\.png"/);
+  assert.match(source, /width=\{1226\}/);
+  assert.match(source, /height=\{1283\}/);
+  assert.match(source, /sizes="\(min-width: 1024px\) 600px, 100vw"/);
+  assert.match(source, /Illustrative scenario, not a live booking interface\./);
+  assert.equal(createHash("sha256").update(readFileSync(resolve(root, "../public/header/hero.png"))).digest("hex"), "118abba51e4a843b2963a4eb1cc9b740ff9891f684f1bad1d8e9b72684a374fc");
 });
