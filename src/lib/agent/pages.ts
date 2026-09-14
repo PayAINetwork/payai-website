@@ -32,6 +32,7 @@ import { FAQ_DATA } from "@/data/faq";
 import projects from "@/data/projects.json";
 import sitemap from "@/app/sitemap";
 import { buildOpenApiDocument } from "@/lib/agent/openapi";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 type ProjectEntry = {
   name: string;
@@ -57,7 +58,7 @@ function homeMarkdown(): string {
 
   return `# PayAI — the x402 Facilitator for AI Agents and Apps
 
-Accept agentic payments on every major chain with one integration. Multi-chain micropayments powered by Solana, with no API keys, no accounts, and instant settlement.
+Accept stablecoin payments from agents and apps across supported Solana and EVM networks. Ordinary exact payments can start on the available free tier; batch settlement requires merchant authentication.
 
 ## What PayAI does
 
@@ -131,7 +132,7 @@ That is the gap PayAI fills. An agent that hits a paywalled endpoint can settle 
 
 - **Solana-first, multi-chain in practice.** PayAI settles on Solana, Base, Polygon, Avalanche, Arbitrum, Sei, X Layer, and SKALE. Solana carries the majority of production volume because it is the cheapest and fastest place to settle a sub-cent payment.
 - **Gasless for the payer.** On Solana, PayAI sponsors the network fee. A payer holds USDC and nothing else — no native token, no top-up ritual.
-- **No accounts on the critical path.** A buyer needs no PayAI relationship to pay a PayAI-backed merchant. An API key is optional, and only affects credit accounting and rate lanes.
+- **Buyer and merchant credentials are different.** A buyer can pay without a PayAI merchant account. Ordinary exact payments can use the available free tier; batch settlement requires merchant authentication. A resource provider can impose its own access requirements.
 - **Open and inspectable.** The SDKs, integrations, and examples are open source at ${GITHUB_URL}, and the facilitator API is fully described at ${SITE_URL}/openapi.json.
 
 ## Who it is for
@@ -246,7 +247,7 @@ function developersMarkdown(): string {
 
   return `# PayAI Developer Portal
 
-Everything needed to charge for a request, pay for one, or find something worth paying for. The API is public, unauthenticated for reads, and described in full at [${SITE_URL}/openapi.json](${SITE_URL}/openapi.json).
+Start here to charge for a request, pay for one, or discover payment-enabled resources. Public read endpoints and core payment operations are described at [${SITE_URL}/openapi.json](${SITE_URL}/openapi.json); scheme-specific guides remain authoritative for channel operations.
 
 ## Base URL
 
@@ -264,24 +265,24 @@ The full request and response schemas, including every documented failure reason
 
 ## Authentication
 
-Read endpoints need none. \`POST /verify\` and \`POST /settle\` accept an optional bearer token:
+${AUTHENTICATION_GUIDANCE}
 
 \`\`\`
-Authorization: Bearer <api-key>
+Authorization: Bearer <jwt>
 \`\`\`
 
-The key affects credit accounting, dedicated throughput lanes, and usage analytics — not access. Without one you are served on the free tier. Create a key at [${MERCHANT_PORTAL_URL}](${MERCHANT_PORTAL_URL}).
+Create merchant credentials at [${MERCHANT_PORTAL_URL}](${MERCHANT_PORTAL_URL}). The API key ID and private key secret are inputs to signing, not a token to paste into an HTTP header.
 
 ## Error model
 
-Errors are JSON on every status, including 4xx and 5xx, because a client that has already signed a payment needs to know precisely what happened.
+${ERROR_GUIDANCE}
 
 - \`POST /verify\` returns \`{ isValid: false, invalidReason, invalidMessage }\`
 - \`POST /settle\` returns \`{ success: false, errorReason, errorMessage, transaction, network, payer }\`
 
-Branch on \`invalidReason\` / \`errorReason\` — these are stable across releases. The message is for humans and carries field-level validation detail.
+Branch on known \`invalidReason\` / \`errorReason\` values and retain unknown reasons for investigation. The message is for humans and may carry field-level validation detail.
 
-One reason deserves special handling: \`settlement_pending\` means the settlement outran its response budget and is **still in flight**. It is not a failure. The response carries the broadcast \`transaction\` hash; re-submit the identical request to poll for the real outcome, and treat \`duplicate_settlement\` on that poll as "still working". Settlement is idempotent per payment, so retrying cannot double-charge.
+${RECOVERY_GUIDANCE}
 
 ## Versioning and deprecation
 
@@ -290,11 +291,11 @@ The facilitator is versioned by the x402 protocol version it speaks, not by a UR
 - **x402 v1** uses short network names — \`base\`, \`solana\`
 - **x402 v2** uses CAIP-2 identifiers — \`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`
 
-Call \`GET ${FACILITATOR_URL}/supported\` to see which combinations are live. A payment kind is withdrawn from that list before the endpoints stop accepting it, so polling \`/supported\` gives advance notice of a removal. Breaking changes arrive as a new \`x402Version\`.
+Call \`GET ${FACILITATOR_URL}/supported\` to see the currently advertised combinations. This is capability discovery, not a promise of advance deprecation notice. Pin and test your SDK/protocol version and review the relevant scheme guide before changing it.
 
 ## Rate limits
 
-Throughput is limited per client at the edge; exceeding it returns HTTP 429. The facilitator does not currently emit \`RateLimit\` response headers, so back off on the status code rather than on a header budget.
+${RATE_LIMIT_GUIDANCE}
 
 ## Machine-readable surfaces
 

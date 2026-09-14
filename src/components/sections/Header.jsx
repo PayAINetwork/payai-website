@@ -55,9 +55,9 @@ export function Header() {
               }}
               className="mt-4 text-sm lg:text-body text-[#71717A] leading-relaxed md:leading-relaxed"
             >
-              Accept agentic payments on every major chain with one
-              integration — multi-chain micropayments powered by Solana, no API
-              keys, no accounts, instant settlement.
+              Accept agentic payments with one
+              integration — stablecoin payments across supported Solana and EVM
+              networks. Start with ordinary exact payments on the available free tier.
             </motion.p>
 
             <motion.div

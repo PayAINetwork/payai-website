@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test:navigation": "node --test scripts/navigation.test.cjs",
-    "test:content": "node --test scripts/content.test.cjs"
+    "test:content": "node --test scripts/content.test.cjs",
+    "test:agent": "node --test scripts/agent-guidance.test.cjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",

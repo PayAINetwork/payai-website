@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | PayAI",
   },
   description:
-    "PayAI is the x402 payment facilitator for AI agents and apps. Accept agentic payments on every major chain with one integration — no API keys, no accounts, instant settlement.",
+    "PayAI is an x402 payment facilitator for AI agents and apps. Accept stablecoin payments across supported Solana and EVM networks with one integration.",
   keywords: [
     "x402 facilitator",
     "x402 payments",

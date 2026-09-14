@@ -11,8 +11,9 @@
  * exist in production.
  */
 import { FACILITATOR_URL, DOCS_URL, SITE_URL, INFO_EMAIL } from "@/lib/site";
+import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE } from "@/lib/agent/payment-guidance";
 
-const PAYMENT_PAYLOAD = {
+const PAYMENT_PAYLOAD_V1 = {
   type: "object",
   description:
     "A signed x402 payment, produced by an x402 client SDK. The inner `payload` shape is scheme- and chain-specific: EVM `exact` carries an EIP-3009 authorization and signature, Solana `exact` carries a base64 partially-signed transaction.",
@@ -20,13 +21,13 @@ const PAYMENT_PAYLOAD = {
   properties: {
     x402Version: {
       type: "integer",
-      enum: [1, 2],
+      enum: [1],
       description: "x402 protocol version this payload conforms to.",
     },
     scheme: {
       type: "string",
       description:
-        "Payment scheme. `exact` charges a fixed amount; `upto` opens a payment channel that settles up to a ceiling.",
+        "Payment scheme. Check GET /supported for currently advertised version/scheme/network combinations.",
       examples: ["exact", "upto"],
     },
     network: {
@@ -47,7 +48,7 @@ const PAYMENT_REQUIREMENTS = {
   type: "object",
   description:
     "The payment terms a resource server advertises in its HTTP 402 response. The client signs a payment that satisfies these terms.",
-  required: ["scheme", "network", "payTo", "asset"],
+  required: ["scheme", "network", "payTo", "asset", "maxTimeoutSeconds"],
   properties: {
     scheme: { type: "string", examples: ["exact", "upto"] },
     network: { type: "string", examples: ["base", "eip155:8453"] },
@@ -75,7 +76,7 @@ const PAYMENT_REQUIREMENTS = {
     },
     maxTimeoutSeconds: {
       type: "integer",
-      description: "How long the resource server will wait for settlement.",
+      description: "Scheme-specific authorization or channel time limit in seconds; not the facilitator HTTP response wait budget.",
       examples: [300],
     },
     asset: {
@@ -90,6 +91,39 @@ const PAYMENT_REQUIREMENTS = {
       description:
         "Scheme-specific extras, e.g. `feePayer` for Solana gasless settlement or `facilitatorAddress` for `upto` channels.",
     },
+  },
+} as const;
+
+const PAYMENT_REQUIREMENTS_V1 = {
+  ...PAYMENT_REQUIREMENTS,
+  description: "x402 v1 requirements, using maxAmountRequired and a short network name.",
+  required: [...PAYMENT_REQUIREMENTS.required, "maxAmountRequired"],
+} as const;
+
+const PAYMENT_REQUIREMENTS_V2 = {
+  ...PAYMENT_REQUIREMENTS,
+  description: "x402 v2 requirements, using amount and a CAIP-2 network identifier. Advertised schemes can include exact, upto and batch-settlement; consult the scheme guide.",
+  required: [...PAYMENT_REQUIREMENTS.required, "amount"],
+} as const;
+
+const PAYMENT_PAYLOAD_V2 = {
+  type: "object",
+  description: "x402 v2 payload. Scheme and network are nested in accepted, not required at the top level. Signed payload and extensions are scheme-specific; this envelope is not a substitute for scheme validation.",
+  required: ["x402Version", "accepted", "payload"],
+  properties: {
+    x402Version: { type: "integer", enum: [2] },
+    accepted: { $ref: "#/components/schemas/PaymentRequirementsV2" },
+    payload: { type: "object", additionalProperties: true },
+    resource: {
+      type: "object",
+      required: ["url"],
+      properties: {
+        url: { type: "string" },
+        description: { type: "string" },
+        mimeType: { type: "string" },
+      },
+    },
+    extensions: { type: "object", additionalProperties: true },
   },
 } as const;
 
@@ -140,7 +174,7 @@ export function buildOpenApiDocument() {
     openapi: "3.1.0",
     info: {
       title: "PayAI x402 Facilitator API",
-      version: "1.0.0",
+      version: "1.1.0",
       summary:
         "Verify and settle x402 micropayments across Solana and EVM networks, and browse the PayAI Bazaar catalog of x402-payable resources.",
       description: [
@@ -153,17 +187,17 @@ export function buildOpenApiDocument() {
         "- You need to know which chains, schemes, and x402 versions are live right now — call `GET /supported`.",
         "- You want to discover x402-payable APIs, MCP tools, and services that accept agent payments — call `GET /discovery/resources`.",
         "",
-        "**Authentication.** `GET` endpoints are public and unauthenticated. `POST /verify` and `POST /settle` accept an optional `Authorization: Bearer <api-key>` for credit accounting, per-account rate lanes, and analytics attribution; without a key, requests are served on the free tier. Create a key in the [merchant portal](https://merchant.payai.network).",
+        `**Authentication.** ${AUTHENTICATION_GUIDANCE}`,
         "",
-        "**Error shape.** Errors are JSON, never HTML. `/verify` failures return `{ isValid: false, invalidReason, invalidMessage }`; `/settle` failures return `{ success: false, errorReason, errorMessage, transaction, network, payer }`. The `x402` client SDKs expect this shape on non-2xx responses too, so an error body is always parseable.",
+        `**Error shape.** ${ERROR_GUIDANCE}`,
         "",
         "**Versioning.** The facilitator is versioned by the x402 protocol version it speaks, not by a URL path segment. Every request carries `x402Version` (1 or 2) in its body, and `GET /supported` advertises which (version, scheme, network) combinations are live — v1 uses short network names (`base`), v2 uses CAIP-2 identifiers (`eip155:8453`). Both versions are served from the same endpoints, so an integration pins a version by what it sends, not by what it calls.",
         "",
-        "**Deprecation.** A payment kind is withdrawn by disappearing from `GET /supported` before the endpoints stop accepting it, so a client that checks `/supported` sees a removal in advance. Breaking changes to the request or response shapes arrive as a new `x402Version`; existing versions keep working until they are removed from `/supported`.",
+        "**Compatibility.** `GET /supported` advertises current capabilities, not guaranteed advance deprecation notice. Pin and test your protocol/SDK version. This document covers core operations, not every scheme-specific channel endpoint or validation rule; consult the relevant scheme guide.",
         "",
-        "**Read endpoints.** `GET /health`, `/supported`, and the `/discovery/*` endpoints have no structured error body — an unhandled failure there is answered by the default handler and is not guaranteed to be JSON. Only `/verify` and `/settle` guarantee the typed error contract below.",
+        "**Read endpoints.** Read failures do not have a guaranteed structured error body. Infrastructure failures can also bypass application payment response schemas.",
         "",
-        "**Rate limits.** Throughput is limited per client at the edge; exceeding it returns HTTP 429. The facilitator does not currently emit `RateLimit` response headers, so back off on the status code rather than on a header budget.",
+        `**Rate limits.** ${RATE_LIMIT_GUIDANCE}`,
         "",
         `Full guides: ${DOCS_URL}/x402/quickstart`,
       ].join("\n"),
@@ -222,17 +256,7 @@ export function buildOpenApiDocument() {
           summary: "List supported payment kinds",
           description:
             "Returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. Call this before constructing payment requirements so you only advertise networks that are live. Solana `exact` entries include an `extra.feePayer` address that sponsors gas for gasless settlement; `upto` entries include `extra.facilitatorAddress`.",
-          parameters: [
-            {
-              name: "Authorization",
-              in: "header",
-              required: false,
-              description:
-                "Optional `Bearer <api-key>`. Read here to steer which settlement lane the advertised Solana fee payer belongs to, so an account with a reserved lane sees its own fee payer. Omit it for the shared lane.",
-              schema: { type: "string" },
-              example: "Bearer pk_live_example",
-            },
-          ],
+          security: [{ bearerJwt: [] }, {}],
           responses: {
             "200": {
               description: "The currently supported payment kinds.",
@@ -269,7 +293,8 @@ export function buildOpenApiDocument() {
           tags: ["Payments"],
           summary: "Verify a signed x402 payment",
           description:
-            "Checks that a signed payment payload satisfies the supplied payment requirements: correct scheme and network, sufficient balance, valid signature, unexpired authorization, and compliance screening. Verification does not move funds — call `settlePayment` for that. A resource server should verify before doing expensive work, then settle before returning the paid resource.",
+            `Validates a signed payment against the selected scheme's requirements. Verification does not move funds or prove settlement. ${AUTHENTICATION_GUIDANCE}`,
+          security: [{ bearerJwt: [] }, {}],
           requestBody: {
             required: true,
             content: {
@@ -289,6 +314,7 @@ export function buildOpenApiDocument() {
               },
             },
             "400": { $ref: "#/components/responses/VerificationError" },
+            "401": { $ref: "#/components/responses/VerificationError" },
             "403": { $ref: "#/components/responses/VerificationError" },
             "500": { $ref: "#/components/responses/VerificationError" },
           },
@@ -318,7 +344,8 @@ export function buildOpenApiDocument() {
           tags: ["Payments"],
           summary: "Settle a verified x402 payment on-chain",
           description:
-            "Broadcasts the payment on the target network and waits, within a bounded budget, for confirmation. Settlement is idempotent per payment payload: re-submitting the exact same body returns the recorded outcome rather than paying twice.\n\nIf confirmation outruns the response budget the facilitator answers with `errorReason: \"settlement_pending\"` **and** the broadcast `transaction` hash — the payment may still land, so treat this as unresolved, not failed, and re-submit the identical body to poll for the final outcome. A `duplicate_settlement` reason on that poll means the original attempt is still in flight.",
+            `Processes the selected scheme's settlement operation within a bounded response wait budget. ${AUTHENTICATION_GUIDANCE}\n\n${RECOVERY_GUIDANCE}`,
+          security: [{ bearerJwt: [] }, {}],
           requestBody: {
             required: true,
             content: {
@@ -338,6 +365,8 @@ export function buildOpenApiDocument() {
               },
             },
             "400": { $ref: "#/components/responses/SettlementError" },
+            "401": { $ref: "#/components/responses/SettlementError" },
+            "409": { $ref: "#/components/responses/SettlementError" },
 
             "403": { $ref: "#/components/responses/SettlementError" },
 
@@ -411,7 +440,7 @@ export function buildOpenApiDocument() {
       responses: {
         VerificationError: {
           description:
-            "Verification failed. Always JSON — read `invalidReason` for the machine-readable cause.",
+            "Application verification error; inspect invalidReason. Infrastructure failures may return a different body or no body.",
           content: {
             "application/json": {
               schema: { $ref: "#/components/schemas/VerifyResponse" },
@@ -420,7 +449,7 @@ export function buildOpenApiDocument() {
         },
         SettlementError: {
           description:
-            "Settlement failed or is unresolved. Always JSON — read `errorReason`.",
+            "Application settlement error or unresolved outcome; inspect errorReason. Infrastructure failures may return a different body or no body.",
           content: {
             "application/json": {
               schema: { $ref: "#/components/schemas/SettleResponse" },
@@ -429,11 +458,11 @@ export function buildOpenApiDocument() {
         },
       },
       securitySchemes: {
-        bearerApiKey: {
+        bearerJwt: {
           type: "http",
           scheme: "bearer",
-          description:
-            "Optional PayAI API key for credit accounting, dedicated rate lanes, and analytics attribution. Create one at https://merchant.payai.network. Omit it to use the free tier.",
+          bearerFormat: "JWT",
+          description: AUTHENTICATION_GUIDANCE,
         },
       },
       schemas: {
@@ -443,10 +472,8 @@ export function buildOpenApiDocument() {
           examples: ["OK"],
         },
         /*
-         * The facilitator's error model in one place. /verify and /settle each
-         * return their own response shape on failure — never a bare envelope —
-         * but both carry a stable machine-readable code plus human-readable
-         * detail, which is what an integration should branch on.
+         * Application response shapes. These cannot describe every edge or
+         * transport failure; clients must retain an unknown-outcome path.
          */
         /*
          * The error contract both concrete failure shapes satisfy. Referenced
@@ -456,7 +483,7 @@ export function buildOpenApiDocument() {
         FacilitatorError: {
           type: "object",
           description:
-            "Every failure response carries a stable machine-readable reason code and a human-readable message, and is JSON on 4xx and 5xx as well as on 200. Branch on the reason code; it does not change across releases.",
+            ERROR_GUIDANCE,
           properties: {
             success: {
               type: "boolean",
@@ -465,8 +492,22 @@ export function buildOpenApiDocument() {
             },
           },
         },
-        PaymentPayload: PAYMENT_PAYLOAD,
-        PaymentRequirements: PAYMENT_REQUIREMENTS,
+        PaymentPayload: {
+          oneOf: [
+            { $ref: "#/components/schemas/PaymentPayloadV1" },
+            { $ref: "#/components/schemas/PaymentPayloadV2" },
+          ],
+        },
+        PaymentPayloadV1: PAYMENT_PAYLOAD_V1,
+        PaymentPayloadV2: PAYMENT_PAYLOAD_V2,
+        PaymentRequirements: {
+          anyOf: [
+            { $ref: "#/components/schemas/PaymentRequirementsV1" },
+            { $ref: "#/components/schemas/PaymentRequirementsV2" },
+          ],
+        },
+        PaymentRequirementsV1: PAYMENT_REQUIREMENTS_V1,
+        PaymentRequirementsV2: PAYMENT_REQUIREMENTS_V2,
         VerifyRequest: VERIFY_SETTLE_REQUEST,
         SettleRequest: VERIFY_SETTLE_REQUEST,
         EndpointDescription: {
@@ -510,7 +551,7 @@ export function buildOpenApiDocument() {
           allOf: [{ $ref: "#/components/schemas/FacilitatorError" }],
           type: "object",
           description:
-            "Result of a verification attempt. Always JSON, including on 4xx and 5xx. Satisfies the FacilitatorError contract: `invalidReason` is the stable reason code, `invalidMessage` the human-readable detail.",
+            "Application verification result. Inspect isValid and, when present, invalidReason and invalidMessage. An infrastructure error may not match this schema.",
           required: ["isValid"],
           properties: {
             isValid: {
@@ -520,7 +561,7 @@ export function buildOpenApiDocument() {
             invalidReason: {
               type: "string",
               description:
-                "Stable machine-readable failure code. Present when `isValid` is false.",
+                "Machine-readable failure code. Handle unknown values without assuming settlement occurred.",
               examples: INVALID_REASONS,
             },
             invalidMessage: {
@@ -537,17 +578,17 @@ export function buildOpenApiDocument() {
           allOf: [{ $ref: "#/components/schemas/FacilitatorError" }],
           type: "object",
           description:
-            "Result of a settlement attempt. Always JSON, including on 4xx and 5xx. Satisfies the FacilitatorError contract: `errorReason` is the stable reason code, `errorMessage` the human-readable detail.",
-          required: ["success", "transaction", "network", "payer"],
+            "Application settlement result. Interpret success and transaction according to the selected scheme and operation; an infrastructure error may not match this schema.",
+          required: ["success", "transaction", "network"],
           properties: {
             success: {
               type: "boolean",
-              description: "True only if funds moved and the transaction confirmed.",
+              description: "The selected operation succeeded. For channels, this does not necessarily mean the final merchant payout occurred; follow the scheme-specific lifecycle.",
             },
             errorReason: {
               type: "string",
               description:
-                "Stable machine-readable failure code. `settlement_pending` means the outcome is unresolved, not failed.",
+                "Machine-readable failure code. Handle unknown values; settlement_pending means unresolved, not failed.",
               examples: SETTLE_ERROR_REASONS,
             },
             errorMessage: {
@@ -557,7 +598,7 @@ export function buildOpenApiDocument() {
             transaction: {
               type: "string",
               description:
-                "On-chain transaction hash or signature. Empty string when nothing was broadcast; populated on `settlement_pending` so the payment can be reconciled on-chain.",
+                "On-chain transaction hash or signature when known. Can be empty on settlement_pending; an empty value is not proof that nothing was broadcast. A populated value is not by itself proof of confirmation.",
             },
             network: {
               type: "string",
@@ -707,6 +748,8 @@ export function buildOpenApiDocument() {
         },
       },
     },
-    security: [{ bearerApiKey: [] }, {}],
+    // OpenAPI cannot condition HTTP security on a request body's payment scheme.
+    // Payment operations explicitly document mandatory batch authentication.
+    security: [],
   };
 }
