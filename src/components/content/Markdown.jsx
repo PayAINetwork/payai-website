@@ -15,7 +15,7 @@ import React from "react";
  * not clickable is a worse page than the Markdown it came from.
  */
 const INLINE =
-  /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|_[^_]+_|https?:\/\/[^\s<>()]+[^\s<>().,;:]|[\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g;
+  /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*|(?<!\w)_[^_\s](?:[^_]*[^_\s])?_(?!\w)|https?:\/\/[^\s<>()]+[^\s<>().,;:]|[\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g;
 
 function renderInline(text, keyPrefix) {
   return text.split(INLINE).filter(Boolean).map((token, index) => {
@@ -53,7 +53,8 @@ function renderInline(text, keyPrefix) {
         </strong>
       );
     }
-    if (token.startsWith("_") && token.endsWith("_")) {
+    // Intraword underscores are identifiers, not emphasis delimiters.
+    if (/^_[^_\s](?:[^_]*[^_\s])?_$/.test(token)) {
       return <em key={key}>{token.slice(1, -1)}</em>;
     }
     if (/^https?:\/\//.test(token)) {
