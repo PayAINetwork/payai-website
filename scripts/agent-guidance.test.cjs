@@ -129,10 +129,10 @@ test("pricing, amount and discovery claims share qualified source guidance", () 
 });
 
 test("first-party homepage sections do not reintroduce unsupported KPI or timing badges", () => {
-  const files = ["Features", "Partners", "Overview", "Header", "Testimonials", "CTA"];
+  const files = ["Features", "Partners", "Overview", "Header", "Testimonials", "CTA", "Why", "HeroEcosystem"];
   for (const name of files) {
     const source = readFileSync(resolve(root, `components/sections/${name}.jsx`), "utf8");
-    assert.doesNotMatch(source, /99\.9%|&lt; 1 Second|1000\+ companies|Instant Settlement|Payments settle immediately|cheapest and fastest|\$0\.01 to \$1,000,000|100% of your test payment refunded/);
+    assert.doesNotMatch(source, /99\.9%|&lt; 1 Second|1000\+ companies|35M\+|250\+|<1s|Instant Settlement|Payments settle immediately|cheapest and fastest|\$0\.01 to \$1,000,000|100% of your test payment refunded/);
   }
   const features = readFileSync(resolve(root, "components/sections/Features.jsx"), "utf8");
   assert.match(features, /aria-label="Payment verification"/);
@@ -140,4 +140,10 @@ test("first-party homepage sections do not reintroduce unsupported KPI or timing
   const overview = readFileSync(resolve(root, "components/sections/Overview.jsx"), "utf8");
   assert.equal((overview.match(/isLive: false/g) ?? []).length, 2);
   assert.match(overview, /start on a testnet/i);
+  const footer = readFileSync(resolve(root, "components/layout/Footer.jsx"), "utf8");
+  assert.doesNotMatch(footer, /All systems normal|fetch\(|setInterval|<animate/);
+  assert.match(footer, /Integration support/);
+  const ecosystem = readFileSync(resolve(root, "components/sections/HeroEcosystem.jsx"), "utf8");
+  assert.match(ecosystem, /\{projects.length\}/);
+  assert.match(ecosystem, /Projects Listed/);
 });
