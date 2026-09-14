@@ -133,14 +133,20 @@ export function Header() {
             </motion.div>
           </div>
 
-          <Image
-            src="/header/hero.png"
-            alt="AI agents and apps transacting through PayAI's x402 payment facilitator"
-            width={600}
-            height={628}
-            className="w-full h-auto lg:w-auto lg:h-full"
-            priority
-          />
+          <figure className="w-full lg:w-[600px] lg:shrink-0">
+            <Image
+              src="/header/hero-claims-reviewed.png"
+              alt="Illustration of an agent travel request and a USDC payment receipt"
+              width={1226}
+              height={1283}
+              sizes="(min-width: 1024px) 600px, 100vw"
+              className="w-full h-auto mix-blend-multiply"
+              priority
+            />
+            <figcaption className="text-xs text-center text-[#71717A]">
+              Illustrative scenario, not a live booking interface.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
