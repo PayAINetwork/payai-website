@@ -46,6 +46,8 @@ ${PRICING_GUIDANCE}
 
 ${AUTHENTICATION_GUIDANCE}
 
+An agent can also buy a key without an account: \`POST ${MERCHANT_PORTAL_URL}/api/v1/keys/vend?amount=1\` returns HTTP 402 with x402 payment terms for USDC on Solana, Base, Polygon, Avalanche, Arbitrum One, or X Layer, or PAYAI on Solana at 10% off; all networks are mainnet only, and $1 buys 1,000 credits. Paying those terms returns the API key secret exactly once plus the credits, and the paying wallet is the account; pay again from the same wallet to top up and receive a fresh key. A wallet that is already linked to a portal account receives credits only, no agent key. \`GET ${MERCHANT_PORTAL_URL}/api/v1/keys/vend\` returns the machine-readable offer. Recover a key with a wallet signature at ${MERCHANT_PORTAL_URL}/api/v1/keys/recover or an email code at ${MERCHANT_PORTAL_URL}/api/v1/keys/recover/email.
+
 ${RECOVERY_GUIDANCE}`;
 
 export function buildLlmsTxt(): string {
@@ -68,6 +70,8 @@ ${WHEN_TO_USE}
 - [Supported networks](${DOCS_URL}/x402/supported-networks): every chain and asset the facilitator settles.
 - [Facilitator pricing](${DOCS_URL}/x402/facilitators/pricing): free tier and per-transaction pricing.
 - [Merchant portal](${MERCHANT_PORTAL_URL}): API keys, credits, usage, and auto top-up.
+- [Agent API keys over x402](${MERCHANT_PORTAL_URL}/api/v1/keys/vend): buy a facilitator key and credits with a USDC payment, no account needed.
+- [Agent API key vending guide](${DOCS_URL}/x402/facilitators/agent-api-keys): buy, top up, and recover facilitator API keys as an agent.
 - [x402 Echo Merchant](${ECHO_MERCHANT_URL}): live test merchant that returns HTTP 402.
 - [GitHub](${GITHUB_URL}): open-source SDKs, integrations, and examples.
 

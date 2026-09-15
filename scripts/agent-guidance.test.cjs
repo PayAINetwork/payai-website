@@ -114,6 +114,19 @@ test("document generation is deterministic", () => {
   assert.equal(buildLlmsFullTxt(pages), full);
 });
 
+test("llms guides agents through accountless API-key vending and recovery", () => {
+  const text = buildLlmsTxt();
+  assert.match(text, /POST https:\/\/merchant\.payai\.network\/api\/v1\/keys\/vend\?amount=1/);
+  assert.match(text, /USDC on Solana, Base, Polygon, Avalanche, Arbitrum One, or X Layer/);
+  assert.match(text, /PAYAI on Solana at 10% off/);
+  assert.match(text, /all networks are mainnet only, and \$1 buys 1,000 credits/);
+  assert.match(text, /GET https:\/\/merchant\.payai\.network\/api\/v1\/keys\/vend/);
+  assert.match(text, /https:\/\/merchant\.payai\.network\/api\/v1\/keys\/recover/);
+  assert.match(text, /https:\/\/merchant\.payai\.network\/api\/v1\/keys\/recover\/email/);
+  assert.match(text, /\[Agent API keys over x402\]\(https:\/\/merchant\.payai\.network\/api\/v1\/keys\/vend\)/);
+  assert.match(text, /\[Agent API key vending guide\]\(https:\/\/docs\.payai\.network\/x402\/facilitators\/agent-api-keys\)/);
+});
+
 test("pricing, amount and discovery claims share qualified source guidance", () => {
   assert.equal(FAQ_DATA.find(x => x.question === "What does PayAI cost?").answer, guidance.PRICING_GUIDANCE);
   assert.equal(FAQ_DATA.find(x => x.question === "What is the minimum payment amount?").answer, guidance.AMOUNT_GUIDANCE);
