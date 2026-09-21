@@ -412,5 +412,15 @@
         "websiteUrl": "https://bykaranteli.com",
         "twitterUrl": "https://x.com/bykaranteli",
         "category": "Analytics"
+    },
+    {
+        "name": "MiroShark",
+        "logo": "/projects/miroshark.png",
+        "description": "MiroShark is a swarm-intelligence engine that runs hundreds of LLM-powered agents through a scenario across social media and prediction markets, returning a cited report. Each run is metered and paid per-use over x402, so agents or users pay about $1 per simulation with no account or subscription.",
+        "websiteUrl": "https://www.miroshark.xyz",
+        "twitterUrl": "https://x.com/miroshark_",
+        "category": "AI Agents",
+        "testimonial": "x402 let us ship a pay-per-run AI product with no auth, no billing stack, no subscriptions. Point an agent at the endpoint, pay a dollar, get a cited swarm simulation back.",
+        "testimonialAuthor": "Aaron Elijah Mars, Founder, MiroShark"
     }
 ]
