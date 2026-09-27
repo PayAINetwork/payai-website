@@ -36,6 +36,13 @@ const nextConfig: NextConfig = {
         destination: "/x402-commerce-checkout",
         permanent: true,
       },
+      // Short link from the batch-settlement launch video. Temporary (307)
+      // until the docs path is final.
+      {
+        source: "/batch-settlement",
+        destination: "https://docs.payai.network/x402/servers/batch-settlement",
+        permanent: false,
+      },
     ];
   },
   async headers() {
