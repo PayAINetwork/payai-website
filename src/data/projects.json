@@ -412,5 +412,13 @@
         "websiteUrl": "https://bykaranteli.com",
         "twitterUrl": "https://x.com/bykaranteli",
         "category": "Analytics"
+    },
+    {
+        "name": "Ops Control HQ npm Health Snapshot",
+        "logo": "/projects/ops-control-hq-npm-health-snapshot.svg",
+        "description": "Ops Control HQ npm Health Snapshot is a deterministic x402-paid API that returns current npm package-health and dependency-risk signals from public npm registry metadata for autonomous code-review and dependency-management agents. It charges $0.01 USDC per GET on Base through the PayAI facilitator and publishes x402 v2 Bazaar discovery metadata.",
+        "websiteUrl": "https://tkoqkknsezxavtxfywkm.supabase.co/functions/v1/npm-health-x402-v2?package=react",
+        "twitterUrl": "https://x.com/OpsControlHQ",
+        "category": "Infrastructure"
     }
 ]
