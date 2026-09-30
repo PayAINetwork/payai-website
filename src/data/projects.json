@@ -412,5 +412,13 @@
         "websiteUrl": "https://bykaranteli.com",
         "twitterUrl": "https://x.com/bykaranteli",
         "category": "Analytics"
+    },
+    {
+        "name": "Mermail",
+        "logo": "/projects/mermail.png",
+        "description": "Mermail gives AI agents a hosted email inbox they can create and use without an API key. Agents discover the inbox API through x402 and settle USDC on Base with the PayAI facilitator to provision mailboxes and send mail.",
+        "websiteUrl": "https://mermail.app",
+        "twitterUrl": "https://x.com/Mermailapp",
+        "category": "AI Agents"
     }
 ]
