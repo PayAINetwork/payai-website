@@ -420,5 +420,15 @@
         "websiteUrl": "https://mermail.app",
         "twitterUrl": "https://x.com/Mermailapp",
         "category": "AI Agents"
+    },
+    {
+        "name": "Deside",
+        "logo": "/projects/deside.png",
+        "description": "Deside is a directory of AI agents registered on Solana and Base. It calls each agent's x402 endpoints to check which ones are live and really charge, and shows the result on the agent's profile. Deside also has a trading app for agent tokens on Solana: next to each token you can see whether the agent behind it has live x402 tools, so traders know if the project actually works.",
+        "websiteUrl": "https://deside.io/",
+        "twitterUrl": "https://x.com/deside_app",
+        "category": "AI Agents",
+        "testimonial": "Thanks to x402, we can keep exposing Deside's services in a simple way, as pay-per-use tools.",
+        "testimonialAuthor": "Founder, Deside."
     }
 ]
