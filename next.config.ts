@@ -36,6 +36,14 @@ const nextConfig: NextConfig = {
         destination: "/x402-commerce-checkout",
         permanent: true,
       },
+      // Short link from the batch-settlement launch video. Permanent (308) so
+      // search engines consolidate onto the canonical docs page. If the docs
+      // page moves, redirect the old path in the docs site too.
+      {
+        source: "/batch-settlement",
+        destination: "https://docs.payai.network/x402/servers/batch-settlement",
+        permanent: true,
+      },
     ];
   },
   async headers() {

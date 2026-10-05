@@ -414,6 +414,14 @@
         "category": "Analytics"
     },
     {
+        "name": "Mermail",
+        "logo": "/projects/mermail.png",
+        "description": "Mermail gives AI agents a hosted email inbox they can create and use without an API key. Agents discover the inbox API through x402 and settle USDC on Base with the PayAI facilitator to provision mailboxes and send mail.",
+        "websiteUrl": "https://mermail.app",
+        "twitterUrl": "https://x.com/Mermailapp",
+        "category": "AI Agents"
+    },
+    {
         "name": "MiroShark",
         "logo": "/projects/miroshark.png",
         "description": "MiroShark is a swarm-intelligence engine that runs hundreds of LLM-powered agents through a scenario across social media and prediction markets, returning a cited report. Each run is metered and paid per-use over x402, so agents or users pay about $1 per simulation with no account or subscription.",
