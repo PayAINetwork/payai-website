@@ -430,5 +430,13 @@
         "category": "AI Agents",
         "testimonial": "x402 let us ship a pay-per-run AI product with no auth, no billing stack, no subscriptions. Point an agent at the endpoint, pay a dollar, get a cited swarm simulation back.",
         "testimonialAuthor": "Aaron Elijah Mars, Founder, MiroShark"
+    },
+    {
+        "name": "P2Flux",
+        "logo": "/projects/p2flux.png",
+        "description": "P2Flux is non-custodial USDC payment infrastructure on Base for one-time, recurring and x402 payments. It enables websites, APIs and AI agents to accept pay-per-use payments with direct wallet settlement.",
+        "websiteUrl": "https://p2flux.com/",
+        "twitterUrl": "https://x.com/modulout",
+        "category": "Payments"
     }
 ]
