@@ -430,5 +430,13 @@
         "category": "AI Agents",
         "testimonial": "x402 let us ship a pay-per-run AI product with no auth, no billing stack, no subscriptions. Point an agent at the endpoint, pay a dollar, get a cited swarm simulation back.",
         "testimonialAuthor": "Aaron Elijah Mars, Founder, MiroShark"
+    },
+    {
+        "name": "SportStatsAPI",
+        "logo": "/projects/sportstatsapi.png",
+        "description": "SportStatsAPI provides live multi-sport data for websites, applications and AI agents. AI agents can access fixtures, live scores, results, standings, teams, players and match context through MCP and pay per request in USDC using x402.",
+        "websiteUrl": "https://sportstatsapi.com/",
+        "twitterUrl": "https://x.com/modulout",
+        "category": "AI Agents"
     }
 ]
