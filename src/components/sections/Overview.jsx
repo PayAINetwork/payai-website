@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { div } from "framer-motion/client";
+import { MERCHANT_SIGNUP_URL } from "@/lib/site";
 
 const OVERVIEW_DATA = [
   {
@@ -12,7 +13,10 @@ const OVERVIEW_DATA = [
       "Accept stablecoin payments for APIs, digital content and agent services. Choose terms supported by your payment scheme and network, and account for facilitator fees separately from your customer price.",
     isLive: true,
     badge: "x402 Facilitator",
-    url: process.env.NEXT_PUBLIC_FACILITATOR_URL,
+    url: MERCHANT_SIGNUP_URL,
+    ctaLabel: "Start free",
+    // Sign-up continues in the merchant portal, so keep it in the same tab.
+    sameTab: true,
   },
   {
     src: "/overview/merchant-reviewed.svg",
@@ -42,7 +46,7 @@ const OVERVIEW_DATA = [
   },
 ];
 
-const OverviewCard = ({ src, alt, title, description, badge, isLive, url }) => {
+const OverviewCard = ({ src, alt, title, description, badge, isLive, url, ctaLabel = "Get Started", sameTab = false }) => {
   return (
     <div className="flex border-y border-b-0 border-[#E4E4E7] h-screen">
       <div className="w-4 lg:w-20 bg-[url('/features/bg-side.svg')] bg-repeat-y" />
@@ -184,10 +188,9 @@ const OverviewCard = ({ src, alt, title, description, badge, isLive, url }) => {
                 <Link
                   className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white hover:bg-[#FFFFFF]"
                   href={url ?? "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(sameTab ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                 >
-                  Get Started
+                  {ctaLabel}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               ) : (
@@ -262,6 +265,8 @@ export const Overview = () => {
             badge={item.badge}
             isLive={item.isLive}
             url={item.url}
+            ctaLabel={item.ctaLabel}
+            sameTab={item.sameTab}
           />
         ))}
       </div>
