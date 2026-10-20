@@ -58,7 +58,7 @@ export function Header() {
             >
               Accept agentic payments with one
               integration — stablecoin payments across supported Solana and EVM
-              networks. Start with ordinary exact payments on the available free tier.
+              networks. Start free with 1,000 credits. No credit card or API key required.
             </motion.p>
 
             <motion.div
