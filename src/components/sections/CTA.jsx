@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Play, ArrowRight } from "lucide-react";
+import { Play, ArrowRight, Book } from "lucide-react";
+import { DOCS_QUICKSTART_URL, MERCHANT_SIGNUP_URL } from "@/lib/site";
 
 export function CTA() {
   return (
@@ -55,11 +56,25 @@ export function CTA() {
             >
               <Link
                 className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#1D45D8_65%)] text-white px-3 lg:px-4 py-2 lg:py-2.5 text-[13px] lg:text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-                href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
-                target="_blank"
+                href={MERCHANT_SIGNUP_URL}
               >
-                Get Started
+                Start free
                 <ArrowRight className="w-4 lg:w-5 h-4 lg:h-5 ml-2" />
+              </Link>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link
+                className="inline-flex items-center justify-center  bg-white text-[#09090B] px-4 lg:px-4 py-2 lg:py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                href={DOCS_QUICKSTART_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Book className="w-4 lg:w-5 h-4 lg:h-5 mr-2" />
+                Read the docs
               </Link>
             </motion.div>
             <motion.div

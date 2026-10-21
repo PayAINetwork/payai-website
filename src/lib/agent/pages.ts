@@ -58,7 +58,7 @@ function homeMarkdown(): string {
 
   return `# PayAI — the x402 Facilitator for AI Agents and Apps
 
-Accept stablecoin payments from agents and apps across supported Solana and EVM networks. Ordinary exact payments can start on the available free tier; batch settlement requires merchant authentication.
+Accept stablecoin payments from agents and apps across supported Solana and EVM networks. Start free with 1,000 credits; ordinary exact payments and public batch settlement need no API key.
 
 ## What PayAI does
 
@@ -136,7 +136,7 @@ PayAI supports that payment flow so a service can price per request. Confirmatio
 
 - **Solana and EVM support.** Check \`GET ${FACILITATOR_URL}/supported\` for the currently advertised network, scheme and protocol-version combinations.
 - **Sponsored payment flows.** Supported Solana flows can cover the payer's transaction fee. This does not eliminate every setup or service cost.
-- **Buyer and merchant credentials are different.** A buyer can pay without a PayAI merchant account. Ordinary exact payments can use the available free tier; batch settlement requires merchant authentication. A resource provider can impose its own access requirements.
+- **Buyer and merchant credentials are different.** A buyer can pay without a PayAI merchant account, and a merchant can start without one: ordinary exact payments and public batch settlement need no API key within the 1,000 free credits. A resource provider can impose its own access requirements.
 - **Inspectable integration guidance.** SDKs, integrations and examples are available at ${GITHUB_URL}; check each repository's license. Core API operations are described at ${SITE_URL}/openapi.json, with scheme-specific guides in the docs.
 
 ## Who it is for

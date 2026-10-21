@@ -45,17 +45,38 @@ test("developer, agent and OpenAPI guides share JWT and recovery instructions", 
   for (const text of [developer, buildLlmsTxt(), full, spec.paths["/settle"].post.description]) {
     assert.ok(text.includes(guidance.RECOVERY_GUIDANCE));
   }
-  assert.match(guidance.AUTHENTICATION_GUIDANCE, /Every batch-settlement.*requires merchant authentication/);
+  assert.match(guidance.AUTHENTICATION_GUIDANCE, /Authentication is optional for ordinary exact payments and for batch settlement on the public lanes/);
+  assert.match(guidance.AUTHENTICATION_GUIDANCE, /Solana's shared lane, and Base/);
+  assert.match(guidance.AUTHENTICATION_GUIDANCE, /beyond the 1,000 free credits, account attribution, or an assigned enterprise lane/);
+  assert.match(guidance.AUTHENTICATION_GUIDANCE, /returns 401 instead of falling back to anonymous access/);
   assert.match(guidance.AUTHENTICATION_GUIDANCE, /never send the raw secret/);
   assert.match(guidance.RECOVERY_GUIDANCE, /transaction field can be empty/);
   assert.match(guidance.RECOVERY_GUIDANCE, /bounded, scheme-dependent retention/);
 });
 
 test("FAQ used by HTML, JSON-LD and Markdown retains the shared correction", () => {
-  assert.equal(FAQ_DATA.find(x => x.question.startsWith("Do I need")).answer, guidance.AUTHENTICATION_GUIDANCE);
+  assert.equal(FAQ_DATA.find(x => x.question.startsWith("Do I need")).answer, guidance.AUTHENTICATION_FAQ);
   assert.equal(FAQ_DATA.find(x => x.question.startsWith("What happens")).answer,
     `${guidance.ERROR_GUIDANCE} ${guidance.RECOVERY_GUIDANCE}`);
-  assert.ok(AUTHORED_PAGES["/"]().includes(guidance.AUTHENTICATION_GUIDANCE));
+  assert.ok(AUTHORED_PAGES["/"]().includes(guidance.AUTHENTICATION_FAQ));
+  assert.match(guidance.AUTHENTICATION_FAQ, /^No\. You can start without an account or API key\./);
+  assert.match(guidance.AUTHENTICATION_FAQ, /Exact payments and batch settlement on Solana and Base work without credentials/);
+  assert.match(guidance.AUTHENTICATION_FAQ, /https:\/\/merchant\.payai\.network/);
+});
+
+test("free credits read as one simple allowance everywhere a person or agent reads them", () => {
+  const header = readFileSync(resolve(root, "components/sections/Header.jsx"), "utf8");
+  assert.match(header, /Start free with 1,000 credits\. No credit card or API key required\./);
+  const userFacing = [header, JSON.stringify(FAQ_DATA), guidance.AUTHENTICATION_FAQ, guidance.PRICING_FAQ];
+  for (const text of userFacing) {
+    assert.doesNotMatch(text, /free tier|per receiving wallet|shared pool|shared-pool|legacy|monthly reset/i);
+  }
+  for (const text of [...userFacing, guidance.AUTHENTICATION_GUIDANCE, guidance.PRICING_GUIDANCE, developer, buildLlmsTxt(), full, JSON.stringify(spec)]) {
+    assert.doesNotMatch(text, /requires merchant authentication|Every batch-settlement|available free tier|legacy allowance|shared-pool limits/);
+  }
+  for (const text of [guidance.AUTHENTICATION_FAQ, guidance.PRICING_FAQ, guidance.AUTHENTICATION_GUIDANCE, guidance.PRICING_GUIDANCE]) {
+    assert.match(text, /1,000 free credits/);
+  }
 });
 
 test("OpenAPI models bearer JWT, public reads and documented conditional payment auth", () => {
@@ -128,7 +149,7 @@ test("llms guides agents through accountless API-key vending and recovery", () =
 });
 
 test("pricing, amount and discovery claims share qualified source guidance", () => {
-  assert.equal(FAQ_DATA.find(x => x.question === "What does PayAI cost?").answer, guidance.PRICING_GUIDANCE);
+  assert.equal(FAQ_DATA.find(x => x.question === "What does PayAI cost?").answer, guidance.PRICING_FAQ);
   assert.equal(FAQ_DATA.find(x => x.question === "What is the minimum payment amount?").answer, guidance.AMOUNT_GUIDANCE);
   assert.equal(FAQ_DATA.find(x => x.question.startsWith("How do agents discover")).answer, guidance.DISCOVERY_GUIDANCE);
   for (const text of [AUTHORED_PAGES["/"](), developer, AUTHORED_PAGES["/ecosystem"](), buildLlmsTxt(), spec.paths["/discovery/resources"].get.description]) {
@@ -140,7 +161,11 @@ test("pricing, amount and discovery claims share qualified source guidance", () 
   assert.match(guidance.PRICING_GUIDANCE, /gas plus 30%/);
   assert.match(guidance.PRICING_GUIDANCE, /\$0\.001 per credit/);
   assert.match(guidance.PRICING_GUIDANCE, /facilitator\.payai\.network\/pricing/);
-  assert.match(guidance.PRICING_GUIDANCE, /not a monthly reset/);
+  assert.match(guidance.PRICING_GUIDANCE, /\$1 buys 1,000 credits/);
+  assert.match(guidance.PRICING_FAQ, /^You start with 1,000 free credits\. After that, \$1 buys 1,000 credits\./);
+  assert.match(guidance.PRICING_FAQ, /testnets are free/);
+  assert.match(guidance.PRICING_FAQ, /never takes a percentage of the payment amount/);
+  assert.match(guidance.PRICING_FAQ, /https:\/\/facilitator\.payai\.network\/pricing/);
   assert.match(guidance.DISCOVERY_GUIDANCE, /not proof of current availability/);
 });
 

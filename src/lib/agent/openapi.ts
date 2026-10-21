@@ -749,7 +749,7 @@ export function buildOpenApiDocument() {
       },
     },
     // OpenAPI cannot condition HTTP security on a request body's payment scheme.
-    // Payment operations explicitly document mandatory batch authentication.
+    // Payment operations document when authentication is optional or required.
     security: [],
   };
 }

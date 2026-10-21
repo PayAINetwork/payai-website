@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X, Book, ArrowRight, ChevronDown, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { MERCHANT_PORTAL_URL, MERCHANT_SIGNUP_URL, PRICING_URL } from "@/lib/site";
 
 function formatCount(n) {
   if (n == null) return null;
@@ -281,13 +282,26 @@ export function Navbar({ activePage = null }) {
                   Docs
                 </Link>
               </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+                className="h-full"
+              >
+                <Link
+                  href={PRICING_URL}
+                  className="relative h-full flex items-center px-4 text-sm font-medium text-[#0A0A0A] hover:bg-blue-50 hover:border-b-2 hover:border-[#4D63F6]"
+                >
+                  Pricing
+                </Link>
+              </motion.div>
             </nav>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-2 lg:gap-3">
             <div
-              className="hidden lg:block relative"
+              className="hidden xl:block relative"
               ref={socialMenuRef}
               onMouseEnter={() => setIsSocialMenuOpen(true)}
               onMouseLeave={() => setIsSocialMenuOpen(false)}
@@ -416,16 +430,28 @@ export function Navbar({ activePage = null }) {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.35 }}
+              className="hidden md:block"
+            >
+              <Link
+                href={MERCHANT_PORTAL_URL}
+                className="inline-flex items-center justify-center whitespace-nowrap px-3 py-2 lg:py-2.5 text-[13px] lg:text-sm font-medium text-[#0A0A0A] rounded-lg transition-colors hover:bg-blue-50 hover:text-[#1D45D8]"
+              >
+                Sign in
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.4 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
-                target="_blank"
-                className="inline-flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#4D63F6_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-[13px] lg:text-sm font-medium rounded-lg transition-colors"
+                href={MERCHANT_SIGNUP_URL}
+                className="inline-flex items-center justify-center whitespace-nowrap shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] bg-[linear-gradient(90deg,#4D63F6_17%,#4D63F6_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-[13px] lg:text-sm font-medium rounded-lg transition-colors"
               >
-                Get Started
+                Start free
               </Link>
             </motion.div>
           </div>
@@ -490,6 +516,19 @@ export function Navbar({ activePage = null }) {
                   className="block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 text-gray-900 hover:text-gray-600 hover:bg-gray-50"
                 >
                   Blog
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+                className="h-full"
+              >
+                <Link
+                  href={PRICING_URL}
+                  className="block py-2 px-3 rounded-lg text-body font-normal transition-all duration-300 text-gray-900 hover:text-gray-600 hover:bg-gray-50"
+                >
+                  Pricing
                 </Link>
               </motion.div>
               <motion.div
@@ -577,7 +616,7 @@ export function Navbar({ activePage = null }) {
                   </Link>
                 </div>
               </motion.div>
-              <div className="pt-4 flex flex-col space-y-2">
+              <div className="pt-4 pb-2 flex flex-row flex-wrap gap-2">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -585,11 +624,22 @@ export function Navbar({ activePage = null }) {
                 >
                   <Link
                     className="inline-flex items-center justify-center bg-[linear-gradient(90deg,#4D63F6_17%,#4D63F6_65%)] text-white px-3 py-2 lg:px-4 lg:py-2.5 text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)] rounded-lg transition-colors hover:bg-[#FFFFFF]"
-                    href={process.env.NEXT_PUBLIC_FACILITATOR_URL || "#"}
-                    target="_blank"
+                    href={MERCHANT_SIGNUP_URL}
                   >
-                    Facilitator
+                    Start free
                     <ArrowRight className="w-5 h-5 ml-2" />
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.33 }}
+                >
+                  <Link
+                    className="inline-flex items-center justify-center bg-[#FFFFFF]/70 text-[#09090B] px-3 py-2 lg:px-4 lg:py-2.5 text-sm font-medium border border-[#E4E4E7] rounded-lg transition-colors hover:bg-[#FFFFFF] shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+                    href={MERCHANT_PORTAL_URL}
+                  >
+                    Sign in
                   </Link>
                 </motion.div>
                 <motion.div

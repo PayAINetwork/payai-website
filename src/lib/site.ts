@@ -31,6 +31,11 @@ export const BLOG_URL = env(
   "https://blog.payai.network",
 );
 export const MERCHANT_PORTAL_URL = "https://merchant.payai.network";
+/** Opens the merchant portal's sign-up dialog. The primary "Start free" CTA. */
+export const MERCHANT_SIGNUP_URL = `${MERCHANT_PORTAL_URL}/?signup=1`;
+/** Human-readable live rate table. */
+export const PRICING_URL = `${FACILITATOR_URL}/pricing`;
+export const DOCS_QUICKSTART_URL = `${DOCS_URL}/x402/quickstart`;
 export const ECHO_MERCHANT_URL = env(
   process.env.NEXT_PUBLIC_ECHO_MERCHANT_URL,
   "https://x402.payai.network",

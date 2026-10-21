@@ -7,7 +7,7 @@
  * agents (src/lib/agent/pages.ts).
  */
 export type FaqEntry = { question: string; answer: string };
-import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, PRICING_GUIDANCE, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
+import { AUTHENTICATION_FAQ, ERROR_GUIDANCE, RECOVERY_GUIDANCE, PRICING_FAQ, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 export const FAQ_DATA: FaqEntry[] = [
   {
@@ -38,12 +38,12 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Do I need an account or API key to use PayAI?",
     answer:
-      AUTHENTICATION_GUIDANCE,
+      AUTHENTICATION_FAQ,
   },
   {
     question: "What does PayAI cost?",
     answer:
-      PRICING_GUIDANCE,
+      PRICING_FAQ,
   },
   {
     question: "What happens if a payment fails or a settlement times out?",
