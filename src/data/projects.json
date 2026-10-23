@@ -438,5 +438,13 @@
         "websiteUrl": "https://sportstatsapi.com/",
         "twitterUrl": "https://x.com/modulout",
         "category": "AI Agents"
+    },
+    {
+        "name": "MadeOnSol",
+        "logo": "/projects/madeonsol.png",
+        "description": "MadeOnSol provides production Solana intelligence APIs and an open-source MCP server covering KOL activity, wallets, tokens, deployers, and DEX data. AI agents can access its keyless pay-per-call endpoints using x402 and USDC on Solana, with payments verified and settled by PayAI.",
+        "websiteUrl": "https://madeonsol.com/solana-api",
+        "twitterUrl": "https://x.com/MadeOnSolx",
+        "category": "Analytics"
     }
 ]
