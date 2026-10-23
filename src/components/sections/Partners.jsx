@@ -5,6 +5,7 @@ import { FACILITATOR_URL, DOCS_URL } from "@/lib/site";
 const PARTNERS_DATA = [
   { src: "/partners/solana-dark.svg", name: "solana" },
   { src: "/partners/base-dark.png", name: "base" },
+  { src: "/partners/bnb-chain.svg", name: "BNB Smart Chain" },
   { src: "/partners/layer-dark.png", name: "layer" },
   { src: "/partners/polygon-dark.png", name: "polygon" },
   { src: "/partners/avalanche-dark.png", name: "avalanche" },
@@ -24,10 +25,10 @@ export const Partners = () => {
       <div className="container-payai p-8 lg:pt-20 lg:pb-8 flex flex-col items-center lg:min-h-screen">
         <div className="lg:w-[720px] flex flex-col items-center">
           <h2 className="text-2xl lg:text-[36px] text-[#09090B]">
-            Ecosystem & Partners
+            Networks & Ecosystem
           </h2>
           <p className="text-sm lg:text-lg text-[#0A0A0A]/60 text-center mt-3 lg:mt-4">
-            PayAI connects with leading networks and partners to deliver fast,
+            PayAI connects with leading networks and ecosystem tools to deliver fast,
             reliable, and scalable micropayments across the Web3 ecosystem.
           </p>
 
@@ -43,6 +44,7 @@ export const Partners = () => {
             PayAI is Solana-first and settles USDC micropayments on{" "}
             <strong className="font-medium text-[#09090B]">Solana</strong>,{" "}
             <strong className="font-medium text-[#09090B]">Base</strong>,{" "}
+            <strong className="font-medium text-[#09090B]">BNB Smart Chain</strong>,{" "}
             <strong className="font-medium text-[#09090B]">Polygon</strong>,{" "}
             <strong className="font-medium text-[#09090B]">Avalanche</strong>,{" "}
             <strong className="font-medium text-[#09090B]">Arbitrum</strong>,{" "}
@@ -54,8 +56,10 @@ export const Partners = () => {
             fee; setup costs and facilitator fees are separate.
           </p>
           <p className="text-sm lg:text-base text-[#0A0A0A]/60 text-center mt-3">
-            Both x402 v1 network names and x402 v2 CAIP-2 identifiers are
-            accepted. For the authoritative live list, call{" "}
+            BNB Smart Chain supports USDC and USDT through x402 v2 exact Permit2
+            payments. The initial token approval requires BNB in the buyer&apos;s
+            wallet; PayAI covers settlement gas. For each network&apos;s supported
+            versions and payment schemes, call{" "}
             <a
               href={`${FACILITATOR_URL}/supported`}
               className="underline text-[#09090B]"
