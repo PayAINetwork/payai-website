@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
+import { PROJECTS, isIndexable } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -48,5 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.3,
     },
+    // Thin project pages are noindex, so they stay out of the sitemap too.
+    ...PROJECTS.filter(isIndexable).map((project) => ({
+      url: `${SITE_URL}/ecosystem/${project.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
   ];
 }

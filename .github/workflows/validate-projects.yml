@@ -1,0 +1,58 @@
+name: Validate Ecosystem Projects
+
+on:
+  pull_request:
+    paths:
+      - "src/data/projects.json"
+      - "public/projects/**"
+  push:
+    branches: [main]
+    paths:
+      - "src/data/projects.json"
+      - "public/projects/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check projects.json parses and every entry is complete
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+
+          // Concurrent ecosystem PRs all append to the end of this file, so
+          // hand-resolved merge conflicts can silently break the JSON and
+          // every Vercel deploy after it.
+          let projects;
+          try {
+            projects = JSON.parse(fs.readFileSync('src/data/projects.json', 'utf8'));
+          } catch (e) {
+            console.error(`src/data/projects.json is not valid JSON: ${e.message}`);
+            process.exit(1);
+          }
+          if (!Array.isArray(projects)) {
+            console.error('src/data/projects.json must be an array');
+            process.exit(1);
+          }
+
+          const errors = [];
+          const names = new Set();
+          projects.forEach((p, i) => {
+            const label = `#${i} ${p && p.name ? p.name : '(unnamed)'}`;
+            for (const key of ['name', 'logo', 'description', 'websiteUrl', 'category']) {
+              if (typeof p[key] !== 'string' || !p[key].trim()) errors.push(`${label}: missing "${key}"`);
+            }
+            if (p.logo && !fs.existsSync(`public${p.logo}`)) errors.push(`${label}: logo file public${p.logo} not found`);
+            const key = String(p.name || '').toLowerCase();
+            if (names.has(key)) errors.push(`${label}: duplicate name`);
+            names.add(key);
+          });
+
+          if (errors.length) {
+            console.error(errors.join('\n'));
+            process.exit(1);
+          }
+          console.log(`OK: ${projects.length} projects`);
+          EOF
