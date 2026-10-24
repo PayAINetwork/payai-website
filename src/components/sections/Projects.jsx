@@ -5,6 +5,7 @@ import Link from "next/link";
 import PROJECTS_DATA from '@/data/projects.json';
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
+import { projectPath } from "@/lib/projects";
 
 export const Projects = () => {
   const itemsPerPage = 9;
@@ -46,11 +47,11 @@ export const Projects = () => {
   }, [search, selectedCategory]);
 
   const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-  const paginatedProjects = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredProjects.slice(startIndex, endIndex);
-  }, [filteredProjects, currentPage]);
+  // Every card is rendered and pagination only hides the off-page ones, so the
+  // server HTML lists the whole ecosystem. Crawlers don't click "next page" and
+  // most AI crawlers don't run JavaScript at all.
+  const pageStart = (currentPage - 1) * itemsPerPage;
+  const pageEnd = pageStart + itemsPerPage;
 
   const getPageNumbers = () => {
     const pages = [];
@@ -143,18 +144,22 @@ export const Projects = () => {
               </button>
             </div>
           ) : (
-            paginatedProjects.map((project, key) => (
-              <div key={`${project.name}-${key}`} className="flex flex-col space-y-6 p-8 border border-[#E4E4E7] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
-                <Image
-                  src={project.logo}
-                  alt={project.name}
-                  width={72}
-                  height={72}
-                  className="object-contain w-18 h-18 rounded-xl"
-                />
+            filteredProjects.map((project, index) => (
+              <div key={`${project.name}-${index}`} className={`${index >= pageStart && index < pageEnd ? "flex" : "hidden"} flex-col space-y-6 p-8 border border-[#E4E4E7] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5`}>
+                <Link href={projectPath(project.name)} tabIndex={-1} aria-hidden="true" className="self-start">
+                  <Image
+                    src={project.logo}
+                    alt={project.name}
+                    width={72}
+                    height={72}
+                    className="object-contain w-18 h-18 rounded-xl"
+                  />
+                </Link>
                 <div className="flex flex-col gap-2 flex-1">
                   <h3 className="text-lg lg:text-xl font-medium text-[#09090B]">
-                    {project.name}
+                    <Link href={projectPath(project.name)} className="hover:text-[#4D63F6]">
+                      {project.name}
+                    </Link>
                   </h3>
                   <p className="text-sm lg:text-base text-[#71717A]">
                     {project.description}
