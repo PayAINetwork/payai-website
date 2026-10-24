@@ -440,6 +440,15 @@
         "category": "AI Agents"
     },
     {
+        "name": "NFT Data",
+        "logo": "/projects/nft-data.png",
+        "description": "NFT Data is a pay-per-request API for AI agents that returns structured market data for any OpenSea collection. Send a collection slug and get floor price, 24h/7d/30d/all-time sales and volume, total supply, unique owners, contract addresses and creation date. Data is sourced from the OpenSea API and passed through as is, with currencies reported in the response (ETH, USDC, etc.). Costs $0.002 per successful request, paid in USDC on Base via x402 v2, with no API keys or subscriptions. Registered as OpenSea Tool #778 (ERC-8257).\n\nExample: for the Milady Maker collection, send the slug “milady” (the identifier from the collection’s OpenSea URL) and receive its current floor price in ETH, sales and volume for the last 24 hours, 7 days and 30 days, lifetime totals, the number of unique owners, total supply, the contract address on Ethereum and the creation date.",
+        "websiteUrl": "https://www.nftdata.app/",
+        "twitterUrl": "https://x.com/nomadonmars",
+        "category": "AI Agents",
+        "testimonial": "Integration was quick and easy. We went from a simple endpoint to a working pay-per-request API on x402 with PayAI, and received our first payment on day one. No API keys, accounts or subscriptions to manage.",
+        "testimonialAuthor": "NFT Data Team"
+    },
         "name": "MadeOnSol",
         "logo": "/projects/madeonsol.png",
         "description": "MadeOnSol provides production Solana intelligence APIs and an open-source MCP server covering KOL activity, wallets, tokens, deployers, and DEX data. AI agents can access its keyless pay-per-call endpoints using x402 and USDC on Solana, with payments verified and settled by PayAI.",
