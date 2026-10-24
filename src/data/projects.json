@@ -446,5 +446,14 @@
         "websiteUrl": "https://madeonsol.com/solana-api",
         "twitterUrl": "https://x.com/MadeOnSolx",
         "category": "Analytics"
+    },
+        "name": "DeskCrew",
+        "logo": "/projects/deskcrew.png",
+        "description": "DeskCrew is a customer support desk that AI agents can operate and pay for per action over x402: search a help centre, draft a support reply, triage and resolve tickets, or open a bounty board, with no account and no API key, settled in USDC on Base, Solana, Polygon, Avalanche, Sei and Algorand. The door and its discovery document are at https://deskcrew.io/.well-known/x402.",
+        "websiteUrl": "https://deskcrew.io",
+        "twitterUrl": "https://x.com/getdeskcrew",
+        "category": "AI Agents",
+        "testimonial": "x402 let us turn a support desk into something an agent can walk up to and use: no signup, no API key, one HTTP call, a few cents in USDC, and the reply comes back. We went from a paywall idea to live, settlement-verified paid endpoints on six chains without touching a billing system, and the first paying caller was another agent we had never spoken to.",
+        "testimonialAuthor": "Kevin, Founder, DeskCrew"
     }
 ]
