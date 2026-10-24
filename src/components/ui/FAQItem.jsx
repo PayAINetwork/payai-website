@@ -48,7 +48,7 @@ export default function FAQItem({ question, answer }) {
         transition={{ duration: 0.1, ease: "easeOut" }}
         className="overflow-hidden"
       >
-        <div className="pt-3 lg:pt-4 text-[13px] lg:text-base text-[#0A0A0A]/60">
+        <div className="pt-3 lg:pt-4 text-[13px] lg:text-base text-[#0A0A0A]/60 break-words">
           {answer}
         </div>
       </motion.div>

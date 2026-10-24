@@ -58,7 +58,7 @@ function homeMarkdown(): string {
 
   return `# PayAI — the x402 Facilitator for AI Agents and Apps
 
-Accept stablecoin payments from agents and apps across supported Solana and EVM networks. Ordinary exact payments can start on the available free tier; batch settlement requires merchant authentication.
+Accept stablecoin payments from agents and apps across supported Solana and EVM networks. Start free with 1,000 credits; ordinary exact payments and public batch settlement need no API key.
 
 ## What PayAI does
 
@@ -77,7 +77,7 @@ ${PRICING_GUIDANCE}
 
 ## Supported networks
 
-PayAI supports payment kinds across Solana and EVM networks including Base, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. Mainnet/testnet and scheme availability can differ. x402 v1 uses short network names (\`base\`, \`solana\`); v2 uses CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`).
+PayAI supports payment kinds across Solana and EVM networks including Base, BNB Smart Chain, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. BSC supports v2 exact Permit2 payments in USDC and USDT; initial token approval requires payer BNB. Mainnet/testnet and scheme availability can differ. x402 v1 uses short network names (\`base\`, \`solana\`); v2 uses CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`).
 
 For the authoritative live list, call \`GET ${FACILITATOR_URL}/supported\` — it returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. The documented list is at ${DOCS_URL}/x402/supported-networks.
 
@@ -136,7 +136,7 @@ PayAI supports that payment flow so a service can price per request. Confirmatio
 
 - **Solana and EVM support.** Check \`GET ${FACILITATOR_URL}/supported\` for the currently advertised network, scheme and protocol-version combinations.
 - **Sponsored payment flows.** Supported Solana flows can cover the payer's transaction fee. This does not eliminate every setup or service cost.
-- **Buyer and merchant credentials are different.** A buyer can pay without a PayAI merchant account. Ordinary exact payments can use the available free tier; batch settlement requires merchant authentication. A resource provider can impose its own access requirements.
+- **Buyer and merchant credentials are different.** A buyer can pay without a PayAI merchant account, and a merchant can start without one: ordinary exact payments and public batch settlement need no API key within the 1,000 free credits. A resource provider can impose its own access requirements.
 - **Inspectable integration guidance.** SDKs, integrations and examples are available at ${GITHUB_URL}; check each repository's license. Core API operations are described at ${SITE_URL}/openapi.json, with scheme-specific guides in the docs.
 
 ## Who it is for

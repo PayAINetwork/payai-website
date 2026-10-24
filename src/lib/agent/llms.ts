@@ -11,6 +11,7 @@ import {
   DOCS_URL,
   BLOG_URL,
   MERCHANT_PORTAL_URL,
+  PRICING_URL,
   ECHO_MERCHANT_URL,
   MCP_URL,
   GITHUB_URL,
@@ -68,8 +69,9 @@ ${WHEN_TO_USE}
 - [Merchant quickstarts](${DOCS_URL}/x402/servers/introduction): Express, Hono, Next.js, FastAPI, Flask, and Gin.
 - [Client quickstarts](${DOCS_URL}/x402/clients/introduction): Axios, Fetch, httpx, requests, and Go net/http.
 - [Supported networks](${DOCS_URL}/x402/supported-networks): every chain and asset the facilitator settles.
-- [Facilitator pricing](${DOCS_URL}/x402/facilitators/pricing): free tier and per-transaction pricing.
-- [Merchant portal](${MERCHANT_PORTAL_URL}): API keys, credits, usage, and auto top-up.
+- [Facilitator pricing](${DOCS_URL}/x402/facilitators/pricing): 1,000 free credits and per-settlement pricing.
+- [Live pricing](${PRICING_URL}): current per-settlement rates by network, refreshed daily.
+- [Merchant portal](${MERCHANT_PORTAL_URL}): sign up, API keys, credits, usage, and auto top-up.
 - [Agent API keys over x402](${MERCHANT_PORTAL_URL}/api/v1/keys/vend): buy a facilitator key and credits with a USDC payment, no account needed.
 - [Agent API key vending guide](${DOCS_URL}/x402/facilitators/agent-api-keys): buy, top up, and recover facilitator API keys as an agent.
 - [x402 Echo Merchant](${ECHO_MERCHANT_URL}): live test merchant that returns HTTP 402.

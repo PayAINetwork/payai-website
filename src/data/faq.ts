@@ -7,7 +7,7 @@
  * agents (src/lib/agent/pages.ts).
  */
 export type FaqEntry = { question: string; answer: string };
-import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, PRICING_GUIDANCE, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
+import { AUTHENTICATION_FAQ, ERROR_GUIDANCE, RECOVERY_GUIDANCE, PRICING_FAQ, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
 
 export const FAQ_DATA: FaqEntry[] = [
   {
@@ -23,7 +23,7 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Which chains does x402 support?",
     answer:
-      "PayAI supports payment kinds across Solana and EVM networks including Base, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. Mainnet/testnet and scheme availability can differ. Call GET https://facilitator.payai.network/supported for the currently advertised combinations. Sponsored Solana payment flows can cover transaction fees for the payer; this does not remove every setup or service cost.",
+      "PayAI supports payment kinds across Solana and EVM networks including Base, BNB Smart Chain, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. BSC supports v2 exact Permit2 payments in USDC and USDT; initial token approval requires payer BNB. Mainnet/testnet and scheme availability can differ. Call GET https://facilitator.payai.network/supported for the currently advertised combinations. Sponsored Solana payment flows can cover transaction fees for the payer; this does not remove every setup or service cost.",
   },
   {
     question: "What is the minimum payment amount?",
@@ -38,12 +38,12 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Do I need an account or API key to use PayAI?",
     answer:
-      AUTHENTICATION_GUIDANCE,
+      AUTHENTICATION_FAQ,
   },
   {
     question: "What does PayAI cost?",
     answer:
-      PRICING_GUIDANCE,
+      PRICING_FAQ,
   },
   {
     question: "What happens if a payment fails or a settlement times out?",
