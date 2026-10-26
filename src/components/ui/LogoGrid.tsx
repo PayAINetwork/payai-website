@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const logos = [
     { },
-    { src: "/projects/aimo-network.jpg" },
+    { src: "/projects/nansen.png" },
     { src: "/projects/dira-network.jpg" },
     { src: "/projects/earnfi.jpg" },
     { },

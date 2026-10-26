@@ -94,24 +94,6 @@
         "category": "AI Agents"
     },
     {
-        "logo": "/projects/aimo-network.jpg",
-        "name": "AiMo Network",
-        "description": "AiMo Network is agent-native middleware providing permissionless access to hundreds of AI models through a single OpenAI-compatible API, with transparent blockchain-based x402 pay-per-use payments.",
-        "websiteUrl": "https://aimo.network",
-        "twitterUrl": "https://x.com/AiMoNetwork",
-        "category": "AI Agents",
-        "testimonial": "We tried many x402 facilitators in the early development stages. PayAI offers the most stable and covered services so we don't have to worry about our LLMs api calls failing at the facilitator level. Bullish on the PayAI team!",
-        "testimonialAuthor": "AiMo Network Team"
-    },
-    {
-        "name": "Canza",
-        "logo": "/projects/canza.png",
-        "description": "Canza is an AI-powered Web3 trading dashboard with customizable widgets, real-time market data, and seamless Solana wallet integration for DeFi management.",
-        "websiteUrl": "https://canza.app",
-        "twitterUrl": "https://x.com/canza_io",
-        "category": "DeFi"
-    },
-    {
         "name": "Compute3",
         "logo": "/projects/compute3.svg",
         "description": "Compute3 provides enterprise GPU infrastructure for AI workloads, offering per-second billing and Docker-based orchestration with access to GPUs ranging from L4 to B300 and zero vendor lock-in.",
@@ -170,28 +152,12 @@
         "category": "AI Agents"
     },
     {
-        "name": "RelAI",
-        "logo": "/projects/relai.png",
-        "description": "Relai is an x402 API marketplace that enables developers to monetize APIs with instant micropayments on Solana, Base, Avalanche, SKALE, Ethereum, and Polygon, with built-in custodial wallets and MCP support.",
-        "websiteUrl": "https://relai.fi",
-        "twitterUrl": "https://x.com/_relai",
-        "category": "DeFi"
-    },
-    {
         "name": "Jatevo",
         "logo": "/projects/jatevo.png",
         "description": "Jatevo is a decentralized GPU LLM inference network that routes prompts across distributed GPU nodes for low-latency, cost-efficient hosting of frontier open-source language models.",
         "websiteUrl": "https://jatevo.ai",
         "twitterUrl": "https://x.com/JatevoId",
         "category": "AI Agents"
-    },
-    {
-        "name": "PinionOS",
-        "logo": "/projects/pinionos.png",
-        "description": "PinionOS is a client SDK, Claude Code plugin, and skill server framework for the Pinion protocol, enabling x402 micropayments on Base so agents can call on-chain skills without managing payments.",
-        "websiteUrl": "https://pinionos.com",
-        "twitterUrl": "https://x.com/PinionOS",
-        "category": "Infrastructure"
     },
     {
         "name": "Tip.md",
@@ -212,16 +178,6 @@
         "category": "Infrastructure"
     },
     {
-        "name": "Serpent",
-        "logo": "/projects/serpent.png",
-        "description": "Serpent is the credibility layer for early-stage projects and builders on Solana, combining curator insights with on-chain data to surface real builders and high-potential projects before the crowd catches on.",
-        "websiteUrl": "https://www.discoverserpent.com",
-        "twitterUrl": "https://x.com/discoverserpent",
-        "category": "AI Agents",
-        "testimonial": "We started talking with PayAI before Serpent even launched. Their expertise and guidance were massive for us while we were still figuring things out, and the impact they're having, not just on x402 but the space as a whole, is something we really respect. We're huge fans of what they're building and look forward to working together more as we both grow.",
-        "testimonialAuthor": "Serpent Team"
-    },
-    {
         "name": "MilyPay",
         "logo": "/projects/milypay.svg",
         "description": "MilyPay is an x402 service provider offering Australian data APIs — business identity, property, weather, and civic information — with pay-per-call settlement in AUDD, a regulated AUD-native stablecoin on Solana, letting AI agents access data without API keys or signup.",
@@ -236,22 +192,6 @@
         "websiteUrl": "https://www.8004scan.io",
         "twitterUrl": "https://x.com/8004_scan",
         "category": "Analytics"
-    },
-    {
-        "name": "x402wall",
-        "logo": "/projects/x402wall.png",
-        "description": "x402wall is a permanent advertising grid on Solana where users buy brick-sized ad slots for 1 USDC each via x402 payments, with permanent ownership and the ability to resell on a marketplace.",
-        "websiteUrl": "https://x402wall.fun",
-        "twitterUrl": "https://x.com/x402wall",
-        "category": "Infrastructure"
-    },
-    {
-        "name": "Engrave Protocol",
-        "logo": "/projects/engrave-protocol.png",
-        "description": "Engrave Protocol provides BTCFi tools for AI agents, offering real-time Bitcoin blockchain data access via MCP with pay-per-request USDC micropayments on Solana using the x402 protocol.",
-        "websiteUrl": "https://engrave-protocol.ai",
-        "twitterUrl": "https://x.com/engraveprotocol",
-        "category": "Infrastructure"
     },
     {
         "name": "QuickSync",
@@ -299,7 +239,7 @@
         "name": "Migrate.fun",
         "logo": "/projects/migrate-fun.png",
         "description": "Migrate.fun is a token migration platform on Solana that lets projects transition tokens to new contracts with automated liquidity pool creation, safeguarded migrations, and refund mechanisms.",
-        "websiteUrl": "https://www.migratefun.com",
+        "websiteUrl": "https://migrate.fun",
         "twitterUrl": "https://x.com/MigrateFun",
         "category": "DeFi"
     },
