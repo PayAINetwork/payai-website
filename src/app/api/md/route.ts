@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { AUTHORED_PAGES, DERIVED_PAGES, notFoundMarkdown } from "@/lib/agent/pages";
+import { AUTHORED_PAGES, PROJECT_PAGES, DERIVED_PAGES, notFoundMarkdown } from "@/lib/agent/pages";
 import { htmlToMarkdown } from "@/lib/agent/htmlToMarkdown";
 import { SITE_URL } from "@/lib/site";
 
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
       request.nextUrl.searchParams.get("path"),
   );
 
-  const authored = AUTHORED_PAGES[pathname];
+  const authored = AUTHORED_PAGES[pathname] ?? PROJECT_PAGES[pathname];
   if (authored) {
     return new Response(authored(), { headers: MARKDOWN_HEADERS });
   }

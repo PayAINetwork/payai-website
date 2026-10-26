@@ -29,17 +29,10 @@ import {
   PARTNERSHIP_URL,
 } from "@/lib/site";
 import { FAQ_DATA } from "@/data/faq";
-import projects from "@/data/projects.json";
+import { PROJECTS, type Project } from "@/lib/projects";
 import sitemap from "@/app/sitemap";
 import { buildOpenApiDocument } from "@/lib/agent/openapi";
 import { AUTHENTICATION_GUIDANCE, ERROR_GUIDANCE, RECOVERY_GUIDANCE, RATE_LIMIT_GUIDANCE, PRICING_GUIDANCE, DISCOVERY_GUIDANCE, AMOUNT_GUIDANCE } from "@/lib/agent/payment-guidance";
-
-type ProjectEntry = {
-  name: string;
-  description: string;
-  websiteUrl?: string;
-  category?: string;
-};
 
 const FOOTER = `## More from PayAI
 
@@ -201,11 +194,11 @@ ${FOOTER}`;
 }
 
 function ecosystemMarkdown(): string {
-  const list = (projects as ProjectEntry[])
+  const list = PROJECTS
     .map((p) => {
       const url = p.websiteUrl ? ` — ${p.websiteUrl}` : "";
       const category = p.category ? ` _(${p.category})_` : "";
-      return `- **${p.name}**${category}${url}\n  ${p.description}`;
+      return `- **[${p.name}](${SITE_URL}/ecosystem/${p.slug})**${category}${url}\n  ${p.description}`;
     })
     .join("\n");
 
@@ -346,6 +339,42 @@ export const AUTHORED_PAGES: Record<string, () => string> = {
   "/developers": developersMarkdown,
 };
 
+function projectMarkdown(p: Project): string {
+  const testimonial = p.testimonial
+    ? `\n> "${p.testimonial.replace(/\s+/g, " ")}"${p.testimonialAuthor ? ` — ${p.testimonialAuthor}` : ""}\n`
+    : "";
+  const links = [
+    p.websiteUrl && `- Website: ${p.websiteUrl}`,
+    p.twitterUrl && `- X: ${p.twitterUrl}`,
+    `- All ecosystem projects: ${SITE_URL}/ecosystem`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return `# ${p.name}
+
+${p.category} project listed in the PayAI ecosystem.
+
+${p.description}
+${testimonial}
+## Links
+
+${links}
+
+Listings are submitted by the projects themselves, not a continuously verified service inventory. ${DISCOVERY_GUIDANCE}
+
+${FOOTER}`;
+}
+
+/**
+ * One Markdown page per ecosystem project, keyed like AUTHORED_PAGES. Kept
+ * separate so llms-full.txt, which concatenates AUTHORED_PAGES, does not
+ * repeat every listing already on /ecosystem.
+ */
+export const PROJECT_PAGES: Record<string, () => string> = Object.fromEntries(
+  PROJECTS.map((p) => [`/ecosystem/${p.slug}`, () => projectMarkdown(p)]),
+);
+
 /**
  * Pages whose Markdown is derived from their own rendered HTML at request time.
  *
@@ -358,11 +387,11 @@ export const AUTHORED_PAGES: Record<string, () => string> = {
 export const DERIVED_PAGES: Set<string> = new Set(
   sitemap()
     .map((entry) => new URL(entry.url).pathname.replace(/\/+$/, "") || "/")
-    .filter((pathname) => !(pathname in AUTHORED_PAGES)),
+    .filter((pathname) => !(pathname in AUTHORED_PAGES) && !(pathname in PROJECT_PAGES)),
 );
 
 export function isMarkdownPath(pathname: string): boolean {
-  return pathname in AUTHORED_PAGES || DERIVED_PAGES.has(pathname);
+  return pathname in AUTHORED_PAGES || pathname in PROJECT_PAGES || DERIVED_PAGES.has(pathname);
 }
 
 export function allMarkdownPaths(): string[] {
