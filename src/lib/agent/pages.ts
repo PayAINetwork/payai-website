@@ -346,14 +346,19 @@ function projectMarkdown(p: Project): string {
   const links = [
     p.websiteUrl && `- Website: ${p.websiteUrl}`,
     p.twitterUrl && `- X: ${p.twitterUrl}`,
+    p.statementUrl && `- How ${p.name} uses PayAI: ${p.statementUrl}`,
+    p.storyUrl && `- Build log or case study: ${p.storyUrl}`,
+    p.codeUrl && `- Open-source example: ${p.codeUrl}`,
     `- All ecosystem projects: ${SITE_URL}/ecosystem`,
   ]
     .filter(Boolean)
     .join("\n");
+  const summary = p.tagline ? `${p.tagline}\n\n` : "";
+  const networks = p.networks?.length ? ` Settles through PayAI on ${p.networks.join(", ")}.` : "";
 
   return `# ${p.name}
 
-${p.category} project listed in the PayAI ecosystem.
+${summary}${p.category} project listed in the PayAI ecosystem.${networks}
 
 ${p.description}
 ${testimonial}

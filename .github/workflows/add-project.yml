@@ -21,8 +21,10 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const path = require('path');
             const { execFileSync } = require('child_process');
             const body = context.payload.issue.body || '';
+            const issueNumber = context.payload.issue.number;
 
             function getField(label) {
               const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -32,6 +34,17 @@ jobs:
               const value = match[1].trim();
               if (value === '_No response_' || value === 'None') return '';
               return value;
+            }
+
+            // URL fields are published as links, so anything that isn't a plain
+            // http(s) URL is left out and flagged for the reviewer.
+            const invalidUrls = [];
+            function getUrl(label) {
+              const value = getField(label);
+              if (!value) return '';
+              if (/^https?:\/\/\S+$/i.test(value)) return value;
+              invalidUrls.push(label);
+              return '';
             }
 
             const projectName = getField('Project Name');
@@ -44,9 +57,21 @@ jobs:
             const websiteUrl = getField('Website URL');
             const twitterUrl = getField('Twitter/X URL');
             const category = getField('Category');
-            const description = getField('Project Description');
+            // Issues filed with the previous form have "Project Description" and
+            // none of the fields below it.
+            const description = getField('How You Use PayAI') || getField('Project Description');
+            const tagline = getField('One-line Summary');
+            const networks = getField('Networks You Settle On Through PayAI')
+              .split(',')
+              .map((n) => n.trim())
+              .filter(Boolean);
+            const integrationProof = getField('Proof of Live Integration');
+            const statementUrl = getUrl('Where Your Site Says You Use PayAI');
+            const storyUrl = getUrl('Build Log, Case Study or Video (optional)');
+            const codeUrl = getUrl('Open-source Example or Package (optional)');
             const testimonial = getField('Testimonial (optional)');
             const testimonialAuthor = getField('Testimonial Author (optional)');
+            const caseStudyOptIn = /- \[x\] We.re open to a short interview/i.test(body);
 
             // Extract image URL. GitHub stores uploaded images as <img src="...">
             // tags (sometimes wrapped in a markdown link); older submissions may use
@@ -122,20 +147,78 @@ jobs:
               category
             };
 
+            if (tagline) entry.tagline = tagline;
+            if (networks.length) entry.networks = networks;
+            if (statementUrl) entry.statementUrl = statementUrl;
+            if (storyUrl) entry.storyUrl = storyUrl;
+            if (codeUrl) entry.codeUrl = codeUrl;
             if (testimonial) entry.testimonial = testimonial;
             if (testimonialAuthor) entry.testimonialAuthor = testimonialAuthor;
 
             projects.push(entry);
             fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 4) + '\n');
 
+            // Pre-screen the public statement for the reviewer. Never a hard gate:
+            // pages that render in the browser fail a plain fetch even when the
+            // mention is there.
+            let statementCheck = 'no URL given';
+            if (statementUrl) {
+              try {
+                const page = execFileSync(
+                  'curl',
+                  ['-fsL', '--max-time', '20', '--max-filesize', '5000000', '-A', 'Mozilla/5.0 (compatible; PayAI ecosystem check)', statementUrl],
+                  { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
+                );
+                statementCheck = /payai/i.test(page)
+                  ? 'found "PayAI" on the page'
+                  : 'did not find "PayAI" in the fetched HTML; it may render in the browser, so check by hand';
+              } catch (e) {
+                statementCheck = 'could not fetch the page; check by hand';
+              }
+            }
+
+            const words = description.split(/\s+/).filter(Boolean).length;
+            const legacy = !getField('How You Use PayAI');
+            const lines = [
+              `Adds **${projectName}** to the ecosystem page.`,
+              '',
+              `Closes #${issueNumber}`,
+              '',
+              '## Review checklist',
+              '',
+              legacy
+                ? `- [ ] **Old form:** #${issueNumber} was filed before the integration proof and public statement were required. Ask for them, or list it as is.`
+                : /sent by email/i.test(integrationProof)
+                  ? '- [ ] **Live integration:** proof was sent by email to info@payai.network; match it against PayAI settlement records.'
+                  : `- [ ] **Live integration:** match the proof in #${issueNumber} against PayAI settlement records.${integrationProof ? '' : ' None was given.'}`,
+              `- [ ] **Public statement:** ${statementUrl || 'none given'} (auto-check: ${statementCheck}).`,
+              `- [ ] **Description:** ${words} words (target 60 to 150), specific rather than marketing copy.`,
+              tagline
+                ? `- [ ] **One-line summary:** ${tagline.length} characters (max 120).`
+                : '- [ ] **One-line summary:** none given; the card will show the full description.',
+              `- Networks: ${networks.length ? networks.join(', ') : 'none given'}`,
+              `- Build log, case study or video: ${storyUrl || 'none'}`,
+              `- Open-source example: ${codeUrl || 'none'}`,
+              `- Open to a case-study interview: ${caseStudyOptIn ? '**yes**' : 'no'}`,
+            ];
+            if (invalidUrls.length) {
+              lines.push(`- [ ] **Not valid URLs, left out:** ${invalidUrls.join('; ')}`);
+            }
+            lines.push('', `> Auto-generated from issue #${issueNumber}`);
+
+            const bodyFile = path.join(process.env.RUNNER_TEMP, 'pr-body.md');
+            fs.writeFileSync(bodyFile, lines.join('\n') + '\n');
+
             core.setOutput('slug', slug);
             core.setOutput('project-name', projectName);
+            core.setOutput('pr-body-file', bodyFile);
 
       - name: Create pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLUG: ${{ steps.project.outputs.slug }}
           PROJECT_NAME: ${{ steps.project.outputs.project-name }}
+          PR_BODY_FILE: ${{ steps.project.outputs.pr-body-file }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           BRANCH="ecosystem/add-${SLUG}"
@@ -151,11 +234,7 @@ jobs:
 
           gh pr create \
             --title "Add ${PROJECT_NAME} to ecosystem" \
-            --body "Adds **${PROJECT_NAME}** to the ecosystem page.
-
-          Closes #${ISSUE_NUMBER}
-
-          > Auto-generated from issue #${ISSUE_NUMBER}"
+            --body-file "$PR_BODY_FILE"
 
       - name: Comment on issue
         env:
