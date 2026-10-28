@@ -11,7 +11,7 @@ export const revalidate = 3600;
 export const metadata = {
   title: "Contact PayAI",
   description:
-    "Reach PayAI support, sales, security, and legal. Email addresses, Discord, Telegram, and the fastest route to an engineer.",
+    "Contact PayAI for technical support, integration and API questions, bug reports, or security issues. Promotional outreach is not accepted.",
   alternates: {
     canonical: `${SITE_URL}/contact`,
     types: { "text/markdown": `${SITE_URL}/contact.md` },

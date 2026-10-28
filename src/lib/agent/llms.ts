@@ -81,7 +81,7 @@ ${WHEN_TO_USE}
 
 - [Home](${SITE_URL}/): what PayAI is, supported networks, and how to integrate.
 - [About PayAI](${SITE_URL}/about): what the company builds and who it is for.
-- [Contact](${SITE_URL}/contact): support, sales, security, and legal contacts.
+- [Contact](${SITE_URL}/contact): technical support, bug reports, security, and legal contacts. No promotional outreach.
 - [Developer portal](${SITE_URL}/developers): how to call the PayAI API.
 - [Ecosystem](${SITE_URL}/ecosystem): projects building on PayAI and x402.
 - [Blog](${BLOG_URL}): product and ecosystem updates.
@@ -101,7 +101,7 @@ Every content page on this site also serves Markdown. Request it with \`Accept: 
 
 ## Contact
 
-- Email: ${INFO_EMAIL}
+- Support email: ${INFO_EMAIL} — technical support, integration and API questions, bug reports, and security issues only. Do not send promotional outreach or unsolicited sales pitches.
 - Discord: ${DISCORD_URL}
 - X: ${X_URL}
 `;

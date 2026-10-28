@@ -26,7 +26,6 @@ import {
   LEGAL_EMAIL,
   LEGAL_NAME,
   JURISDICTION,
-  PARTNERSHIP_URL,
 } from "@/lib/site";
 import { FAQ_DATA } from "@/data/faq";
 import { PROJECTS, type Project } from "@/lib/projects";
@@ -146,7 +145,7 @@ ${FOOTER}`;
 function contactMarkdown(): string {
   return `# Contact PayAI
 
-PayAI is operated by ${LEGAL_NAME}, registered in ${JURISDICTION}. The team works remotely; ${INFO_EMAIL} reaches us for anything below.
+PayAI is operated by ${LEGAL_NAME}, registered in ${JURISDICTION}. The team works remotely. Our email channel is reserved for technical support, integration and API questions, bug reports, and security issues affecting PayAI.
 
 ## Support
 
@@ -159,14 +158,9 @@ Integration help, API questions, and bug reports.
 
 Before opening a support request, check the quickstart at ${DOCS_URL}/x402/quickstart and confirm your network is live via \`GET ${FACILITATOR_URL}/supported\`.
 
-## Sales and partnerships
+## No promotional outreach
 
-Volume pricing, dedicated throughput, ecosystem listings, and integration partnerships.
-
-- Email: ${INFO_EMAIL}
-- Telegram: ${TELEGRAM_URL}
-- Partnership enquiry form: ${PARTNERSHIP_URL}
-- Ecosystem directory: ${SITE_URL}/ecosystem
+Please do not email us with promotional engagements, advertising or sponsorship offers, influencer campaigns, SEO or backlink services, unsolicited sales pitches, or promotional partnership proposals. We do not accept these requests through this email channel. Please keep it available for users who need help with PayAI.
 
 ## Security
 
