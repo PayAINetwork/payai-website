@@ -1,12 +1,22 @@
 name: Add Project to Ecosystem
-description: Submit your project to be listed on the PayAI ecosystem page.
+description: List your project on payai.network/ecosystem and get your own project page.
 title: "[Ecosystem] "
 labels: ["ecosystem"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in joining the PayAI ecosystem! Please fill out the details below so we can add your project to the ecosystem page.
+        Thanks for building with PayAI. Every listed project gets a card on the [PayAI ecosystem page](https://payai.network/ecosystem) and its own project page, built from what you write below.
+
+        We list projects that settle real payments through PayAI. To be listed you need:
+
+        1. **A live PayAI integration** that we can check against our settlement records.
+        2. **A public page that says your payments settle through PayAI**: your docs, pricing page, x402 page, README or `/llms.txt`. Write it in your own words. A link to us is welcome but not required, and `rel="nofollow"` or `rel="sponsored"` is fine.
+        3. **A specific description** of what you sell and how you use PayAI.
+
+        Facts you may want for your page: the facilitator URL is `https://facilitator.payai.network`, and the docs are at https://docs.payai.network.
+
+        **This issue is public.** Don't paste anything here that you want kept private.
 
   - type: input
     id: project-name
@@ -58,12 +68,66 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: description
+  - type: input
+    id: tagline
     attributes:
-      label: Project Description
-      description: A 1-2 sentence summary of what your project does and how it uses PayAI or x402.
-      placeholder: Describe your project...
+      label: One-line Summary
+      description: Shown on your card. Up to 120 characters. Say what you sell, not how great it is.
+      placeholder: e.g. Pay-per-call NFT floor prices and sales data for AI agents, paid in USDC
+    validations:
+      required: true
+
+  - type: dropdown
+    id: networks
+    attributes:
+      label: Networks You Settle On Through PayAI
+      multiple: true
+      options:
+        - Solana
+        - Base
+        - BNB Smart Chain
+        - Polygon
+        - Avalanche
+        - Arbitrum
+        - Sei
+        - X Layer
+        - SKALE Base
+    validations:
+      required: true
+
+  - type: textarea
+    id: how-you-use-payai
+    attributes:
+      label: How You Use PayAI
+      description: |
+        60 to 150 words, in your own words. This becomes the main text of your project page.
+        Cover what you sell, what a call or item costs, which payment scheme you use (exact, upto or batch) and why you picked PayAI.
+        Real numbers help buyers and AI assistants trust you: payments settled, typical settle time, cost per payment.
+        If you also use other facilitators, say so. We may ask you to revise generic marketing copy.
+    validations:
+      required: true
+
+  - type: textarea
+    id: integration-proof
+    attributes:
+      label: Proof of Live Integration
+      description: |
+        Give us at least one of these, and we'll match it against PayAI's settlement records:
+        (a) the payTo address that receives your payments,
+        (b) a mainnet settlement transaction from the last 30 days, or
+        (c) a public x402 endpoint we can call.
+        This issue is public. If you'd rather not post an address here, write "sent by email" and email it to info@payai.network with your project name.
+    validations:
+      required: true
+
+  - type: input
+    id: statement-url
+    attributes:
+      label: Where Your Site Says You Use PayAI
+      description: |
+        URL of a public page (docs, pricing, x402 page, README or /llms.txt) that says your payments settle through PayAI. We link it from your project page.
+        Write it your own way. A link to payai.network is welcome but optional, and rel="nofollow" or rel="sponsored" is fine.
+      placeholder: https://yourproject.com/docs/payments
     validations:
       required: true
 
@@ -71,7 +135,7 @@ body:
     id: testimonial
     attributes:
       label: Testimonial (optional)
-      description: Share a quote about your experience building with x402 and PayAI.
+      description: A quote about your experience building with x402 and PayAI. We show it on your card and project page.
       placeholder: e.g. "With x402, we launched pay-per-use AI services in a weekend..."
     validations:
       required: false
@@ -84,3 +148,40 @@ body:
       placeholder: e.g. CTO, Your Project
     validations:
       required: false
+
+  - type: input
+    id: story-url
+    attributes:
+      label: Build Log, Case Study or Video (optional)
+      description: |
+        Published a write-up or video about your PayAI integration on your blog, dev.to, Medium, YouTube or elsewhere? We link it from your project page, and we may feature strong stories, especially ones with real numbers.
+        Links to PayAI inside it can be nofollow, or there can be none. It doesn't affect your listing.
+      placeholder: https://yourproject.com/blog/accepting-x402-payments
+    validations:
+      required: false
+
+  - type: input
+    id: code-url
+    attributes:
+      label: Open-source Example or Package (optional)
+      description: A public repo, npm or PyPI package, or MCP server that uses the PayAI facilitator. We link it from your project page.
+      placeholder: https://github.com/yourproject/x402-example
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: extras
+    attributes:
+      label: Case Study (optional)
+      options:
+        - label: We're open to a short interview for a case study on blog.payai.network.
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: Our project is live and settles payments through PayAI.
+          required: true
+        - label: The page we linked describes how we use PayAI accurately and in our own words.
+          required: true

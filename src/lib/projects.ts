@@ -7,6 +7,13 @@ export type Project = {
   websiteUrl?: string;
   twitterUrl?: string;
   category: string;
+  /** Card copy. Listings from the previous form have none and show `description`. */
+  tagline?: string;
+  networks?: string[];
+  /** The partner's own page saying its payments settle through PayAI. */
+  statementUrl?: string;
+  storyUrl?: string;
+  codeUrl?: string;
   testimonial?: string;
   testimonialAuthor?: string;
 };

@@ -45,6 +45,13 @@ jobs:
               if (typeof p[key] !== 'string' || !p[key].trim()) errors.push(`${label}: missing "${key}"`);
             }
             if (p.logo && !fs.existsSync(`public${p.logo}`)) errors.push(`${label}: logo file public${p.logo} not found`);
+            if ('tagline' in p && (typeof p.tagline !== 'string' || !p.tagline.trim())) errors.push(`${label}: "tagline" must be a non-empty string`);
+            for (const key of ['statementUrl', 'storyUrl', 'codeUrl']) {
+              if (key in p && !/^https?:\/\/\S+$/.test(p[key])) errors.push(`${label}: "${key}" must be an http(s) URL`);
+            }
+            if ('networks' in p && (!Array.isArray(p.networks) || !p.networks.length || !p.networks.every((n) => typeof n === 'string' && n.trim()))) {
+              errors.push(`${label}: "networks" must be a non-empty list of names`);
+            }
             const key = String(p.name || '').toLowerCase();
             if (names.has(key)) errors.push(`${label}: duplicate name`);
             names.add(key);

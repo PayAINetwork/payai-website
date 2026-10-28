@@ -28,6 +28,7 @@ export const Projects = () => {
         !query ||
         p.name.toLowerCase().includes(query) ||
         p.description.toLowerCase().includes(query) ||
+        p.tagline?.toLowerCase().includes(query) ||
         p.category.toLowerCase().includes(query);
 
       const matchesCategory = selectedCategory === "All Projects" || p.category === selectedCategory;
@@ -162,7 +163,7 @@ export const Projects = () => {
                     </Link>
                   </h3>
                   <p className="text-sm lg:text-base text-[#71717A]">
-                    {project.description}
+                    {project.tagline || project.description}
                   </p>
                   {project.testimonial && (
                     <div className="mt-3 bg-[#F8F9FF] rounded-lg p-3">

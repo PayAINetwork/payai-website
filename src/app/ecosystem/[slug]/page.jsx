@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
   const url = `${SITE_URL}/ecosystem/${slug}`;
   return {
     title: `${project.name} | x402 Ecosystem`,
-    description: summarize(project.description),
+    description: project.tagline || summarize(project.description),
     alternates: {
       canonical: url,
       types: { "text/markdown": `${url}.md` },
@@ -44,6 +44,11 @@ export default async function EcosystemProject({ params }) {
   if (!project) notFound();
 
   const paragraphs = project.description.split(/\n{2,}/).filter(Boolean);
+  const resources = [
+    project.statementUrl && { href: project.statementUrl, label: `How ${project.name} uses PayAI` },
+    project.storyUrl && { href: project.storyUrl, label: "Build log or case study" },
+    project.codeUrl && { href: project.codeUrl, label: "Open-source example" },
+  ].filter(Boolean);
 
   return (
     <div className="min-h-screen">
@@ -69,9 +74,19 @@ export default async function EcosystemProject({ params }) {
             />
 
             <div className="flex-1 max-w-3xl">
-              <span className="inline-block text-xs font-medium text-[#4D63F6] bg-[#F8F9FF] border border-[#4D63F6]/20 rounded-full px-3 py-1">
-                {project.category}
-              </span>
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-block text-xs font-medium text-[#4D63F6] bg-[#F8F9FF] border border-[#4D63F6]/20 rounded-full px-3 py-1">
+                  {project.category}
+                </span>
+                {project.networks?.map((network) => (
+                  <span
+                    key={network}
+                    className="inline-block text-xs font-medium text-[#71717A] border border-[#E4E4E7] rounded-full px-3 py-1"
+                  >
+                    {network}
+                  </span>
+                ))}
+              </div>
               <h1 className="mt-4 text-3xl lg:text-[48px] lg:leading-[56px] font-medium text-[#09090B]">
                 {project.name}
               </h1>
@@ -95,6 +110,23 @@ export default async function EcosystemProject({ params }) {
                     </figcaption>
                   )}
                 </figure>
+              )}
+
+              {resources.length > 0 && (
+                <ul className="mt-8 flex flex-col gap-2">
+                  {resources.map(({ href, label }) => (
+                    <li key={href}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm lg:text-base font-medium text-[#4D63F6] hover:underline underline-offset-2"
+                      >
+                        {label} &rarr;
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               )}
 
               <div className="mt-8 flex flex-wrap gap-3">
