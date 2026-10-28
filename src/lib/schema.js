@@ -47,13 +47,6 @@ export function buildOrganizationSchema() {
       },
       {
         "@type": "ContactPoint",
-        contactType: "sales",
-        email: "info@payai.network",
-        url: `${SITE_URL}/contact`,
-        availableLanguage: ["English"],
-      },
-      {
-        "@type": "ContactPoint",
         contactType: "legal",
         email: "legal@payai.network",
         url: `${SITE_URL}/privacy-policy`,
@@ -98,7 +91,7 @@ export function buildContactPageSchema() {
     name: "Contact PayAI",
     url: `${SITE_URL}/contact`,
     description:
-      "Support, sales, security, and legal contacts for PayAI.",
+      "Technical support, bug reports, security, and legal contacts for PayAI. No promotional outreach.",
     mainEntity: {
       "@type": "Organization",
       name: "PayAI",
