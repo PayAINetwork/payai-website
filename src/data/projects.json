@@ -406,5 +406,18 @@
         "category": "AI Agents",
         "testimonial": "x402 let us turn a support desk into something an agent can walk up to and use: no signup, no API key, one HTTP call, a few cents in USDC, and the reply comes back. We went from a paywall idea to live, settlement-verified paid endpoints on six chains without touching a billing system, and the first paying caller was another agent we had never spoken to.",
         "testimonialAuthor": "Kevin, Founder, DeskCrew"
+    },
+    {
+        "name": "[Ecosystem] Issue Sample",
+        "logo": "/projects/ecosystem-issue-sample.png",
+        "description": "dummy sample",
+        "websiteUrl": "https://github.com",
+        "twitterUrl": "https://x.com",
+        "category": "AI Agents",
+        "tagline": "dummy sample",
+        "networks": [
+            "Polygon"
+        ],
+        "statementUrl": "https://github.com"
     }
 ]
