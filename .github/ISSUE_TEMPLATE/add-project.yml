@@ -30,8 +30,8 @@ body:
     id: logo
     attributes:
       label: Project Logo
-      description: Drag and drop your project logo here (square, at least 128x128px, PNG/JPG/SVG/WebP).
-      placeholder: Drag and drop your logo image here.
+      description: Drag and drop your project logo here (square, at least 128x128px, PNG/JPG/WebP; up to 2 MiB).
+      placeholder: Upload your image directly to this issue; external image links and SVG are not accepted.
     validations:
       required: true
 

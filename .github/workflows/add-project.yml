@@ -1,248 +1,67 @@
 name: Add Project to Ecosystem
 
+# Public issue content must never start a job with repository write access.
 on:
-  issues:
-    types: [opened, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Reviewed, open ecosystem submission issue number"
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: ecosystem-submission-${{ inputs.issue_number }}
+  cancel-in-progress: false
 
 jobs:
-  add-project:
-    if: contains(github.event.issue.labels.*.name, 'ecosystem')
+  prepare:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Validate issue and download GitHub image without write credentials
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const { prepare } = require('./scripts/ecosystem-submission.cjs');
+            await prepare({ github, context, core });
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ecosystem-submission
+          path: |
+            ${{ runner.temp }}/ecosystem-submission/submission.json
+            ${{ runner.temp }}/ecosystem-submission/logo.bin
+          if-no-files-found: error
+          retention-days: 1
+
+  create-pr:
+    needs: prepare
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
       pull-requests: write
-      issues: write
+      issues: read
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Parse issue and update project data
-        id: project
-        uses: actions/github-script@v7
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: ecosystem-submission
+          path: ${{ runner.temp }}/ecosystem-submission
+      - name: Revalidate prepared files and create a draft PR using the GitHub API
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
-            const fs = require('fs');
-            const path = require('path');
-            const { execFileSync } = require('child_process');
-            const body = context.payload.issue.body || '';
-            const issueNumber = context.payload.issue.number;
-
-            function getField(label) {
-              const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              const regex = new RegExp(`### ${escaped}\\s*\\n\\n([\\s\\S]*?)(?=\\n### |$)`);
-              const match = body.match(regex);
-              if (!match) return '';
-              const value = match[1].trim();
-              if (value === '_No response_' || value === 'None') return '';
-              return value;
-            }
-
-            // URL fields are published as links, so anything that isn't a plain
-            // http(s) URL is left out and flagged for the reviewer.
-            const invalidUrls = [];
-            function getUrl(label) {
-              const value = getField(label);
-              if (!value) return '';
-              if (/^https?:\/\/\S+$/i.test(value)) return value;
-              invalidUrls.push(label);
-              return '';
-            }
-
-            const projectName = getField('Project Name');
-            if (!projectName) {
-              core.setFailed('Could not parse project name from issue body');
-              return;
-            }
-
-            const logoRaw = getField('Project Logo');
-            const websiteUrl = getField('Website URL');
-            const twitterUrl = getField('Twitter/X URL');
-            const category = getField('Category');
-            // Issues filed with the previous form have "Project Description" and
-            // none of the fields below it.
-            const description = getField('How You Use PayAI') || getField('Project Description');
-            const tagline = getField('One-line Summary');
-            const networks = getField('Networks You Settle On Through PayAI')
-              .split(',')
-              .map((n) => n.trim())
-              .filter(Boolean);
-            const integrationProof = getField('Proof of Live Integration');
-            const statementUrl = getUrl('Where Your Site Says You Use PayAI');
-            const storyUrl = getUrl('Build Log, Case Study or Video (optional)');
-            const codeUrl = getUrl('Open-source Example or Package (optional)');
-            const testimonial = getField('Testimonial (optional)');
-            const testimonialAuthor = getField('Testimonial Author (optional)');
-            const caseStudyOptIn = /- \[x\] We.re open to a short interview/i.test(body);
-
-            // Extract image URL. GitHub stores uploaded images as <img src="...">
-            // tags (sometimes wrapped in a markdown link); older submissions may use
-            // markdown image syntax or a plain URL. Handle all cases.
-            let logoUrl = '';
-            const imgTag = logoRaw.match(/<img[^>]*\bsrc=["']([^"']+)["']/i);
-            const mdImg = logoRaw.match(/!\[[^\]]*\]\(([^)]+)\)/);
-            const bareUrl = logoRaw.match(/https?:\/\/[^\s)"'<>]+/);
-            if (imgTag) logoUrl = imgTag[1];
-            else if (mdImg) logoUrl = mdImg[1];
-            else if (bareUrl) logoUrl = bareUrl[0];
-            logoUrl = logoUrl.trim();
-
-            if (!logoUrl) {
-              core.setFailed('Could not find logo URL in issue body');
-              return;
-            }
-
-            // Create slug for filename
-            const slug = projectName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-
-            // Determine file extension from URL or content-type header
-            let ext = '.png';
-            const urlExtMatch = logoUrl.match(/\.(png|jpe?g|svg|webp)(?:\?|$)/i);
-            if (urlExtMatch) {
-              ext = '.' + urlExtMatch[1].toLowerCase();
-              if (ext === '.jpeg') ext = '.jpg';
-            } else {
-              try {
-                const headers = execFileSync('curl', ['-sI', logoUrl], { encoding: 'utf8' });
-                const ct = headers.match(/content-type:\s*image\/([\w+]+)/i);
-                if (ct) {
-                  const type = ct[1].toLowerCase();
-                  if (type === 'jpeg' || type === 'jpg') ext = '.jpg';
-                  else if (type === 'png') ext = '.png';
-                  else if (type === 'svg+xml') ext = '.svg';
-                  else if (type === 'webp') ext = '.webp';
-                }
-              } catch (e) {
-                core.info('Could not detect content-type, defaulting to .png');
-              }
-            }
-
-            // Download logo
-            const logoFilename = `${slug}${ext}`;
-            const logoPath = `public/projects/${logoFilename}`;
-            try {
-              execFileSync('curl', ['-fsL', logoUrl, '-o', logoPath]);
-            } catch (e) {
-              core.setFailed(`Failed to download logo from: ${logoUrl}`);
-              return;
-            }
-            if (!fs.existsSync(logoPath) || fs.statSync(logoPath).size === 0) {
-              core.setFailed(`Downloaded logo is empty from: ${logoUrl}`);
-              return;
-            }
-
-            // Update projects.json
-            const projectsPath = 'src/data/projects.json';
-            const projects = JSON.parse(fs.readFileSync(projectsPath, 'utf8'));
-
-            if (projects.some(p => p.name.toLowerCase() === projectName.toLowerCase())) {
-              core.setFailed(`Project "${projectName}" already exists in the ecosystem`);
-              return;
-            }
-
-            const entry = {
-              name: projectName,
-              logo: `/projects/${logoFilename}`,
-              description,
-              websiteUrl,
-              twitterUrl,
-              category
-            };
-
-            if (tagline) entry.tagline = tagline;
-            if (networks.length) entry.networks = networks;
-            if (statementUrl) entry.statementUrl = statementUrl;
-            if (storyUrl) entry.storyUrl = storyUrl;
-            if (codeUrl) entry.codeUrl = codeUrl;
-            if (testimonial) entry.testimonial = testimonial;
-            if (testimonialAuthor) entry.testimonialAuthor = testimonialAuthor;
-
-            projects.push(entry);
-            fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 4) + '\n');
-
-            // Pre-screen the public statement for the reviewer. Never a hard gate:
-            // pages that render in the browser fail a plain fetch even when the
-            // mention is there.
-            let statementCheck = 'no URL given';
-            if (statementUrl) {
-              try {
-                const page = execFileSync(
-                  'curl',
-                  ['-fsL', '--max-time', '20', '--max-filesize', '5000000', '-A', 'Mozilla/5.0 (compatible; PayAI ecosystem check)', statementUrl],
-                  { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
-                );
-                statementCheck = /payai/i.test(page)
-                  ? 'found "PayAI" on the page'
-                  : 'did not find "PayAI" in the fetched HTML; it may render in the browser, so check by hand';
-              } catch (e) {
-                statementCheck = 'could not fetch the page; check by hand';
-              }
-            }
-
-            const words = description.split(/\s+/).filter(Boolean).length;
-            const legacy = !getField('How You Use PayAI');
-            const lines = [
-              `Adds **${projectName}** to the ecosystem page.`,
-              '',
-              `Closes #${issueNumber}`,
-              '',
-              '## Review checklist',
-              '',
-              legacy
-                ? `- [ ] **Old form:** #${issueNumber} was filed before the integration proof and public statement were required. Ask for them, or list it as is.`
-                : /sent by email/i.test(integrationProof)
-                  ? '- [ ] **Live integration:** proof was sent by email to info@payai.network; match it against PayAI settlement records.'
-                  : `- [ ] **Live integration:** match the proof in #${issueNumber} against PayAI settlement records.${integrationProof ? '' : ' None was given.'}`,
-              `- [ ] **Public statement:** ${statementUrl || 'none given'} (auto-check: ${statementCheck}).`,
-              `- [ ] **Description:** ${words} words (target 60 to 150), specific rather than marketing copy.`,
-              tagline
-                ? `- [ ] **One-line summary:** ${tagline.length} characters (max 120).`
-                : '- [ ] **One-line summary:** none given; the card will show the full description.',
-              `- Networks: ${networks.length ? networks.join(', ') : 'none given'}`,
-              `- Build log, case study or video: ${storyUrl || 'none'}`,
-              `- Open-source example: ${codeUrl || 'none'}`,
-              `- Open to a case-study interview: ${caseStudyOptIn ? '**yes**' : 'no'}`,
-            ];
-            if (invalidUrls.length) {
-              lines.push(`- [ ] **Not valid URLs, left out:** ${invalidUrls.join('; ')}`);
-            }
-            lines.push('', `> Auto-generated from issue #${issueNumber}`);
-
-            const bodyFile = path.join(process.env.RUNNER_TEMP, 'pr-body.md');
-            fs.writeFileSync(bodyFile, lines.join('\n') + '\n');
-
-            core.setOutput('slug', slug);
-            core.setOutput('project-name', projectName);
-            core.setOutput('pr-body-file', bodyFile);
-
-      - name: Create pull request
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLUG: ${{ steps.project.outputs.slug }}
-          PROJECT_NAME: ${{ steps.project.outputs.project-name }}
-          PR_BODY_FILE: ${{ steps.project.outputs.pr-body-file }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          BRANCH="ecosystem/add-${SLUG}"
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
-          git add src/data/projects.json "public/projects/"
-          git commit -m "feat: add ${PROJECT_NAME} to ecosystem
-
-          Closes #${ISSUE_NUMBER}"
-          git push origin "$BRANCH"
-
-          gh pr create \
-            --title "Add ${PROJECT_NAME} to ecosystem" \
-            --body-file "$PR_BODY_FILE"
-
-      - name: Comment on issue
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLUG: ${{ steps.project.outputs.slug }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          PROJECT_NAME: ${{ steps.project.outputs.project-name }}
-        run: |
-          PR_URL=$(gh pr list --head "ecosystem/add-${SLUG}" --json url --jq '.[0].url')
-          gh issue comment "$ISSUE_NUMBER" \
-            --body "A pull request has been created to add **${PROJECT_NAME}** to the ecosystem: ${PR_URL}"
+            const { publish } = require('./scripts/ecosystem-submission.cjs');
+            await publish({ github, context, core });
