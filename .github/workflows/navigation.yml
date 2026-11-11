@@ -2,44 +2,9 @@ name: Navigation regression
 
 on:
   pull_request:
-    paths:
-      - "src/components/layout/Navbar.jsx"
-      - "src/components/layout/Footer.jsx"
-      - "src/components/content/Markdown.jsx"
-      - "src/components/sections/**"
-      - "public/header/**"
-      - "public/overview/**"
-      - "public/cta/**"
-      - "src/lib/schema.js"
-      - "src/app/**"
-      - "scripts/navigation.test.cjs"
-      - "scripts/content.test.cjs"
-      - "scripts/agent-guidance.test.cjs"
-      - "src/lib/agent/**"
-      - "src/lib/site.ts"
-      - "src/data/faq.ts"
-      - "package*.json"
-      - ".github/workflows/navigation.yml"
   push:
     branches: [main]
-    paths:
-      - "src/components/layout/Navbar.jsx"
-      - "src/components/layout/Footer.jsx"
-      - "src/components/content/Markdown.jsx"
-      - "src/components/sections/**"
-      - "public/header/**"
-      - "public/overview/**"
-      - "public/cta/**"
-      - "src/lib/schema.js"
-      - "src/app/**"
-      - "scripts/navigation.test.cjs"
-      - "scripts/content.test.cjs"
-      - "scripts/agent-guidance.test.cjs"
-      - "src/lib/agent/**"
-      - "src/lib/site.ts"
-      - "src/data/faq.ts"
-      - "package*.json"
-      - ".github/workflows/navigation.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -47,14 +12,16 @@ permissions:
 jobs:
   navigation:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      - run: npm ci --ignore-scripts
       - run: npm run test:navigation
       - run: npm run test:content
       - run: npm run test:agent
