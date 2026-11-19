@@ -69,7 +69,7 @@ ${PRICING_GUIDANCE}
 
 ## Supported networks
 
-PayAI supports payment kinds across Solana and EVM networks including Base, BNB Smart Chain, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. BSC supports v2 exact Permit2 payments in USDC and USDT; initial token approval requires payer BNB. Mainnet/testnet and scheme availability can differ. x402 v1 uses short network names (\`base\`, \`solana\`); v2 uses CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`).
+PayAI supports payment kinds across Solana and EVM networks including Base, BNB Smart Chain, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. BSC supports v2 exact payments with two transfer methods, and the token decides which one applies. USD1 and U use EIP-3009: the payer only signs, with no token approval and no BNB. Binance-Peg USDC and USDT use Permit2: the payer needs BNB once, for the initial token approval. PayAI pays settlement gas for both. Mainnet/testnet and scheme availability can differ. x402 v1 uses short network names (\`base\`, \`solana\`); v2 uses CAIP-2 identifiers (\`eip155:8453\`, \`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp\`).
 
 For the authoritative live list, call \`GET ${FACILITATOR_URL}/supported\` — it returns every (x402 version, scheme, network) combination the facilitator can currently verify and settle. The documented list is at ${DOCS_URL}/x402/supported-networks.
 

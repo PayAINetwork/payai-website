@@ -23,7 +23,7 @@ export const FAQ_DATA: FaqEntry[] = [
   {
     question: "Which chains does x402 support?",
     answer:
-      "PayAI supports payment kinds across Solana and EVM networks including Base, BNB Smart Chain, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. BSC supports v2 exact Permit2 payments in USDC and USDT; initial token approval requires payer BNB. Mainnet/testnet and scheme availability can differ. Call GET https://facilitator.payai.network/supported for the currently advertised combinations. Sponsored Solana payment flows can cover transaction fees for the payer; this does not remove every setup or service cost.",
+      "PayAI supports payment kinds across Solana and EVM networks including Base, BNB Smart Chain, Polygon, Avalanche, Arbitrum, Sei, X Layer and SKALE. BSC supports v2 exact payments with two transfer methods, and the token decides which one applies. USD1 and U use EIP-3009: the payer only signs, with no token approval and no BNB. Binance-Peg USDC and USDT use Permit2: the payer needs BNB once, for the initial token approval. PayAI pays settlement gas for both. Mainnet/testnet and scheme availability can differ. Call GET https://facilitator.payai.network/supported for the currently advertised combinations. Sponsored Solana payment flows can cover transaction fees for the payer; this does not remove every setup or service cost.",
   },
   {
     question: "What is the minimum payment amount?",
