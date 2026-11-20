@@ -56,10 +56,12 @@ export const Partners = () => {
             fee; setup costs and facilitator fees are separate.
           </p>
           <p className="text-sm lg:text-base text-[#0A0A0A]/60 text-center mt-3">
-            BNB Smart Chain supports USDC and USDT through x402 v2 exact Permit2
-            payments. The initial token approval requires BNB in the buyer&apos;s
-            wallet; PayAI covers settlement gas. For each network&apos;s supported
-            versions and payment schemes, call{" "}
+            BNB Smart Chain supports x402 v2 exact payments. USD1 and U need
+            only a signature from the buyer, with no token approval and no BNB.
+            Binance-Peg USDC and USDT use Permit2, and the initial token
+            approval requires BNB in the buyer&apos;s wallet. PayAI covers
+            settlement gas for both. For each network&apos;s supported versions
+            and payment schemes, call{" "}
             <a
               href={`${FACILITATOR_URL}/supported`}
               className="underline text-[#09090B]"
